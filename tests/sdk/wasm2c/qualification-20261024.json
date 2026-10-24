@@ -1,0 +1,57 @@
+{
+  "profile": "Open SDK WABT1.0.41 capacity patch v1",
+  "patch_sha256": "2f7ea7e3bb4ac3c53610ce262141f49659675402cf682fd04907f63a11fed72a",
+  "host": "pass",
+  "independent_68040_gcc15": "pass",
+  "native_68040_open3_ac090": {
+    "normal_rc": 0,
+    "injected_initial_failure_rc": 75,
+    "test_sha256": "53ac35a2ea78e74b5e47c5e4867aa86a45f9c2c8f40f0a6067de1b4613677c54"
+  },
+  "consumer": {
+    "returncode": 0,
+    "scenario": "fixed save, city founding, research dialog, manual save, two turns, clean exit; full SDL host",
+    "screenshots": [
+      {
+        "stage": "before-save",
+        "pixel_identical": false
+      },
+      {
+        "stage": "first-city",
+        "pixel_identical": true
+      },
+      {
+        "stage": "load-autosave",
+        "pixel_identical": true
+      },
+      {
+        "stage": "name-city",
+        "pixel_identical": true
+      },
+      {
+        "stage": "saved-city",
+        "pixel_identical": false
+      },
+      {
+        "stage": "turn-1",
+        "pixel_identical": true
+      },
+      {
+        "stage": "turn-2",
+        "pixel_identical": true
+      }
+    ],
+    "save_bytes": 43555,
+    "save_sha256": "4c9c8716232506817bce8c3efb945b1f2b6cafe045506d702ebce989e3781faa",
+    "binary_sha256": "b609ca6dfbd3408f2074185c2154e9150c7a36d811d1615e3e563c5006d5eeb7",
+    "reload": {
+      "returncode": 0,
+      "loaded_file": "SIDE.SAV",
+      "saved_year": "3980 BC",
+      "after_turn": "3960 BC",
+      "save_sha256_unchanged": true
+    },
+    "screenshot_difference": "before-save and saved-city differ only in active-unit blink: 728 pixels in (171,237)-(251,277), confirmed visually; other five exact"
+  },
+  "remote_ci": "unrun while uploads paused"
+}

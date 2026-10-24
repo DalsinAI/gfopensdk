@@ -23,6 +23,10 @@ jobs:
         run: TEST_CFLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g" sh tests/sdk/win32compat/run.sh
       - name: Checked Win32 bitmap tests on big-endian 68040
         run: CC=m68k-linux-gnu-gcc TEST_CFLAGS="-m68040 -static" TEST_RUNNER="qemu-m68k -cpu m68040" sh tests/sdk/win32compat/run.sh
+      - name: Shared wasm2c memory-capacity profile, host and 68040
+        run: |
+          python3 tests/sdk/wasm2c/run.py
+          python3 tests/sdk/wasm2c/run.py --cc m68k-linux-gnu-gcc --flags="-m68040 -static" --runner="qemu-m68k -cpu m68040"
       - run: python3 -m unittest discover -s tests/sdk -v
       - run: python3 tools/gather.py --offline-check
       - run: python3 -m py_compile tools/build_curl_sdk.py

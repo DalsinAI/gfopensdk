@@ -1,0 +1,11 @@
+{
+  "upstream": "https://github.com/WebAssembly/wabt/tree/1.0.41",
+  "version": "1.0.41",
+  "purpose": "Unmodified minimal upstream memory-runtime fixture for testing the downstream patch, not a new converter fork",
+  "sha256": {
+    "include/wasm-rt.h": "0757a097bf55ccc904f34249bbc63f18c9f6415f78bc39b87208f776d63d3a61",
+    "share/wabt/wasm2c/wasm-rt-mem-impl.c": "456ca21d9843001104e47470e646d14aeae8b0501edd6cbc869ce98e0500bece",
+    "share/wabt/wasm2c/wasm-rt-mem-impl-helper.inc": "1d0f57627e92fe581ef1dd5da37fd38122b39580065ab9d661874e2c9d431d41",
+    "share/wabt/wasm2c/wasm-rt-impl.h": "dd8fbe19ba42258bb3a235017b82399c63fead4c932ad45197e77ca75b00d562"
+  }
+}

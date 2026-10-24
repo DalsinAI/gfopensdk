@@ -45,6 +45,14 @@ implementation. Build an isolated native archive with
 `tools/build_win32compat.py`; runtime and consumer evidence remain separate
 from successful compilation.
 
+## Pinned wasm2c runtime patch
+
+[The memory-capacity patch](Lib/wasm2c/README.md) adapts WABT 1.0.41's non-mmap
+runtime to avoid a demonstrated contiguous-allocation fragmentation failure.
+It keeps module bounds separate from physical spare capacity, is tested with
+injected failures, and requires rebuilding every consumer object together.
+It does not replace the converter or wasi-libc.
+
 ## OpenAmigaWASI scope
 
 [The WASI integration scope](Docs/OPENAMIGAWASI.md) records the requested
