@@ -1,7 +1,7 @@
 name: SDK and OpenNDK validation
 on:
   push:
-    paths: ['OpenNDK/**', 'Include/**', 'FD/**', 'SFD/**', 'manifest.json', 'tools/**', 'tests/**', '.github/workflows/sdk-validation.yml']
+    paths: ['OpenNDK/**', 'Lib/**', 'Include/**', 'FD/**', 'SFD/**', 'manifest.json', 'tools/**', 'tests/**', '.github/workflows/sdk-validation.yml']
   pull_request:
   workflow_dispatch:
 permissions:
@@ -12,13 +12,17 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get update && sudo apt-get install -y gcc-m68k-linux-gnu g++-m68k-linux-gnu
+      - run: sudo apt-get update && sudo apt-get install -y gcc-m68k-linux-gnu g++-m68k-linux-gnu qemu-user
       - run: sh OpenNDK/tests/run.sh
       - name: SDK public headers, C and C++
         run: |
           m68k-linux-gnu-gcc -m68040 -IInclude -IOpenNDK/Include_H -Wall -Wextra -Werror -fsyntax-only tests/sdk/headers.c
           m68k-linux-gnu-g++ -x c++ -std=gnu++17 -m68040 -IInclude -IOpenNDK/Include_H -Wall -Wextra -Werror -fsyntax-only tests/sdk/headers.c
       - run: sh tests/host/run.sh
+      - name: Checked Win32 bitmap tests with sanitizers
+        run: TEST_CFLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g" sh tests/sdk/win32compat/run.sh
+      - name: Checked Win32 bitmap tests on big-endian 68040
+        run: CC=m68k-linux-gnu-gcc TEST_CFLAGS="-m68040 -static" TEST_RUNNER="qemu-m68k -cpu m68040" sh tests/sdk/win32compat/run.sh
       - run: python3 -m unittest discover -s tests/sdk -v
       - run: python3 tools/gather.py --offline-check
       - run: python3 -m py_compile tools/build_curl_sdk.py
@@ -57,6 +61,13 @@ jobs:
               with urllib.request.urlopen(url,timeout=120) as r:p.write_bytes(r.read())
               assert hashlib.sha256(p.read_bytes()).hexdigest()==sha,name
           PY
+      - name: Build checked Win32 archive and link native Amiga tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          make -C Lib/win32compat CC="$PWD/build/stove/prefix/bin/m68k-amigaos-gcc" AR="$PWD/build/stove/prefix/bin/m68k-amigaos-ar" CPPFLAGS=-mcrt=nix20
+          build/stove/prefix/bin/m68k-amigaos-gcc -m68040 -m68881 -mcrt=nix20 -std=c99 -O2 -Wall -Wextra -Werror -IInclude tests/sdk/win32compat/bitmap_test.c Lib/win32compat/build/libwin32compat.a -o Lib/win32compat/build/bitmap-test
+          build/stove/prefix/bin/m68k-amigaos-objdump -f Lib/win32compat/build/bitmap-test | grep amiga
       - name: Build target zlib and curl SDK overlay
         shell: bash
         run: |

@@ -36,6 +36,21 @@ OpenBrowser's curl port already exists; the overlay makes that dependency
 available to other builds without replacing an active stove or runtime.
 It does not provide a curl Shell command or certify every library.
 
+## Checked Win32 bitmap core
+
+[win32compat 0.1](Docs/WIN32COMPAT.md) provides checked bitmap storage, explicit
+little-endian DIB decoding, clipping, copies and fills for indexed 8-bit and
+BGRX32 surfaces. It is an initial portable SDK component, not a full Win32/GDI
+implementation. Build an isolated native archive with
+`tools/build_win32compat.py`; runtime and consumer evidence remain separate
+from successful compilation.
+
+## OpenAmigaWASI scope
+
+[The WASI integration scope](Docs/OPENAMIGAWASI.md) records the requested
+upstream-derived project, native SDK link-library boundary and qualification
+gates. This is planned integration, not an available or certified SDK library.
+
 ## Licence
 
 MIT, Copyright (c) 2026 AmigaChrome Team (`LICENSE`), for our own files.

@@ -1,3 +1,4 @@
+#include <win32compat/bitmap.h>
 /* Copyright (c) 2026 AmigaChrome Team. MIT licence. */
 #include <proto/openrtg.h>
 #include <proto/opentls.h>
