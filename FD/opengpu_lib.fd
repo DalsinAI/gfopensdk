@@ -1,0 +1,26 @@
+##base _OpenGPUBase
+##bias 30
+##public
+OGPU_Query(op,format)(d0,d1)
+OGPU_BackEndName(index)(d0)
+OGPU_Submit(stream,words,fence)(a0,d0,a1)
+OGPU_Wait(fence)(d0)
+OGPU_ModuleOpen(name,version,table)(a0,d0,a1)
+OGPU_ModuleClose(handle)(a0)
+OGFX_Version()()
+OGFX_InstallPatches()()
+OGFX_SetEnabled(enabled)(d0)
+OGFX_Status()()
+OGFX_RegisterProvider(provider)(a0)
+OGFX_UnregisterProvider(owner)(a0)
+OGFX_Text(rp,text,length)(a1,a0,d0)
+OGFX_TextLength(rp,text,length)(a1,a0,d0)
+OGFX_TextExtent(rp,text,length,extent)(a1,a0,d0,a2)
+OGFX_TextFit(rp,text,length,extent,constraining,direction,bitWidth,bitHeight)(a1,a0,d0,a2,a3,d1,d2,d3)
+OGFX_RectFill(rp,x0,y0,x1,y1)(a1,d0,d1,d2,d3)
+OGFX_BltBitMap(src,sx,sy,dst,dx,dy,width,height,minterm,mask,temp)(a0,d0,d1,a1,d2,d3,d4,d5,d6,d7,a2)
+OGFX_BltTemplate(source,sx,modulo,rp,dx,dy,width,height)(a0,d0,d1,a1,d2,d3,d4,d5)
+OGFX_ScrollRaster(rp,dx,dy,x0,y0,x1,y1)(a1,d0,d1,d2,d3,d4,d5)
+OGFX_RegisterLook(look)(a0)
+OGFX_UnregisterLook(owner)(a0)
+##end

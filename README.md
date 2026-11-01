@@ -9,6 +9,11 @@ AmigaOS 3.x: the C headers, SFD and FD files, proto, inline and pragma
 headers, LVO includes and `libamiga.a`, written clean-room, so the open
 libraries and third-party software build without the vendor NDK.
 
+Also: **opengpu.library** (`Include/opengpu/`, `Docs/OPENGPU.md`,
+`Examples/opengpu-vector`): the drawing every Open program shares, vector
+drawing included (paths, strokes, gradients, patterns, clip masks, blur),
+gathered from openamigartg like the other headers.
+
 Also: **os4compat** (`Lib/os4compat`, `Docs/PORTING-OS4.md`), which builds
 AmigaOS 4 source for OS 3.2 by giving each library OS 4's interfaces and
 adding the OS 4 calls OS 3.2 lacks.
