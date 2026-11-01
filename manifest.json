@@ -26,6 +26,36 @@
       }
     },
     {
+      "name": "opengpu.library",
+      "version": "0.23, team4/opengpu-aliased-paths-20261101b d0745c1 (openamigartg #157)",
+      "repo": "DalsinAI/openamigartg",
+      "commit": "d0745c1fbb51bb52a736b967c6b38bed4e9c8c0c",
+      "licence": "MIT",
+      "files": {
+        "include/opengpu/opengpu.h": "Include/opengpu/opengpu.h",
+        "include/opengpu/stream.h": "Include/opengpu/stream.h",
+        "include/opengpu/stream3d.h": "Include/opengpu/stream3d.h",
+        "include/opengpu/module.h": "Include/opengpu/module.h",
+        "include/opengpu/gfx.h": "Include/opengpu/gfx.h",
+        "include/proto/opengpu.h": "Include/proto/opengpu.h",
+        "include/inline/opengpu.h": "Include/inline/opengpu.h",
+        "library/opengpu/opengpu_lib.sfd": "SFD/opengpu_lib.sfd",
+        "sdk/AutoDocs-OpenGPU.md": "Docs/AutoDocs-OpenGPU.md"
+      },
+      "sha256": {
+        "Docs/AutoDocs-OpenGPU.md": "2a12333ebc942dc26876c16869b5d5a7f7bd24e706e5e56ff6d0c7114306657d",
+        "FD/opengpu_lib.fd": "144fcef6e0cc093bf0ef4b151ab1a06e4ada33285db12f546d55d03fe7ccd211",
+        "Include/inline/opengpu.h": "c2dea707fbb0d0c38b3d03e37b46d0e14f2e6d78a5dba72c2cffd63aae6aa002",
+        "Include/opengpu/gfx.h": "453f6a97d11f4033f5daafaf9d35ae652f42955a9c276961cb3605fedc8180ff",
+        "Include/opengpu/module.h": "320a008ba9373f34b9b41ef3883932bd40508bb1aa92cfa3acf29ccfb5857297",
+        "Include/opengpu/opengpu.h": "5a208831f4f733dce9c3fec43c0527e9d482db2977ad984955bbe467116cb317",
+        "Include/opengpu/stream.h": "83443b38fc46f4f1fe949182ac2b60d9706d0a17fd5f625613a9798ff299c321",
+        "Include/opengpu/stream3d.h": "6424dcdcf806f6395b977e1562022b6332999b475be11b474846f05e50a30043",
+        "Include/proto/opengpu.h": "c961dde27643e077fa8e22a8fb9247c207b3dbc336b0c421a7e0d2916caa0cad",
+        "SFD/opengpu_lib.sfd": "3a68c625bccdf06fd3cd6c43e7452b4bcd1c064e8cd1d0af02c2a2aa58f6262d"
+      }
+    },
+    {
       "name": "opensocket.library",
       "version": "main 721d664",
       "repo": "DalsinAI/openamigasocket",
