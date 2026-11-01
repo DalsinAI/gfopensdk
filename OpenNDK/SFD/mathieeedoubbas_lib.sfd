@@ -1,6 +1,6 @@
 ==id OpenNDK mathieeedoubbas_lib.sfd 47.1
 * mathieeedoubbas.library's calls (IEEE double precision basics), for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _MathIeeeDoubBasBase
 ==basetype struct MathIEEEBase *
 ==libname mathieeedoubbas.library

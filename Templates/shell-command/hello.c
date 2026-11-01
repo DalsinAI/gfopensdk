@@ -3,7 +3,7 @@
  *
  *   Hello NAME/A,TIMES/N/K,QUIET/S
  *
- * Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence: your own
+ * Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence: your own
  * command built from it is yours to licence as you like. */
 #include <exec/types.h>
 #include <dos/dos.h>

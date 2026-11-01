@@ -3,7 +3,7 @@
  * a menu item, underlined keys, Esc to close, plain words in a status line.
  * OpenLook themes it when installed; without it, it is the OS's own look.
  *
- * Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence: your own
+ * Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence: your own
  * program built from it is yours to licence as you like. */
 #include <exec/types.h>
 #include <intuition/intuition.h>

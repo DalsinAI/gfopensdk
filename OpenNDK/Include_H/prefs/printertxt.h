@@ -2,7 +2,7 @@
 #define PREFS_PRINTERTXT_H
 /*
  * OpenNDK: printer preferences: driver, port, paper and text (PTXT, PUNT and PDEV chunks).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

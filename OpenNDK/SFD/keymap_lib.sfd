@@ -1,6 +1,6 @@
 ==id OpenNDK keymap_lib.sfd 47.1
 * keymap.library's calls, for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _KeymapBase
 ==basetype struct Library *
 ==libname keymap.library

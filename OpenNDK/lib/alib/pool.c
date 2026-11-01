@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* LibCreatePool and friends: exec's pools from V39 on; before that, each
  * allocation is its own AllocMem, kept on a list so DeletePool frees all. */
 #include "alib.h"

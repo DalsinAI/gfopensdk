@@ -2,7 +2,7 @@
 #define HARDWARE_CUSTOM_H
 /*
  * OpenNDK: the custom chip registers, laid out as they sit at 0xDFF000.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

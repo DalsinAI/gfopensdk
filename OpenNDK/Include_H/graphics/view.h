@@ -2,7 +2,7 @@
 #define GRAPHICS_VIEW_H
 /*
  * OpenNDK: views, viewports, colour maps and double buffering.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define ECS_SPECIFIC

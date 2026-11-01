@@ -2,7 +2,7 @@
 #define GRAPHICS_COLLIDE_H
 /*
  * OpenNDK: the borders a GEL can hit, as DoCollision() reports them.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define BORDERHIT	0	/* collision routine 0 handles the borders */

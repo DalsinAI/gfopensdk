@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence (LICENSE).
+# Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence (LICENSE).
 # SPDX-License-Identifier: MIT
 """Gather the SDK's headers and function tables from each library's repository.
 

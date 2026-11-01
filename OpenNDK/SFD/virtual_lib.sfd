@@ -1,6 +1,6 @@
 ==id OpenNDK virtual_lib.sfd 47.1
 * virtual.gadget's calls, for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _VirtualBase
 ==basetype struct Library *
 ==libname virtual.gadget

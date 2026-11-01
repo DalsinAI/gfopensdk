@@ -2,7 +2,7 @@
 #define INTUITION_CGHOOKS_H
 /*
  * OpenNDK: what a custom (BOOPSI) gadget is told about where it lives.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

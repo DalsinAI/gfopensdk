@@ -3,7 +3,7 @@
 /*
  * OpenNDK: the CD device commands (cd.device and compatibles), status
  * bits and table-of-contents structures.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

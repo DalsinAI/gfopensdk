@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* BeginIO: the device's own BeginIO vector (-30), called directly, as
  * SendIO would but without clearing io_Flags. */
 #include "alib.h"

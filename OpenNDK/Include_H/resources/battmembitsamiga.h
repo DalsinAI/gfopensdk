@@ -2,7 +2,7 @@
 #define RESOURCES_BATTMEMBITSAMIGA_H
 /*
  * OpenNDK: battery-backed memory bits the Amiga OS owns.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 /* Bit offsets and lengths, as passed to ReadBattMem() and WriteBattMem() */

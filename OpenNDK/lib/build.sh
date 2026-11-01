@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Builds OpenNDK's libamiga.a: a stub for every public call in SFD/ (each
 # a real function that loads the base and jumps through it, for compilers
 # and code that don't use the inline headers, and the varargs forms such

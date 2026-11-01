@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* CheckRexxMsg, GetRexxVar and SetRexxVar: a host reads or sets a variable
  * of the ARexx program whose command message it holds (before it replies).
  * The work is rexxsyslib.library's: GetRexxVarFromMsg and

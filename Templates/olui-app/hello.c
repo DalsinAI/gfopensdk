@@ -1,5 +1,5 @@
 /* A window in HTML and CSS: a name and an OK button (OpenLayout UI).
- * MIT, Copyright (c) 2026 AmigaChrome Team. */
+ * MIT, Copyright (c) 2026 AmiCradle Team. */
 #include <exec/types.h>
 #include <intuition/intuition.h>
 #include <dos/dos.h>
@@ -12,7 +12,7 @@
 #include "openlayout_ui.h"
 #include "openlayout_ui_amiga.h"
 
-static const char version[] = "$VER: HelloUI 0.1 (30.10.2026) AmigaChrome Team";
+static const char version[] = "$VER: HelloUI 0.1 (30.10.2026) AmiCradle Team";
 
 static const char markup[] =
     "<row><label>Name</label><input id=name placeholder='Your name' style='flex:1'></row>"

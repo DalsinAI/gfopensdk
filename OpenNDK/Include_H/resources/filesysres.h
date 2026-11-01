@@ -2,7 +2,7 @@
 #define RESOURCES_FILESYSRES_H
 /*
  * OpenNDK: FileSystem.resource: the file systems the system knows.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_NODES_H

@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence (LICENSE).
+/* Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence (LICENSE).
  * SPDX-License-Identifier: MIT
  *
  * An OS 4 style program, written as for OS 4.1, built for OS 3.2 with

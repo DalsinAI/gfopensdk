@@ -2,7 +2,7 @@
 #define REXX_REXXIO_H
 /*
  * OpenNDK: ARexx's file buffers and its port resource.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REXX_STORAGE_H

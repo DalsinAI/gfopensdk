@@ -2,7 +2,7 @@
 #define HARDWARE_ADKBITS_H
 /*
  * OpenNDK: bits of the adkcon and adkconr registers (audio and disk control).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define ADKB_SETCLR	15

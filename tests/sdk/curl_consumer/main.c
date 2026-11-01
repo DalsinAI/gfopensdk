@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence. */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence. */
 #include <errno.h>
 #include <curl/curl.h>
 #include <proto/exec.h>

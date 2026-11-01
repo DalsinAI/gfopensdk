@@ -2,7 +2,7 @@
 #define EXEC_INITIALIZERS_H
 /*
  * OpenNDK: macros that build the tables InitStruct() reads.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 /* Address of a field in a structure placed at address zero. */

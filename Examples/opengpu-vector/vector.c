@@ -15,7 +15,7 @@
  *
  *   OpenGPUVector [FILE]        (default RAM:opengpu-vector.ppm)
  *
- * Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence: your own
+ * Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence: your own
  * program built from it is yours to licence as you like. */
 #include <exec/types.h>
 #include <exec/memory.h>

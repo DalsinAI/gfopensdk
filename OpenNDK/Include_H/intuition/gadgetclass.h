@@ -3,7 +3,7 @@
 /*
  * OpenNDK: gadgetclass and the built-in gadget classes: their tags,
  * methods and method messages.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef INTUITION_INTUITION_H

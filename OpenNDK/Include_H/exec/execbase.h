@@ -2,7 +2,7 @@
 #define EXEC_EXECBASE_H
 /*
  * OpenNDK: exec.library's base, the system's central structure.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_LISTS_H

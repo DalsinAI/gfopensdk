@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* FastRand and RangeRand: a shift register with feedback, as documented
  * for amiga.lib: double the seed and, when a bit falls off the top, mix
  * in the feedback constant 0x1D872B41. */

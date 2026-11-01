@@ -1,6 +1,6 @@
 Short:        One kit to build for the Open platform
 Uploader:     (We fill this in at upload time)
-Author:       AmigaChrome Team
+Author:       AmiCradle Team
 Type:         dev/misc
 Version:      0.1
 Architecture: m68k-amigaos >= 3.2.0
@@ -15,8 +15,8 @@ instead of them, and uses only published interfaces with names that port.
 
 Status: designed, not built; this readme is ready for the first release.
 
-Licence: MIT, Copyright (c) 2026 AmigaChrome Team, for our files; third-party
-code keeps its own. If you build on it, we ask that you credit the AmigaChrome Team
+Licence: MIT, Copyright (c) 2026 AmiCradle Team, for our files; third-party
+code keeps its own. If you build on it, we ask that you credit the AmiCradle Team
 and AmigaChrome.
 
 Source: https://github.com/DalsinAI/openamigasdk

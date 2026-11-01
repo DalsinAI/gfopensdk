@@ -2,7 +2,7 @@
 #define DATATYPES_TEXTCLASS_H
 /*
  * OpenNDK: text.datatype's attributes, lines and IFF FTXT chunks.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef UTILITY_TAGITEM_H

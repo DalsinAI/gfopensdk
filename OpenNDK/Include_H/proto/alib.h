@@ -5,7 +5,7 @@
  * SetRexxVar and the rest), for programs that include them the way they
  * include a library's calls. libamiga.a has no base and no inline calls,
  * so this is its prototypes only.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef CLIB_ALIB_PROTOS_H

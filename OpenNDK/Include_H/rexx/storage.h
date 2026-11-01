@@ -2,7 +2,7 @@
 #define REXX_STORAGE_H
 /*
  * OpenNDK: ARexx's strings, argument blocks, messages and resources.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

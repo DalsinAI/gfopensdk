@@ -2,7 +2,7 @@
 #define GADGETS_SPACE_H
 /*
  * OpenNDK: space.gadget, an empty area for layouts or the program's own drawing.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

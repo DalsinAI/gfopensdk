@@ -2,7 +2,7 @@
 #define GRAPHICS_SPRITE_H
 /*
  * OpenNDK: hardware sprites, simple and extended.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

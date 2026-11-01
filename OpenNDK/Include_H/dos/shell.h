@@ -2,7 +2,7 @@
 #define DOS_SHELL_H
 /*
  * OpenNDK: the Shell's extended CLI structure and its line history.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

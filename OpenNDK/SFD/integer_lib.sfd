@@ -1,6 +1,6 @@
 ==id OpenNDK integer_lib.sfd 47.1
 * integer.gadget's calls, for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _IntegerBase
 ==basetype struct Library *
 ==libname integer.gadget

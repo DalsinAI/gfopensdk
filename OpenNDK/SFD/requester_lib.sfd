@@ -1,6 +1,6 @@
 ==id OpenNDK requester_lib.sfd 47.1
 * requester.class's calls, for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _RequesterBase
 ==basetype struct Library *
 ==libname requester.class

@@ -2,7 +2,7 @@
 #define REACTION_REACTION_CLASS_H
 /*
  * OpenNDK: what ReAction classes share: GM_CLIPRECT and its message.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

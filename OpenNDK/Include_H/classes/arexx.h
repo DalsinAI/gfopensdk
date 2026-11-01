@@ -2,7 +2,7 @@
 #define CLASSES_AREXX_H
 /*
  * OpenNDK: arexx.class, an ARexx host port with a table of commands.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

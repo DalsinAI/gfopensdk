@@ -1,6 +1,6 @@
 ==id OpenNDK expansion_lib.sfd 47.1
 * expansion.library's calls, for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _ExpansionBase
 ==basetype struct ExpansionBase *
 ==libname expansion.library

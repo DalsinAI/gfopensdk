@@ -2,7 +2,7 @@
 #define REXX_ERRORS_H
 /*
  * OpenNDK: ARexx's error numbers and return codes.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define ERRC_MSG	0	/* the first error number */

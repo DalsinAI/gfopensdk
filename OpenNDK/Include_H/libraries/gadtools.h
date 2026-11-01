@@ -3,7 +3,7 @@
 /*
  * OpenNDK: gadtools.library's gadget kinds, NewGadget and NewMenu, and
  * the tags its calls take.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Checks OpenNDK against a vendor NDK 3.2 installed on this machine: every
 # structure size, field offset and constant value (layouts.py), and every
 # call's offset, registers and prototype (compare_sfd.py). Writes the two

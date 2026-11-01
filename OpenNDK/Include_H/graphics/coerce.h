@@ -2,7 +2,7 @@
 #define GRAPHICS_COERCE_H
 /*
  * OpenNDK: CoerceMode() flags.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define PRESERVE_COLORS	1	/* keep the colour count */

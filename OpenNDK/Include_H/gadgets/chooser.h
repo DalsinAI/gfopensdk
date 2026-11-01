@@ -2,7 +2,7 @@
 #define GADGETS_CHOOSER_H
 /*
  * OpenNDK: chooser.gadget, a pop-up or drop-down menu of choices.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

@@ -2,7 +2,7 @@
 #define PROTO_DDEBUG_H
 /*
  * OpenNDK: ddebug.lib's calls, the way programs include them.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef CLIB_DDEBUG_PROTOS_H

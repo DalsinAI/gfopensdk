@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 """Measure a header set's structures and constants, and compare two sets.
 
     layouts.py dump INCLUDE_DIR OUT.json      (CC, READELF from the environment)

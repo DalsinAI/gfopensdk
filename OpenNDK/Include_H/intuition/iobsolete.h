@@ -4,7 +4,7 @@
  * OpenNDK: the flag names Intuition used before V36, each the same value
  * as its prefixed V36 name. intuition.h pulls this in unless the program
  * defines INTUI_V36_NAMES_ONLY.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

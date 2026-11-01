@@ -2,7 +2,7 @@
 #define DATATYPES_PICTURECLASS_H
 /*
  * OpenNDK: picture.datatype's attributes, methods and IFF ILBM chunks.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef UTILITY_TAGITEM_H

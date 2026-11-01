@@ -2,7 +2,7 @@
 #define EXEC_IO_H
 /*
  * OpenNDK: I/O requests and the standard device commands.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_PORTS_H

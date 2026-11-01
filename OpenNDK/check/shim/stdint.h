@@ -1,7 +1,7 @@
 /* OpenNDK check/: the fixed-width types from GCC's own predefined macros,
  * for measuring a header set that includes <stdint.h> with a compiler
  * whose include folder has none (the m68k-amigaos GCC without a C library).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 #ifndef OPENNDK_CHECK_STDINT_H
 #define OPENNDK_CHECK_STDINT_H

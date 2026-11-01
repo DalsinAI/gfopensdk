@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # OpenNDK's own tests, with no vendor NDK anywhere:
 #   1. every generated file is up to date with its SFD
 #   2. every header compiles on its own, in C and C++

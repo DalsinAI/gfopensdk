@@ -2,7 +2,7 @@
 #define EXEC_LIBRARIES_H
 /*
  * OpenNDK: the library base and the standard library vectors.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_NODES_H

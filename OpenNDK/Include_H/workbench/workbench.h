@@ -3,7 +3,7 @@
 /*
  * OpenNDK: Workbench's icons (struct DiskObject), drawer data and the
  * application windows, icons and menu items of workbench.library.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

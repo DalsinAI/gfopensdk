@@ -2,7 +2,7 @@
 #define GRAPHICS_RPATTR_H
 /*
  * OpenNDK: tags for SetRPAttrsA() and GetRPAttrsA().
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define RPTAG_Font		0x80000000	/* struct TextFont * */

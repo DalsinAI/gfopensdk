@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* What every libamiga.a helper includes. */
 #ifndef OPENNDK_ALIB_H
 #define OPENNDK_ALIB_H

@@ -2,7 +2,7 @@
 #define UTILITY_HOOKS_H
 /*
  * OpenNDK: callback hooks.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

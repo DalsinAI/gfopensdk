@@ -2,7 +2,7 @@
 #define GRAPHICS_LAYERS_H
 /*
  * OpenNDK: layers.library's Layer_Info and layer flags.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_LISTS_H

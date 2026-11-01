@@ -2,7 +2,7 @@
 #define GADGETS_STRING_H
 /*
  * OpenNDK: string.gadget, ReAction's text field (strgclass's STRINGA_ tags apply).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

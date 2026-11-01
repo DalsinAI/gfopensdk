@@ -2,7 +2,7 @@
 #define UTILITY_DATE_H
 /*
  * OpenNDK: a calendar date and time split into fields.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

@@ -2,7 +2,7 @@
 #define CLIB_MACROS_H
 /*
  * OpenNDK: the small arithmetic macros programs take from <clib/macros.h>.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  * Each argument may be evaluated more than once, so don't pass one with
  * a side effect (MAX(i++, j)). A definition a program made first is kept.
  */

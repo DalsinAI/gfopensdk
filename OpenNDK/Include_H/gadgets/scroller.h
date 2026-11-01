@@ -2,7 +2,7 @@
 #define GADGETS_SCROLLER_H
 /*
  * OpenNDK: scroller.gadget, a proportional scroller with optional arrows.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

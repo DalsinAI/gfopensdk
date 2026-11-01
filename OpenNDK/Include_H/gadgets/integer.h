@@ -2,7 +2,7 @@
 #define GADGETS_INTEGER_H
 /*
  * OpenNDK: integer.gadget, a number field with optional arrows.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

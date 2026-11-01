@@ -2,7 +2,7 @@
 #define CLIB_ALIB_PROTOS_H
 /*
  * OpenNDK: the calls libamiga.a provides beside the library stubs.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  * Written by hand (the other clib/ headers are generated). The code is
  * in OpenNDK/lib/alib.
  */

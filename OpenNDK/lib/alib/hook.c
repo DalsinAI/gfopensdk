@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* CallHookA and the BOOPSI method helpers. A hook is entered at h_Entry
  * with the hook in a0, the object in a2 and the message in a1; a method
  * goes to the class's dispatcher hook. These call h_Entry directly, so

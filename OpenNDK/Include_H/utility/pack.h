@@ -2,7 +2,7 @@
 #define UTILITY_PACK_H
 /*
  * OpenNDK: pack tables for PackStructureTags() and UnpackStructureTags().
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  *
  * A table entry is a ULONG: bits 0-12 the field's byte offset, 13-15 a
  * bit number, 16-25 the tag's offset from the table's tag base, 26 set

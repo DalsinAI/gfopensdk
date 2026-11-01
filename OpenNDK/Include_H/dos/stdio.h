@@ -2,7 +2,7 @@
 #define DOS_STDIO_H
 /*
  * OpenNDK: shorthand for buffered I/O on the process's own streams.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define ReadChar()		FGetC(Input())

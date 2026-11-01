@@ -2,7 +2,7 @@
 #define GRAPHICS_CLIP_H
 /*
  * OpenNDK: layers and their clip rectangles.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef GRAPHICS_GFX_H

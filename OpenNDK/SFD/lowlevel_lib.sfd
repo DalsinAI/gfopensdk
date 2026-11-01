@@ -1,6 +1,6 @@
 ==id OpenNDK lowlevel_lib.sfd 47.1
 * lowlevel.library's calls (game ports, keyboard and timing), for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _LowLevelBase
 ==basetype struct Library *
 ==libname lowlevel.library

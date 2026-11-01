@@ -2,7 +2,7 @@
 #define INTUITION_POINTERCLASS_H
 /*
  * OpenNDK: pointerclass, the V39 mouse pointer objects.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef UTILITY_TAGITEM_H

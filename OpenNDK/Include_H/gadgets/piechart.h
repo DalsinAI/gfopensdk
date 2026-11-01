@@ -2,7 +2,7 @@
 #define GADGETS_PIECHART_H
 /*
  * OpenNDK: piechart.gadget, a pie chart of a list of values.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  *
  * The vendor NDK 3.2 ships no gadgets/piechart.h. These are the tags
  * OpenReAction's piechart.gadget (amigachrome-guest,

@@ -2,7 +2,7 @@
 #define DEVICES_SERIAL_H
 /*
  * OpenNDK: serial.device's request, commands, flags and errors.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_IO_H

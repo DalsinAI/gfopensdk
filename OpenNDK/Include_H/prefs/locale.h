@@ -2,7 +2,7 @@
 #define PREFS_LOCALE_H
 /*
  * OpenNDK: locale preferences: country and languages (the LCLE and CTRY chunks).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

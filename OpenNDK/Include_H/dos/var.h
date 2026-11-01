@@ -2,7 +2,7 @@
 #define DOS_VAR_H
 /*
  * OpenNDK: shell variables and aliases (SetVar(), GetVar(), FindVar()).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_NODES_H

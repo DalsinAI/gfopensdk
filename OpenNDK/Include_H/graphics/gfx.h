@@ -2,7 +2,7 @@
 #define GRAPHICS_GFX_H
 /*
  * OpenNDK: graphics.library's basic shapes: rectangles, points and bitmaps.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

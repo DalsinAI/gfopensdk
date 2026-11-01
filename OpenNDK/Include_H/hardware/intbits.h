@@ -2,7 +2,7 @@
 #define HARDWARE_INTBITS_H
 /*
  * OpenNDK: bits of the intena, intenar, intreq and intreqr registers.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define INTB_SETCLR	15
