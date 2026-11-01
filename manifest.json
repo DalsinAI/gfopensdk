@@ -27,9 +27,9 @@
     },
     {
       "name": "opengpu.library",
-      "version": "0.23, team4/opengpu-aliased-paths-20261101b d0745c1 (openamigartg #157)",
+      "version": "0.24, main e8924a0 (openamigartg #161: OGPU_QUERY_FLAG)",
       "repo": "DalsinAI/openamigartg",
-      "commit": "d0745c1fbb51bb52a736b967c6b38bed4e9c8c0c",
+      "commit": "e8924a099a52e2772ef23074cbf96948e19e11b1",
       "licence": "MIT",
       "files": {
         "include/opengpu/opengpu.h": "Include/opengpu/opengpu.h",
@@ -43,16 +43,43 @@
         "sdk/AutoDocs-OpenGPU.md": "Docs/AutoDocs-OpenGPU.md"
       },
       "sha256": {
-        "Docs/AutoDocs-OpenGPU.md": "2a12333ebc942dc26876c16869b5d5a7f7bd24e706e5e56ff6d0c7114306657d",
+        "Docs/AutoDocs-OpenGPU.md": "778b90820dc1258ff261f64aba9aa75a654609dd31a0b271c8c9ba0f72ee6497",
         "FD/opengpu_lib.fd": "144fcef6e0cc093bf0ef4b151ab1a06e4ada33285db12f546d55d03fe7ccd211",
         "Include/inline/opengpu.h": "c2dea707fbb0d0c38b3d03e37b46d0e14f2e6d78a5dba72c2cffd63aae6aa002",
         "Include/opengpu/gfx.h": "453f6a97d11f4033f5daafaf9d35ae652f42955a9c276961cb3605fedc8180ff",
         "Include/opengpu/module.h": "320a008ba9373f34b9b41ef3883932bd40508bb1aa92cfa3acf29ccfb5857297",
         "Include/opengpu/opengpu.h": "5a208831f4f733dce9c3fec43c0527e9d482db2977ad984955bbe467116cb317",
-        "Include/opengpu/stream.h": "83443b38fc46f4f1fe949182ac2b60d9706d0a17fd5f625613a9798ff299c321",
+        "Include/opengpu/stream.h": "3214b20070594969e1b645658436aa1be38c62b53d199819abcf4537fe632e11",
         "Include/opengpu/stream3d.h": "6424dcdcf806f6395b977e1562022b6332999b475be11b474846f05e50a30043",
         "Include/proto/opengpu.h": "c961dde27643e077fa8e22a8fb9247c207b3dbc336b0c421a7e0d2916caa0cad",
         "SFD/opengpu_lib.sfd": "3a68c625bccdf06fd3cd6c43e7452b4bcd1c064e8cd1d0af02c2a2aa58f6262d"
+      }
+    },
+    {
+      "name": "openfont.library",
+      "version": "1.5, team4/openfont-glyph-runs-20261101b 510f82a (openamigafont #24: OF_DrawGlyphsA)",
+      "repo": "DalsinAI/openamigafont",
+      "commit": "510f82a9db21d7bdfc2d9434a226ed102595ff9f",
+      "licence": "MIT",
+      "files": {
+        "sdk/Include_H/libraries/openfont.h": "Include/libraries/openfont.h",
+        "sdk/Include_H/proto/openfont.h": "Include/proto/openfont.h",
+        "sdk/Include_H/inline/openfont.h": "Include/inline/openfont.h",
+        "sdk/Include_H/clib/openfont_protos.h": "Include/clib/openfont_protos.h",
+        "sdk/Include_H/pragmas/openfont_pragmas.h": "Include/pragmas/openfont_pragmas.h",
+        "sdk/SFD/openfont_lib.sfd": "SFD/openfont_lib.sfd",
+        "sdk/FD/openfont_lib.fd": "FD/openfont_lib.fd",
+        "sdk/Autodocs/openfont.doc": "Docs/openfont.doc"
+      },
+      "sha256": {
+        "Docs/openfont.doc": "46f2f67cc900a8323310741ae4aa2ab5a0718b6287ae24c395c6b2df251a5229",
+        "FD/openfont_lib.fd": "c0f45cf5411804f1e5d7686ec271a5f5c9d7931a84bfa21745fe1938a51d4e84",
+        "Include/clib/openfont_protos.h": "ee61f43b3c836899fa68b784c52cb7585d63445d80f35d6ac4dc31a81bf30528",
+        "Include/inline/openfont.h": "ed9d637482f4e47adff93a95809c0404c7971512a5463f42f7d953d80276fb44",
+        "Include/libraries/openfont.h": "efe66dcf15d06087ddffbd49270f56e313fe473b7252287433846367559347ce",
+        "Include/pragmas/openfont_pragmas.h": "c8103e3fcf369d165c901bfa896d922a2cd84880f7584aefdf47548fb772554f",
+        "Include/proto/openfont.h": "90739c05d89930fd411db274b74bbd3152cb58658417b200b0cd3ab52bc21316",
+        "SFD/openfont_lib.sfd": "9617996f7a0913f0f72040253697e80dd98c3c060a180d282116bb37c2bc0add"
       }
     },
     {
