@@ -61,6 +61,16 @@ def output_paths(part):
     return paths
 
 
+def made_fd(part, sfd_to):
+    """The FD path gather.py makes from an SFD, or None when the part copies
+    its own FD (a library whose SFD has ==varargs and spaced register lists,
+    which ndkgen.py reads and sfd_to_fd doesn't)."""
+    if not sfd_to.endswith(".sfd") or sfd_to.startswith("OpenNDK/"):
+        return None
+    fd = "FD/" + os.path.basename(sfd_to)[:-4] + ".fd"
+    return None if fd in part["files"].values() else fd
+
+
 def offline_check(manifest, root):
     for part in manifest["parts"]:
         expected = part.get("sha256", {})
@@ -89,9 +99,10 @@ def main():
             data = open(os.path.join(src, frm), "rb").read()
             outs = [(to, data)]
             # OpenNDK's own tools/ndkgen.py makes its FD and the rest
-            if to.endswith(".sfd") and not to.startswith("OpenNDK/"):
+            fd_path = made_fd(part, to)
+            if fd_path:
                 fd = sfd_to_fd(data.decode("latin-1")).encode("latin-1")
-                outs.append(("FD/" + os.path.basename(to)[:-4] + ".fd", fd))
+                outs.append((fd_path, fd))
             for path, body in outs:
                 if part.get("sha256") and hashlib.sha256(body).hexdigest() != part["sha256"].get(path):
                     raise ValueError("pinned source disagrees with receipt: " + path)
