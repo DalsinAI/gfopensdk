@@ -6,7 +6,7 @@
 #   3. the structure sizes in sizes.c, and every field's offset in the
 #      structures tests/layout.list names (layout.c)
 #   4. a program built with the proto/ headers makes the calls it should
-#   5. libamiga.a builds
+#   5. libamiga.a builds, and with MULTILIB=1 each multilib's has its own CPU
 #   6. with GUEST=<amigachrome-guest checkout> (and GFX=<openamigagfx>),
 #      every SFD matches the open libraries' .lvo tables
 # Needs an m68k cross GCC (Ubuntu: gcc-m68k-linux-gnu g++-m68k-linux-gnu).
@@ -63,6 +63,27 @@ echo "program ok"
 
 echo "== libamiga.a"
 PREFIX=${M68K_PREFIX:-m68k-linux-gnu-} sh "$NDK/lib/build.sh"
+
+echo "== libamiga.a per multilib"
+# a compiler that, like m68k-amigaos-gcc, defaults to the 68000 and has a
+# 68020 multilib: MULTILIB=1 builds each folder's with that folder's flags,
+# so the plain one has nothing a 68000 lacks (objdump's 68000 table knows
+# every instruction; no scaled index) and libm020's has 68020 code
+mkdir -p "$T/ml"
+{
+    echo '#!/bin/sh'
+    echo 'case "$*" in *-print-multi-lib*) printf ".;\\nlibm020;@m68020\\n"; exit 0 ;; esac'
+    echo "exec $CC -m68000 \"\$@\""
+} > "$T/ml/m68k-ml-gcc"
+chmod +x "$T/ml/m68k-ml-gcc"
+ln -s "$(command -v "${M68K_PREFIX:-m68k-linux-gnu-}ar")" "$T/ml/m68k-ml-ar"
+MULTILIB=1 PREFIX="$T/ml/m68k-ml-" sh "$NDK/lib/build.sh"
+ML=$NDK/lib/build/m68k-ml
+not68000() { "$OBJDUMP" -d -m m68k:68000 "$1" | grep -cE '^ +[0-9a-f]+:.*(\.short|:[wl]:[248]\)|\)@\()' || true; }
+n=$(not68000 "$ML/libamiga.a"); [ "$n" = 0 ] || { echo "the 68000 libamiga.a has $n 68020+ instructions"; exit 1; }
+n=$(not68000 "$ML/libm020/libamiga.a"); [ "$n" != 0 ] || { echo "the 68020 libamiga.a has no 68020 instructions: were its flags used?"; exit 1; }
+rm -rf "$ML"
+echo "per multilib ok"
 
 if [ -n "${GUEST:-}" ]; then
     echo "== SFDs against the .lvo tables"
