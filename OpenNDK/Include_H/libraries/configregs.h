@@ -3,7 +3,7 @@
 /*
  * OpenNDK: the AutoConfig registers of Zorro II and III expansion
  * boards, and the diagnostic area a boot ROM carries.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

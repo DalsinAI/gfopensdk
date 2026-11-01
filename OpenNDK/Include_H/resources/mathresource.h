@@ -2,7 +2,7 @@
 #define RESOURCES_MATHRESOURCE_H
 /*
  * OpenNDK: MathIEEE.resource: hooks for maths hardware.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_NODES_H

@@ -2,7 +2,7 @@
 #define GRAPHICS_MODEID_H
 /*
  * OpenNDK: display mode IDs, a monitor ID ORed with a mode key.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef GRAPHICS_MONITOR_H

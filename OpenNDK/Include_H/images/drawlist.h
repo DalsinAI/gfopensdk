@@ -2,7 +2,7 @@
 #define IMAGES_DRAWLIST_H
 /*
  * OpenNDK: drawlist.image, a picture drawn from a list of directives.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

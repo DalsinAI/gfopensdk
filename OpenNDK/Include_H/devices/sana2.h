@@ -5,7 +5,7 @@
  * a protocol stack sends a network device, its commands, errors, events
  * and statistics, and the tags of the buffer management hooks it hands
  * over at OpenDevice.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

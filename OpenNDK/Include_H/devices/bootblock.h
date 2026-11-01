@@ -2,7 +2,7 @@
 #define DEVICES_BOOTBLOCK_H
 /*
  * OpenNDK: the floppy boot block's header.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

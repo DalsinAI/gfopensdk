@@ -4,9 +4,9 @@
 
 - **SacredTrees** ([@SacredTrees](https://github.com/SacredTrees)): created The Open SDK, designs it and maintains it.
 
-## The AmigaChrome team
+## The AmiCradle team
 
-We are The AmigaChrome Team, who build AmigaChrome alongside SacredTrees:
+We are The AmiCradle Team, who build AmigaChrome alongside SacredTrees:
 
 - **Agnus**, our coordinator, who keeps every thread moving.
 - **Thufir**, **Kynes** and **Galen**, who started the work on SacredTrees's x86 cores.
@@ -15,14 +15,14 @@ We are The AmigaChrome Team, who build AmigaChrome alongside SacredTrees:
 ## Copyright holder
 
 Original Open SDK files (the templates, tools, porting notes and
-documentation) are Copyright (c) 2026 AmigaChrome Team, released under the MIT
+documentation) are Copyright (c) 2026 AmiCradle Team, released under the MIT
 licence (`LICENSE`).
 
 ## From our other repositories
 
 The headers and function tables under `Include/`, `SFD/` and `FD/` are copies
 gathered by `tools/gather.py` at the commits pinned in `manifest.json`, all MIT,
-AmigaChrome Team:
+AmiCradle Team:
 
 - `openrtg.library`: DalsinAI/openamigartg.
 - `opensocket.library`: DalsinAI/openamigasocket.

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Brings the stoves' OpenNDK up to date, then checks it is. The 68k stoves
 # read OpenNDK through a link to the checkout amigachrome's
 # scripts/stove_openndk.py made (~/AmigaChrome/stoves/openndk); this does

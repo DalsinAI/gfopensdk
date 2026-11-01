@@ -2,7 +2,7 @@
 #define GADGETS_GETSCREENMODE_H
 /*
  * OpenNDK: getscreenmode.gadget, a mode name field with a screen mode requester behind it.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

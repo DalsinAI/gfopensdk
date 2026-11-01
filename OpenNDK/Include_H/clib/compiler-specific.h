@@ -3,7 +3,7 @@
 /*
  * OpenNDK: words that mean something to one compiler and nothing to
  * another, so one source can say them to all of them.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 /* A prototype's argument list, or none for a pre-ANSI compiler */

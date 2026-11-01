@@ -2,7 +2,7 @@
 #define GADGETS_LISTBROWSER_H
 /*
  * OpenNDK: listbrowser.gadget, a list of rows in columns, flat or as a tree.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

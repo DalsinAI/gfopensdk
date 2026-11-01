@@ -2,7 +2,7 @@
 #define RESOURCES_BATTMEMBITSAMIX_H
 /*
  * OpenNDK: battery-backed memory bits Amiga Unix owns.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define BATTMEM_AMIX_AMNESIA_ADDR	32

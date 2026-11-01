@@ -2,7 +2,7 @@
 #define EXEC_TYPES_H
 /*
  * OpenNDK: the basic data types every other header builds on.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  *
  * Part of OpenNDK, an open set of headers for 68k AmigaOS 3.x software.
  * Written clean-room from the published interface: names, sizes and

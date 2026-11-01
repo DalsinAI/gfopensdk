@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* HotKey and FreeIEvents: a commodities filter that sends to a port and
  * swallows the event; and freeing a chain of input events. */
 #include "alib.h"

@@ -2,7 +2,7 @@
 #define EXEC_ERRORS_H
 /*
  * OpenNDK: the error codes devices return in io_Error.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define IOERR_OPENFAIL	 (-1)	/* the device or unit would not open */

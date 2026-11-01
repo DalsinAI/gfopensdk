@@ -6,7 +6,7 @@ published interface and owned by the Team. It sits in The Open SDK beside
 the Open libraries' own headers, so the open libraries, the boot-disk
 commands and third-party software can be built with no vendor NDK.
 
-MIT, Copyright (c) 2026 AmigaChrome Team. What it may and may not be written from
+MIT, Copyright (c) 2026 AmiCradle Team. What it may and may not be written from
 is in [CLEAN-ROOM.md](CLEAN-ROOM.md); how to add to it is in
 [CONTRIBUTING.md](CONTRIBUTING.md).
 

@@ -2,7 +2,7 @@
 #define RESOURCES_CIA_H
 /*
  * OpenNDK: the names of the two CIA resources.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

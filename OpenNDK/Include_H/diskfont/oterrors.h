@@ -2,7 +2,7 @@
 #define DISKFONT_OTERRORS_H
 /*
  * OpenNDK: the error codes outline font engines return.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define OTERR_Failure		-1	/* failed, for no reason given */

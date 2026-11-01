@@ -3,7 +3,7 @@
 * Read from openmmu's own jump table and code in amigachrome-guest
 * (libraries/openmmu); calls openmmu does not implement yet take APTR in
 * address registers and ULONG in data registers.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _MMUBase
 ==basetype struct Library *
 ==libname mmu.library

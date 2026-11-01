@@ -3,7 +3,7 @@
 /*
  * OpenNDK: what a mounted device tells its file system: the disk's
  * geometry (DosEnvec), the startup message and the device node.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

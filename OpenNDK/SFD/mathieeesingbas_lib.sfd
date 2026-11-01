@@ -1,6 +1,6 @@
 ==id OpenNDK mathieeesingbas_lib.sfd 47.1
 * mathieeesingbas.library's calls (IEEE single precision basics), for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _MathIeeeSingBasBase
 ==basetype struct MathIEEEBase *
 ==libname mathieeesingbas.library

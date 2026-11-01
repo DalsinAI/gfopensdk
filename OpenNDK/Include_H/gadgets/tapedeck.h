@@ -2,7 +2,7 @@
 #define GADGETS_TAPEDECK_H
 /*
  * OpenNDK: tapedeck.gadget, play and wind buttons for media (made by name).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef UTILITY_TAGITEM_H

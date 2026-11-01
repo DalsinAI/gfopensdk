@@ -2,7 +2,7 @@
 #define DOS_NOTIFY_H
 /*
  * OpenNDK: file change notification (StartNotify(), EndNotify()).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Compares the C types behind exec/types.h's names (STRPTR, TEXT, LONG and
 # the rest) in the vendor NDK 3.2 and in OpenNDK, with the os32 stove's
 # gcc. Only the answers to "is STRPTR the same type as char *?" are read;

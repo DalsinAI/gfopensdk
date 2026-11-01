@@ -2,7 +2,7 @@
 #define GADGETS_CHECKBOX_H
 /*
  * OpenNDK: checkbox.gadget, a box with a tick and a label.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

@@ -2,7 +2,7 @@
 #define REXX_RXSLIB_H
 /*
  * OpenNDK: rexxsyslib.library's base and the interpreter's constants.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REXX_STORAGE_H

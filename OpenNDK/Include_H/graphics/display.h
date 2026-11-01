@@ -2,7 +2,7 @@
 #define GRAPHICS_DISPLAY_H
 /*
  * OpenNDK: old bit masks for the display control registers.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 /* BPLCON0 */

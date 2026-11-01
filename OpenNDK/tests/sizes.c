@@ -1,5 +1,5 @@
 /* OpenNDK: structure sizes every 68k AmigaOS program relies on.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  *
  * Each size was checked against the vendor's headers by the open
  * libraries' own layout tests in amigachrome-guest (OS 3.2's sizes); the

@@ -2,7 +2,7 @@
 #define GRAPHICS_GFXNODES_H
 /*
  * OpenNDK: the extended nodes GfxNew() makes and GfxAssociate() links.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_NODES_H

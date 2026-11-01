@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 """Compare OpenNDK's SFDs with the open libraries' own .lvo tables.
 
     check_lvo.py --guest AMIGACHROME-GUEST [--gfx OPENAMIGAGFX] [SFD...]

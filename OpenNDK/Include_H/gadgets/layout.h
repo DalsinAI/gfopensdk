@@ -3,7 +3,7 @@
 /*
  * OpenNDK: layout.gadget, the group that sizes and places ReAction
  * gadgets, and the page class that comes with it.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

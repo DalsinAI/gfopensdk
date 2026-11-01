@@ -3,7 +3,7 @@
 /*
  * OpenNDK: Intuition's core structures: windows, gadgets, menus,
  * requesters, images, text, messages and the flags and tags they use.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

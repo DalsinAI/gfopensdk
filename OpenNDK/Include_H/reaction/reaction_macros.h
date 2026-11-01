@@ -2,7 +2,7 @@
 #define REACTION_REACTION_MACROS_H
 /*
  * OpenNDK: shorthand for building ReAction object trees in one expression.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  *
  * Each XxxObject opens a NewObject() call on the class (its library must
  * be open, or the class made by name), the tags follow, and an End macro

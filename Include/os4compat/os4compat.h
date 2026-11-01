@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence (LICENSE).
+/* Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence (LICENSE).
  * SPDX-License-Identifier: MIT
  *
  * os4compat: build AmigaOS 4 source for AmigaOS 3.2 (m68k), unchanged where

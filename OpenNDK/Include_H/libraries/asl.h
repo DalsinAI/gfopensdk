@@ -3,7 +3,7 @@
 /*
  * OpenNDK: asl.library's file, font and screen mode requesters and the
  * tags that set them up.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

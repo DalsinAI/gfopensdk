@@ -2,7 +2,7 @@
 #define PREFS_PRINTERPS_H
 /*
  * OpenNDK: PostScript printer preferences (the PSPD chunk).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (LICENSE).
 """Build the pinned OpenAmigaCurl in isolation and create a target SDK overlay.
 
 Offline: source repositories and upstream tarballs must already be present.

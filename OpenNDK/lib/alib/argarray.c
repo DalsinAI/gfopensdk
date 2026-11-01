@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* ArgArrayInit, ArgArrayDone, ArgString and ArgInt: tool types from the
  * Shell's arguments or the program's icon, read the same way. */
 #include "alib.h"

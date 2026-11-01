@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* CreateTask and DeleteTask: a task and its stack in one MemList, which
  * exec frees when the task is removed. */
 #include "alib.h"

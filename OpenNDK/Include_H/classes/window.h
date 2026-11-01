@@ -3,7 +3,7 @@
 /*
  * OpenNDK: window.class, which opens a window round a layout and turns
  * its input into simple events.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

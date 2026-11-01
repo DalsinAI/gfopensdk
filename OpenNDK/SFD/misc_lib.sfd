@@ -1,6 +1,6 @@
 ==id OpenNDK misc_lib.sfd 47.1
 * misc.resource's calls, for OpenNDK.
-* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 ==base _MiscBase
 ==basetype struct Library *
 ==libname misc.resource

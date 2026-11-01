@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* HookEntry: put in h_Entry when h_SubEntry is a C function taking
  * (hook, object, message) on the stack. */
 #if defined(__ELF__)

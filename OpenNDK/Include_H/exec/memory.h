@@ -2,7 +2,7 @@
 #define EXEC_MEMORY_H
 /*
  * OpenNDK: memory headers, memory lists and allocation flags.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_NODES_H

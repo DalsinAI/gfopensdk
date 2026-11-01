@@ -2,7 +2,7 @@
 #define DOS_EXALL_H
 /*
  * OpenNDK: the buffer and control block of ExAll().
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

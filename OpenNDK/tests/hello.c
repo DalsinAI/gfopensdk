@@ -1,7 +1,7 @@
 /* OpenNDK: a small program built only with OpenNDK, to show the
  * proto/ headers, the inline calls and libamiga.a's helpers working
  * together. tests/run.sh compiles it and looks for the calls it expects.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 #include <exec/types.h>
 #include <exec/execbase.h>

@@ -2,7 +2,7 @@
 #define RESOURCES_BATTMEMBITSSHARED_H
 /*
  * OpenNDK: battery-backed memory bits shared by every OS on the machine.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 /* Set means the bits below are not valid */

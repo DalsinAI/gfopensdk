@@ -2,7 +2,7 @@
 #define EXEC_DEVICES_H
 /*
  * OpenNDK: device and unit bases.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_LIBRARIES_H

@@ -2,7 +2,7 @@
 #define HARDWARE_DMABITS_H
 /*
  * OpenNDK: bits of the dmacon and dmaconr registers.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 /* Writing dmacon: bit 15 says whether the other set bits are set or cleared */

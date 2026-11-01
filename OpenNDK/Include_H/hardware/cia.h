@@ -2,7 +2,7 @@
 #define HARDWARE_CIA_H
 /*
  * OpenNDK: the 8520 CIA chips' registers and bits.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

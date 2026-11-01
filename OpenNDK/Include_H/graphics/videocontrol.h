@@ -2,7 +2,7 @@
 #define GRAPHICS_VIDEOCONTROL_H
 /*
  * OpenNDK: the tags VideoControl() reads and writes on a ColorMap.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef UTILITY_TAGITEM_H

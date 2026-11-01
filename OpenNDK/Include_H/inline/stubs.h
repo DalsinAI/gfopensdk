@@ -7,7 +7,7 @@
  * <inline/stubs.h> has always brought them in: lists, DOS, BOOPSI's
  * Object and classes, display IDs and commodities. <inline/macros.h>
  * includes this; OpenNDK's own inline headers need neither.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

@@ -3,7 +3,7 @@
 /*
  * OpenNDK: the input event that keyboard, mouse and other sources feed
  * through input.device's handler chain.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

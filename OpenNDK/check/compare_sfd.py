@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 """Compare OpenNDK's SFDs with a vendor NDK's: the same calls at the same
 offsets, the same registers, and the same prototypes once spacing, CONST
 and argument names are set aside.

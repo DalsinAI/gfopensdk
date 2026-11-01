@@ -2,7 +2,7 @@
 #define LIBRARIES_MATHRESOURCE_H
 /*
  * OpenNDK: the older name for resources/mathresource.h.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef RESOURCES_MATHRESOURCE_H

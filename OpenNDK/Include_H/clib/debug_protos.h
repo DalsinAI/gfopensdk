@@ -2,7 +2,7 @@
 #define CLIB_DEBUG_PROTOS_H
 /*
  * OpenNDK: debug.lib's calls (kprintf and friends).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

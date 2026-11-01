@@ -3,7 +3,7 @@
 /*
  * OpenNDK: dos.library's inner structures: processes, file handles,
  * packets, the library base and the device list.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

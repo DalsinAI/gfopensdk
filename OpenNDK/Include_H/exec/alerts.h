@@ -2,7 +2,7 @@
 #define EXEC_ALERTS_H
 /*
  * OpenNDK: alert numbers passed to Alert().
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  *
  * An alert number is built from a class bit (bit 31), a subsystem in
  * bits 30-24, a general code in bits 23-16 and a specific code below.

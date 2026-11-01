@@ -2,7 +2,7 @@
 #define IMAGES_LED_H
 /*
  * OpenNDK: led.image, digits drawn as seven-segment displays.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef UTILITY_TAGITEM_H

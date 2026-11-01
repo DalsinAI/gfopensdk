@@ -2,7 +2,7 @@
 #define EXEC_INTERRUPTS_H
 /*
  * OpenNDK: interrupt servers, vectors and software interrupt queues.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_NODES_H

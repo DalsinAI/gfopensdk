@@ -2,7 +2,7 @@
 #define LIBRARIES_LOCALE_H
 /*
  * OpenNDK: locale.library's locales, catalogs, string numbers and tags.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

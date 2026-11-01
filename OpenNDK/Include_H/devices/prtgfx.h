@@ -3,7 +3,7 @@
 /*
  * OpenNDK: the state printer.device hands a driver's Render() while
  * dumping a picture.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

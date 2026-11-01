@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence (LICENSE).
+/* Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence (LICENSE).
  * SPDX-License-Identifier: MIT
  *
  * Inside the kit: the classic calls go through each interface's own base,

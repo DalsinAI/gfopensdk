@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence (LICENSE).
+/* Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence (LICENSE).
  * SPDX-License-Identifier: MIT
  *
  * BOOPSI method calls, which OS 4 has in intuition.library and OS 3.2 has

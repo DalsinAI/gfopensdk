@@ -2,7 +2,7 @@
 #define RESOURCES_POTGO_H
 /*
  * OpenNDK: the potgo resource's name.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #define POTGONAME	"potgo.resource"

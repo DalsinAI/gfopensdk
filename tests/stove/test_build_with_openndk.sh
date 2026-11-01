@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Builds a small program against this checkout's OpenNDK (not the stove's
 # own include folder) with each 68k stove's gcc, as strictly as the open
 # libraries build: -Wall -Wextra -Werror, string literals passed to calls

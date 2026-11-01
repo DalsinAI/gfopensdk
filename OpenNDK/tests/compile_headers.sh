@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Every OpenNDK C header must compile on its own, in C (gnu99 and gnu17)
 # and, when a 68k g++ is present, in C++, with warnings as errors. Uses an
 # m68k cross GCC: m68k-linux-gnu-gcc (Ubuntu's gcc-m68k-linux-gnu) or $M68K_CC.

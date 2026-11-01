@@ -2,7 +2,7 @@
 #define PREFS_WBPATTERN_H
 /*
  * OpenNDK: Workbench backdrop patterns and pictures (the PTRN chunk).
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

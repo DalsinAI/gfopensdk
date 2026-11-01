@@ -2,7 +2,7 @@
 #define LIBRARIES_DISKFONT_H
 /*
  * OpenNDK: diskfont.library's structures, under their older path.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef DISKFONT_DISKFONT_H

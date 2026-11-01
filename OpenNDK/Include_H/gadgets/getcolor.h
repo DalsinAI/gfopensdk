@@ -2,7 +2,7 @@
 #define GADGETS_GETCOLOR_H
 /*
  * OpenNDK: getcolor.gadget, a colour swatch with a colour requester behind it.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef REACTION_REACTION_H

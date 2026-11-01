@@ -3,7 +3,7 @@
 /*
  * OpenNDK: console.device's commands and the numbers of its control
  * sequences.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

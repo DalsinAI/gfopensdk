@@ -2,7 +2,7 @@
 #define GRAPHICS_RASTPORT_H
 /*
  * OpenNDK: the RastPort, the drawing context every rendering call takes.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

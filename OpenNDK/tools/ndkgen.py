@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 """OpenNDK's generator: every per-library file from one SFD.
 
     ndkgen.py [--out DIR] [--stubs DIR] SFD...

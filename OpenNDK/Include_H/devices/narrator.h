@@ -2,7 +2,7 @@
 #define DEVICES_NARRATOR_H
 /*
  * OpenNDK: narrator.device's request, voice settings and errors.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_IO_H

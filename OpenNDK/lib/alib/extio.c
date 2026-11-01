@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE). */
+/* Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE). */
 /* CreateExtIO, DeleteExtIO, CreateStdIO and DeleteStdIO: I/O requests
  * that reply to a given port. */
 #include "alib.h"

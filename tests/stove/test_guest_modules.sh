@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+# Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Builds every amigachrome-guest module (each build-amiga.sh) twice with the
 # os32-gcc16 stove: once against the vendor NDK the stove kept
 # (ndk-include.vendor) and once against this checkout's OpenNDK, and lists

@@ -2,7 +2,7 @@
 #define GRAPHICS_TEXT_H
 /*
  * OpenNDK: fonts and the text rendering structures.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_PORTS_H

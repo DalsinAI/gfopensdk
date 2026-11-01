@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2026 AmigaChrome Team. The Open SDK, MIT licence (LICENSE).
+# Copyright (c) 2026 AmiCradle Team. The Open SDK, MIT licence (LICENSE).
 # SPDX-License-Identifier: MIT
 """Make OS 4 style interfaces for AmigaOS 3.2 libraries from their SFD files.
 

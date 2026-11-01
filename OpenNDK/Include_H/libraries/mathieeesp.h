@@ -2,7 +2,7 @@
 #define LIBRARIES_MATHIEEESP_H
 /*
  * OpenNDK: constants and C names for the IEEE single precision libraries.
- * Copyright (c) 2026 AmigaChrome Team. MIT licence (see OpenNDK/LICENSE).
+ * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  */
 
 #ifndef EXEC_TYPES_H

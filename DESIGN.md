@@ -58,7 +58,7 @@ nothing is copied. ACKitchen mounts it into instances (the tools drive idea).
 
 ## 4. Licences
 
-- **The SDK repository's own files are MIT,** Copyright (c) 2026 AmigaChrome
+- **The SDK repository's own files are MIT,** Copyright (c) 2026 AmiCradle
   Team.
 - **Headers keep their library's licence:**
   - ours: MIT;
