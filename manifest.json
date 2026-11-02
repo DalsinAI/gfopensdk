@@ -57,9 +57,9 @@
     },
     {
       "name": "gfopenfont.library",
-      "version": "1.5, main 0fa1f05",
+      "version": "1.5, main 2878ce0",
       "repo": "DalsinAI/gfopenfont",
-      "commit": "0fa1f05e832868d6cc3220118cd6f6d3cce0269f",
+      "commit": "2878ce0387f8eae84ad0e67df12308abceffacc6",
       "licence": "MIT",
       "files": {
         "sdk/Include_H/libraries/gfopenfont.h": "Include/libraries/gfopenfont.h",
@@ -72,11 +72,11 @@
         "sdk/Autodocs/gfopenfont.doc": "Docs/gfopenfont.doc"
       },
       "sha256": {
-        "Docs/gfopenfont.doc": "52040ee6d1516b64daa0c534c4f21a4ff8e3529fd1d43ab9883f9c8a6199f956",
+        "Docs/gfopenfont.doc": "098068c40a20dd292fbd3fc443bf4e3678f533bbbf660e4c98bd6422d9931bb4",
         "FD/gfopenfont_lib.fd": "5ba96fce8dedffcf1d6a764ad8117827488bcf49a3e1a85ee3c791e6a8017e7d",
         "Include/clib/gfopenfont_protos.h": "5dfe75140af7eb0d15cef7d5eb12159d3563465b6f14557ae735c98115c03fb2",
         "Include/inline/gfopenfont.h": "d972126ee7e2301a7a007d65617d8713f19d18d556aef3f828b874ff2f0cc4ee",
-        "Include/libraries/gfopenfont.h": "e0c7589c620cda5af7a251cf79b3b24b141aba1e347b87ba7b52480abde29cd2",
+        "Include/libraries/gfopenfont.h": "3637a9f3f0a8870fbfe31e76b3bffa114f18de978e13fdb6f32bf3f49411d919",
         "Include/pragmas/gfopenfont_pragmas.h": "0d319156f0dc29a73cc21aa054fc49cd10552d649c4649e95c222c04d703b9b7",
         "Include/proto/gfopenfont.h": "bb253d69aceac18a01ad20bc7e8e0a440f5e0c2b6ed7120ed6f3e4e45a56992c",
         "SFD/gfopenfont_lib.sfd": "cc747bb631d72bf711f7be76df42ec01e92701c5387d0b9eb1f5a5eb94cfa346"

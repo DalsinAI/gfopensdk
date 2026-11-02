@@ -9,8 +9,8 @@
 
 #include <string.h>
 
-#include "openlayout_ui.h"
-#include "openlayout_ui_amiga.h"
+#include "gfopenlayout_ui.h"
+#include "gfopenlayout_ui_amiga.h"
 
 static const char version[] = "$VER: HelloUI 0.1 (30.10.2026) AmiCradle Team";
 

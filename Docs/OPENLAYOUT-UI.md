@@ -12,14 +12,14 @@ GadTools makes badly: a tree beside a panel, panes that grow with the
 window, pages of settings.
 
 Its reference is in OpenLayout's repository, `DalsinAI/gfopenlayout`:
-`docs/OpenLayout-UI.md` (the tags, the CSS, the events, every call) and
-`include/openlayout_ui.h`.
+`docs/GFOpenLayout-UI.md` (the tags, the CSS, the events, every call) and
+`include/gfopenlayout_ui.h`.
 
 ## A window
 
 ```c
-#include "openlayout_ui.h"
-#include "openlayout_ui_amiga.h"
+#include "gfopenlayout_ui.h"
+#include "gfopenlayout_ui_amiga.h"
 
 static void ok_pressed(olui *ui, const olui_event *ev, void *data)
 {
