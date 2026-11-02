@@ -1,7 +1,7 @@
-# The Open SDK: OpenGPU's vector drawing, a Shell command for AmigaOS 3.2.
+# The Open SDK: GFOpenGPU's vector drawing, a Shell command for AmigaOS 3.2.
 #   make            build/OpenGPUVector
-# Needs opengpu.library (OpenUp installs it) when it runs; nothing is linked:
-# the calls are inline (<proto/opengpu.h>), the stream words written here.
+# Needs gfopengpu.library (GFOpenUp installs it) when it runs; nothing is linked:
+# the calls are inline (<proto/gfopengpu.h>), the stream words written here.
 SDK      ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST)))../..)
 SPECS    ?= $(abspath $(SDK)/Lib/m68k-soft-m68040.specs)
 CC       ?= m68k-amigaos-gcc

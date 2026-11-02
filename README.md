@@ -9,11 +9,11 @@ AmigaOS 3.x: the C headers, SFD and FD files, proto, inline and pragma
 headers, LVO includes and `libamiga.a`, written clean-room, so the open
 libraries and third-party software build without the vendor NDK.
 
-Also: **opengpu.library** (`Include/opengpu/`, `Docs/OPENGPU.md`,
+Also: **gfopengpu.library** (`Include/gfopengpu/`, `Docs/OPENGPU.md`,
 `Examples/opengpu-vector`): the drawing every Open program shares, vector
 drawing included (paths, strokes, gradients, patterns, clip masks, blur),
 gathered from gfopenrtg like the other headers; and **openfont.library**
-(`Include/libraries/openfont.h`, `Docs/openfont.doc`), whose
+(`Include/libraries/gfopenfont.h`, `Docs/gfopenfont.doc`), whose
 `OF_DrawGlyphsA` draws text through OpenGPU from its own glyph cache.
 
 Also: **os4compat** (`Lib/os4compat`, `Docs/PORTING-OS4.md`), which builds

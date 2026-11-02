@@ -1,8 +1,8 @@
-/* accontrol.device: AmigaChrome's control plane for Amiga programs.
+/* accontrol.device: AmiCradle's control plane for Amiga programs.
  *
  * OpenDevice("accontrol.device", 0, (struct IORequest *)io, 0) with a
  * struct IOStdReq, then DoIO / SendIO. The device drives the ACBridge
- * control board (Zorro II, product 1; AmigaChrome Team $DA15, or 2011 before AmigaChrome Team),
+ * control board (Zorro II, product 1; AmiCradle Team $DA15, or 2011 before AmiCradle Team),
  * one command at a time for every program that opens it.
  *
  *   ACCMD_GETPACE   io_Actual = the CPU's pace in Hz (0: hyper, as fast as
@@ -97,7 +97,7 @@ struct ACFilePut {
 #define ACC_QUERY_CATALOG   9      /* the machines and boot environments the host knows */
 
 /* io_Error, beyond exec's */
-#define ACCERR_NOBOARD   40        /* no ACBridge board: not an AmigaChrome machine */
+#define ACCERR_NOBOARD   40        /* no ACBridge board: not an AmiCradle machine */
 #define ACCERR_OLDBOARD  41        /* an ACBridge from before ABI 1.1 (no pace) */
 #define ACCERR_REFUSED   42        /* the machine refused the request (a pace outside 1-200 MHz) */
 #define ACCERR_HOST      43        /* the host could not answer a query */

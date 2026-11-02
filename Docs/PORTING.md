@@ -41,7 +41,7 @@ NDK 3.2) and `m68k-aros-gcc` on your PATH.
 
 | Part | Headers | Function table |
 | --- | --- | --- |
-| openrtg.library 0.10 | `openrtg/openrtg.h`, `openrtg/modes.h`, `proto/`, `inline/` | `SFD/openrtg_lib.sfd`, `FD/openrtg_lib.fd` |
+| gfopenrtg.library 0.10 | `gfopenrtg/gfopenrtg.h`, `gfopenrtg/modes.h`, `proto/`, `inline/` | `SFD/gfopenrtg_lib.sfd`, `FD/gfopenrtg_lib.fd` |
 | opensocket.library | `acnetwork.h`, `proto/acnetwork.h`, `opensocket/acnet_socket_tags.h` | in the proto header |
 | bsdsocket.library | in OpenNDK: `proto/bsdsocket.h`, `sys/socket.h`, `netinet/in.h`, `netdb.h`, `arpa/inet.h` and the rest | `OpenNDK/SFD/bsdsocket_lib.sfd` |
 | accontrol.device | `accontrol/accontrol.h` | device commands |

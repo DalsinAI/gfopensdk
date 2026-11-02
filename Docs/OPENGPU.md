@@ -1,4 +1,4 @@
-# opengpu.library in the Open SDK
+# gfopengpu.library in the Open SDK
 
 opengpu.library draws for every Amiga program on OpenRTG: fills, copies,
 compositing, scaling, blend modes, and from stream v1.6 vector drawing
@@ -13,20 +13,20 @@ sits on top; a program writes the stream itself.
 
 | File | What |
 | --- | --- |
-| `Include/opengpu/opengpu.h` | the library's calls and `OGPU_Query`'s answers |
-| `Include/opengpu/stream.h` | the command stream: every opcode, its words, the formats, operators, paths, gradients, patterns, and what each stream version added |
-| `Include/opengpu/stream3d.h` | the 3D commands (`TRIANGLES` and the rest) |
-| `Include/opengpu/module.h`, `gfx.h` | modules (SDL2.module, GL.module) and OpenGfx's calls |
-| `Include/proto/opengpu.h`, `Include/inline/opengpu.h` | GCC's calls |
-| `SFD/opengpu_lib.sfd`, `FD/opengpu_lib.fd` | the function table, for other compilers |
-| `Docs/AutoDocs-OpenGPU.md` | the library's documentation |
+| `Include/gfopengpu/gfopengpu.h` | the library's calls and `OGPU_Query`'s answers |
+| `Include/gfopengpu/stream.h` | the command stream: every opcode, its words, the formats, operators, paths, gradients, patterns, and what each stream version added |
+| `Include/gfopengpu/stream3d.h` | the 3D commands (`TRIANGLES` and the rest) |
+| `Include/gfopengpu/module.h`, `gfx.h` | modules (SDL2.module, GL.module) and OpenGfx's calls |
+| `Include/proto/gfopengpu.h`, `Include/inline/gfopengpu.h` | GCC's calls |
+| `SFD/gfopengpu_lib.sfd`, `FD/gfopengpu_lib.fd` | the function table, for other compilers |
+| `Docs/AutoDocs-GFOpenGPU.md` | the library's documentation |
 | `Examples/opengpu-vector` | one batch: a path, a stroke, a clip mask, a gradient through it, a glyph from an A8 picture, an aliased triangle, a blurred shadow |
-| `Include/libraries/openfont.h`, `Include/proto/openfont.h`, `Include/inline/openfont.h`, `Include/clib/openfont_protos.h`, `Include/pragmas/openfont_pragmas.h`, `SFD/openfont_lib.sfd`, `FD/openfont_lib.fd`, `Docs/openfont.doc` | openfont.library, whose `OF_DrawGlyphsA` (1.5) draws glyph runs through OpenGPU from its own glyph cache |
+| `Include/libraries/gfopenfont.h`, `Include/proto/gfopenfont.h`, `Include/inline/gfopenfont.h`, `Include/clib/gfopenfont_protos.h`, `Include/pragmas/gfopenfont_pragmas.h`, `SFD/gfopenfont_lib.sfd`, `FD/gfopenfont_lib.fd`, `Docs/gfopenfont.doc` | openfont.library, whose `OF_DrawGlyphsA` (1.5) draws glyph runs through OpenGPU from its own glyph cache |
 
 All of them are copies, gathered by `tools/gather.py` from
-DalsinAI/gfopenrtg at the commit `manifest.json` names (`include/opengpu/`,
-`include/proto/`, `include/inline/`, `library/opengpu/opengpu_lib.sfd`,
-`sdk/AutoDocs-OpenGPU.md`), and openfont's from DalsinAI/gfopenfont
+DalsinAI/gfopenrtg at the commit `manifest.json` names (`include/gfopengpu/`,
+`include/proto/`, `include/inline/`, `library/opengpu/gfopengpu_lib.sfd`,
+`sdk/AutoDocs-GFOpenGPU.md`), and gfopenfont's from DalsinAI/gfopenfont
 (`sdk/`, where its `ndkgen.py`-made files are). Change them there, then move
 the pin.
 

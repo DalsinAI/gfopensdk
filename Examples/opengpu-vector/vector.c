@@ -1,5 +1,5 @@
-/* OpenGPU's vector drawing from the Open SDK: what a browser draws with
- * once cairo is gone. One batch of stream words (<opengpu/stream.h>) into
+/* GFOpenGPU's vector drawing from the Open SDK: what a browser draws with
+ * once cairo is gone. One batch of stream words (<gfopengpu/stream.h>) into
  * a 160 x 100 ARGB32 picture in memory, written as a PPM file:
  *   - a background and a rectangle (FILL);
  *   - an anti-aliased star, even-odd (PATH_FILL), and its outline stroked
@@ -9,7 +9,7 @@
  *     (OGPU_PATH_MASK): how clipPath works without cairo;
  *   - a glyph-like A8 picture drawn in one colour through COMPOSITE_PD with
  *     a solid source and the A8 slot as its mask (how a glyph cache draws);
- *   - from opengpu.library 0.23 (stream v1.8), the same triangle with and
+ *   - from gfopengpu.library 0.23 (stream v1.8), the same triangle with and
  *     without anti-aliasing (OGPU_PATH_ALIASED: crisp edges);
  *   - a blurred shadow (BLUR) under a square.
  *
@@ -23,7 +23,7 @@
 #include <dos/dos.h>
 #include <proto/exec.h>
 #include <proto/dos.h>
-#include <proto/opengpu.h>
+#include <proto/gfopengpu.h>
 
 static const char version[] = "$VER: OpenGPUVector 1.0 (1.11.2026)";
 
@@ -196,7 +196,7 @@ int main(int argc, char **argv)
     }
     /* stream v1.6 is all or nothing: a back end that answers PATH_FILL takes it all */
     if (OGPU_ANSWER(OGPU_Query(OGPU_OP_PATH_FILL, OGPU_FMT_ARGB32)) == OGPU_NONE) {
-        Printf((CONST_STRPTR)"OpenGPUVector: opengpu.library %ld.%ld has no stream v1.6\n", (LONG)OpenGPUBase->lib_Version,
+        Printf((CONST_STRPTR)"OpenGPUVector: gfopengpu.library %ld.%ld has no stream v1.6\n", (LONG)OpenGPUBase->lib_Version,
                (LONG)OpenGPUBase->lib_Revision);
         CloseLibrary(OpenGPUBase);
         return RETURN_FAIL;
@@ -218,7 +218,7 @@ int main(int argc, char **argv)
     else
         Printf((CONST_STRPTR)"OpenGPUVector: %s (%s, the second triangle %s)\n", (LONG)name,
                (LONG)OGPU_BackEndName(OGPU_BACKEND(OGPU_Query(OGPU_OP_PATH_FILL, OGPU_FMT_ARGB32))),
-               (LONG)(aliased ? "without anti-aliasing" : "anti-aliased: opengpu.library is older than 0.23"));
+               (LONG)(aliased ? "without anti-aliasing" : "anti-aliased: gfopengpu.library is older than 0.23"));
     FreeVec(m);
     CloseLibrary(OpenGPUBase);
     return r ? RETURN_ERROR : RETURN_OK;
