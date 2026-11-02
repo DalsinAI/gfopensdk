@@ -1,7 +1,7 @@
 #!/bin/sh
 # Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Brings the stoves' OpenNDK up to date, then checks it is. The 68k stoves
-# read OpenNDK through a link to the checkout amigachrome's
+# read OpenNDK through a link to the checkout amicradle's
 # scripts/stove_openndk.py made (~/AmigaChrome/stoves/openndk); this does
 # what its "fetch" does (git pull --ff-only there, nothing else), so Cradle's
 # repo_test can keep the stoves current. Exits 1 if the checkout can't be

@@ -1,5 +1,5 @@
 # The Open SDK: include this in a Makefile that builds OS 4 source for OS 3.2.
-#   SDK := path/to/openamigasdk
+#   SDK := path/to/gfopensdk
 #   include $(SDK)/Lib/os4compat/os4compat.mk
 #   $(CC) $(OS4COMPAT_CFLAGS) ... $(OS4COMPAT_LIBS)
 # The generated proto/ and interfaces/ headers come first on the include

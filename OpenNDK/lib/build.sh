@@ -39,7 +39,7 @@ CFLAGS="-nostdinc -isystem $($CC -print-file-name=include) -idirafter $NDK/check
   -Wno-unused-parameter ${EXTRA_CFLAGS:-}"
 # GCC's late-combine pass (GCC 15 on; GCC PR 123853, in OpenAmigaGCC 16.2.0-open3) can store a copy one place late:
 # alib/argarray.c's copy of argv in ArgArrayInit came out "move.l (a0)+,(a0,d3.l)", each entry a longword higher
-# (entry 0 left NULL, the terminator overwritten). Off until OpenAmigaGCC open4 (openamigagcc #29), on a compiler that
+# (entry 0 left NULL, the terminator overwritten). Off until OpenAmigaGCC open4 (gfopengcc #29), on a compiler that
 # knows the option (GCC 6.5 and GCC 14 don't).
 if "$CC" -fno-late-combine-instructions -S -o /dev/null -x c /dev/null 2>/dev/null; then CFLAGS="$CFLAGS -fno-late-combine-instructions"; fi
 # build DIR FLAGS: DIR/libamiga.a, every object compiled with FLAGS

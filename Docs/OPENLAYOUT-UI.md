@@ -11,7 +11,7 @@ GadTools stays the way to make a plain window. OpenLayout UI is for windows
 GadTools makes badly: a tree beside a panel, panes that grow with the
 window, pages of settings.
 
-Its reference is in OpenLayout's repository, `DalsinAI/openamigalayout`:
+Its reference is in OpenLayout's repository, `DalsinAI/gfopenlayout`:
 `docs/OpenLayout-UI.md` (the tags, the CSS, the events, every call) and
 `include/openlayout_ui.h`.
 
@@ -50,7 +50,7 @@ OpenLayout UI is a link library, `libolui.a`, built in OpenLayout's
 repository with the os32 stove:
 
 ```sh
-OGT_ROOT=<amigachrome-guest>/libraries/opengadtools \
+OGT_ROOT=<amicradle-guest>/libraries/opengadtools \
 SPECS=<this SDK>/Lib/m68k-soft-m68040.specs ./build-ui-amiga.sh
 ```
 

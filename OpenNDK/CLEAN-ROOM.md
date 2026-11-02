@@ -12,7 +12,7 @@ Copyright (c) 2026 AmiCradle Team.
   build and run, and they are the same in every compatible header set.
 - **Behaviour,** from the RKMs, the autodocs and black-box tests on real
   systems, described in our own words.
-- **The open libraries' own tables,** such as amigachrome-guest's `.lvo`
+- **The open libraries' own tables,** such as amicradle-guest's `.lvo`
   files, which their builds already check against the vendor's.
 
 ## Never copied
@@ -24,7 +24,7 @@ Copyright (c) 2026 AmiCradle Team.
   carried a macro (`IsListEmpty`, `SetAPen` and the like), its name and
   meaning are interface facts; its body here is ours.
 - Code or text from AROS, MorphOS or any other implementation of these
-  APIs, beyond what CLEAN-ROOM.md in amigachrome-guest allows.
+  APIs, beyond what CLEAN-ROOM.md in amicradle-guest allows.
 
 ## Checked, never bundled
 

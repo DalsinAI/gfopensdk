@@ -1,6 +1,6 @@
 ==id OpenNDK mmu_lib.sfd 47.1
 * mmu.library's calls (MMULib's interface, not part of NDK 3.2), for OpenNDK.
-* Read from openmmu's own jump table and code in amigachrome-guest
+* Read from openmmu's own jump table and code in amicradle-guest
 * (libraries/openmmu); calls openmmu does not implement yet take APTR in
 * address registers and ULONG in data registers.
 * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).

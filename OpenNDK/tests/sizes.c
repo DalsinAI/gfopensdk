@@ -2,7 +2,7 @@
  * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  *
  * Each size was checked against the vendor's headers by the open
- * libraries' own layout tests in amigachrome-guest (OS 3.2's sizes); the
+ * libraries' own layout tests in amicradle-guest (OS 3.2's sizes); the
  * full field-by-field comparison is check/compare_ndk.sh.
  */
 #include <exec/nodes.h>

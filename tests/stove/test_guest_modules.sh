@@ -1,19 +1,19 @@
 #!/bin/sh
 # Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
-# Builds every amigachrome-guest module (each build-amiga.sh) twice with the
+# Builds every amicradle-guest module (each build-amiga.sh) twice with the
 # os32-gcc16 stove: once against the vendor NDK the stove kept
 # (ndk-include.vendor) and once against this checkout's OpenNDK, and lists
 # each module that builds with the first but not the second, with its first
 # errors. The live stove is not changed: each pass runs through a stove of
 # links whose compilers put the chosen include folder first.
-#   GUEST=/path/to/amigachrome-guest  (default: Cradle's checkout, its HEAD)
+#   GUEST=/path/to/amicradle-guest  (default: Cradle's checkout, its HEAD)
 #   ONLY="libraries/opendos devices/opentimer.device"  (default: every module)
 #   JOBS=3  (modules built at once; 3 is Daletop's limit for builds)
 # Exits 1 if a module builds with the vendor NDK and not with OpenNDK.
 set -u
 HERE=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
 REAL=${STOVE:-"$HOME/AmigaChrome/stoves/os32-gcc16"}
-SRC=${GUEST:-"${AMIGACHROME_DEV:-$HOME/AmigaChrome-dev}/cradle-builds/DalsinAI__amigachrome-guest"}
+SRC=${GUEST:-"${AMIGACHROME_DEV:-$HOME/AmigaChrome-dev}/cradle-builds/DalsinAI__amicradle-guest"}
 JOBS=${JOBS:-3}
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
@@ -43,7 +43,7 @@ fake_stove() { # $1 name, $2 include folder, $3 a folder searched last (optional
 }
 # The third-party network SDK headers (Roadshow's bsdsocket and the AmiTCP
 # ones) the vendor folder carried and OpenNDK has no file for: the stove
-# keeps them reachable in its include folder (amigachrome's
+# keeps them reachable in its include folder (amicradle's
 # scripts/stove_openndk.py), and so does this run, after everything else.
 VENDOR="$REAL/prefix/m68k-amigaos/ndk-include.vendor"
 extras="$tmp/extras"
