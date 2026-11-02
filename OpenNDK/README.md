@@ -15,7 +15,7 @@ is in [CLEAN-ROOM.md](CLEAN-ROOM.md); how to add to it is in
 | Folder | Holds |
 | --- | --- |
 | `Include_H/` | The C headers, under the OS's own paths (`exec/`, `dos/`, `graphics/`, `intuition/`, `utility/`, `libraries/`, `devices/`, `hardware/`, `resources/`, `workbench/`, `datatypes/`, `rexx/`, `diskfont/`, `prefs/`, and ReAction's `gadgets/`, `images/`, `classes/` and `reaction/`) |
-| `Include_H/sys/`, `netinet/`, `arpa/`, `net/`, `netdb.h`, `libraries/bsdsocket.h`, `amitcp/` | bsdsocket.library's headers and `SFD/bsdsocket_lib.sfd`: OpenSocket's own (DalsinAI/openamigasocket `sdk/`), copied by `tools/gather.py` at the commit `manifest.json` pins. Change them there, never here |
+| `Include_H/sys/`, `netinet/`, `arpa/`, `net/`, `netdb.h`, `libraries/bsdsocket.h`, `amitcp/` | bsdsocket.library's headers and `SFD/bsdsocket_lib.sfd`: OpenSocket's own (DalsinAI/gfopensocket `sdk/`), copied by `tools/gather.py` at the commit `manifest.json` pins. Change them there, never here |
 | `Include_H/proto/`, `clib/`, `inline/`, `pragmas/` | Generated from the SFDs: the header a program includes, the prototypes, GCC inline calls and SAS/C-style pragmas. `inline/macros.h` gives the LPn macros for hand-written inline headers |
 | `Include_I/lvo/` | Generated `_LVO` equates for assembler |
 | `SFD/`, `FD/` | Each library's calls: the SFDs are written by hand, the FDs generated |
@@ -55,7 +55,7 @@ its `proto/` header, and `__NOLIBBASE__` leaves out the base's declaration.
 
 ## Windows in HTML and CSS
 
-OpenLayout UI (`DalsinAI/openamigalayout`, `docs/OpenLayout-UI.md`; the
+OpenLayout UI (`DalsinAI/gfopenlayout`, `docs/OpenLayout-UI.md`; the
 SDK's `Docs/OPENLAYOUT-UI.md`) builds with OpenNDK's headers alone: its
 Intuition glue uses exec, dos, graphics, layers, intuition and diskfont
 from `Include_H/`, and cybergraphics.library through `inline/macros.h`'s
@@ -65,7 +65,7 @@ LP macros, as OpenGadTools does. Its sources were checked against
 
 ```sh
 m68k-amigaos-gcc -nostdinc -isystem "$(m68k-amigaos-gcc -print-file-name=include)" \
-    -I OpenNDK/Include_H -I <openamigalayout>/include -m68040 -O2 -fomit-frame-pointer \
+    -I OpenNDK/Include_H -I <gfopenlayout>/include -m68040 -O2 -fomit-frame-pointer \
     -c prog.c
 ```
 
@@ -113,4 +113,4 @@ m68k-amigaos-gcc -nostdinc -isystem "$(m68k-amigaos-gcc -print-file-name=include
 - **Beyond the vendor NDK:** `gadgets/piechart.h`, the GETCOLOR box tags
   (`GETCOLOR_LeftEdge` to `GETCOLOR_Height`, at +40 to +43) and
   `mmu_lib.sfd` (MMULib's mmu.library) are OpenNDK's own, read from the
-  open libraries in amigachrome-guest; the 3.2 NDK has none of them.
+  open libraries in amicradle-guest; the 3.2 NDK has none of them.

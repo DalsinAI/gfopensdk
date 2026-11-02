@@ -6,7 +6,7 @@ compositing, scaling, blend modes, and from stream v1.6 vector drawing
 From stream v1.8 (opengpu.library 0.23) paths can be drawn without
 anti-aliasing too, and from opengpu.library 0.24 a back end says which of
 the commands' flags it takes (`OGPU_QUERY_FLAG`, below). It is where OpenBrowser's drawing goes once cairo
-leaves it (openamigabrowser `docs/PLAN.md`, step 6): no cairo-like library
+leaves it (gfopenbrowser `docs/PLAN.md`, step 6): no cairo-like library
 sits on top; a program writes the stream itself.
 
 ## What is here
@@ -24,14 +24,14 @@ sits on top; a program writes the stream itself.
 | `Include/libraries/openfont.h`, `Include/proto/openfont.h`, `Include/inline/openfont.h`, `Include/clib/openfont_protos.h`, `Include/pragmas/openfont_pragmas.h`, `SFD/openfont_lib.sfd`, `FD/openfont_lib.fd`, `Docs/openfont.doc` | openfont.library, whose `OF_DrawGlyphsA` (1.5) draws glyph runs through OpenGPU from its own glyph cache |
 
 All of them are copies, gathered by `tools/gather.py` from
-DalsinAI/openamigartg at the commit `manifest.json` names (`include/opengpu/`,
+DalsinAI/gfopenrtg at the commit `manifest.json` names (`include/opengpu/`,
 `include/proto/`, `include/inline/`, `library/opengpu/opengpu_lib.sfd`,
-`sdk/AutoDocs-OpenGPU.md`), and openfont's from DalsinAI/openamigafont
+`sdk/AutoDocs-OpenGPU.md`), and openfont's from DalsinAI/gfopenfont
 (`sdk/`, where its `ndkgen.py`-made files are). Change them there, then move
 the pin.
 
 `build.h` (C helpers that write the stream) is not copied: its code is
-openamigartg's `library/opengpu/ogpu_build.c`, which includes its header by
+gfopenrtg's `library/opengpu/ogpu_build.c`, which includes its header by
 a path inside that repository. A program can write the words itself, as the
 example does: each command is its header word (`OGPU_HDR(op, words)`) and
 the words `stream.h` lists, big-endian, which is a `ULONG` on the 68k.

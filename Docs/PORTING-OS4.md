@@ -34,7 +34,7 @@ own calls use them.
 ## Build a program
 
 ```make
-SDK := path/to/openamigasdk
+SDK := path/to/gfopensdk
 include $(SDK)/Lib/os4compat/os4compat.mk
 prog: prog.c
 	m68k-amigaos-gcc -m68040 -noixemul -O2 -fno-delete-null-pointer-checks $(OS4COMPAT_CFLAGS) -o $@ prog.c $(OS4COMPAT_LIBS)

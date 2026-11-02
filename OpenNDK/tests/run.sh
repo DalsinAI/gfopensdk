@@ -7,7 +7,7 @@
 #      structures tests/layout.list names (layout.c)
 #   4. a program built with the proto/ headers makes the calls it should
 #   5. libamiga.a builds, and with MULTILIB=1 each multilib's has its own CPU
-#   6. with GUEST=<amigachrome-guest checkout> (and GFX=<openamigagfx>),
+#   6. with GUEST=<amicradle-guest checkout> (and GFX=<gfopengfx>),
 #      every SFD matches the open libraries' .lvo tables
 # Needs an m68k cross GCC (Ubuntu: gcc-m68k-linux-gnu g++-m68k-linux-gnu).
 set -eu

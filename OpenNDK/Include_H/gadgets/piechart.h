@@ -5,7 +5,7 @@
  * Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
  *
  * The vendor NDK 3.2 ships no gadgets/piechart.h. These are the tags
- * OpenReAction's piechart.gadget (amigachrome-guest,
+ * OpenReAction's piechart.gadget (amicradle-guest,
  * libraries/openreaction/piechart) answers to; its jump table is in
  * SFD/piechart_lib.sfd.
  */

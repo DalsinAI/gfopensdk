@@ -18,7 +18,7 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tools"))
 import ndkgen  # noqa: E402
 
-# SFD stem -> .lvo path, relative to the guest checkout ("gfx:" = openamigagfx)
+# SFD stem -> .lvo path, relative to the guest checkout ("gfx:" = gfopengfx)
 LVO = {
     "exec": "libraries/openexec/exec.lvo",
     "dos": "libraries/opendos/dos.lvo",

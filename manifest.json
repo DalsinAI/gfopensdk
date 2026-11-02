@@ -6,7 +6,7 @@
     {
       "name": "openrtg.library",
       "version": "main 7f80613",
-      "repo": "DalsinAI/openamigartg",
+      "repo": "DalsinAI/gfopenrtg",
       "commit": "7f80613d4adf3c6be7fa7a311c010111ef9dbde6",
       "licence": "MIT",
       "files": {
@@ -27,8 +27,8 @@
     },
     {
       "name": "opengpu.library",
-      "version": "0.24, main e8924a0 (openamigartg #161: OGPU_QUERY_FLAG)",
-      "repo": "DalsinAI/openamigartg",
+      "version": "0.24, main e8924a0 (gfopenrtg #161: OGPU_QUERY_FLAG)",
+      "repo": "DalsinAI/gfopenrtg",
       "commit": "e8924a099a52e2772ef23074cbf96948e19e11b1",
       "licence": "MIT",
       "files": {
@@ -57,8 +57,8 @@
     },
     {
       "name": "openfont.library",
-      "version": "1.5, team4/openfont-glyph-runs-20261101b 510f82a (openamigafont #24: OF_DrawGlyphsA)",
-      "repo": "DalsinAI/openamigafont",
+      "version": "1.5, team4/openfont-glyph-runs-20261101b 510f82a (gfopenfont #24: OF_DrawGlyphsA)",
+      "repo": "DalsinAI/gfopenfont",
       "commit": "510f82a9db21d7bdfc2d9434a226ed102595ff9f",
       "licence": "MIT",
       "files": {
@@ -85,7 +85,7 @@
     {
       "name": "opensocket.library",
       "version": "main 721d664",
-      "repo": "DalsinAI/openamigasocket",
+      "repo": "DalsinAI/gfopensocket",
       "commit": "721d66422978953ec4f2f58da01d92fe3b667db8",
       "licence": "MIT",
       "files": {
@@ -102,7 +102,7 @@
     {
       "name": "bsdsocket.library",
       "version": "main 721d664",
-      "repo": "DalsinAI/openamigasocket",
+      "repo": "DalsinAI/gfopensocket",
       "commit": "721d66422978953ec4f2f58da01d92fe3b667db8",
       "licence": "MIT",
       "files": {
@@ -149,7 +149,7 @@
     {
       "name": "accontrol.device",
       "version": "main 941ee87",
-      "repo": "DalsinAI/amigachrome-guest",
+      "repo": "DalsinAI/amicradle-guest",
       "commit": "941ee87df1798a701249af3d956b873f49dc234d",
       "licence": "MIT",
       "files": {
@@ -162,7 +162,7 @@
     {
       "name": "oapspool.device",
       "version": "main 964634a",
-      "repo": "DalsinAI/openamigaprint",
+      "repo": "DalsinAI/gfopenprint",
       "commit": "964634a5e3f38ab46a2942a6a4b3f6942bb16b86",
       "licence": "MIT",
       "files": {
@@ -175,7 +175,7 @@
     {
       "name": "opentls.library / opencrypto.library",
       "version": "main 919dd04",
-      "repo": "DalsinAI/openamigatls",
+      "repo": "DalsinAI/gfopentls",
       "commit": "919dd04ff675bee42a5bf0c26393043fd4c78d77",
       "licence": "MIT",
       "files": {

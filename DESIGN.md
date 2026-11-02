@@ -23,14 +23,14 @@ first.
   - the OS 4.1 SDK;
   - MUI's SDK.
 - **No compilers.** They are the stoves (GCC 6.5 and GCC 16 for m68k, the
-  AROS crosstools; `DalsinAI/amigachrome-stoves` holds our GPL patches).
+  AROS crosstools; `DalsinAI/amicradle-stoves` holds our GPL patches).
   ACKitchen sets them up.
 
 ## 2. What's in it
 
 | Folder | Holds |
 | --- | --- |
-| `Include/` | Each Open library's headers, with `proto/`, `inline/` and `pragmas/` for GCC (vbcc later): `openrtg/` (modes, OS 4's RTG calls, the `os4` header), `opengpu/`, `opensocket/` (beyond the standard bsdsocket calls), `openmedia/`, `opengadtools/`, `openprint/` (oapspool.device), `openmulticore/`, `accontrol/` (clipboard, files, pace). Also: Zune's `mui.h` for `zunemaster.library` (AROS Public License), AROS's `gl/gla.h` (APL), SDL 2 and 3 (Zlib), and Mesa's GL (MIT) |
+| `Include/` | Each Open library's headers, with `proto/`, `inline/` and `pragmas/` for GCC (vbcc later): `openrtg/` (modes, OS 4's RTG calls, the `os4` header), `opengpu/`, `opensocket/` (beyond the standard bsdsocket calls), `openmedia/`, `gfopengadtools/`, `openprint/` (oapspool.device), `openmulticore/`, `accontrol/` (clipboard, files, pace). Also: Zune's `mui.h` for `zunemaster.library` (AROS Public License), AROS's `gl/gla.h` (APL), SDL 2 and 3 (Zlib), and Mesa's GL (MIT) |
 | `SFD/`, `FD/` | Each library's function table |
 | `Lib/` | Link libraries: static SDL, our glue, and stubs that open each library automatically, as libnix does for the OS's. `Lib/os4compat`: OS 4's interfaces and calls for OS 3.2, made from the NDK's SFD files at build time (`Docs/PORTING-OS4.md`). `Lib/m68k-soft-m68040.specs`: the soft-float 68040 link, used by the templates and os4compat |
 | `Autodocs/` | One per library, generated from the sources' comments |
@@ -50,7 +50,7 @@ nothing is copied. ACKitchen mounts it into instances (the tools drive idea).
 - **Never break.** A published call, structure, tag or ID never changes
   meaning. New things are added at the end, as OpenRTG's ModeID table is.
 - **Each library's repository owns its headers and function tables.** The
-  SDK repository gathers them at pinned commits, as amigachrome pins its
+  SDK repository gathers them at pinned commits, as amicradle pins its
   vendored copies. A manifest lists each library's commit and version under
   one SDK version.
 - **CI builds every example and template** for OS 3.2 and AROS. One that
@@ -76,4 +76,4 @@ nothing is copied. ACKitchen mounts it into instances (the tools drive idea).
 | 3 | SDL 2 and 3, Mesa with GLA; the SDL and GL templates | An SDL game and a GL demo build from the templates |
 | 4 | OS 4 (ppc-amigaos) builds for the libraries that have them; vbcc | An example builds for OS 4 unchanged |
 
-**Repository:** `DalsinAI/openamigasdk`.
+**Repository:** `DalsinAI/gfopensdk`.

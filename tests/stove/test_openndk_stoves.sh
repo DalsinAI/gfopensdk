@@ -1,7 +1,7 @@
 #!/bin/sh
 # Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 # Checks that the 68k stoves on this machine build with OpenNDK (after
-# amigachrome's scripts/stove_openndk.py use): for each stove, which folder
+# amicradle's scripts/stove_openndk.py use): for each stove, which folder
 # its m68k-amigaos-gcc reads the NDK from, which libamiga.a it links, and
 # whether a small program using exec, dos, intuition and amiga.lib compiles
 # and links with -Wall -Werror. Exits 1 if a stove is not on OpenNDK or

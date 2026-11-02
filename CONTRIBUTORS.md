@@ -24,10 +24,10 @@ The headers and function tables under `Include/`, `SFD/` and `FD/` are copies
 gathered by `tools/gather.py` at the commits pinned in `manifest.json`, all MIT,
 AmiCradle Team:
 
-- `openrtg.library`: DalsinAI/openamigartg.
-- `opensocket.library`: DalsinAI/openamigasocket.
-- `accontrol.device`: DalsinAI/amigachrome-guest.
-- `oapspool.device`: DalsinAI/openamigaprint.
+- `openrtg.library`: DalsinAI/gfopenrtg.
+- `opensocket.library`: DalsinAI/gfopensocket.
+- `accontrol.device`: DalsinAI/amicradle-guest.
+- `oapspool.device`: DalsinAI/gfopenprint.
 
 Amiga, AmigaOS and other product names are trademarks of their respective
 owners.
