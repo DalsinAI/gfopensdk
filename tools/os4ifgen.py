@@ -34,7 +34,7 @@ NAMES = {
     "console": "Console", "lowlevel": "LowLevel", "nonvolatile": "NonVolatile",
     "amigaguide": "AmigaGuide", "bullet": "Bullet", "translator": "Translator",
     "battclock": "BattClock", "battmem": "BattMem", "cybergraphics": "CyberGFX",
-    "bsdsocket": "Socket", "openrtg": "OpenRTG", "listbrowser": "ListBrowser",
+    "bsdsocket": "Socket", "gfopenrtg": "GFOpenRTG", "listbrowser": "ListBrowser",
     "chooser": "Chooser", "clicktab": "ClickTab", "layout": "Layout",
     "window": "Window", "requester": "Requester", "texteditor": "TextEditor",
     "speedbar": "SpeedBar", "label": "Label", "bitmap": "BitMap",

@@ -1,13 +1,13 @@
 /* Copyright (c) 2026 AmiCradle Team. MIT licence. */
-#include <proto/openrtg.h>
-#include <proto/opentls.h>
-#include <proto/opencrypto.h>
-#include <proto/opengpu.h>
-#include <opengpu/stream3d.h>
-#include <openrtg/modes.h>
+#include <proto/gfopenrtg.h>
+#include <proto/gfopentls.h>
+#include <proto/gfopencrypto.h>
+#include <proto/gfopengpu.h>
+#include <gfopengpu/stream3d.h>
+#include <gfopenrtg/modes.h>
 #include <accontrol/accontrol.h>
 #include <openprint/oap_device.h>
-#include <proto/openfont.h>
+#include <proto/gfopenfont.h>
 int sdk_headers(void)
 {
     return sizeof(struct Hook) == 20 && sizeof(struct OFGPUTarget) == 40 && sizeof(struct OFGlyphRun) == 32
