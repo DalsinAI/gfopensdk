@@ -66,3 +66,30 @@ built in it) and builds with OpenNDK's headers or NDK 3.2's.
 - Every widget a program wants to hear from has an `id`.
 - A handler can change any widget; the window is laid out again after it.
 - Text is UTF-8. The Amiga glue turns it into Latin-1 for the bitmap fonts.
+
+## A strip of a window (gfopenlayout.library 11)
+
+A program that draws most of its window itself, such as a browser with its
+page, can give OpenLayout UI only a strip of it, for a toolbar or a status
+bar:
+
+```c
+if (!olui_amiga_strip(a, 0, 0, 0, 40))  /* a toolbar 40 pixels tall, as wide as the window */
+    ...                                 /* 0: a version 10 library, which takes the whole window */
+olui_amiga_keys(a, OLUI_AMIGA_KEYS_FOCUS);  /* keys only while one of its widgets has the focus */
+```
+
+- `x` and `y` are from the window's inside. A `w` or `h` of 0 runs to its
+  edge. A `y` below 0 counts from the bottom, so `0, -20, 0, 0` is a status
+  bar.
+- The buffer is the strip's size, and only presses inside the strip are
+  taken.
+- `IDCMP_REFRESHWINDOW` and `IDCMP_NEWSIZE` draw the strip and come back
+  as `OLUI_AMIGA_NONE`, for the program's own refresh. IntuiTicks always
+  come back as `OLUI_AMIGA_NONE` in a strip too.
+- With `OLUI_AMIGA_KEYS_FOCUS`, a press outside the strip takes the focus
+  away. A click or `olui_focus` gives it back, not Tab.
+- A window opened without `IDCMP_VANILLAKEY` works too: the glue maps its
+  RAWKEYs with keymap.library.
+- Pop-ups (a select's list, a menu, a tooltip) are drawn inside the strip,
+  so open those in a window of the program's own.
