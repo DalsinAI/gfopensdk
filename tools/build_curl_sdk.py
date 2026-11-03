@@ -18,7 +18,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 CURL = "5776d8375c5d87b7b6c8d5187c3a061567f6bd54"
 TLS = "919dd04ff675bee42a5bf0c26393043fd4c78d77"
-OPEN3 = "9fcc136ab59e3bb5b91d2764d0bf290b709d72d7380be4ce0cdf005edf8eff21"
+OPEN4 = "495319a2ffd803278f8827cad70074029c7aa9ecbe05d037e8646ba43ab94ab2"   # the open4 release tarball (the autoinc-move fix, GCC PR 123853)
 
 
 def digest(path):
@@ -28,8 +28,8 @@ def digest(path):
 
 def verify_stove(stove):
     receipt = json.loads((stove / "provenance.json").read_text())
-    if receipt["release"] != "16.2.0-open3" or receipt["archive_sha256"] != OPEN3:
-        raise ValueError("use a verified GCC 16.2.0-open3 stove")
+    if receipt["release"] != "16.2.0-open4" or receipt["archive_sha256"] != OPEN4:
+        raise ValueError("use a verified GCC 16.2.0-open4 stove")
     files = receipt["compiler_runtime_sha256"]
     if len(files) < 100 or "bin/m68k-amigaos-g++" not in files:
         raise ValueError("incomplete compiler receipt")
@@ -121,7 +121,7 @@ def main():
         'endif()\n')
     # The upstream build links curltest, exercising the full static closure.
     report = dict(curl_commit=CURL, tls_commit=TLS, cpu_flags=cpu,
-                  compiler_release=receipt["release"], compiler_archive_sha256=OPEN3,
+                  compiler_release=receipt["release"], compiler_archive_sha256=OPEN4,
                   dependency_inputs=inputs, scope="68040/FPU compile and link only; no network/runtime qualification")
     report["files"] = {str(p.relative_to(sdk)): digest(p) for p in sorted(sdk.rglob("*")) if p.is_file()}
     (out / "receipt.json").write_text(json.dumps(report, indent=2) + "\n")

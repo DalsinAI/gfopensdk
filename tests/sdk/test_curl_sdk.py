@@ -15,9 +15,9 @@ class CompilerReceiptTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root = Path(d)
             (root / "provenance.json").write_text(json.dumps(dict(release="old", archive_sha256="bad")))
-            with self.assertRaisesRegex(ValueError, "open3"):
+            with self.assertRaisesRegex(ValueError, "open4"):
                 M.verify_stove(root)
-            (root / "provenance.json").write_text(json.dumps(dict(release="16.2.0-open3", archive_sha256=M.OPEN3, compiler_runtime_sha256={})))
+            (root / "provenance.json").write_text(json.dumps(dict(release="16.2.0-open4", archive_sha256=M.OPEN4, compiler_runtime_sha256={})))
             with self.assertRaisesRegex(ValueError, "incomplete"):
                 M.verify_stove(root)
 
@@ -31,7 +31,7 @@ class CompilerReceiptTests(unittest.TestCase):
                 p.parent.mkdir(exist_ok=True)
                 p.write_bytes(b"fixture")
                 files[n] = M.digest(p)
-            (root / "provenance.json").write_text(json.dumps(dict(release="16.2.0-open3", archive_sha256=M.OPEN3, compiler_runtime_sha256=files)))
+            (root / "provenance.json").write_text(json.dumps(dict(release="16.2.0-open4", archive_sha256=M.OPEN4, compiler_runtime_sha256=files)))
             M.verify_stove(root)
             (root / "prefix/bin/m68k-amigaos-g++").write_bytes(b"changed")
             with self.assertRaisesRegex(ValueError, "changed"):
