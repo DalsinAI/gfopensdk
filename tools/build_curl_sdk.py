@@ -19,6 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 CURL = "5776d8375c5d87b7b6c8d5187c3a061567f6bd54"
 TLS = "919dd04ff675bee42a5bf0c26393043fd4c78d77"
 OPEN4 = "495319a2ffd803278f8827cad70074029c7aa9ecbe05d037e8646ba43ab94ab2"   # the open4 release tarball (the autoinc-move fix, GCC PR 123853)
+OPEN6 = "65f284476ec20cdf7851475d91d2c18d77fa6f2a0eb0f844b6ca23dbfa57eaa7"   # the open6 release tarball (GFOpenAmigaGCC; open4's fixes and later)
+RELEASES = {"16.2.0-open4": OPEN4, "16.2.0-open6": OPEN6}
 
 
 def digest(path):
@@ -28,8 +30,8 @@ def digest(path):
 
 def verify_stove(stove):
     receipt = json.loads((stove / "provenance.json").read_text())
-    if receipt["release"] != "16.2.0-open4" or receipt["archive_sha256"] != OPEN4:
-        raise ValueError("use a verified GCC 16.2.0-open4 stove")
+    if RELEASES.get(receipt["release"]) != receipt["archive_sha256"]:
+        raise ValueError("use a verified GCC 16.2.0-open4 or open6 stove")
     files = receipt["compiler_runtime_sha256"]
     if len(files) < 100 or "bin/m68k-amigaos-g++" not in files:
         raise ValueError("incomplete compiler receipt")

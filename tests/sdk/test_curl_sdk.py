@@ -33,6 +33,12 @@ class CompilerReceiptTests(unittest.TestCase):
                 files[n] = M.digest(p)
             (root / "provenance.json").write_text(json.dumps(dict(release="16.2.0-open4", archive_sha256=M.OPEN4, compiler_runtime_sha256=files)))
             M.verify_stove(root)
+            (root / "provenance.json").write_text(json.dumps(dict(release="16.2.0-open6", archive_sha256=M.OPEN6, compiler_runtime_sha256=files)))
+            M.verify_stove(root)
+            (root / "provenance.json").write_text(json.dumps(dict(release="16.2.0-open6", archive_sha256=M.OPEN4, compiler_runtime_sha256=files)))
+            with self.assertRaisesRegex(ValueError, "open6"):
+                M.verify_stove(root)
+            (root / "provenance.json").write_text(json.dumps(dict(release="16.2.0-open6", archive_sha256=M.OPEN6, compiler_runtime_sha256=files)))
             (root / "prefix/bin/m68k-amigaos-g++").write_bytes(b"changed")
             with self.assertRaisesRegex(ValueError, "changed"):
                 M.verify_stove(root)
