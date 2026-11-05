@@ -1,13 +1,13 @@
 {
   "sdk": "The Open SDK",
-  "version": "0.1",
+  "version": "0.2",
   "note": "Each library's own repository owns its headers and function tables; tools/gather.py copies them from these commits. Never edit the copies under Include/ or SFD/: change the library's repository, then move its commit here.",
   "parts": [
     {
       "name": "gfopenrtg.library",
-      "version": "main bbf126e",
+      "version": "0.25, main 510155f",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "bbf126e28e3035db7bebd1b71c636f7b8fcdb162",
+      "commit": "510155f55717f87fb08f5d69c7723b5785715852",
       "licence": "MIT",
       "files": {
         "include/gfopenrtg/gfopenrtg.h": "Include/gfopenrtg/gfopenrtg.h",
@@ -27,9 +27,9 @@
     },
     {
       "name": "gfopengpu.library",
-      "version": "0.24, main bbf126e",
+      "version": "0.26, main 510155f",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "bbf126e28e3035db7bebd1b71c636f7b8fcdb162",
+      "commit": "510155f55717f87fb08f5d69c7723b5785715852",
       "licence": "MIT",
       "files": {
         "include/gfopengpu/gfopengpu.h": "Include/gfopengpu/gfopengpu.h",
@@ -40,26 +40,36 @@
         "include/proto/gfopengpu.h": "Include/proto/gfopengpu.h",
         "include/inline/gfopengpu.h": "Include/inline/gfopengpu.h",
         "library/opengpu/gfopengpu_lib.sfd": "SFD/gfopengpu_lib.sfd",
-        "sdk/AutoDocs-GFOpenGPU.md": "Docs/AutoDocs-GFOpenGPU.md"
+        "sdk/AutoDocs-GFOpenGPU.md": "Docs/AutoDocs-GFOpenGPU.md",
+        "include/gfopengpu/retained.h": "Include/gfopengpu/retained.h",
+        "include/gfopengpu/build.h": "Include/gfopengpu/build.h",
+        "include/gfopengpu/build3d.h": "Include/gfopengpu/build3d.h",
+        "include/gfopengpu/driver.h": "Include/gfopengpu/driver.h",
+        "include/gfopengpu/virgl.h": "Include/gfopengpu/virgl.h"
       },
       "sha256": {
-        "Docs/AutoDocs-GFOpenGPU.md": "ecc5ddac130e4424db4ba5c9c2491b4ea4138ab16c579663447ebcc84ae63649",
-        "FD/gfopengpu_lib.fd": "144fcef6e0cc093bf0ef4b151ab1a06e4ada33285db12f546d55d03fe7ccd211",
+        "Docs/AutoDocs-GFOpenGPU.md": "d9590baf47ec7541646df5b221a014c1a84e351f7fb5a353d917b7560a6e2294",
+        "FD/gfopengpu_lib.fd": "505cb9622ded472bacbfbda209f99c911abc4077410389c1a17ecfe335f7efde",
+        "Include/gfopengpu/build.h": "71cb69ad801a891261ff095603f199b794af6061638a853fd36a967dc0fae16b",
+        "Include/gfopengpu/build3d.h": "eaf3f350c6fe3b0ef75bcf81659c4e291bf662cfab6ee3f29a7a8e1b8460065f",
+        "Include/gfopengpu/driver.h": "e82274833bd768f633f6cc0d4bc30e4b6e4df923b05d984d206e5348c1586330",
         "Include/gfopengpu/gfopengpu.h": "e7a7b5ed6771403225c137a10edccf9065fd7d2b61ff6993a9d0683ba0410668",
         "Include/gfopengpu/gfx.h": "539f12d5f235be989d725d616c1d0d12d97200253a76c8a3083b021ddce8006a",
         "Include/gfopengpu/module.h": "5ee4477a51fb2b96291d2a036a4cbb27a45b6dc95ccef5b3dbf15b67202e4541",
-        "Include/gfopengpu/stream.h": "dc8f30ed6f863429a9bb06606442f0e812d711acaca96b75f698dca6415a315b",
+        "Include/gfopengpu/retained.h": "fb3335fd6371bce245f481889619ba290f02b0f388b05f3d42b0fd9ba6cfb822",
+        "Include/gfopengpu/stream.h": "0f6997bc29d8033c0a8f00983a952c060012c80a80942d731582a3f768d404ed",
         "Include/gfopengpu/stream3d.h": "8757f225ce2083ff030132e5da17c15816b075476ad2c01cd18f7dac06f229bc",
-        "Include/inline/gfopengpu.h": "e9a6071bd69ba7da703bdf11269b83ff8dc7757500bbb3efbe82da8aac049741",
-        "Include/proto/gfopengpu.h": "bfa18452dc63d7330482d29a6d59e79a0b831b6b6545493cad88a6e16bfff2c4",
-        "SFD/gfopengpu_lib.sfd": "7fbb0adc49b4ee8976b89cf33b39cf4733473d6eaff5f362c7e3fc7c466c7fd3"
+        "Include/gfopengpu/virgl.h": "aca7f297d4de4dc9c57f0d373ca6d524d5510ad44f48cbad14043f9e3e42f9c4",
+        "Include/inline/gfopengpu.h": "cdaa43c30c728fa4d880cf02d70dcf63859ac875aa5b2fee5bad955a6eea8a48",
+        "Include/proto/gfopengpu.h": "17cb66248792ac675c880dfb15c0daed1e566dfdeb6669ea0285c6d8c87ad276",
+        "SFD/gfopengpu_lib.sfd": "3a21cdbc18d7748a83834989558b46d2588ea836786e6278222cc0a44bcbaac3"
       }
     },
     {
       "name": "gfopenfont.library",
-      "version": "1.5, main 2878ce0",
+      "version": "1.7, main dc4878f",
       "repo": "DalsinAI/gfopenfont",
-      "commit": "2878ce0387f8eae84ad0e67df12308abceffacc6",
+      "commit": "dc4878f6b5ea2d5647daae72f8a9c28f15e32b9e",
       "licence": "MIT",
       "files": {
         "sdk/Include_H/libraries/gfopenfont.h": "Include/libraries/gfopenfont.h",
@@ -69,7 +79,8 @@
         "sdk/Include_H/pragmas/gfopenfont_pragmas.h": "Include/pragmas/gfopenfont_pragmas.h",
         "sdk/SFD/gfopenfont_lib.sfd": "SFD/gfopenfont_lib.sfd",
         "sdk/FD/gfopenfont_lib.fd": "FD/gfopenfont_lib.fd",
-        "sdk/Autodocs/gfopenfont.doc": "Docs/gfopenfont.doc"
+        "sdk/Autodocs/gfopenfont.doc": "Docs/gfopenfont.doc",
+        "sdk/Include_I/lvo/gfopenfont_lib.i": "Include_I/lvo/gfopenfont_lib.i"
       },
       "sha256": {
         "Docs/gfopenfont.doc": "098068c40a20dd292fbd3fc443bf4e3678f533bbbf660e4c98bd6422d9931bb4",
@@ -79,14 +90,15 @@
         "Include/libraries/gfopenfont.h": "3637a9f3f0a8870fbfe31e76b3bffa114f18de978e13fdb6f32bf3f49411d919",
         "Include/pragmas/gfopenfont_pragmas.h": "0d319156f0dc29a73cc21aa054fc49cd10552d649c4649e95c222c04d703b9b7",
         "Include/proto/gfopenfont.h": "bb253d69aceac18a01ad20bc7e8e0a440f5e0c2b6ed7120ed6f3e4e45a56992c",
+        "Include_I/lvo/gfopenfont_lib.i": "10181852ed91bb66f0959aeca2a234d875cd1224bf46022ba12ea014e3408820",
         "SFD/gfopenfont_lib.sfd": "cc747bb631d72bf711f7be76df42ec01e92701c5387d0b9eb1f5a5eb94cfa346"
       }
     },
     {
       "name": "opensocket.library",
-      "version": "main abba102",
+      "version": "main e7a6066",
       "repo": "DalsinAI/gfopensocket",
-      "commit": "abba10283e2decb427bc03666ec796ef9689eb38",
+      "commit": "e7a6066da40af61051c171d5d17df9b1ef6cb339",
       "licence": "MIT",
       "files": {
         "guest/network/acnetwork/include/acnetwork.h": "Include/acnetwork.h",
@@ -101,9 +113,9 @@
     },
     {
       "name": "bsdsocket.library",
-      "version": "main abba102",
+      "version": "main e7a6066",
       "repo": "DalsinAI/gfopensocket",
-      "commit": "abba10283e2decb427bc03666ec796ef9689eb38",
+      "commit": "e7a6066da40af61051c171d5d17df9b1ef6cb339",
       "licence": "MIT",
       "files": {
         "sdk/Include_H/amitcp/socketbasetags.h": "OpenNDK/Include_H/amitcp/socketbasetags.h",
@@ -148,9 +160,9 @@
     },
     {
       "name": "accontrol.device",
-      "version": "main f842038",
+      "version": "main e22fda4",
       "repo": "DalsinAI/amicradle-guest",
-      "commit": "f8420387fcf53da8b68cb3c5949ba30d532c7fe6",
+      "commit": "e22fda408a6fd0dad4a970f589a22f7c7a3e2d95",
       "licence": "MIT",
       "files": {
         "devices/accontrol.device/include/accontrol.h": "Include/accontrol/accontrol.h"
@@ -161,9 +173,9 @@
     },
     {
       "name": "oapspool.device",
-      "version": "main 84fdbd9",
+      "version": "main 6e3b292",
       "repo": "DalsinAI/gfopenprint",
-      "commit": "84fdbd9a697eabd2dbed3c422d09bc4ceba79215",
+      "commit": "6e3b29230dd8f08aaccdc825d65e52991752fcf7",
       "licence": "MIT",
       "files": {
         "include/oap_device.h": "Include/openprint/oap_device.h"
@@ -174,9 +186,9 @@
     },
     {
       "name": "gfopentls.library / gfopencrypto.library",
-      "version": "main e9a3d22",
+      "version": "1.3 / 2.1, main aa6f6a5",
       "repo": "DalsinAI/gfopentls",
-      "commit": "e9a3d22088fcbca386f9fb70825c3c06e8f159a5",
+      "commit": "aa6f6a5a34a0558351ece25f29066f51a4e85499",
       "licence": "MIT",
       "files": {
         "include/fd/gfopentls_lib.fd": "FD/gfopentls_lib.fd",
@@ -188,9 +200,11 @@
         "include/proto/gfopentls.h": "Include/proto/gfopentls.h",
         "include/proto/gfopencrypto.h": "Include/proto/gfopencrypto.h",
         "include/gfopencrypto/gfopencrypto.h": "Include/gfopencrypto/gfopencrypto.h",
-        "include/clib/gfopentls_protos.h": "Include/clib/gfopentls_protos.h"
+        "include/clib/gfopentls_protos.h": "Include/clib/gfopentls_protos.h",
+        "docs/AutoDocs-GFOpenTLS.md": "Docs/AutoDocs-GFOpenTLS.md"
       },
       "sha256": {
+        "Docs/AutoDocs-GFOpenTLS.md": "335d9cc82fc70648c70d0df04e32b116a9997445f1d91bf244f463135f60503a",
         "FD/gfopentls_lib.fd": "b1034ff3cb9182be6a858015e955118ddad7edf814a8f43e75a63c935c363a93",
         "Include/clib/gfopentls_protos.h": "d4ef4d539e525ea035b70b84ae4898bf31fc3389137fed5f016ba9207ec659ca",
         "Include/gfopencrypto/gfopencrypto.h": "3e789a1295aaffc65b7b76483939dba4219aacda8907a588f91652e7d0ab0d22",
@@ -201,6 +215,351 @@
         "Include/libraries/gfopentls.h": "4b3108f262d9fb0ce4e80a5a8c2e48d5d707db8d65eb731eb2006057dd52c31d",
         "Include/proto/gfopencrypto.h": "40577349d0cf8285f9bf18cc8ad58ac61235d134f0e4fbfab2f17b687d692272",
         "Include/proto/gfopentls.h": "e6a842130aa17fddc9342b17ca7b8a31f032f24f9696ab5e848c2893c1fe4232"
+      }
+    },
+    {
+      "name": "gfopenlayout.library",
+      "version": "11.0, main 6ecdfa1",
+      "repo": "DalsinAI/gfopenlayout",
+      "commit": "6ecdfa1c00b994592b07a3d5370351376039166f",
+      "licence": "MIT",
+      "files": {
+        "include/gfopenlayout.h": "Include/gfopenlayout.h",
+        "include/gfopenlayout_css.h": "Include/gfopenlayout_css.h",
+        "include/gfopenlayout_ui.h": "Include/gfopenlayout_ui.h",
+        "include/gfopenlayout_ui_amiga.h": "Include/gfopenlayout_ui_amiga.h",
+        "include/libraries/gfopenlayout.h": "Include/libraries/gfopenlayout.h",
+        "include/proto/gfopenlayout.h": "Include/proto/gfopenlayout.h",
+        "include/inline/gfopenlayout.h": "Include/inline/gfopenlayout.h",
+        "library/gfopenlayout_lib.sfd": "SFD/gfopenlayout_lib.sfd",
+        "docs/GFOpenLayout-UI.md": "Docs/GFOpenLayout-UI.md",
+        "docs/GFCSS.md": "Docs/GFCSS.md"
+      },
+      "sha256": {
+        "Docs/GFCSS.md": "97140a862d0d38bf3493ed08c80addc0662018cbb456604f0e413b671ed24bae",
+        "Docs/GFOpenLayout-UI.md": "954a6897d8126ccd29190059327c004aa6be7ec7d8ba32c1968dd31075978795",
+        "FD/gfopenlayout_lib.fd": "9799a68ef829beb2402aa672a74dfd255f5064cf93969c21c95079f21399b8bc",
+        "Include/gfopenlayout.h": "1de2052028a7fa966a7a5e4828a1a5627d4bc0268e74d43cea3a83056e757038",
+        "Include/gfopenlayout_css.h": "2d0403a9a0d21a096846c078c6a069b6f03c3c5d7a3ebc25a02cadfe00e8867a",
+        "Include/gfopenlayout_ui.h": "ffdc4dff0997424f51e0d8a100d1815ed068d291ad3aa90542781a0457d55809",
+        "Include/gfopenlayout_ui_amiga.h": "c52615816f4132cab6b899416b4567a538280108a15e0dfbb93973b003e85c38",
+        "Include/inline/gfopenlayout.h": "83c482e9469a02714f91b64268543ab5d0254835c0daac48fe04c764b323e309",
+        "Include/libraries/gfopenlayout.h": "d3ec789a8743464edb4cce281ed87b97c63484595a5985c6ec9656c0cff1a6a4",
+        "Include/proto/gfopenlayout.h": "fe6b8a3275c0d4693d91d572818a8b418c550ba5954d7f298e4d3553c479392b",
+        "SFD/gfopenlayout_lib.sfd": "07e241d932e9ff847affe1e41e1fe8e113048af908a4ba128909ee21553406e5"
+      }
+    },
+    {
+      "name": "javascript.library",
+      "version": "1.0, main f3f41ce",
+      "repo": "DalsinAI/gfopenbrowser",
+      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "licence": "MIT",
+      "files": {
+        "src/jslib/sdk/Include_H/libraries/javascript.h": "Include/libraries/javascript.h",
+        "src/jslib/sdk/Include_H/proto/javascript.h": "Include/proto/javascript.h",
+        "src/jslib/sdk/Include_H/inline/javascript.h": "Include/inline/javascript.h",
+        "src/jslib/sdk/Include_H/clib/javascript_protos.h": "Include/clib/javascript_protos.h",
+        "src/jslib/sdk/Include_H/pragmas/javascript_pragmas.h": "Include/pragmas/javascript_pragmas.h",
+        "src/jslib/sdk/Include_I/lvo/javascript_lib.i": "Include_I/lvo/javascript_lib.i",
+        "src/jslib/sfd/javascript_lib.sfd": "SFD/javascript_lib.sfd",
+        "src/jslib/sdk/FD/javascript_lib.fd": "FD/javascript_lib.fd",
+        "src/jslib/README.md": "Docs/javascript.library.md"
+      },
+      "sha256": {
+        "Docs/javascript.library.md": "c08fd4998f59c261699e66f6e146011844f8e16ea731af215315348639ce834b",
+        "FD/javascript_lib.fd": "c74896f03e3facbf7b4e59aee2ec05aa1aad319968d768f45fed590abd4f791c",
+        "Include/clib/javascript_protos.h": "3fd673ad25d88a7b06e02338eb12ff620761932fb73fef61d18d16552d590fec",
+        "Include/inline/javascript.h": "8a39e7c2a95b5add4ebe219b77429dd33d1344669901e586775f038bc59a6ff3",
+        "Include/libraries/javascript.h": "c972c8a216acb0b5b8520d845c2c5d29c49dbd26aac88b9d54ab0d8dc87a08ff",
+        "Include/pragmas/javascript_pragmas.h": "64889bc9910222e91e94dbbb85e566138b936c3dc2ec06530dc38abb15548eaa",
+        "Include/proto/javascript.h": "287cf403d2d7f247740f511fa42b677d112a08c9b81f43a92c0e703f393f4182",
+        "Include_I/lvo/javascript_lib.i": "449b808892a0f9230efbd196a2e315a60768146a6b09b3078afb529d504aa660",
+        "SFD/javascript_lib.sfd": "cd8eb39ffbf7142fc0d845d489d3d2325630a9f6b2fa3939e2e08b612f765184"
+      }
+    },
+    {
+      "name": "json.library",
+      "version": "1.0, main f3f41ce",
+      "repo": "DalsinAI/gfopenbrowser",
+      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "licence": "MIT",
+      "files": {
+        "src/jsonlib/sdk/Include_H/libraries/json.h": "Include/libraries/json.h",
+        "src/jsonlib/sdk/Include_H/proto/json.h": "Include/proto/json.h",
+        "src/jsonlib/sdk/Include_H/inline/json.h": "Include/inline/json.h",
+        "src/jsonlib/sdk/Include_H/clib/json_protos.h": "Include/clib/json_protos.h",
+        "src/jsonlib/sdk/Include_H/pragmas/json_pragmas.h": "Include/pragmas/json_pragmas.h",
+        "src/jsonlib/sdk/Include_I/lvo/json_lib.i": "Include_I/lvo/json_lib.i",
+        "src/jsonlib/sfd/json_lib.sfd": "SFD/json_lib.sfd",
+        "src/jsonlib/sdk/FD/json_lib.fd": "FD/json_lib.fd",
+        "src/jsonlib/README.md": "Docs/json.library.md"
+      },
+      "sha256": {
+        "Docs/json.library.md": "3f97a54019ee08a5cfa20e071b30ff8d56a883b3f3f0376348e85541744b45b8",
+        "FD/json_lib.fd": "ae13b48fbed603606e901edf6ffc423e61a64c007d0f9ab58854d4d1099fcb7c",
+        "Include/clib/json_protos.h": "60f825e7eeb9a6bc20071856734d0236c7091ccd0e80cedc6e6da5e237789d8d",
+        "Include/inline/json.h": "cf3e89256208f64d33d1ba9375885387bcd431084e2bb1ef07133df6cee4550b",
+        "Include/libraries/json.h": "a573bd418d2fbbbabe006fc2b17298717b0967c565a6d1011832bdde04fff52c",
+        "Include/pragmas/json_pragmas.h": "a3d8b737b1fb639dde8ec4557b5d714250bfa023495f6992250494689c491651",
+        "Include/proto/json.h": "b40a36903726ba964f8796cdac061b643779ce43dcf12bb90c1c297abbe58e46",
+        "Include_I/lvo/json_lib.i": "9f1b4f9081d8039e1248982daef5e97ff0a47b2f77fc510faffc5c31c32c301a",
+        "SFD/json_lib.sfd": "54180b8010897fc538e337c2be928381eec69302108ecdf2c414f058d30ea75e"
+      }
+    },
+    {
+      "name": "unicode.library",
+      "version": "1.0, main f3f41ce",
+      "repo": "DalsinAI/gfopenbrowser",
+      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "licence": "MIT",
+      "files": {
+        "src/unicodelib/sdk/Include_H/libraries/unicode.h": "Include/libraries/unicode.h",
+        "src/unicodelib/sdk/Include_H/proto/unicode.h": "Include/proto/unicode.h",
+        "src/unicodelib/sdk/Include_H/inline/unicode.h": "Include/inline/unicode.h",
+        "src/unicodelib/sdk/Include_H/clib/unicode_protos.h": "Include/clib/unicode_protos.h",
+        "src/unicodelib/sdk/Include_H/pragmas/unicode_pragmas.h": "Include/pragmas/unicode_pragmas.h",
+        "src/unicodelib/sdk/Include_I/lvo/unicode_lib.i": "Include_I/lvo/unicode_lib.i",
+        "src/unicodelib/sfd/unicode_lib.sfd": "SFD/unicode_lib.sfd",
+        "src/unicodelib/sdk/FD/unicode_lib.fd": "FD/unicode_lib.fd",
+        "src/unicodelib/README.md": "Docs/unicode.library.md"
+      },
+      "sha256": {
+        "Docs/unicode.library.md": "5b0e36895b863f4456ce9c1d06fdb3dbb6caf083c0a1f9ff0814f7a096335dea",
+        "FD/unicode_lib.fd": "51b65872eaaceb368c2733ad417b62994f2ab3161d50e57d0a98c00698b8ae31",
+        "Include/clib/unicode_protos.h": "68ee4e975bc75ac7c5a66f27bda760dd04a7855a84b3635ec07f1cfe50b52de3",
+        "Include/inline/unicode.h": "c947c7304e0061d6681630ef371c3a4507ea444ff1aa0b9528178d5b4f9d5a22",
+        "Include/libraries/unicode.h": "136d8edc2d31808b71985a31f60a0512ccfdfa2876a242e920662545cf9db97e",
+        "Include/pragmas/unicode_pragmas.h": "ad579086df20ee3d71e2b70f309744a8071f6b99f8e272f28d7a40a32aff8b4a",
+        "Include/proto/unicode.h": "c44eff0fa50f6685967ba0efd67d3f9a592ed75656b2b56af80540fb1e040826",
+        "Include_I/lvo/unicode_lib.i": "6454df01eaf14a3cead8d028150b617352a83275536ee34d7e1c958806672530",
+        "SFD/unicode_lib.sfd": "5c1f244c8e2d77445ca78c9283e31d715c7570ba308401d39df2af00b5cd919d"
+      }
+    },
+    {
+      "name": "weblayout.library",
+      "version": "1.0, main f3f41ce",
+      "repo": "DalsinAI/gfopenbrowser",
+      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "licence": "MIT",
+      "files": {
+        "src/weblayout/weblayout.h": "Include/weblayout.h",
+        "src/weblayout/library/sdk/Include_H/proto/weblayout.h": "Include/proto/weblayout.h",
+        "src/weblayout/library/sdk/Include_H/inline/weblayout.h": "Include/inline/weblayout.h",
+        "src/weblayout/library/sdk/Include_H/clib/weblayout_protos.h": "Include/clib/weblayout_protos.h",
+        "src/weblayout/library/sdk/Include_H/pragmas/weblayout_pragmas.h": "Include/pragmas/weblayout_pragmas.h",
+        "src/weblayout/library/sdk/Include_I/lvo/weblayout_lib.i": "Include_I/lvo/weblayout_lib.i",
+        "src/weblayout/library/weblayout_lib.sfd": "SFD/weblayout_lib.sfd",
+        "src/weblayout/library/sdk/FD/weblayout_lib.fd": "FD/weblayout_lib.fd",
+        "docs/WEBLAYOUT_LIBRARY.md": "Docs/weblayout.library.md"
+      },
+      "sha256": {
+        "Docs/weblayout.library.md": "f667847cf0f7083414fe1955cf61af460b95b47394910f4ceb356dbe4a0aca25",
+        "FD/weblayout_lib.fd": "0159f91072c8aad90e043ee1c745e0ac8d5d085aace053457da8325479b330fd",
+        "Include/clib/weblayout_protos.h": "c4cc184190de76f10aabd7f02a1b49c078fe8891465ca635b5594e2ca3edb312",
+        "Include/inline/weblayout.h": "2336038564e83c7705af93d838b14cbb33074be01858d90219a48ee121ebaddc",
+        "Include/pragmas/weblayout_pragmas.h": "879668a36d08c8ff049f8cf94a649c56fc1aadfb9c1dd31e5a0e6a08f937706f",
+        "Include/proto/weblayout.h": "67936eb1b19fb64ff978d160031d77301622ddc270bd746ced6597cd4aa422a8",
+        "Include/weblayout.h": "78d9639dafd5b9782e8f8ea44e695de4e8df1f4ae9606198cde824dd34704c2a",
+        "Include_I/lvo/weblayout_lib.i": "2196371c6e7afd65ce621ccfe2d128ca63a253e5fbf868a2ed17578dbad7aae2",
+        "SFD/weblayout_lib.sfd": "79bdf038581c0d2a0abbb78fb798ac36bee863cd865747e358b698095686792e"
+      }
+    },
+    {
+      "name": "webbrowser.library",
+      "version": "1.0, main f3f41ce",
+      "repo": "DalsinAI/gfopenbrowser",
+      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "licence": "MIT",
+      "files": {
+        "src/webbrowser/include/libraries/webbrowser.h": "Include/libraries/webbrowser.h",
+        "src/webbrowser/include/proto/webbrowser.h": "Include/proto/webbrowser.h",
+        "src/webbrowser/include/inline/webbrowser.h": "Include/inline/webbrowser.h",
+        "src/webbrowser/include/clib/webbrowser_protos.h": "Include/clib/webbrowser_protos.h",
+        "docs/WEBBROWSER_LIBRARY.md": "Docs/webbrowser.library.md"
+      },
+      "sha256": {
+        "Docs/webbrowser.library.md": "73fd470a800e6e6b5fcdd1d9305e525ecd1dd08da7a8fa9d207b5e3d61b07792",
+        "Include/clib/webbrowser_protos.h": "8e71f7a722176873ccb01f0f180eadbdafb1c1f5bb1072c27432971cc6664026",
+        "Include/inline/webbrowser.h": "69fc1206aa15165b66649740b82955109e38169de5587fa5586668a7ebc7feff",
+        "Include/libraries/webbrowser.h": "c80a32624b2900566405727b83ef00280dfac1dcc1e3d5ff4704279cb6c73f2e",
+        "Include/proto/webbrowser.h": "6c28a0aaa230a3dfa6247087a7cdc4f2814837a104844e649e3a6ed593c915b3"
+      }
+    },
+    {
+      "name": "gfopenmedia.library",
+      "version": "1.0, main 214ac79",
+      "repo": "DalsinAI/gfopenmedia",
+      "commit": "214ac79ac210f2b9b8f618ae970b69523fe7e6a2",
+      "licence": "MIT",
+      "files": {
+        "include/gfopenmedia/gfopenmedia.h": "Include/gfopenmedia/gfopenmedia.h",
+        "include/clib/gfopenmedia_protos.h": "Include/clib/gfopenmedia_protos.h",
+        "include/inline/gfopenmedia.h": "Include/inline/gfopenmedia.h",
+        "include/pragmas/gfopenmedia_pragmas.h": "Include/pragmas/gfopenmedia_pragmas.h",
+        "include/proto/gfopenmedia.h": "Include/proto/gfopenmedia.h",
+        "library/gfopenmedia_lib.sfd": "SFD/gfopenmedia_lib.sfd",
+        "fd/gfopenmedia_lib.fd": "FD/gfopenmedia_lib.fd",
+        "docs/gfopenmedia.doc": "Docs/gfopenmedia.doc"
+      },
+      "sha256": {
+        "Docs/gfopenmedia.doc": "6f2791775387ec178dadec7f4893048bfca85ab8aad71ef46e0b80fd720636db",
+        "FD/gfopenmedia_lib.fd": "993af74e33411bbe11c703b2812f1790ffdc502c307632c5ed2dddc12339b7cb",
+        "Include/clib/gfopenmedia_protos.h": "70c8e5a7842eb09ab2c08d014021da45866267fb29a4f30adc98e46f3eefa279",
+        "Include/gfopenmedia/gfopenmedia.h": "109890d656667c00a924ba145dad01d5965d896069407fb4e91ea232c5787f07",
+        "Include/inline/gfopenmedia.h": "a889b54f35ac4737605f89934a35d2b999562fca3b85fda3aea2579c99dd8a92",
+        "Include/pragmas/gfopenmedia_pragmas.h": "35fccb00ecfd075f02776cb0fffd07849bd8bc8b6aebed6cddf80353ab08a745",
+        "Include/proto/gfopenmedia.h": "ec6e0274d78004611f86c5bcc97ed0dfd553914621989a1147f0965f4d5d38cc",
+        "SFD/gfopenmedia_lib.sfd": "44dcc93f546b264f49c7736a516884dd4d6b6cdcbc170330d75600e9e6fe4da1"
+      }
+    },
+    {
+      "name": "gfopenmulticore.library",
+      "version": "main b3f33b0",
+      "repo": "DalsinAI/gfopenmulticore",
+      "commit": "b3f33b02c86067023ee8055aa3b9e11cad40d515",
+      "licence": "MIT",
+      "files": {
+        "include/libraries/gfopenmulticore.h": "Include/libraries/gfopenmulticore.h",
+        "include/inline/gfopenmulticore.h": "Include/inline/gfopenmulticore.h",
+        "include/proto/gfopenmulticore.h": "Include/proto/gfopenmulticore.h",
+        "library/gfopenmulticore_lib.sfd": "SFD/gfopenmulticore_lib.sfd",
+        "library/gfopenmulticore_lib.fd": "FD/gfopenmulticore_lib.fd",
+        "library/gfopenmulticore.doc": "Docs/gfopenmulticore.doc"
+      },
+      "sha256": {
+        "Docs/gfopenmulticore.doc": "c290ff7fe4c3b534b750f7348c004a53252cc7cf2ab13acaea8c3e782b226234",
+        "FD/gfopenmulticore_lib.fd": "26d561130f06f05d19667708adec58be63a88fe86fafd26f261c9aaef8b6bc2c",
+        "Include/inline/gfopenmulticore.h": "da42a4affc8019500ba7d859649a32fc958b01b4cc9721a006fdb0ddf81de6fe",
+        "Include/libraries/gfopenmulticore.h": "b6fa2062fe4d6a77ca3c1a41ebae0286d5956079f8194c25944cddc25a7c4089",
+        "Include/proto/gfopenmulticore.h": "529f6ab2b9d72d7d57aea23d22f0b60f2ef776ec6a8e0f6dc6f20b741818e77a",
+        "SFD/gfopenmulticore_lib.sfd": "bcd7989e4210b0c24923576ef07f13069a295507a0625d523a94b3d6c3eb2256"
+      }
+    },
+    {
+      "name": "gfopenntlm.library",
+      "version": "1.1, main 4bb461a",
+      "repo": "DalsinAI/gfopenntlm",
+      "commit": "4bb461a0a0026271f79e5d25344da7c089706cbd",
+      "licence": "MIT",
+      "files": {
+        "include/libraries/gfopenntlm.h": "Include/libraries/gfopenntlm.h",
+        "include/clib/gfopenntlm_protos.h": "Include/clib/gfopenntlm_protos.h",
+        "include/inline/gfopenntlm.h": "Include/inline/gfopenntlm.h",
+        "include/proto/gfopenntlm.h": "Include/proto/gfopenntlm.h",
+        "include/sfd/gfopenntlm_lib.sfd": "SFD/gfopenntlm_lib.sfd",
+        "include/fd/gfopenntlm_lib.fd": "FD/gfopenntlm_lib.fd",
+        "docs/gfopenntlm.doc": "Docs/gfopenntlm.doc"
+      },
+      "sha256": {
+        "Docs/gfopenntlm.doc": "586e96c9135806d6dfe1ef7f99b0ac6b61604a0771d63cfb100fc74abf7938b2",
+        "FD/gfopenntlm_lib.fd": "a619b53b33aa1ae397c5a550a723924bf4c7dbf5a9a0214c0e6009d4a5589364",
+        "Include/clib/gfopenntlm_protos.h": "2f858c5f173dd33743d9bbc7b350017a75c94420b78d9b5a5d69d20281744bc6",
+        "Include/inline/gfopenntlm.h": "943faa69067703a86d1d247389f0112b1ab6d649035e1f1fd1a0aa61d425e57f",
+        "Include/libraries/gfopenntlm.h": "96450248dec09162914dd5eb0bfcf4806aa5be8a1d54775f20f9c6e025988eca",
+        "Include/proto/gfopenntlm.h": "cf3623d12720bfcef5cca5b3a62ff552bf1892be452d16a4c2659abec304cd71",
+        "SFD/gfopenntlm_lib.sfd": "de1dbb4143c094e5e1709408d1da917811cc1cade741d916889a20efbce7c89f"
+      }
+    },
+    {
+      "name": "pixman.library",
+      "version": "2.1, main f3b30ef",
+      "repo": "DalsinAI/gfopenpixman",
+      "commit": "f3b30ef470465ab1b55e59c051295c87152154ef",
+      "licence": "MIT",
+      "files": {
+        "include/libraries/pixman.h": "Include/libraries/pixman.h",
+        "include/inline/pixman.h": "Include/inline/pixman.h",
+        "include/proto/pixman.h": "Include/proto/pixman.h",
+        "library/pixman_lib.sfd": "SFD/pixman_lib.sfd",
+        "README.md": "Docs/pixman.library.md"
+      },
+      "sha256": {
+        "Docs/pixman.library.md": "807b4a916993686f03dc3c866fab9c5fc0479d27879e5aba78ee60e9f724577e",
+        "FD/pixman_lib.fd": "6907affe8688a2f3499abcba5b389b14b02ab7fe996f0a8175f9f2876222e9c1",
+        "Include/inline/pixman.h": "20329c940d336b8bf4537bf285c3bbca01b90b10f3b3062791bc5699a04d5f54",
+        "Include/libraries/pixman.h": "f2f8f18afe2e6a4965419cb6b5bcfbb5106309fe9ae11b8dd22b19ef9aa540ff",
+        "Include/proto/pixman.h": "1d56bd806e151ed5fba2c2eab884185cb5ee2c37ff425208edf2de9a8ccb17a3",
+        "SFD/pixman_lib.sfd": "64fe3a95d5dd8a72a5d8bb1a15e8fa51e7c523b3240acc7598354256fd034776"
+      }
+    },
+    {
+      "name": "elf.library",
+      "version": "2.0, main a6f9c20",
+      "repo": "DalsinAI/gfopenelflibrary",
+      "commit": "a6f9c205618231b235467de9588ed72b1b345966",
+      "licence": "MIT",
+      "files": {
+        "openelf_public.h": "Include/elf/openelf_public.h",
+        "elf.lvo": "Docs/elf.lvo",
+        "README.md": "Docs/elf.library.md"
+      },
+      "sha256": {
+        "Docs/elf.library.md": "ef55d1042e1abbdf34044eaad7625abfa4727d0a0cc246024ba2ba16afebbeb7",
+        "Docs/elf.lvo": "420ad3825795981d14d915f806a3577a394b21fe79ef9966688f813994ed0521",
+        "Include/elf/openelf_public.h": "55c69b654aedbabd228a9ee70f244df4d4761aed0bbd6c03e40f2c4b63e1916a"
+      }
+    },
+    {
+      "name": "gfopenservice.device",
+      "version": "main 90dedba",
+      "repo": "DalsinAI/gfopenservice",
+      "commit": "90dedbae3f7aa0614ce7ccd83a75004f4ccf0abf",
+      "licence": "MIT",
+      "files": {
+        "include/devices/gfopenservice.h": "Include/devices/gfopenservice.h"
+      },
+      "sha256": {
+        "Include/devices/gfopenservice.h": "e376b4cf069a15fdf1186d2ac31a76554c2c7c4b128bb3a5ebb6401563c8ff8b"
+      }
+    },
+    {
+      "name": "GFOpenDatatypes classes",
+      "version": "gfopengif.datatype 47.3, main 169b7f8",
+      "repo": "DalsinAI/gfopendatatypes",
+      "commit": "169b7f8d2c346f550f77ed873f76624b17d71c6b",
+      "licence": "MIT",
+      "files": {
+        "Datatypes/include/datatypes/gfopenimage.h": "Include/datatypes/gfopenimage.h",
+        "Datatypes/include/datatypes/streamclass.h": "Include/datatypes/streamclass.h"
+      },
+      "sha256": {
+        "Include/datatypes/gfopenimage.h": "c7233cc871bf74f5901e49f018cd983ec57a0609493f43f6aa74be5daea91ad6",
+        "Include/datatypes/streamclass.h": "30fcbac29b0345313df147845b8905f9d9454cbe72b60877bc1c1837047c196c"
+      }
+    },
+    {
+      "name": "GFOpenGfx graphics and layers additions",
+      "version": "main 9565e57",
+      "repo": "DalsinAI/gfopengfx",
+      "commit": "9565e577e714d0c40584bfebc45c3796cb07791c",
+      "licence": "MIT",
+      "files": {
+        "include/graphics/gfxdispatch.h": "Include/graphics/gfxdispatch.h",
+        "include/graphics/gfopenlayers.h": "Include/graphics/gfopenlayers.h",
+        "include/clib/gfxdispatch_protos.h": "Include/clib/gfxdispatch_protos.h",
+        "include/inline/gfxdispatch.h": "Include/inline/gfxdispatch.h",
+        "include/proto/gfxdispatch.h": "Include/proto/gfxdispatch.h"
+      },
+      "sha256": {
+        "Include/clib/gfxdispatch_protos.h": "38785f198d9f9941442fbcedfeaaac59ac4b1d3123f4f49b94e627c8ba6bee9d",
+        "Include/graphics/gfopenlayers.h": "4cc066caf3698589ea6186d43b7db79437bd97369f48de1e0cf8ebafea4e53ec",
+        "Include/graphics/gfxdispatch.h": "72eabedb61ae621e925e0b2e33d368a5c6718ebd7867e86d2d30bbd542ddcb46",
+        "Include/inline/gfxdispatch.h": "7440448b31d19f83a9b7e0e3e790447edc96ab1fc537ec4bff7c6b1da04dabff",
+        "Include/proto/gfxdispatch.h": "d97a5fd6fc078132baac5bb52838b7c6d15a8d7161b3f0c2520895189679bd62"
+      }
+    },
+    {
+      "name": "GFOpenExec atomic calls",
+      "version": "main e22fda4",
+      "repo": "DalsinAI/amicradle-guest",
+      "commit": "e22fda408a6fd0dad4a970f589a22f7c7a3e2d95",
+      "licence": "MIT",
+      "files": {
+        "common/include/gfopenexec_atomic.h": "Include/exec/gfopenexec_atomic.h"
+      },
+      "sha256": {
+        "Include/exec/gfopenexec_atomic.h": "722bdb9d8fd2346e2f7ffdbacb552f8a7c43e555614926a6f888389896df5163"
       }
     }
   ]

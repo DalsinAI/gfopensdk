@@ -35,6 +35,18 @@ Part of the Open family (internally, the Great Open Source Reunification
 Project): one platform, AmigaOS 3.2.x with the Open libraries, that is easy
 to set up, and to build and port for.
 
+## SDK 0.2, 5 November 2026
+
+[Docs/LIBRARIES.md](Docs/LIBRARIES.md) lists every part with its version
+and pinned commit. New in 0.2: gfopenlayout.library 11, javascript.library,
+json.library, unicode.library, weblayout.library, webbrowser.library,
+gfopenmedia.library, gfopenmulticore.library, gfopenntlm.library,
+pixman.library, elf.library 2.0, gfopenservice.device, GFOpenDatatypes'
+class headers, GFOpenGfx's graphics and layers calls and GFOpenExec's atomic
+calls; every older part moved to its library's current main (gfopengpu.library
+0.26 with retained surfaces and the batch builders, gfopenfont.library 1.7).
+`Lib/build.sh` builds `libopensdk.a`, a stub for every call in `SFD/`.
+
 ## SDK refresh, 24 October 2026
 
 [The SDK/NDK audit](Docs/SDK-AUDIT-20261024.md) records current interface pins,

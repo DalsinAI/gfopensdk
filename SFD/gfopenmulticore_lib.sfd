@@ -1,0 +1,29 @@
+==id $Id: gfopenmulticore_lib.sfd 0.3 (12.10.2026) $
+* "gfopenmulticore.library"
+==base _OpenMulticoreBase
+==basetype struct Library *
+==libname gfopenmulticore.library
+==bias 30
+==public
+==include <exec/types.h>
+==include <dos/dos.h>
+==include <exec/tasks.h>
+==include <libraries/gfopenmulticore.h>
+ULONG OMC_CoreCount()()
+BOOL OMC_CoreInfo(ULONG core, struct OMCCoreInfo *info)(d0,a0)
+LONG OMC_Run68k(struct OMCJob *job)(a0)
+LONG OMC_Submit(struct OMCJob *job)(a0)
+LONG OMC_Wait(struct OMCJob *job)(a0)
+BOOL OMC_Check(struct OMCJob *job)(a0)
+VOID OMC_Abort(struct OMCJob *job)(a0)
+ULONG OMC_GrantSeg(struct OMCJob *job, BPTR seglist, ULONG mode)(a0,d0,d1)
+* 0.2
+VOID OMC_JobInit(struct OMCJob *job)(a0)
+LONG OMC_AddGrant(struct OMCJob *job, APTR addr, ULONG length, ULONG mode)(a0,a1,d0,d1)
+APTR OMC_AllocGrant(ULONG size, ULONG flags)(d0,d1)
+VOID OMC_FreeGrant(APTR mem)(a0)
+LONG OMC_SetSignal(struct OMCJob *job, struct Task *task, ULONG sigmask)(a0,a1,d0)
+* 0.3
+LONG OMC_SubmitRange(struct OMCJob *job, ULONG count, ULONG slice, ULONG *failed)(a0,d0,d1,a1)
+LONG OMC_RunRange(struct OMCJob *job, ULONG count, ULONG slice, ULONG *failed)(a0,d0,d1,a1)
+==end

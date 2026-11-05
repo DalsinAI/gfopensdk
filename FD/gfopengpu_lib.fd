@@ -23,4 +23,10 @@ OGFX_BltTemplate(source,sx,modulo,rp,dx,dy,width,height)(a0,d0,d1,a1,d2,d3,d4,d5
 OGFX_ScrollRaster(rp,dx,dy,x0,y0,x1,y1)(a1,d0,d1,d2,d3,d4,d5)
 OGFX_RegisterLook(look)(a0)
 OGFX_UnregisterLook(owner)(a0)
+OGPU_RetainedCreate(width,height,format,flags)(d0,d1,d2,d3)
+OGPU_RetainedPalette(rs,first,count,argb)(a0,d0,d1,a1)
+OGPU_RetainedMark(rs,x,y,width,height)(a0,d0,d1,d2,d3)
+OGPU_RetainedPresent(rs,rp,x,y,width,height)(a0,a1,d0,d1,d2,d3)
+OGPU_RetainedStats(rs,stats)(a0,a1)
+OGPU_RetainedDestroy(rs)(a0)
 ##end
