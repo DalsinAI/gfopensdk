@@ -1,10 +1,16 @@
 name: Release
-# A tag vX.Y on main makes the GitHub release: Docs/RELEASE-X.Y.md is its
-# notes, and the SDK as an archive (sources only, no build outputs) is
-# attached with its SHA-256.
+# Makes the GitHub release vX.Y, either when the tag vX.Y is pushed or when
+# the workflow is run by hand with the version (the tag is then made on the
+# commit it runs on). Docs/RELEASE-X.Y.md is its notes; the SDK as an
+# archive (sources only, no build outputs) is attached with its SHA-256.
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version, e.g. 0.2 (needs Docs/RELEASE-<version>.md)'
+        required: true
 permissions:
   contents: write
 jobs:
@@ -15,14 +21,18 @@ jobs:
       - name: Check, archive and publish
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.ref_name }}
+          VERSION: ${{ github.event.inputs.version || github.ref_name }}
         run: |
           set -eu
+          v=${VERSION#v}
+          case "$v" in ''|*[!0-9.]*) echo "bad version: $v"; exit 1 ;; esac
+          tag="v$v"
           python3 tools/gather.py --offline-check
-          notes="Docs/RELEASE-${TAG#v}.md"
+          notes="Docs/RELEASE-$v.md"
           test -f "$notes"
-          name="GFOpenSDK-${TAG#v}"
-          git archive --format=tar.gz --prefix="$name/" -o "$name.tar.gz" "$TAG"
-          git archive --format=zip --prefix="$name/" -o "$name.zip" "$TAG"
+          name="GFOpenSDK-$v"
+          git archive --format=tar.gz --prefix="$name/" -o "$name.tar.gz" HEAD
+          git archive --format=zip --prefix="$name/" -o "$name.zip" HEAD
           sha256sum "$name.tar.gz" "$name.zip" > "$name.sha256"
-          gh release create "$TAG" --title "The Open SDK ${TAG#v}" --notes-file "$notes" "$name.tar.gz" "$name.zip" "$name.sha256"
+          gh release create "$tag" --target "$GITHUB_SHA" --title "The Open SDK $v" \
+            --notes-file "$notes" "$name.tar.gz" "$name.zip" "$name.sha256"
