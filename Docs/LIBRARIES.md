@@ -71,7 +71,7 @@ is fetched at build time, so the SDK points at them instead of copying:
 
 | Part | Repository | Build | Gives |
 | --- | --- | --- | --- |
-| PortAudio with an AHI host API (for now; see below) | `DalsinAI/gfopenportaudio-` | `STOVE=... OUT=out ./build-amiga.sh` | `out/sdk/lib/libportaudio.a`, `out/sdk/include/portaudio.h`, `portaudio-2.0.pc` |
+| PortAudio with an AHI host API (for now; see below) | `DalsinAI/gfopenportaudio` | `STOVE=... OUT=out ./build-amiga.sh` | `out/sdk/lib/libportaudio.a`, `out/sdk/include/portaudio.h`, `portaudio-2.0.pc` |
 | GFOpenWX Toolkit (wxWidgets 3.2 on GFOpenLayout) | `DalsinAI/gfopenwxtoolkit` | `./build-amiga.sh` (see its README) | wxWidgets' static libraries and `wx/openlayout/` headers |
 | curl and nghttp2 | `DalsinAI/gfopencurl` | `tools/build_curl_sdk.py` (see `Docs/SDK-AUDIT-20261024.md`) | an SDK overlay with `libcurl.a` |
 
