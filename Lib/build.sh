@@ -24,11 +24,9 @@ fi
 CC=${CC:-${PREFIX}gcc}
 AR=${AR:-${PREFIX}ar}
 OUT="$SDK/Lib/build/$(basename -- "$PREFIX" | sed 's/-$//')"
-# SFDs whose own calls don't compile as stubs yet; each is fixed in the
-# library's repository and comes back here with its next pin.
-#   gfopenrtg_lib.sfd: takes struct RastPort without ==include <graphics/rastport.h>
-#   pixman_lib.sfd:    says struct pixman_image where libraries/pixman.h has a union
-SKIP=${SKIP-"gfopenrtg_lib.sfd pixman_lib.sfd"}
+# SFDs to leave out (none now): a library whose SFD doesn't compile as
+# stubs goes here until it is fixed in its own repository and pinned again
+SKIP=${SKIP-""}
 rm -rf "$OUT"
 mkdir -p "$OUT/stubs" "$OUT/obj"
 set --
