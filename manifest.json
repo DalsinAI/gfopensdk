@@ -5,9 +5,9 @@
   "parts": [
     {
       "name": "gfopenrtg.library",
-      "version": "0.25, main 55f8766",
+      "version": "0.25, main 5af78d8",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "55f8766361f88c6b83be20df9bf5d555b472b84f",
+      "commit": "5af78d8252a61a3e6b5c2162916eb9d44cac3708",
       "licence": "MIT",
       "files": {
         "include/gfopenrtg/gfopenrtg.h": "Include/gfopenrtg/gfopenrtg.h",
@@ -27,9 +27,9 @@
     },
     {
       "name": "gfopengpu.library",
-      "version": "0.26, main 55f8766",
+      "version": "0.27, main 5af78d8",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "55f8766361f88c6b83be20df9bf5d555b472b84f",
+      "commit": "5af78d8252a61a3e6b5c2162916eb9d44cac3708",
       "licence": "MIT",
       "files": {
         "include/gfopengpu/gfopengpu.h": "Include/gfopengpu/gfopengpu.h",
@@ -50,14 +50,14 @@
       "sha256": {
         "Docs/AutoDocs-GFOpenGPU.md": "d9590baf47ec7541646df5b221a014c1a84e351f7fb5a353d917b7560a6e2294",
         "FD/gfopengpu_lib.fd": "505cb9622ded472bacbfbda209f99c911abc4077410389c1a17ecfe335f7efde",
-        "Include/gfopengpu/build.h": "71cb69ad801a891261ff095603f199b794af6061638a853fd36a967dc0fae16b",
+        "Include/gfopengpu/build.h": "3b2037d78e05a4f25cfebf6d8a17195ff94946b8795bd916b4fd36ef1b54b97e",
         "Include/gfopengpu/build3d.h": "eaf3f350c6fe3b0ef75bcf81659c4e291bf662cfab6ee3f29a7a8e1b8460065f",
         "Include/gfopengpu/driver.h": "e82274833bd768f633f6cc0d4bc30e4b6e4df923b05d984d206e5348c1586330",
         "Include/gfopengpu/gfopengpu.h": "e7a7b5ed6771403225c137a10edccf9065fd7d2b61ff6993a9d0683ba0410668",
         "Include/gfopengpu/gfx.h": "539f12d5f235be989d725d616c1d0d12d97200253a76c8a3083b021ddce8006a",
         "Include/gfopengpu/module.h": "5ee4477a51fb2b96291d2a036a4cbb27a45b6dc95ccef5b3dbf15b67202e4541",
         "Include/gfopengpu/retained.h": "fb3335fd6371bce245f481889619ba290f02b0f388b05f3d42b0fd9ba6cfb822",
-        "Include/gfopengpu/stream.h": "0f6997bc29d8033c0a8f00983a952c060012c80a80942d731582a3f768d404ed",
+        "Include/gfopengpu/stream.h": "deb47b92472370541976d63e70657f5c246b81e5b4ea628465e311efb0b9435d",
         "Include/gfopengpu/stream3d.h": "8757f225ce2083ff030132e5da17c15816b075476ad2c01cd18f7dac06f229bc",
         "Include/gfopengpu/virgl.h": "aca7f297d4de4dc9c57f0d373ca6d524d5510ad44f48cbad14043f9e3e42f9c4",
         "Include/inline/gfopengpu.h": "cdaa43c30c728fa4d880cf02d70dcf63859ac875aa5b2fee5bad955a6eea8a48",
