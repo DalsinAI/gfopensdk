@@ -62,11 +62,7 @@ when you don't use the inline headers.
     sh Lib/build.sh                              # the os32-gcc16 stove
     PREFIX=m68k-linux-gnu- sh Lib/build.sh       # an ELF m68k GCC (CI)
 
-Not in it yet: gfopenrtg.library (its SFD needs
-`==include <graphics/rastport.h>`) and pixman.library (its SFD says
-`struct pixman_image` where `libraries/pixman.h` has a union). Both are
-fixed in their own repositories (gfopenrtg #178, gfopenpixman #17) and
-come in with the next pin.
+Every SFD in `SFD/` is in it.
 
 ## Built from source, not kept here
 
@@ -75,9 +71,13 @@ is fetched at build time, so the SDK points at them instead of copying:
 
 | Part | Repository | Build | Gives |
 | --- | --- | --- | --- |
-| PortAudio with an AHI host API | `DalsinAI/gfopenportaudio-` | `STOVE=... OUT=out ./build-amiga.sh` | `out/sdk/lib/libportaudio.a`, `out/sdk/include/portaudio.h`, `portaudio-2.0.pc` |
+| PortAudio with an AHI host API (for now; see below) | `DalsinAI/gfopenportaudio-` | `STOVE=... OUT=out ./build-amiga.sh` | `out/sdk/lib/libportaudio.a`, `out/sdk/include/portaudio.h`, `portaudio-2.0.pc` |
 | GFOpenWX Toolkit (wxWidgets 3.2 on GFOpenLayout) | `DalsinAI/gfopenwxtoolkit` | `./build-amiga.sh` (see its README) | wxWidgets' static libraries and `wx/openlayout/` headers |
 | curl and nghttp2 | `DalsinAI/gfopencurl` | `tools/build_curl_sdk.py` (see `Docs/SDK-AUDIT-20261024.md`) | an SDK overlay with `libcurl.a` |
+
+PortAudio is becoming portaudio.library, a clean-room build of our own
+tuned for the Amiga. When it lands, its headers and SFD are gathered here
+like the other libraries' and the static build above goes.
 
 ## Soft float and the FPU
 

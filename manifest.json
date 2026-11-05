@@ -5,9 +5,9 @@
   "parts": [
     {
       "name": "gfopenrtg.library",
-      "version": "0.25, main 510155f",
+      "version": "0.25, main 55f8766",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "510155f55717f87fb08f5d69c7723b5785715852",
+      "commit": "55f8766361f88c6b83be20df9bf5d555b472b84f",
       "licence": "MIT",
       "files": {
         "include/gfopenrtg/gfopenrtg.h": "Include/gfopenrtg/gfopenrtg.h",
@@ -22,14 +22,14 @@
         "Include/gfopenrtg/modes.h": "8dbf8a951a4d671e81f0018978394d12608278585bc7f0151dde5b48d1df41b3",
         "Include/inline/gfopenrtg.h": "b5e698d193339cf0ef84c0a0a23de025d72af8c8f8880f03ad4118d6808ff39e",
         "Include/proto/gfopenrtg.h": "749ee2fdfac75777237be779c01100e3022bec325cc385846a1467933cd38838",
-        "SFD/gfopenrtg_lib.sfd": "d9d45a35fa1d9582d4a05f947fa84671a3af6e2bad35bfcbc707048ae4e1fa56"
+        "SFD/gfopenrtg_lib.sfd": "3b912037140555543832be75d15dda26eef45171f0b18333ee3c17d7994bcfc4"
       }
     },
     {
       "name": "gfopengpu.library",
-      "version": "0.26, main 510155f",
+      "version": "0.26, main 55f8766",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "510155f55717f87fb08f5d69c7723b5785715852",
+      "commit": "55f8766361f88c6b83be20df9bf5d555b472b84f",
       "licence": "MIT",
       "files": {
         "include/gfopengpu/gfopengpu.h": "Include/gfopengpu/gfopengpu.h",
@@ -463,9 +463,9 @@
     },
     {
       "name": "pixman.library",
-      "version": "2.1, main f3b30ef",
+      "version": "2.1, master 5ce40d6",
       "repo": "DalsinAI/gfopenpixman",
-      "commit": "f3b30ef470465ab1b55e59c051295c87152154ef",
+      "commit": "5ce40d643a005c604c1ab09cfbe071567bfcd9c5",
       "licence": "MIT",
       "files": {
         "include/libraries/pixman.h": "Include/libraries/pixman.h",
@@ -480,7 +480,7 @@
         "Include/inline/pixman.h": "20329c940d336b8bf4537bf285c3bbca01b90b10f3b3062791bc5699a04d5f54",
         "Include/libraries/pixman.h": "f2f8f18afe2e6a4965419cb6b5bcfbb5106309fe9ae11b8dd22b19ef9aa540ff",
         "Include/proto/pixman.h": "1d56bd806e151ed5fba2c2eab884185cb5ee2c37ff425208edf2de9a8ccb17a3",
-        "SFD/pixman_lib.sfd": "64fe3a95d5dd8a72a5d8bb1a15e8fa51e7c523b3240acc7598354256fd034776"
+        "SFD/pixman_lib.sfd": "ea5cea934b2886b74b5182c2dd42a45086a4ad8fc6c59f4108e4033e0a593172"
       }
     },
     {
