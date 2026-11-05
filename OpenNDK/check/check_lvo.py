@@ -2,12 +2,15 @@
 # Copyright (c) 2026 AmiCradle Team. MIT licence (see OpenNDK/LICENSE).
 """Compare OpenNDK's SFDs with the open libraries' own .lvo tables.
 
-    check_lvo.py --guest AMIGACHROME-GUEST [--gfx OPENAMIGAGFX] [SFD...]
+    check_lvo.py --guest AMICRADLE-GUEST [--gfx GFOPENGFX] [--datatypes GFOPENDATATYPES] [SFD...]
 
 Each open library keeps a .lvo table (LVO, call, registers) that its build
 checks against the vendor's function table, so a match here means the SFD's
 names, slots and registers are the ones programs already link against.
-Private slots are compared by position only. Exit 1 on any difference.
+Private slots are compared by position only. Calls an open library adds
+past the end of the NDK's table are ours (GFOpen additions, declared in the
+Open SDK's own headers, never in OpenNDK) and are listed, not counted.
+Exit 1 on any difference.
 """
 import argparse
 import glob
@@ -18,7 +21,8 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tools"))
 import ndkgen  # noqa: E402
 
-# SFD stem -> .lvo path, relative to the guest checkout ("gfx:" = gfopengfx)
+# SFD stem -> .lvo path, relative to the guest checkout ("gfx:" = gfopengfx,
+# "dt:" = gfopendatatypes)
 LVO = {
     "exec": "libraries/openexec/exec.lvo",
     "dos": "libraries/opendos/dos.lvo",
@@ -29,7 +33,7 @@ LVO = {
     "amigaguide": "libraries/openamigaguide/amigaguide.lvo",
     "bullet": "libraries/openbullet/bullet.lvo",
     "commodities": "libraries/opencommodities/commodities.lvo",
-    "datatypes": "libraries/opendatatypes/datatypes.lvo",
+    "datatypes": "dt:libraries/opendatatypes/datatypes.lvo",
     "diskfont": "libraries/opendiskfont/diskfont.lvo",
     "expansion": "libraries/openexpansion/expansion.lvo",
     "iffparse": "libraries/openiffparse/iffparse.lvo",
@@ -59,11 +63,22 @@ LVO = {
     "layers": "gfx:library/layers/layers.lvo",
 }
 
+# Our own calls in the vendor's private or past-the-end slots, and the Open
+# SDK header that declares them
+OURS = {
+    "exec": "Include/exec/gfopenexec_atomic.h (AtomicCAS and friends; check GFOpenExec first)",
+    "graphics": "Include/proto/gfxdispatch.h, Include/graphics/gfxdispatch.h",
+    "layers": "Include/graphics/gfopenlayers.h",
+    "dos": "none: ODShellRun is shell.library's own, not for programs",
+}
 
-def reaction_lvo(guest, stem):
-    for pat in ("libraries/openreaction/%s/%s.lvo", "libraries/opendatatypes/classes/datatypes/%s/%s.lvo"):
-        p = os.path.join(guest, pat % (stem, stem))
-        if os.path.exists(p):
+
+def reaction_lvo(roots, stem):
+    for root, pat in ((roots[0], "libraries/openreaction/%s/%s.lvo"),
+                      (roots[0], "libraries/opendatatypes/classes/datatypes/%s/%s.lvo"),
+                      (roots[1], "libraries/opendatatypes/classes/datatypes/%s/%s.lvo")):
+        p = os.path.join(root, pat % (stem, stem)) if root else None
+        if p and os.path.exists(p):
             return p
     return None
 
@@ -81,6 +96,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--guest", required=True)
     ap.add_argument("--gfx")
+    ap.add_argument("--datatypes")
     ap.add_argument("sfd", nargs="*")
     o = ap.parse_args()
     sfds = o.sfd or sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "SFD", "*.sfd")))
@@ -90,10 +106,14 @@ def main():
         rel = LVO.get(lib.stem)
         if rel and rel.startswith("gfx:"):
             lvo = os.path.join(o.gfx, rel[4:]) if o.gfx else None
+        elif rel and rel.startswith("dt:"):
+            lvo = os.path.join(o.datatypes, rel[3:]) if o.datatypes else None
+            if not (lvo and os.path.exists(lvo)):
+                lvo = os.path.join(o.guest, rel[3:])
         elif rel:
             lvo = os.path.join(o.guest, rel)
         else:
-            lvo = reaction_lvo(o.guest, lib.stem)
+            lvo = reaction_lvo((o.guest, o.datatypes), lib.stem)
         if not lvo or not os.path.exists(lvo):
             print("%s: no .lvo to compare with" % lib.sfdname)
             continue
@@ -109,12 +129,17 @@ def main():
                 # doesn't have yet, not a disagreement
                 print("%s -%d: %s not in the open library yet" % (lib.sfdname, b, a[0]))
                 continue
+            if a is None and b > max(ours):
+                print("%s -%d: %s is ours, past the NDK's table (SDK: %s)"
+                      % (lib.sfdname, b, t[0], OURS.get(lib.stem, "not declared yet")))
+                continue
             if a is None or t is None:
                 print("%s -%d: SFD %s, .lvo %s" % (lib.sfdname, b, a, t))
                 bad += 1
             elif a[0] == "private" or t[0] == "private":
                 if a[0] != t[0]:
-                    print("%s -%d: SFD %s, .lvo %s (private in one)" % (lib.sfdname, b, a, t))
+                    note = " (ours; SDK: %s)" % OURS[lib.stem] if lib.stem in OURS and a[0] == "private" else ""
+                    print("%s -%d: SFD %s, .lvo %s (private in one)%s" % (lib.sfdname, b, a, t, note))
             elif a != t:
                 print("%s -%d: SFD %s(%s), .lvo %s(%s)" % (lib.sfdname, b, a[0], a[1], t[0], t[1]))
                 bad += 1

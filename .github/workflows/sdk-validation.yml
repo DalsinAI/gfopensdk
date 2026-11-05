@@ -1,7 +1,7 @@
 name: SDK and OpenNDK validation
 on:
   push:
-    paths: ['OpenNDK/**', 'Include/**', 'FD/**', 'SFD/**', 'manifest.json', 'tools/**', 'tests/**', '.github/workflows/sdk-validation.yml']
+    paths: ['OpenNDK/**', 'Include/**', 'Include_I/**', 'FD/**', 'SFD/**', 'Lib/**', 'manifest.json', 'tools/**', 'tests/**', '.github/workflows/sdk-validation.yml']
   pull_request:
   workflow_dispatch:
 permissions:
@@ -18,6 +18,8 @@ jobs:
         run: |
           m68k-linux-gnu-gcc -m68040 -IInclude -IOpenNDK/Include_H -Wall -Wextra -Werror -fsyntax-only tests/sdk/headers.c
           m68k-linux-gnu-g++ -x c++ -std=gnu++17 -m68040 -IInclude -IOpenNDK/Include_H -Wall -Wextra -Werror -fsyntax-only tests/sdk/headers.c
+      - name: libopensdk.a, a stub for every call in SFD/
+        run: PREFIX=m68k-linux-gnu- sh Lib/build.sh
       - run: sh tests/host/run.sh
       - run: python3 -m unittest discover -s tests/sdk -v
       - run: python3 tools/gather.py --offline-check
