@@ -15,7 +15,7 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | bsdsocket.library | main e7a6066, `gfopensocket` | OpenNDK `Include_H` (`proto/bsdsocket.h`) | bsdsocket_lib.sfd | – |
 | accontrol.device | main e22fda4, `amicradle-guest` | `accontrol/accontrol.h` | – | – |
 | oapspool.device | main 6e3b292, `gfopenprint` | `openprint/oap_device.h` | – | – |
-| gfopentls.library / gfopencrypto.library | 1.3 / 2.1, main aa6f6a5, `gfopentls` | `proto/gfopencrypto.h`, `proto/gfopentls.h` | gfopentls_lib.fd | [AutoDocs-GFOpenTLS.md](AutoDocs-GFOpenTLS.md) |
+| gfopentls.library / gfopencrypto.library | 1.3 / 2.2, main 028034e, `gfopentls` | `proto/gfopencrypto.h`, `proto/gfopentls.h` | gfopentls_lib.fd | [AutoDocs-GFOpenTLS.md](AutoDocs-GFOpenTLS.md) |
 | gfopenlayout.library | 11.0, main 6ecdfa1, `gfopenlayout` | `proto/gfopenlayout.h` | gfopenlayout_lib.fd, gfopenlayout_lib.sfd | [GFCSS.md](GFCSS.md), [GFOpenLayout-UI.md](GFOpenLayout-UI.md) |
 | javascript.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/javascript.h` | javascript_lib.fd, javascript_lib.sfd | [javascript.library.md](javascript.library.md) |
 | json.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/json.h` | json_lib.fd, json_lib.sfd | [json.library.md](json.library.md) |
