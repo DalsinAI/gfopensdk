@@ -536,6 +536,19 @@
       }
     },
     {
+      "name": "openwxtoolkit.library",
+      "version": "1.0, main 1f7dea8",
+      "repo": "DalsinAI/gfopenwxtoolkit",
+      "commit": "1f7dea8dd63dd6fe3c3e5c19a88632741d611674",
+      "licence": "wxWindows Library Licence",
+      "files": {
+        "README.md": "Docs/openwxtoolkit.library.md"
+      },
+      "sha256": {
+        "Docs/openwxtoolkit.library.md": "bf9b4a16b1dda7587a7f562cd29b6b121d94ad9a4da6ee72b4e5f3bbf6481e20"
+      }
+    },
+    {
       "name": "elf.library",
       "version": "2.0, main a6f9c20",
       "repo": "DalsinAI/gfopenelflibrary",

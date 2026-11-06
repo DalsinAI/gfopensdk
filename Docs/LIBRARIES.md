@@ -28,6 +28,7 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | gfopenntlm.library | 1.1, main 4bb461a, `gfopenntlm` | `proto/gfopenntlm.h` | gfopenntlm_lib.fd, gfopenntlm_lib.sfd | [gfopenntlm.doc](gfopenntlm.doc) |
 | event.library | 1.0, main 0f74260, `gfopenevent` | `proto/event.h` | event_lib.fd, event_lib.sfd | [AutoDocs-GFOpenEvent.md](AutoDocs-GFOpenEvent.md) |
 | pixman.library | 2.1, main f3b30ef, `gfopenpixman` | `proto/pixman.h` | pixman_lib.fd, pixman_lib.sfd | [pixman.library.md](pixman.library.md) |
+| openwxtoolkit.library | 1.0, main 1f7dea8, `gfopenwxtoolkit` | none: programs link with `WXTK_SHARED=1 wx-config --libs` | – | [openwxtoolkit.library.md](openwxtoolkit.library.md) |
 | elf.library | 2.0, main a6f9c20, `gfopenelflibrary` | `elf/openelf_public.h` | – | [elf.library.md](elf.library.md), [elf.lvo](elf.lvo) |
 | gfopenservice.device | main 90dedba, `gfopenservice` | `devices/gfopenservice.h` | – | – |
 | GFOpenDatatypes classes | gfopengif.datatype 47.3, main 169b7f8, `gfopendatatypes` | `datatypes/gfopenimage.h`, `datatypes/streamclass.h` | – | – |
@@ -78,7 +79,7 @@ is fetched at build time, so the SDK points at them instead of copying:
 | Part | Repository | Build | Gives |
 | --- | --- | --- | --- |
 | PortAudio with an AHI host API (for now; see below) | `DalsinAI/gfopenportaudio-` | `STOVE=... OUT=out ./build-amiga.sh` | `out/sdk/lib/libportaudio.a`, `out/sdk/include/portaudio.h`, `portaudio-2.0.pc` |
-| GFOpenWX Toolkit (wxWidgets 3.2 on GFOpenLayout) | `DalsinAI/gfopenwxtoolkit` | `./build-amiga.sh` (see its README) | wxWidgets' static libraries and `wx/openlayout/` headers |
+| GFOpenWX Toolkit (wxWidgets 3.2 on GFOpenLayout), main 1f7dea8 | `DalsinAI/gfopenwxtoolkit` | `./build-amiga.sh`; `library/build-amiga.sh` for openwxtoolkit.library (see its README) | wxWidgets' static libraries, `wx/openlayout/` headers and `bin/wx-config`; with `WXTK_SHARED=1` wx-config links a program against openwxtoolkit.library (LIBS:openwxtoolkit/wx.module) instead of a static wx |
 | GFOpenBoost (Boost 1.89.0, one Amiga config) | `DalsinAI/gfopenboost` | `STOVE=... OUT=out ./build-amiga.sh` | `include/boost/`, `lib/libboost_<part>.a` (21 parts), `lib/cmake/Boost-1.89.0/`; packed as `gfopenboost-1.89.0-sdk.tar.xz` |
 | curl and nghttp2 | `DalsinAI/gfopencurl` | `tools/build_curl_sdk.py` (see `Docs/SDK-AUDIT-20261024.md`) | an SDK overlay with `libcurl.a` |
 
