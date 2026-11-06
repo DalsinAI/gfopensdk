@@ -186,9 +186,9 @@
     },
     {
       "name": "gfopentls.library / gfopencrypto.library",
-      "version": "1.3 / 2.2, main 028034e",
+      "version": "1.4 / 2.3, main 7d28467",
       "repo": "DalsinAI/gfopentls",
-      "commit": "028034eb778cbcf1c51e8e703bd347e4048b9ee7",
+      "commit": "7d284674063338e89cccf87ee247dcac52e37210",
       "licence": "MIT",
       "files": {
         "include/fd/gfopentls_lib.fd": "FD/gfopentls_lib.fd",
@@ -204,17 +204,44 @@
         "docs/AutoDocs-GFOpenTLS.md": "Docs/AutoDocs-GFOpenTLS.md"
       },
       "sha256": {
-        "Docs/AutoDocs-GFOpenTLS.md": "335d9cc82fc70648c70d0df04e32b116a9997445f1d91bf244f463135f60503a",
+        "Docs/AutoDocs-GFOpenTLS.md": "8d16120f70ff574c954d1eaa202af8a27f960070b8d6e92c4a1a538de2ba68a4",
         "FD/gfopentls_lib.fd": "b1034ff3cb9182be6a858015e955118ddad7edf814a8f43e75a63c935c363a93",
         "Include/clib/gfopentls_protos.h": "d4ef4d539e525ea035b70b84ae4898bf31fc3389137fed5f016ba9207ec659ca",
-        "Include/gfopencrypto/gfopencrypto.h": "e030459ae1fb0c45a71ad739ffa72d3cf900f33e293fe8dcd2da3483729ddb8f",
-        "Include/inline/gfopencrypto.h": "b2eca4ddef77a24820c9ce82159a161b4b957400199553d54ff599409d3e4062",
+        "Include/gfopencrypto/gfopencrypto.h": "8334d4c5530ba82f2a46840724290b270675e318ee2ba322d9a24152ceb92401",
+        "Include/inline/gfopencrypto.h": "029b2f3f6f5f31bbf0569fe999b15c0ba16888823b906297e8297efbb309e1c0",
         "Include/inline/gfopentls.h": "4350123544b4756f42129270400d29fa48c93ca099d4a6d902a1da7a9848d6a9",
         "Include/inline/gfopentls_protos.h": "72b645597afea92b8def08d2c167f256312cb892266b17de436efbda1f786eaf",
-        "Include/libraries/gfopencrypto.h": "2cfbb6794e3aa5ecdae0b54b9c448853f8a246f9c2a9322a3f66fd583b51fbb8",
-        "Include/libraries/gfopentls.h": "4b3108f262d9fb0ce4e80a5a8c2e48d5d707db8d65eb731eb2006057dd52c31d",
+        "Include/libraries/gfopencrypto.h": "51dc28b240cff52541e2670474ba0a7df1151f396a5dfcfa4b678e4722a6af32",
+        "Include/libraries/gfopentls.h": "c7c38bdb4a4ca0e2c5d2bd47e9ca04cafb35540ff5cbb285f49a3ee83d224bde",
         "Include/proto/gfopencrypto.h": "40577349d0cf8285f9bf18cc8ad58ac61235d134f0e4fbfab2f17b687d692272",
         "Include/proto/gfopentls.h": "e6a842130aa17fddc9342b17ca7b8a31f032f24f9696ab5e848c2893c1fe4232"
+      }
+    },
+    {
+      "name": "regex.library",
+      "version": "1.0, main 6c6b695, `gfopenregex`",
+      "repo": "DalsinAI/gfopenregex",
+      "commit": "6c6b695123a16c2c464d4b7c0185b1cb056bdb78",
+      "licence": "MIT",
+      "files": {
+        "include/regex.h": "Include/regex.h",
+        "include/libraries/regex.h": "Include/libraries/regex.h",
+        "include/proto/regex.h": "Include/proto/regex.h",
+        "include/inline/regex.h": "Include/inline/regex.h",
+        "include/clib/regex_protos.h": "Include/clib/regex_protos.h",
+        "include/fd/regex_lib.fd": "FD/regex_lib.fd",
+        "include/sfd/regex_lib.sfd": "SFD/regex_lib.sfd",
+        "docs/regex.library.md": "Docs/regex.library.md"
+      },
+      "sha256": {
+        "Docs/regex.library.md": "fb0250d48f4d8ae3198aeebfdcbd9f7e5a38143e75ad27cad776070cd3cdec66",
+        "FD/regex_lib.fd": "632b49059db2cc93a17f3876a1a78814bf80e3502a294fc9bac1154120bbee01",
+        "Include/clib/regex_protos.h": "7577a4d037f595ed6e0ae151bcf5434f9bd7ce77ab66180d75d3c4b1f00bc6cc",
+        "Include/inline/regex.h": "831be682b8104af7f52c5aa670e0e2bb775926e7812ef9aed05335289f3057a7",
+        "Include/libraries/regex.h": "f22bdf6a69d9e10a30684aea21cc595e64048e43e76b53d1f8d97e1f8a626d7a",
+        "Include/proto/regex.h": "c5a657ec9fee97d5fc2bcd6df02c7a59490e859f5e6e92d23418c775313ad5e5",
+        "Include/regex.h": "491a0885922c8e8dcda7695e250b6c3f1a5173d3cc43b9c9fabf31c2fb03ea65",
+        "SFD/regex_lib.sfd": "8689f09210cef5e7e73dee616d039daf0b5622c9201048bb11a7d6641b32d368"
       }
     },
     {

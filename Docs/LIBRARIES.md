@@ -15,7 +15,8 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | bsdsocket.library | main e7a6066, `gfopensocket` | OpenNDK `Include_H` (`proto/bsdsocket.h`) | bsdsocket_lib.sfd | – |
 | accontrol.device | main e22fda4, `amicradle-guest` | `accontrol/accontrol.h` | – | – |
 | oapspool.device | main 6e3b292, `gfopenprint` | `openprint/oap_device.h` | – | – |
-| gfopentls.library / gfopencrypto.library | 1.3 / 2.2, main 028034e, `gfopentls` | `proto/gfopencrypto.h`, `proto/gfopentls.h` | gfopentls_lib.fd | [AutoDocs-GFOpenTLS.md](AutoDocs-GFOpenTLS.md) |
+| gfopentls.library / gfopencrypto.library | 1.4 / 2.3, main 7d28467, `gfopentls` | `proto/gfopencrypto.h`, `proto/gfopentls.h` | gfopentls_lib.fd | [AutoDocs-GFOpenTLS.md](AutoDocs-GFOpenTLS.md) |
+| regex.library | 1.0, main 6c6b695, `gfopenregex` | `regex.h` (POSIX), `proto/regex.h` | regex_lib.fd, regex_lib.sfd | [regex.library.md](regex.library.md) |
 | gfopenlayout.library | 11.0, main 6ecdfa1, `gfopenlayout` | `proto/gfopenlayout.h` | gfopenlayout_lib.fd, gfopenlayout_lib.sfd | [GFCSS.md](GFCSS.md), [GFOpenLayout-UI.md](GFOpenLayout-UI.md) |
 | javascript.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/javascript.h` | javascript_lib.fd, javascript_lib.sfd | [javascript.library.md](javascript.library.md) |
 | json.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/json.h` | json_lib.fd, json_lib.sfd | [json.library.md](json.library.md) |
@@ -40,6 +41,10 @@ Notes:
 - **elf.library** keeps its calls in `openelf_public.h` and `elf.lvo`
   (LVO, call, registers); it has no SFD yet, so no proto/inline header and
   no stubs. Call it through the LVOs listed in the header.
+- **regex.library**: programs that call the POSIX `regcomp()`, `regexec()`,
+  `regerror()` and `regfree()` link with `-lregex`, the link stub in the
+  GFOpenRegex release's SDK drawer, which opens regex.library on first use.
+  `libopensdk.a` has the library's own calls (`RegComp()` and the rest).
 - **webbrowser.library** has proto, clib and inline headers but no SFD, so
   no FD and no stubs.
 - **GFOpenExec atomic calls** live in exec.library's private slots on
