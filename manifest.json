@@ -5,9 +5,9 @@
   "parts": [
     {
       "name": "gfopenrtg.library",
-      "version": "0.25, main 5af78d8",
+      "version": "0.25, main 5b7bfc6, `gfopenrtg`",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "5af78d8252a61a3e6b5c2162916eb9d44cac3708",
+      "commit": "5b7bfc6affbc8d8b7897d53113615e60271c27a4",
       "licence": "MIT",
       "files": {
         "include/gfopenrtg/gfopenrtg.h": "Include/gfopenrtg/gfopenrtg.h",
@@ -27,9 +27,9 @@
     },
     {
       "name": "gfopengpu.library",
-      "version": "0.27, main 5af78d8",
+      "version": "0.27, main 5b7bfc6",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "5af78d8252a61a3e6b5c2162916eb9d44cac3708",
+      "commit": "5b7bfc6affbc8d8b7897d53113615e60271c27a4",
       "licence": "MIT",
       "files": {
         "include/gfopengpu/gfopengpu.h": "Include/gfopengpu/gfopengpu.h",
@@ -57,7 +57,7 @@
         "Include/gfopengpu/gfx.h": "539f12d5f235be989d725d616c1d0d12d97200253a76c8a3083b021ddce8006a",
         "Include/gfopengpu/module.h": "5ee4477a51fb2b96291d2a036a4cbb27a45b6dc95ccef5b3dbf15b67202e4541",
         "Include/gfopengpu/retained.h": "fb3335fd6371bce245f481889619ba290f02b0f388b05f3d42b0fd9ba6cfb822",
-        "Include/gfopengpu/stream.h": "deb47b92472370541976d63e70657f5c246b81e5b4ea628465e311efb0b9435d",
+        "Include/gfopengpu/stream.h": "b1c46814d494111da9ff948da92c120ec2cadca25fcbf3ca4fddfc9f2c42c803",
         "Include/gfopengpu/stream3d.h": "8757f225ce2083ff030132e5da17c15816b075476ad2c01cd18f7dac06f229bc",
         "Include/gfopengpu/virgl.h": "aca7f297d4de4dc9c57f0d373ca6d524d5510ad44f48cbad14043f9e3e42f9c4",
         "Include/inline/gfopengpu.h": "cdaa43c30c728fa4d880cf02d70dcf63859ac875aa5b2fee5bad955a6eea8a48",

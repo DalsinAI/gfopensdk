@@ -8,8 +8,8 @@ commit `manifest.json` pins; change them there, then move the pin here.
 
 | Part | Version, source | Include | SFD/FD | Docs |
 | --- | --- | --- | --- | --- |
-| gfopenrtg.library | 0.25, main 5af78d8, `gfopenrtg` | `proto/gfopenrtg.h` | gfopenrtg_lib.fd, gfopenrtg_lib.sfd | – |
-| gfopengpu.library | 0.27, main 5af78d8, `gfopenrtg` | `proto/gfopengpu.h` | gfopengpu_lib.fd, gfopengpu_lib.sfd | [AutoDocs-GFOpenGPU.md](AutoDocs-GFOpenGPU.md) |
+| gfopenrtg.library | 0.25, main 5b7bfc6, `gfopenrtg` | `proto/gfopenrtg.h` | gfopenrtg_lib.fd, gfopenrtg_lib.sfd | – |
+| gfopengpu.library | 0.27, main 5b7bfc6, `gfopenrtg` | `proto/gfopengpu.h` | gfopengpu_lib.fd, gfopengpu_lib.sfd | [AutoDocs-GFOpenGPU.md](AutoDocs-GFOpenGPU.md) |
 | gfopenfont.library | 1.7, main dc4878f, `gfopenfont` | `proto/gfopenfont.h` | gfopenfont_lib.fd, gfopenfont_lib.sfd | [gfopenfont.doc](gfopenfont.doc) |
 | opensocket.library | main e7a6066, `gfopensocket` | `proto/acnetwork.h` | – | – |
 | bsdsocket.library | main e7a6066, `gfopensocket` | OpenNDK `Include_H` (`proto/bsdsocket.h`) | bsdsocket_lib.sfd | – |
