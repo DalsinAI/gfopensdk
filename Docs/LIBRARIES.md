@@ -73,7 +73,17 @@ is fetched at build time, so the SDK points at them instead of copying:
 | --- | --- | --- | --- |
 | PortAudio with an AHI host API (for now; see below) | `DalsinAI/gfopenportaudio-` | `STOVE=... OUT=out ./build-amiga.sh` | `out/sdk/lib/libportaudio.a`, `out/sdk/include/portaudio.h`, `portaudio-2.0.pc` |
 | GFOpenWX Toolkit (wxWidgets 3.2 on GFOpenLayout) | `DalsinAI/gfopenwxtoolkit` | `./build-amiga.sh` (see its README) | wxWidgets' static libraries and `wx/openlayout/` headers |
+| GFOpenBoost (Boost 1.89.0, one Amiga config) | `DalsinAI/gfopenboost` | `STOVE=... OUT=out ./build-amiga.sh` | `include/boost/`, `lib/libboost_<part>.a` (21 parts), `lib/cmake/Boost-1.89.0/`; packed as `gfopenboost-1.89.0-sdk.tar.xz` |
 | curl and nghttp2 | `DalsinAI/gfopencurl` | `tools/build_curl_sdk.py` (see `Docs/SDK-AUDIT-20261024.md`) | an SDK overlay with `libcurl.a` |
+
+Boost: every port uses this one Boost and its one Amiga config
+(`boost/config/platform/amigaos.hpp`) instead of carrying its own. Point the
+compiler at its `include` and `lib` folders, or CMake at
+`lib/cmake/Boost-1.89.0` (`find_package(Boost 1.89 CONFIG COMPONENTS ...)`).
+Link `-latomic` with Atomic, Thread or Filesystem, `-lpthread` with Thread,
+`-lsocket` with Asio, and define `BOOST_ASIO_SEPARATE_COMPILATION` to use the
+compiled Asio. It stays out of OpenNDK, which keeps to the AmigaOS headers.
+A shared LIBS: library comes later, on openwxtoolkit.library's loader.
 
 PortAudio is becoming portaudio.library, a clean-room build of our own
 tuned for the Amiga. When it lands, its headers and SFD are gathered here
