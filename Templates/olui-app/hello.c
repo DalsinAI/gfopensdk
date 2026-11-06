@@ -50,7 +50,7 @@ int main(void)
 
     win = OpenWindowTags(NULL, WA_Title, (ULONG)"Hello", WA_Width, 360, WA_Height, 140,
                          WA_MinWidth, 240, WA_MinHeight, 110, WA_MaxWidth, ~0UL, WA_MaxHeight, ~0UL,
-                         WA_DragBar, TRUE, WA_DepthGadget, TRUE, WA_CloseGadget, TRUE, WA_SizeGadget, TRUE,
+                         WA_DragBar, TRUE, WA_DepthGadget, TRUE, WA_CloseGadget, TRUE, WA_SizeGadget, TRUE, WA_SizeBBottom, TRUE,
                          WA_Activate, TRUE, WA_SimpleRefresh, TRUE, WA_ReportMouse, TRUE,
                          WA_IDCMP, olui_amiga_idcmp(), TAG_DONE);
     if (!win) return RETURN_FAIL;
