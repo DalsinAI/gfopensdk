@@ -5,9 +5,9 @@
   "parts": [
     {
       "name": "gfopenrtg.library",
-      "version": "0.25, main 97b82ad, `gfopenrtg`",
+      "version": "0.25, main 5b7bfc6, `gfopenrtg`",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "97b82ad77155057bbc00c8621cbcc775b955519d",
+      "commit": "5b7bfc6affbc8d8b7897d53113615e60271c27a4",
       "licence": "MIT",
       "files": {
         "include/gfopenrtg/gfopenrtg.h": "Include/gfopenrtg/gfopenrtg.h",
@@ -27,9 +27,9 @@
     },
     {
       "name": "gfopengpu.library",
-      "version": "0.27, main 97b82ad",
+      "version": "0.27, main 5b7bfc6",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "97b82ad77155057bbc00c8621cbcc775b955519d",
+      "commit": "5b7bfc6affbc8d8b7897d53113615e60271c27a4",
       "licence": "MIT",
       "files": {
         "include/gfopengpu/gfopengpu.h": "Include/gfopengpu/gfopengpu.h",
