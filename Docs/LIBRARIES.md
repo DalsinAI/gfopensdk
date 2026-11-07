@@ -26,7 +26,7 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | gfopenmedia.library | 1.0, main 214ac79, `gfopenmedia` | `proto/gfopenmedia.h` | gfopenmedia_lib.fd, gfopenmedia_lib.sfd | [gfopenmedia.doc](gfopenmedia.doc) |
 | gfopenmulticore.library | main b3f33b0, `gfopenmulticore` | `proto/gfopenmulticore.h` | gfopenmulticore_lib.fd, gfopenmulticore_lib.sfd | [gfopenmulticore.doc](gfopenmulticore.doc) |
 | gfopenntlm.library | 1.1, main 4bb461a, `gfopenntlm` | `proto/gfopenntlm.h` | gfopenntlm_lib.fd, gfopenntlm_lib.sfd | [gfopenntlm.doc](gfopenntlm.doc) |
-| event.library | 1.0, main 0f74260, `gfopenevent` | `proto/event.h` | event_lib.fd, event_lib.sfd | [AutoDocs-GFOpenEvent.md](AutoDocs-GFOpenEvent.md) |
+| event.library | 1.1, main f2269a7, `gfopenevent` | `proto/event.h` | event_lib.fd, event_lib.sfd | [AutoDocs-GFOpenEvent.md](AutoDocs-GFOpenEvent.md) |
 | pixman.library | 2.1, main f3b30ef, `gfopenpixman` | `proto/pixman.h` | pixman_lib.fd, pixman_lib.sfd | [pixman.library.md](pixman.library.md) |
 | openwxtoolkit.library | 1.0, main 1f7dea8, `gfopenwxtoolkit` | none: programs link with `WXTK_SHARED=1 wx-config --libs` | – | [openwxtoolkit.library.md](openwxtoolkit.library.md) |
 | elf.library | 2.0, main a6f9c20, `gfopenelflibrary` | `elf/openelf_public.h` | – | [elf.library.md](elf.library.md), [elf.lvo](elf.lvo) |
