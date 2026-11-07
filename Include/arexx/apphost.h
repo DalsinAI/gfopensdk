@@ -41,6 +41,7 @@
 
 #include <exec/types.h>
 #include <exec/memory.h>
+#include <intuition/classes.h>
 #include <intuition/classusr.h>
 #include <classes/arexx.h>
 #include <dos/dos.h>
@@ -50,6 +51,7 @@
 #include <proto/intuition.h>
 #include <proto/dos.h>
 #include <clib/alib_protos.h>   /* DoMethod (amiga.lib) */
+#include <inline/macros.h>      /* LP0 */
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -297,10 +299,19 @@ static __attribute__((unused)) ah_host *ah_open(const char *name, const ah_cmd *
     if (!(h->lib = OpenLibrary((CONST_STRPTR)"arexx.class", 44)) &&
         !(h->lib = OpenLibrary((CONST_STRPTR)"classes/arexx.class", 44)))
         goto fail;
-    h->obj = (Object *)NewObject(NULL, (CONST_STRPTR)"arexx.class",
-                                 AREXX_HostName, (ULONG)name,
-                                 AREXX_Commands, (ULONG)h->table,
-                                 TAG_END);
+    /* the class from AREXX_GetClass (-30): OS 3.2's arexx.class does
+       not answer NewObject by its public name */
+    {
+        struct Library *ah__base = h->lib;
+        Class *cl = LP0(0x1e, Class *, AREXX_GetClass, , ah__base);
+        struct TagItem tags[3];
+        if (!cl)
+            goto fail;
+        tags[0].ti_Tag = AREXX_HostName;  tags[0].ti_Data = (ULONG)name;
+        tags[1].ti_Tag = AREXX_Commands;  tags[1].ti_Data = (ULONG)h->table;
+        tags[2].ti_Tag = TAG_END;         tags[2].ti_Data = 0;
+        h->obj = (Object *)NewObjectA(cl, NULL, tags);
+    }
     if (!h->obj)
         goto fail;
     GetAttr(AREXX_SigMask, h->obj, &h->sigmask);
