@@ -49,6 +49,7 @@
 #include <proto/exec.h>
 #include <proto/intuition.h>
 #include <proto/dos.h>
+#include <clib/alib_protos.h>   /* DoMethod (amiga.lib) */
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
