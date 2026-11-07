@@ -149,7 +149,23 @@ static __attribute__((unused)) void ah_error(ah_call *c, LONG rc, LONG rc2)
 
 enum { AH_QUIT = 1000, AH_ACTIVATE, AH_DEACTIVATE, AH_VERSION, AH_HELP, AH_FAULT };
 
-static __attribute__((unused)) ah_host *ah__now;            /* the port whose ah_handle() runs */
+static __attribute__((unused)) ah_host *ah__now;
+
+/* names compared without case (ASCII), so no utility.library is needed */
+static __attribute__((unused)) int ah__same(const char *a, const char *b)
+{
+    for (;; a++, b++) {
+        int x = (unsigned char)*a, y = (unsigned char)*b;
+        if (x >= 'a' && x <= 'z')
+            x -= 32;
+        if (y >= 'a' && y <= 'z')
+            y -= 32;
+        if (x != y)
+            return 0;
+        if (!x)
+            return 1;
+    }
+}            /* the port whose ah_handle() runs */
 
 static __attribute__((unused)) void ah__standard(ah_call *c, int id)
 {
@@ -181,7 +197,7 @@ static __attribute__((unused)) void ah__standard(ah_call *c, int id)
         for (i = 0; i < h->ntable; i++) {
             struct ARexxCmd *t = &h->table[i];
             if (*want) {
-                if (Stricmp((CONST_STRPTR)want, t->ac_Name) == 0) {
+                if (ah__same(want, (const char *)t->ac_Name)) {
                     ah_result(c, "%s%s%s", (char *)t->ac_Name, t->ac_ArgTemplate && *t->ac_ArgTemplate ? " " : "",
                               t->ac_ArgTemplate ? (char *)t->ac_ArgTemplate : "");
                     return;
@@ -266,7 +282,7 @@ static __attribute__((unused)) ah_host *ah_open(const char *name, const ah_cmd *
     for (j = 0; j < (int)(sizeof std / sizeof std[0]); j++) {
         int dup = 0;
         for (i = 0; i < n; i++)
-            if (Stricmp((CONST_STRPTR)cmds[i].name, (CONST_STRPTR)std[j].name) == 0)
+            if (ah__same(cmds[i].name, std[j].name))
                 dup = 1;
         if (dup)
             continue;
