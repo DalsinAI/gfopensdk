@@ -276,7 +276,7 @@ static __attribute__((unused)) ah_host *ah_open(const char *name, const ah_cmd *
     for (i = 0; i < n; i++) {
         h->table[i].ac_Name = (STRPTR)cmds[i].name;
         h->table[i].ac_ID = (UWORD)i;
-        h->table[i].ac_Func = ah__func;
+        h->table[i].ac_Func = (void (*)(struct ARexxCmd *, struct RexxMsg *))ah__func;   /* A0, A1 */
         h->table[i].ac_ArgTemplate = (STRPTR)(cmds[i].tmpl ? cmds[i].tmpl : "");
     }
     k = n;
@@ -289,7 +289,7 @@ static __attribute__((unused)) ah_host *ah_open(const char *name, const ah_cmd *
             continue;
         h->table[k].ac_Name = (STRPTR)std[j].name;
         h->table[k].ac_ID = (UWORD)std[j].id;
-        h->table[k].ac_Func = ah__func;
+        h->table[k].ac_Func = (void (*)(struct ARexxCmd *, struct RexxMsg *))ah__func;   /* A0, A1 */
         h->table[k].ac_ArgTemplate = (STRPTR)std[j].tmpl;
         k++;
     }
