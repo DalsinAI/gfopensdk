@@ -490,9 +490,9 @@
     },
     {
       "name": "event.library",
-      "version": "1.0, main 0f74260, `gfopenevent`",
+      "version": "1.1, main f2269a7, `gfopenevent`",
       "repo": "DalsinAI/gfopenevent",
-      "commit": "0f74260f1231967bd849dd81945e5d91701ad900",
+      "commit": "f2269a772f5064d139338accd023c8c45c27efbe",
       "licence": "MIT",
       "files": {
         "include/libraries/event.h": "Include/libraries/event.h",
@@ -504,13 +504,13 @@
         "AutoDocs-GFOpenEvent.md": "Docs/AutoDocs-GFOpenEvent.md"
       },
       "sha256": {
-        "Docs/AutoDocs-GFOpenEvent.md": "629917684d97dea0504e7b1aca527630ca0a85ac575a7ad2a09d02c38090a6e6",
+        "Docs/AutoDocs-GFOpenEvent.md": "0df2142bf6f897f3df9045c7e3b429e8d5f3f0879820e44bf8063a737b6cfb13",
         "FD/event_lib.fd": "91e8aaf8e455473c3b1f2412b355d8e261d52dfdf5ab2a9506b58b99130c46b2",
         "Include/clib/event_protos.h": "b88f1c5760d16d1ae4728ef0471e46515eed06f48ef8d418483d0ea8b5ad3fde",
         "Include/inline/event.h": "0cd2f8c5892b326eda4ef3eed610cdbd69eaf648d38388151292dd67ce240834",
-        "Include/libraries/event.h": "68af3c0ac43b274e2852b01932573dd8788c7707961ef02510e2d253f26508e8",
+        "Include/libraries/event.h": "2461961aff0590827fdd414b0834f87944da0c3544f8f310cd01cfd0673f6184",
         "Include/proto/event.h": "27d5aab42cb130111e414fee10c76f96e93a1d3f7fd2386023ebff15a5d586f6",
-        "SFD/event_lib.sfd": "55c1a0798cb65f9620e2671d687acae845efb0479cf21ef8772324ae5ad6300a"
+        "SFD/event_lib.sfd": "f00148e417809fa6d225fe0be748259e25a4c50139649a830c222b3e3571b528"
       }
     },
     {
