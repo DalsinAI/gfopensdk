@@ -8,14 +8,15 @@ commit `manifest.json` pins; change them there, then move the pin here.
 
 | Part | Version, source | Include | SFD/FD | Docs |
 | --- | --- | --- | --- | --- |
-| gfopenrtg.library | 0.25, main 5af78d8, `gfopenrtg` | `proto/gfopenrtg.h` | gfopenrtg_lib.fd, gfopenrtg_lib.sfd | – |
-| gfopengpu.library | 0.27, main 5af78d8, `gfopenrtg` | `proto/gfopengpu.h` | gfopengpu_lib.fd, gfopengpu_lib.sfd | [AutoDocs-GFOpenGPU.md](AutoDocs-GFOpenGPU.md) |
+| gfopenrtg.library | 0.25, main 5b7bfc6, `gfopenrtg` | `proto/gfopenrtg.h` | gfopenrtg_lib.fd, gfopenrtg_lib.sfd | – |
+| gfopengpu.library | 0.27, main 5b7bfc6, `gfopenrtg` | `proto/gfopengpu.h` | gfopengpu_lib.fd, gfopengpu_lib.sfd | [AutoDocs-GFOpenGPU.md](AutoDocs-GFOpenGPU.md) |
 | gfopenfont.library | 1.7, main dc4878f, `gfopenfont` | `proto/gfopenfont.h` | gfopenfont_lib.fd, gfopenfont_lib.sfd | [gfopenfont.doc](gfopenfont.doc) |
 | opensocket.library | main e7a6066, `gfopensocket` | `proto/acnetwork.h` | – | – |
 | bsdsocket.library | main e7a6066, `gfopensocket` | OpenNDK `Include_H` (`proto/bsdsocket.h`) | bsdsocket_lib.sfd | – |
 | accontrol.device | main e22fda4, `amicradle-guest` | `accontrol/accontrol.h` | – | – |
 | oapspool.device | main 6e3b292, `gfopenprint` | `openprint/oap_device.h` | – | – |
-| gfopentls.library / gfopencrypto.library | 1.3 / 2.1, main aa6f6a5, `gfopentls` | `proto/gfopencrypto.h`, `proto/gfopentls.h` | gfopentls_lib.fd | [AutoDocs-GFOpenTLS.md](AutoDocs-GFOpenTLS.md) |
+| gfopentls.library / gfopencrypto.library | 1.4 / 2.3, main 7d28467, `gfopentls` | `proto/gfopencrypto.h`, `proto/gfopentls.h` | gfopentls_lib.fd | [AutoDocs-GFOpenTLS.md](AutoDocs-GFOpenTLS.md) |
+| regex.library | 1.0, main 6c6b695, `gfopenregex` | `regex.h` (POSIX), `proto/regex.h` | regex_lib.fd, regex_lib.sfd | [regex.library.md](regex.library.md) |
 | gfopenlayout.library | 11.0, main 6ecdfa1, `gfopenlayout` | `proto/gfopenlayout.h` | gfopenlayout_lib.fd, gfopenlayout_lib.sfd | [GFCSS.md](GFCSS.md), [GFOpenLayout-UI.md](GFOpenLayout-UI.md) |
 | javascript.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/javascript.h` | javascript_lib.fd, javascript_lib.sfd | [javascript.library.md](javascript.library.md) |
 | json.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/json.h` | json_lib.fd, json_lib.sfd | [json.library.md](json.library.md) |
@@ -25,7 +26,9 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | gfopenmedia.library | 1.0, main 214ac79, `gfopenmedia` | `proto/gfopenmedia.h` | gfopenmedia_lib.fd, gfopenmedia_lib.sfd | [gfopenmedia.doc](gfopenmedia.doc) |
 | gfopenmulticore.library | main b3f33b0, `gfopenmulticore` | `proto/gfopenmulticore.h` | gfopenmulticore_lib.fd, gfopenmulticore_lib.sfd | [gfopenmulticore.doc](gfopenmulticore.doc) |
 | gfopenntlm.library | 1.1, main 4bb461a, `gfopenntlm` | `proto/gfopenntlm.h` | gfopenntlm_lib.fd, gfopenntlm_lib.sfd | [gfopenntlm.doc](gfopenntlm.doc) |
+| event.library | 1.1, main f2269a7, `gfopenevent` | `proto/event.h` | event_lib.fd, event_lib.sfd | [AutoDocs-GFOpenEvent.md](AutoDocs-GFOpenEvent.md) |
 | pixman.library | 2.1, main f3b30ef, `gfopenpixman` | `proto/pixman.h` | pixman_lib.fd, pixman_lib.sfd | [pixman.library.md](pixman.library.md) |
+| openwxtoolkit.library | 1.0, main 1f7dea8, `gfopenwxtoolkit` | none: programs link with `WXTK_SHARED=1 wx-config --libs` | – | [openwxtoolkit.library.md](openwxtoolkit.library.md) |
 | elf.library | 2.0, main a6f9c20, `gfopenelflibrary` | `elf/openelf_public.h` | – | [elf.library.md](elf.library.md), [elf.lvo](elf.lvo) |
 | gfopenservice.device | main 90dedba, `gfopenservice` | `devices/gfopenservice.h` | – | – |
 | GFOpenDatatypes classes | gfopengif.datatype 47.3, main 169b7f8, `gfopendatatypes` | `datatypes/gfopenimage.h`, `datatypes/streamclass.h` | – | – |
@@ -40,6 +43,10 @@ Notes:
 - **elf.library** keeps its calls in `openelf_public.h` and `elf.lvo`
   (LVO, call, registers); it has no SFD yet, so no proto/inline header and
   no stubs. Call it through the LVOs listed in the header.
+- **regex.library**: programs that call the POSIX `regcomp()`, `regexec()`,
+  `regerror()` and `regfree()` link with `-lregex`, the link stub in the
+  GFOpenRegex release's SDK drawer, which opens regex.library on first use.
+  `libopensdk.a` has the library's own calls (`RegComp()` and the rest).
 - **webbrowser.library** has proto, clib and inline headers but no SFD, so
   no FD and no stubs.
 - **GFOpenExec atomic calls** live in exec.library's private slots on
@@ -72,8 +79,18 @@ is fetched at build time, so the SDK points at them instead of copying:
 | Part | Repository | Build | Gives |
 | --- | --- | --- | --- |
 | PortAudio with an AHI host API (for now; see below) | `DalsinAI/gfopenportaudio` | `STOVE=... OUT=out ./build-amiga.sh` | `out/sdk/lib/libportaudio.a`, `out/sdk/include/portaudio.h`, `portaudio-2.0.pc` |
-| GFOpenWX Toolkit (wxWidgets 3.2 on GFOpenLayout) | `DalsinAI/gfopenwxtoolkit` | `./build-amiga.sh` (see its README) | wxWidgets' static libraries and `wx/openlayout/` headers |
+| GFOpenWX Toolkit (wxWidgets 3.2 on GFOpenLayout), main 1f7dea8 | `DalsinAI/gfopenwxtoolkit` | `./build-amiga.sh`; `library/build-amiga.sh` for openwxtoolkit.library (see its README) | wxWidgets' static libraries, `wx/openlayout/` headers and `bin/wx-config`; with `WXTK_SHARED=1` wx-config links a program against openwxtoolkit.library (LIBS:openwxtoolkit/wx.module) instead of a static wx |
+| GFOpenBoost (Boost 1.89.0, one Amiga config) | `DalsinAI/gfopenboost` | `STOVE=... OUT=out ./build-amiga.sh` | `include/boost/`, `lib/libboost_<part>.a` (21 parts), `lib/cmake/Boost-1.89.0/`; packed as `gfopenboost-1.89.0-sdk.tar.xz` |
 | curl and nghttp2 | `DalsinAI/gfopencurl` | `tools/build_curl_sdk.py` (see `Docs/SDK-AUDIT-20261024.md`) | an SDK overlay with `libcurl.a` |
+
+Boost: every port uses this one Boost and its one Amiga config
+(`boost/config/platform/amigaos.hpp`) instead of carrying its own. Point the
+compiler at its `include` and `lib` folders, or CMake at
+`lib/cmake/Boost-1.89.0` (`find_package(Boost 1.89 CONFIG COMPONENTS ...)`).
+Link `-latomic` with Atomic, Thread or Filesystem, `-lpthread` with Thread,
+`-lsocket` with Asio, and define `BOOST_ASIO_SEPARATE_COMPILATION` to use the
+compiled Asio. It stays out of OpenNDK, which keeps to the AmigaOS headers.
+A shared LIBS: library comes later, on openwxtoolkit.library's loader.
 
 PortAudio is becoming portaudio.library, a clean-room build of our own
 tuned for the Amiga. When it lands, its headers and SFD are gathered here
