@@ -13,6 +13,8 @@ extern "C" {
 #define OC_SHA384_BYTES 48
 #define OC_SHA512_BYTES 64
 #define OC_SHA512_BLOCK_BYTES 128
+#define OC_SHA1_BYTES 20
+#define OC_SHA1_BLOCK_BYTES 64
 
 typedef struct OCSHA256 {
     uint32_t h[8];
@@ -27,6 +29,13 @@ typedef struct OCSHA512 {
     uint8_t block[OC_SHA512_BLOCK_BYTES];
     size_t block_used;
 } OCSHA512;
+
+typedef struct OCSHA1 {
+    uint32_t h[5];
+    uint64_t total_bytes;
+    uint8_t block[OC_SHA1_BLOCK_BYTES];
+    size_t block_used;
+} OCSHA1;
 
 void oc_sha256_init(OCSHA256 *ctx);
 void oc_sha256_update(OCSHA256 *ctx, const void *data, size_t length);
@@ -63,6 +72,21 @@ void oc_sha512_final(OCSHA512 *ctx, uint8_t out[OC_SHA512_BYTES]);
  * machine. For callers that do their own buffering and padding. */
 void oc_sha256_blocks(uint8_t state[OC_SHA256_BYTES], const void *data, size_t nblocks);
 void oc_sha512_blocks(uint8_t state[OC_SHA512_BYTES], const void *data, size_t nblocks);
+
+/* SHA-1 (FIPS 180-4, 6 Nov 2026), for formats that name it (file identity
+ * checks, older protocols). Not collision resistant: new designs use
+ * SHA-256. oc_sha1_blocks keeps the chaining value as 20 big-endian bytes. */
+void oc_sha1_init(OCSHA1 *ctx);
+void oc_sha1_update(OCSHA1 *ctx, const void *data, size_t length);
+void oc_sha1_final(OCSHA1 *ctx, uint8_t out[OC_SHA1_BYTES]);
+void oc_sha1(const void *data, size_t length, uint8_t out[OC_SHA1_BYTES]);
+void oc_sha1_blocks(uint8_t state[OC_SHA1_BYTES], const void *data, size_t nblocks);
+
+/* MD5 (RFC 1321), only for what still names it (TLS 1.0 and 1.1); the
+ * block function keeps the 16-byte chaining value little-endian */
+#define OC_MD5_BYTES 16
+void oc_md5(const void *data, size_t length, uint8_t out[OC_MD5_BYTES]);
+void oc_md5_blocks(uint8_t state[OC_MD5_BYTES], const void *data, size_t nblocks);
 
 /* ---- for SSH's key exchanges, host keys and default cipher (8 Oct 2026) ---- */
 
@@ -102,6 +126,9 @@ void oc_sntrup761_dec(uint8_t ss[OC_SNTRUP761_SS_BYTES], const uint8_t ct[OC_SNT
 void oc_chacha20_xor(uint8_t *out, const uint8_t *in, size_t length,
                      const uint8_t key[32], const uint8_t nonce[8], uint64_t counter);
 void oc_poly1305(uint8_t tag[16], const void *data, size_t length, const uint8_t key[32]);
+/* GHASH (NIST SP 800-38D 6.4), AES-GCM's hash: y = (y + X_i) . h for each
+ * 16-byte part of the data (the last padded with zeros), constant time */
+void oc_ghash(uint8_t y[16], const uint8_t h[16], const void *data, size_t length);
 /* length bytes from a seed: ChaCha20's key stream, the label as nonce */
 void oc_expand_seed(uint8_t *out, size_t length, const uint8_t seed[OC_SEED_BYTES],
                     const char label[8]);
@@ -131,6 +158,16 @@ int oc_rsa_public(uint8_t *out, const uint8_t *sig, const uint8_t *n, size_t n_l
 int oc_ecdsa_verify(int curve, const uint8_t *qx, const uint8_t *qy,
                     const uint8_t *r, const uint8_t *s,
                     const uint8_t *hash, size_t hash_length);
+
+/* ECDH on P-256, P-384 and P-521 (curve = 256, 384, 521), constant time:
+ * oc_ec_mul() sets point (X9.62 uncompressed, 04 || x || y, 1 + 2 bytes
+ * of the curve's size) to scalar . point, after checking the point is on
+ * the curve; 1, or 0 for a bad point, curve or result. oc_ec_mulgen()
+ * writes scalar . G there and returns its length (0 on failure). The
+ * scalar is big-endian, any length. */
+int oc_ec_mul(int curve, uint8_t *point, size_t point_length,
+              const uint8_t *scalar, size_t scalar_length);
+int oc_ec_mulgen(int curve, uint8_t *point, const uint8_t *scalar, size_t scalar_length);
 
 /* RSASSA-PSS verification (RFC 8017 section 8.1.2), as TLS 1.3 uses it
  * (rsa_pss_rsae_*): MGF1 with the message's own hash, which hash_length

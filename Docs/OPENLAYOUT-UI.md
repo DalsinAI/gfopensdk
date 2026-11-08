@@ -28,7 +28,7 @@ static void ok_pressed(olui *ui, const olui_event *ev, void *data)
 
 ...
 win = OpenWindowTags(NULL, WA_Title, (ULONG)"Hello", WA_Width, 360, WA_Height, 120,
-                     WA_SizeGadget, TRUE, WA_CloseGadget, TRUE, WA_DragBar, TRUE,
+                     WA_SizeGadget, TRUE, WA_SizeBBottom, TRUE, WA_CloseGadget, TRUE, WA_DragBar, TRUE,
                      WA_ReportMouse, TRUE, WA_IDCMP, olui_amiga_idcmp(), TAG_DONE);
 ui = olui_new();
 a = olui_amiga_new(ui, win);
