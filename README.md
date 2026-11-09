@@ -42,6 +42,16 @@ Part of the Open family (internally, the Great Open Source Reunification
 Project): one platform, AmigaOS 3.2.x with the Open libraries, that is easy
 to set up, and to build and port for.
 
+## SDK 0.3, 9 November 2026 (pre-release)
+
+The boards' libraries: **mitchy.library** (`proto/mitchy.h`), named
+services on Mitchy, the services card, the other ACSV boards or a paired
+Cradle on the LAN; and **akikoplus.library** 2 (`proto/akikoplus.h`),
+AkikoPlus, the media board, on mitchy.library. Examples:
+`Examples/mitchy-echo`, `Examples/akikoplus-c2p`. Both libraries are pinned
+at their review branches until they merge; see
+[Docs/RELEASE-0.3.md](Docs/RELEASE-0.3.md).
+
 ## SDK 0.2, 5 November 2026
 
 [Docs/LIBRARIES.md](Docs/LIBRARIES.md) lists every part with its version

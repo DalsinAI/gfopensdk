@@ -1,6 +1,6 @@
 {
   "sdk": "The Open SDK",
-  "version": "0.2",
+  "version": "0.3",
   "note": "Each library's own repository owns its headers and function tables; tools/gather.py copies them from these commits. Never edit the copies under Include/ or SFD/: change the library's repository, then move its commit here.",
   "parts": [
     {
@@ -576,6 +576,54 @@
       },
       "sha256": {
         "Include/devices/gfopenservice.h": "e376b4cf069a15fdf1186d2ac31a76554c2c7c4b128bb3a5ebb6401563c8ff8b"
+      }
+    },
+    {
+      "name": "mitchy.library",
+      "version": "1.0, team5/mitchy-library-20261109 ca95320 (unmerged), `gfopenservice`",
+      "repo": "DalsinAI/gfopenservice",
+      "commit": "ca953205744393509319a60698898d77924e21b6",
+      "licence": "MIT",
+      "files": {
+        "include/libraries/mitchy.h": "Include/libraries/mitchy.h",
+        "include/clib/mitchy_protos.h": "Include/clib/mitchy_protos.h",
+        "include/proto/mitchy.h": "Include/proto/mitchy.h",
+        "include/inline/mitchy.h": "Include/inline/mitchy.h",
+        "include/pragmas/mitchy_pragmas.h": "Include/pragmas/mitchy_pragmas.h",
+        "sfd/mitchy_lib.sfd": "SFD/mitchy_lib.sfd"
+      },
+      "sha256": {
+        "FD/mitchy_lib.fd": "ab2d6d4fe10732f8a19229391e715401c7ef81d2430fdfb12ffbffaa68cc47c3",
+        "Include/clib/mitchy_protos.h": "20049e477e81043ec9152f7889d567eb5e78e728edbfa465e5dfeb2c7250396f",
+        "Include/inline/mitchy.h": "0b7626bd02377fea84d0d01df577abec5d2c49b9ef55913e5e714c22479a9fd9",
+        "Include/libraries/mitchy.h": "e366ae349095b31461dce527d8395e1d97787f9cf2369967f884dc974f193e49",
+        "Include/pragmas/mitchy_pragmas.h": "cb597604e03b4bdeb56289987be6c11d6ad47f84b1cf682b0ce4d5b1bb0bde4e",
+        "Include/proto/mitchy.h": "9301eab941d9e4b41ccc08fe44f09b708486910151fcfb6162a78ded4e8825de",
+        "SFD/mitchy_lib.sfd": "53d05861f237a8cc2ee1945ff240d87633e88a3a9da074d378099d2b7a1f6926"
+      }
+    },
+    {
+      "name": "akikoplus.library",
+      "version": "2.0, team5/akikoplus-v2-20261109 3f48f80 (unmerged), `gfosautoconfigboards`",
+      "repo": "DalsinAI/gfosautoconfigboards",
+      "commit": "3f48f800b6a0db570b153be65addf38e90bc3013",
+      "licence": "MIT",
+      "files": {
+        "cards/akikoplus/guest/include/libraries/akikoplus.h": "Include/libraries/akikoplus.h",
+        "cards/akikoplus/guest/include/clib/akikoplus_protos.h": "Include/clib/akikoplus_protos.h",
+        "cards/akikoplus/guest/include/proto/akikoplus.h": "Include/proto/akikoplus.h",
+        "cards/akikoplus/guest/include/inline/akikoplus.h": "Include/inline/akikoplus.h",
+        "cards/akikoplus/guest/include/pragmas/akikoplus_pragmas.h": "Include/pragmas/akikoplus_pragmas.h",
+        "cards/akikoplus/guest/sfd/akikoplus_lib.sfd": "SFD/akikoplus_lib.sfd"
+      },
+      "sha256": {
+        "FD/akikoplus_lib.fd": "88419ccdcb16cd1d275a8bcf9cac1e0c399fa0de8d8c101a6e884f975d271639",
+        "Include/clib/akikoplus_protos.h": "1034049434f0bf87b2511b2c953289bd26490a47e3a84bd918cc431055b5ec3d",
+        "Include/inline/akikoplus.h": "793b302e263d4209fd165825334a565924bcd5d17d694e587bef2fb9f55fb385",
+        "Include/libraries/akikoplus.h": "2d246e1fefeedb4d57f34130afaf5d93ceac0d3b1084a61f9153d1ae45e07935",
+        "Include/pragmas/akikoplus_pragmas.h": "feaa31704bd3709d9db0be9455a093cf51f8bb84c91cab4a6bb604e0aecfa895",
+        "Include/proto/akikoplus.h": "21e6248d70511591eb968cc7cc2d2528591c9b58d70d620ccf7e541110302ce0",
+        "SFD/akikoplus_lib.sfd": "ecf397ed43c0bd73ebf3cd1437d7d07b53d994eb3ce3f2aed8ca12f8c9c9d39a"
       }
     },
     {
