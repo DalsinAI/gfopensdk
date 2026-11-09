@@ -31,8 +31,8 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | openwxtoolkit.library | 1.0, main 1f7dea8, `gfopenwxtoolkit` | none: programs link with `WXTK_SHARED=1 wx-config --libs` | – | [openwxtoolkit.library.md](openwxtoolkit.library.md) |
 | elf.library | 2.0, main a6f9c20, `gfopenelflibrary` | `elf/openelf_public.h` | – | [elf.library.md](elf.library.md), [elf.lvo](elf.lvo) |
 | gfopenservice.device | main 90dedba, `gfopenservice` | `devices/gfopenservice.h` | – | – |
-| mitchy.library | 1.0, team5/mitchy-library-20261109 ca95320 (**unmerged**), `gfopenservice` | `proto/mitchy.h` | mitchy_lib.fd, mitchy_lib.sfd | – (the autodoc comes with the library) |
-| akikoplus.library | 2.0, team5/akikoplus-v2-20261109 3f48f80 (**unmerged**), `gfosautoconfigboards` | `proto/akikoplus.h` | akikoplus_lib.fd, akikoplus_lib.sfd | – (the autodoc comes with the library) |
+| mitchy.library | 1.0, main e94f674, `gfopenservice` | `proto/mitchy.h` | mitchy_lib.fd, mitchy_lib.sfd | [mitchy.doc](mitchy.doc) |
+| akikoplus.library | 2.0, main 8b9ffe0, `gfosautoconfigboards` | `proto/akikoplus.h` | akikoplus_lib.fd, akikoplus_lib.sfd | [akikoplus.doc](akikoplus.doc) |
 | GFOpenDatatypes classes | gfopengif.datatype 47.3, main 169b7f8, `gfopendatatypes` | `datatypes/gfopenimage.h`, `datatypes/streamclass.h` | – | – |
 | GFOpenGfx graphics and layers additions | main 9565e57, `gfopengfx` | `proto/gfxdispatch.h`, `graphics/gfopenlayers.h` | – | – |
 | GFOpenExec atomic calls | main e22fda4, `amicradle-guest` | `exec/gfopenexec_atomic.h` | – | – |
@@ -61,8 +61,8 @@ Notes:
   other ACSV boards, or on a paired Cradle on the LAN, through
   gfopenservice.device) and **akikoplus.library** 2 (AkikoPlus, the media
   board, on mitchy.library; the same calls on the 68k without the board)
-  are pinned at their libraries' review branches, not yet merged: their
-  pins move to main when they merge. `Examples/mitchy-echo` opens a
+  are pinned at their libraries' main (gfopenservice #34, gfosautoconfigboards
+  #4), with their autodocs. `Examples/mitchy-echo` opens a
   service by name and calls it; `Examples/akikoplus-c2p` converts chunky
   to planar and checks the bytes.
 - **GFOpenDatatypes**: the classes' own headers. gfopengif.datatype 47.3

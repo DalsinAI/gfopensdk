@@ -580,9 +580,9 @@
     },
     {
       "name": "mitchy.library",
-      "version": "1.0, team5/mitchy-library-20261109 ca95320 (unmerged), `gfopenservice`",
+      "version": "1.0, main e94f674, `gfopenservice`",
       "repo": "DalsinAI/gfopenservice",
-      "commit": "ca953205744393509319a60698898d77924e21b6",
+      "commit": "e94f67425eda79492ea212e0c225d0e9b2ea6716",
       "licence": "MIT",
       "files": {
         "include/libraries/mitchy.h": "Include/libraries/mitchy.h",
@@ -590,9 +590,11 @@
         "include/proto/mitchy.h": "Include/proto/mitchy.h",
         "include/inline/mitchy.h": "Include/inline/mitchy.h",
         "include/pragmas/mitchy_pragmas.h": "Include/pragmas/mitchy_pragmas.h",
-        "sfd/mitchy_lib.sfd": "SFD/mitchy_lib.sfd"
+        "sfd/mitchy_lib.sfd": "SFD/mitchy_lib.sfd",
+        "docs/mitchy.doc": "Docs/mitchy.doc"
       },
       "sha256": {
+        "Docs/mitchy.doc": "8ac06da614b9efae8e82f2b3ba4c07b644c4b8435ec8f5f01e4edf1ccbc5b464",
         "FD/mitchy_lib.fd": "ab2d6d4fe10732f8a19229391e715401c7ef81d2430fdfb12ffbffaa68cc47c3",
         "Include/clib/mitchy_protos.h": "20049e477e81043ec9152f7889d567eb5e78e728edbfa465e5dfeb2c7250396f",
         "Include/inline/mitchy.h": "0b7626bd02377fea84d0d01df577abec5d2c49b9ef55913e5e714c22479a9fd9",
@@ -604,9 +606,9 @@
     },
     {
       "name": "akikoplus.library",
-      "version": "2.0, team5/akikoplus-v2-20261109 3f48f80 (unmerged), `gfosautoconfigboards`",
+      "version": "2.0, main 8b9ffe0, `gfosautoconfigboards`",
       "repo": "DalsinAI/gfosautoconfigboards",
-      "commit": "3f48f800b6a0db570b153be65addf38e90bc3013",
+      "commit": "8b9ffe0141413f3056f1ebd0dbec0c380f63680f",
       "licence": "MIT",
       "files": {
         "cards/akikoplus/guest/include/libraries/akikoplus.h": "Include/libraries/akikoplus.h",
@@ -614,9 +616,11 @@
         "cards/akikoplus/guest/include/proto/akikoplus.h": "Include/proto/akikoplus.h",
         "cards/akikoplus/guest/include/inline/akikoplus.h": "Include/inline/akikoplus.h",
         "cards/akikoplus/guest/include/pragmas/akikoplus_pragmas.h": "Include/pragmas/akikoplus_pragmas.h",
-        "cards/akikoplus/guest/sfd/akikoplus_lib.sfd": "SFD/akikoplus_lib.sfd"
+        "cards/akikoplus/guest/sfd/akikoplus_lib.sfd": "SFD/akikoplus_lib.sfd",
+        "cards/akikoplus/guest/akikoplus.doc": "Docs/akikoplus.doc"
       },
       "sha256": {
+        "Docs/akikoplus.doc": "4ed4cc550938c0cbde7a178e5298977860e026430e99d412c9c3ff61c12592fe",
         "FD/akikoplus_lib.fd": "88419ccdcb16cd1d275a8bcf9cac1e0c399fa0de8d8c101a6e884f975d271639",
         "Include/clib/akikoplus_protos.h": "1034049434f0bf87b2511b2c953289bd26490a47e3a84bd918cc431055b5ec3d",
         "Include/inline/akikoplus.h": "793b302e263d4209fd165825334a565924bcd5d17d694e587bef2fb9f55fb385",

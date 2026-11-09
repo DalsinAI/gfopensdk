@@ -1,10 +1,9 @@
 The Open SDK 0.3, 9 November 2026: the boards' libraries.
 
-PRE-RELEASE: mitchy.library and akikoplus.library are pinned at their
-libraries' review branches (gfopenservice team5/mitchy-library-20261109
-ca95320, gfosautoconfigboards team5/akikoplus-v2-20261109 3f48f80), not
-yet merged. Their headers may still change; 0.3 itself is released once
-both are merged and repinned to main, with their autodocs.
+mitchy.library and akikoplus.library are pinned at their libraries' main
+(gfopenservice e94f674, #34; gfosautoconfigboards 8b9ffe0, #4). Their headers
+are the review branches' (ca95320, 3f48f80) unchanged, and their autodocs come
+with them: `Docs/mitchy.doc` and `Docs/akikoplus.doc`.
 
 New: mitchy.library 1.0 (named services on Mitchy, the services card, on
 the other ACSV boards, or on a paired Cradle on the LAN, through
