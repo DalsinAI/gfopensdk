@@ -278,9 +278,9 @@
     },
     {
       "name": "javascript.library",
-      "version": "1.0, main f3f41ce",
+      "version": "1.0, main 8cfdc5b",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
       "licence": "MIT",
       "files": {
         "src/jslib/sdk/Include_H/libraries/javascript.h": "Include/libraries/javascript.h",
@@ -307,9 +307,9 @@
     },
     {
       "name": "json.library",
-      "version": "1.0, main f3f41ce",
+      "version": "1.0, main 8cfdc5b",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
       "licence": "MIT",
       "files": {
         "src/jsonlib/sdk/Include_H/libraries/json.h": "Include/libraries/json.h",
@@ -336,9 +336,9 @@
     },
     {
       "name": "unicode.library",
-      "version": "1.0, main f3f41ce",
+      "version": "1.0, main 8cfdc5b",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
       "licence": "MIT",
       "files": {
         "src/unicodelib/sdk/Include_H/libraries/unicode.h": "Include/libraries/unicode.h",
@@ -365,9 +365,9 @@
     },
     {
       "name": "weblayout.library",
-      "version": "1.0, main f3f41ce",
+      "version": "1.0, main 8cfdc5b",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
       "licence": "MIT",
       "files": {
         "src/weblayout/weblayout.h": "Include/weblayout.h",
@@ -394,9 +394,9 @@
     },
     {
       "name": "webbrowser.library",
-      "version": "1.0, main f3f41ce",
+      "version": "1.0, main 8cfdc5b",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "f3f41ce595fecb3d817bb5b30aa9b3371e7c4f31",
+      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
       "licence": "MIT",
       "files": {
         "src/webbrowser/include/libraries/webbrowser.h": "Include/libraries/webbrowser.h",
