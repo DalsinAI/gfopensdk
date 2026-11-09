@@ -48,7 +48,9 @@ The boards' libraries: **mitchy.library** (`proto/mitchy.h`), named
 services on Mitchy, the services card, the other ACSV boards or a paired
 Cradle on the LAN; and **akikoplus.library** 2 (`proto/akikoplus.h`),
 AkikoPlus, the media board, on mitchy.library. Examples:
-`Examples/mitchy-echo`, `Examples/akikoplus-c2p`. Both libraries are pinned
+`Examples/mitchy-echo`, `Examples/akikoplus-c2p`. And **physfs.library**
+1.1 (`physfs.h`, link `-lphysfs_auto`): PhysicsFS 3.2.0 as one shared
+library, `Examples/physfs-list`. The first two libraries are pinned
 at their main, with their autodocs (`Docs/mitchy.doc`, `Docs/akikoplus.doc`); see
 [Docs/RELEASE-0.3.md](Docs/RELEASE-0.3.md).
 

@@ -631,6 +631,31 @@
       }
     },
     {
+      "name": "physfs.library",
+      "version": "1.1, 56e3b9a, `gfopenphysfs`",
+      "repo": "DalsinAI/gfopenphysfs",
+      "commit": "56e3b9a5042cc5b80e62ef3fd87728c54bfe2306",
+      "licence": "zlib",
+      "files": {
+        "sdk/include/physfs.h": "Include/physfs.h",
+        "sdk/include/proto/physfs.h": "Include/proto/physfs.h",
+        "sdk/include/inline/physfs.h": "Include/inline/physfs.h",
+        "sdk/fd/physfs_lib.fd": "FD/physfs_lib.fd",
+        "stub/physfs_auto.c": "Lib/physfs/physfs_auto.c",
+        "physfs/LICENSE.txt": "Lib/physfs/LICENSE-PhysicsFS.txt",
+        "docs/physfs.library.md": "Docs/physfs.library.md"
+      },
+      "sha256": {
+        "Docs/physfs.library.md": "7467faeed6c08d0f4ada916b2ee008558314f818f7294723a8ed40a8b3d666c7",
+        "FD/physfs_lib.fd": "75c280c9eafe5f55d033ac884363adee511ff5125cb85348e65a431bbe97b9de",
+        "Include/inline/physfs.h": "1ec7782696a2655b4cf19491b1a2ce1f2df77a57211b8ebafdf83972daa8e387",
+        "Include/physfs.h": "da2a7ea59ece046d874751a45f954cb69c604c0bfbfb640d70e93e26e87f0923",
+        "Include/proto/physfs.h": "016fe0062044b1baf10fc01db36f1a58555c90432e99e5fef4899be069ae7998",
+        "Lib/physfs/LICENSE-PhysicsFS.txt": "111b286674ab4720fd1b693ef8628a94bca8f06484d5fe3d75bd6db22fdc1cb2",
+        "Lib/physfs/physfs_auto.c": "639a7a2f71cec3decfd03fbec1332bf259de833a00838d16658656b22a04dc0a"
+      }
+    },
+    {
       "name": "GFOpenDatatypes classes",
       "version": "gfopengif.datatype 47.3, main 169b7f8",
       "repo": "DalsinAI/gfopendatatypes",

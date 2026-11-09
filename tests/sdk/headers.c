@@ -32,6 +32,7 @@
 #include <devices/gfopenservice.h>
 #include <proto/mitchy.h>
 #include <proto/akikoplus.h>
+#include <proto/physfs.h>
 #include <datatypes/gfopenimage.h>
 #include <datatypes/streamclass.h>
 #include <proto/gfxdispatch.h>

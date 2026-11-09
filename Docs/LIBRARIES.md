@@ -33,6 +33,7 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | gfopenservice.device | main 90dedba, `gfopenservice` | `devices/gfopenservice.h` | – | – |
 | mitchy.library | 1.0, main e94f674, `gfopenservice` | `proto/mitchy.h` | mitchy_lib.fd, mitchy_lib.sfd | [mitchy.doc](mitchy.doc) |
 | akikoplus.library | 2.0, main 8b9ffe0, `gfosautoconfigboards` | `proto/akikoplus.h` | akikoplus_lib.fd, akikoplus_lib.sfd | [akikoplus.doc](akikoplus.doc) |
+| physfs.library | 1.1, 56e3b9a, `gfopenphysfs` | `physfs.h`, `proto/physfs.h`; link `-lphysfs_auto` | physfs_lib.fd | [physfs.library.md](physfs.library.md) |
 | GFOpenDatatypes classes | gfopengif.datatype 47.3, main 169b7f8, `gfopendatatypes` | `datatypes/gfopenimage.h`, `datatypes/streamclass.h` | – | – |
 | GFOpenGfx graphics and layers additions | main 9565e57, `gfopengfx` | `proto/gfxdispatch.h`, `graphics/gfopenlayers.h` | – | – |
 | GFOpenExec atomic calls | main e22fda4, `amicradle-guest` | `exec/gfopenexec_atomic.h` | – | – |
@@ -65,6 +66,15 @@ Notes:
   #4), with their autodocs. `Examples/mitchy-echo` opens a
   service by name and calls it; `Examples/akikoplus-c2p` converts chunky
   to planar and checks the bytes.
+- **physfs.library** 1.1 is PhysicsFS 3.2.0 as one shared library, one
+  copy of PhysicsFS's state for each program that opens it. `<physfs.h>`
+  is PhysicsFS's own header with the calls made inline through
+  `PhysFSBase`, so a port's code builds unchanged. Link `-lphysfs_auto`
+  (`Lib/build.sh` builds `libphysfs_auto.a`), which opens the library
+  before `main()`. It has an FD (made by gfopenphysfs's `tools/gen.py`)
+  but no SFD: 64-bit arguments take register pairs, so its calls aren't
+  in `libopensdk.a`. Licence: zlib (`Lib/physfs/LICENSE-PhysicsFS.txt`).
+  `Examples/physfs-list` lists or reads a drawer or an archive.
 - **GFOpenDatatypes**: the classes' own headers. gfopengif.datatype 47.3
   (animated GIFs in MultiView) needs no header change; programs use it
   through datatypes.library.
@@ -78,6 +88,10 @@ when you don't use the inline headers.
 
     sh Lib/build.sh                              # the os32-gcc16 stove
     PREFIX=m68k-linux-gnu- sh Lib/build.sh       # an ELF m68k GCC (CI)
+
+With an m68k-amigaos compiler it also builds `libphysfs_auto.a` there
+(`-lphysfs_auto`: physfs.library opened before `main()`); an ELF GCC has
+no libnix, so CI leaves it out.
 
 Every SFD in `SFD/` is in it.
 
