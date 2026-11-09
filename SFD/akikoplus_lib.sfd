@@ -1,0 +1,26 @@
+==id $Id: akikoplus_lib.sfd 2.0 (9.11.2026) $
+* akikoplus.library: AkikoPlus, the media board, and the 68k's versions of its helpers. MIT, (c) 2026 AmiCradle Team
+==base _AkikoPlusBase
+==basetype struct Library *
+==libname akikoplus.library
+==bias 30
+==public
+==include <exec/types.h>
+==include <libraries/akikoplus.h>
+ULONG AP_Status()()
+LONG AP_SwapCopy(APTR dst, CONST_APTR src, ULONG count, ULONG unit)(a0,a1,d0,d1)
+LONG AP_SwapInPlace(APTR data, ULONG count, ULONG unit)(a0,d0,d1)
+LONG AP_SwapInterleaved(APTR data, CONST_STRPTR layout, ULONG count, ULONG stride)(a0,a1,d0,d1)
+LONG AP_C2P(CONST struct APC2P * args)(a0)
+LONG AP_Fill(CONST struct APFill * args)(a0)
+LONG AP_CopyRect(CONST struct APCopy * args)(a0)
+LONG AP_Scale(CONST struct APScale * args)(a0)
+LONG AP_YUVToARGB(CONST struct APYUV * args)(a0)
+LONG AP_Quantise(CONST struct APQuant * args)(a0)
+LONG AP_Compress(CONST_APTR src, APTR dst, ULONG srcLength, ULONG dstLength, ULONG level)(a0,a1,d0,d1,d2)
+LONG AP_Decompress(CONST_APTR src, APTR dst, ULONG srcLength, ULONG dstLength)(a0,a1,d0,d1)
+ULONG AP_SetThreshold(ULONG bytes)(d0)
+==version 2
+ULONG AP_SetMode(ULONG mode)(d0)
+LONG AP_Query(ULONG what)(d0)
+==end

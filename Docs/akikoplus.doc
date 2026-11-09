@@ -1,0 +1,335 @@
+TABLE OF CONTENTS
+
+akikoplus.library/--background--
+akikoplus.library/AP_C2P
+akikoplus.library/AP_Compress
+akikoplus.library/AP_CopyRect
+akikoplus.library/AP_Decompress
+akikoplus.library/AP_Fill
+akikoplus.library/AP_Quantise
+akikoplus.library/AP_Query
+akikoplus.library/AP_Scale
+akikoplus.library/AP_SetMode
+akikoplus.library/AP_SetThreshold
+akikoplus.library/AP_Status
+akikoplus.library/AP_SwapCopy
+akikoplus.library/AP_SwapInPlace
+akikoplus.library/AP_SwapInterleaved
+akikoplus.library/AP_YUVToARGB
+
+akikoplus.library/--background--               akikoplus.library/--background--
+
+   PURPOSE
+	Helpers for programs that move and convert pixels and data: byte
+	swaps, chunky to planar, rectangle fills and copies, scaling, YUV
+	to ARGB, colour reduction and zlib streams. On a machine with
+	AmiCradle's AkikoPlus media board (AmiCradle Team $DA15, product 18,
+	ACSV CLASS 5) the board's host does the work with its CPU's vector
+	units (AVX2 or SSSE3 on x86, NEON on ARM64); elsewhere the library
+	does it on the 68k. Both give the same bytes, so a program needs to
+	know none of it. The zlib streams are the exception: the 68k writes
+	its own valid zlib streams, not the host zlib's bytes, and each
+	side reads the other's.
+
+   HOW IT REACHES THE BOARD
+	Through mitchy.library (1), which goes through gfopenservice.device,
+	the owner of every ACSV board's rings. The services akiko.swap/1,
+	akiko.c2p/1, akiko.fill/1, akiko.scale/1, akiko.convert/1 and
+	akiko.z/1 are opened board only (MOF_BOARDONLY) the first time a
+	call needs them. If mitchy.library or the board is missing, or the
+	board cannot be reached during a call, the 68k version runs.
+
+   SMALL JOBS
+	A request to the board costs a round trip through the device, so a
+	job smaller than AP_SetThreshold's bytes (4096 to start) stays on
+	the 68k. AP_SetMode chooses the 68k or the board for every job.
+
+   BUILDS
+	The basebuild has the 68k versions. A build with AP_NO_FALLBACK,
+	for machines that always have the board, leaves them out (about a
+	third of the size): AP_Status then lacks APSF_FALLBACK, and the
+	calls answer AP_ERR_NOBOARD on a machine without the board.
+
+   MEMORY
+	Any memory, Chip or Fast; the device keeps the data cache right.
+	Every structure gives each buffer's length, and the library refuses
+	a job that would pass it (AP_ERR_BADARGS).
+
+   VERSIONS
+	1 (8.11.2026) to the board through gfopenservice.device; no 68k zlib.
+	2 (9.11.2026) through mitchy.library; the 68k zlib streams;
+	AP_SetMode and AP_Query. The calls of 1 keep their offsets,
+	arguments and structures.
+
+akikoplus.library/AP_Status                         akikoplus.library/AP_Status
+
+   NAME
+	AP_Status -- what the library has (V1)
+
+   SYNOPSIS
+	flags = AP_Status()
+	D0
+
+	ULONG AP_Status(void);
+
+   FUNCTION
+	Opens the board's services, the first time, and says what is there.
+
+   RESULT
+	flags - APSF_BOARD: the board's services are open. APSF_FALLBACK
+	        (V2): the 68k versions are built in.
+
+akikoplus.library/AP_SwapCopy                     akikoplus.library/AP_SwapCopy
+
+   NAME
+	AP_SwapCopy -- byte-swap units into another buffer (V1)
+	AP_SwapInPlace -- byte-swap units where they are (V1)
+
+   SYNOPSIS
+	error = AP_SwapCopy(dst, src, count, unit)
+	D0                  A0   A1   D0     D1
+
+	LONG AP_SwapCopy(APTR, CONST_APTR, ULONG, ULONG);
+
+	error = AP_SwapInPlace(data, count, unit)
+	D0                     A0    D0     D1
+
+	LONG AP_SwapInPlace(APTR, ULONG, ULONG);
+
+   FUNCTION
+	Reverses the bytes of count units of unit bytes (2, 4 or 8): little-
+	endian data from a PC file to the 68k's order, or back. dst may be
+	src.
+
+   RESULT
+	0, or AP_ERR_BADARGS for another unit. A count of 0 does nothing.
+
+akikoplus.library/AP_SwapInterleaved       akikoplus.library/AP_SwapInterleaved
+
+   NAME
+	AP_SwapInterleaved -- byte-swap the fields of records (V1)
+
+   SYNOPSIS
+	error = AP_SwapInterleaved(data, layout, count, stride)
+	D0                         A0    A1      D0     D1
+
+	LONG AP_SwapInterleaved(APTR, CONST_STRPTR, ULONG, ULONG);
+
+   FUNCTION
+	count records, stride bytes apart, each starting with the fields
+	layout names, one digit a field, its size in bytes: "444221" is
+	three longs, two words and a byte. Each field's bytes are reversed;
+	bytes after the last field are left alone.
+
+   RESULT
+	0, or AP_ERR_BADARGS (a digit not 1, 2, 4 or 8, or fields longer
+	than stride).
+
+akikoplus.library/AP_C2P                               akikoplus.library/AP_C2P
+
+   NAME
+	AP_C2P -- chunky pixels to bitplanes (V1)
+
+   SYNOPSIS
+	error = AP_C2P(args)
+	D0             A0
+
+	LONG AP_C2P(CONST struct APC2P *);
+
+   FUNCTION
+	ap_Width x ap_Height 8-bit pixels, ap_ChunkyPitch bytes a row, into
+	ap_Depth (1-8) planes: plane p of row y starts at ap_Planes +
+	y * ap_RowStride + p * ap_PlaneStride, so planes apart and
+	interleaved bitmaps both work. Bit p of each pixel goes to plane p;
+	bits past the width in a row's last byte are 0. Into Chip RAM
+	directly, for a display.
+
+   RESULT
+	0, or AP_ERR_BADARGS.
+
+akikoplus.library/AP_Fill                             akikoplus.library/AP_Fill
+
+   NAME
+	AP_Fill -- fill a rectangle (V1)
+
+   SYNOPSIS
+	error = AP_Fill(args)
+	D0              A0
+
+	LONG AP_Fill(CONST struct APFill *);
+
+   FUNCTION
+	Fills ap_Width x ap_Height pixels of ap_BytesPerPixel (1-4) bytes at
+	ap_Dest, ap_Pitch bytes a row, with ap_Pixel (big-endian, in its low
+	bytes).
+
+   RESULT
+	0, or AP_ERR_BADARGS.
+
+akikoplus.library/AP_CopyRect                     akikoplus.library/AP_CopyRect
+
+   NAME
+	AP_CopyRect -- copy a rectangle (V1)
+
+   SYNOPSIS
+	error = AP_CopyRect(args)
+	D0                  A0
+
+	LONG AP_CopyRect(CONST struct APCopy *);
+
+   FUNCTION
+	Copies ap_Width x ap_Height pixels of ap_BytesPerPixel bytes from
+	ap_Src (ap_SrcPitch bytes a row) to ap_Dest (ap_DestPitch). The two
+	must not overlap.
+
+   RESULT
+	0, or AP_ERR_BADARGS.
+
+akikoplus.library/AP_Scale                           akikoplus.library/AP_Scale
+
+   NAME
+	AP_Scale -- scale an image (V1)
+
+   SYNOPSIS
+	error = AP_Scale(args)
+	D0               A0
+
+	LONG AP_Scale(CONST struct APScale *);
+
+   FUNCTION
+	Scales ap_SrcWidth x ap_SrcHeight to ap_DestWidth x ap_DestHeight,
+	sampling at pixel centres. ap_Filter APSCALE_NEAREST (1-4 bytes a
+	pixel) or APSCALE_BILINEAR (3 or 4 bytes a pixel; 8 bits of weight
+	each way, rounded).
+
+   RESULT
+	0, AP_ERR_BADARGS, or AP_ERR_NOMEM (the 68k's column table).
+
+akikoplus.library/AP_YUVToARGB                   akikoplus.library/AP_YUVToARGB
+
+   NAME
+	AP_YUVToARGB -- 4:2:0 YUV to ARGB32 (V1)
+
+   SYNOPSIS
+	error = AP_YUVToARGB(args)
+	D0                   A0
+
+	LONG AP_YUVToARGB(CONST struct APYUV *);
+
+   FUNCTION
+	BT.601, studio range: ap_Y full size, ap_U and ap_V half each way
+	(ap_UVPitch bytes a row), into A, R, G, B bytes (A 255), the
+	integer formula the board's akiko.convert/1 gives.
+
+   RESULT
+	0, or AP_ERR_BADARGS.
+
+akikoplus.library/AP_Quantise                     akikoplus.library/AP_Quantise
+
+   NAME
+	AP_Quantise -- ARGB32 to 8-bit by median cut (V1)
+
+   SYNOPSIS
+	colours = AP_Quantise(args)
+	D0                    A0
+
+	LONG AP_Quantise(CONST struct APQuant *);
+
+   FUNCTION
+	Reduces ap_Width x ap_Height ARGB32 pixels to at most ap_Colours
+	(2-256) by median cut over a 15-bit histogram, writing a byte a
+	pixel to ap_Dest and 4 bytes a colour (0, R, G, B) to ap_Palette.
+
+   RESULT
+	The colours used, or AP_ERR_BADARGS or AP_ERR_NOMEM (the 68k needs
+	224 KB to work in).
+
+akikoplus.library/AP_Compress                     akikoplus.library/AP_Compress
+
+   NAME
+	AP_Compress -- a zlib stream (V1)
+	AP_Decompress -- data from a zlib stream (V1)
+
+   SYNOPSIS
+	bytes = AP_Compress(src, dst, srcLength, dstLength, level)
+	D0                  A0   A1   D0         D1         D2
+
+	LONG AP_Compress(CONST_APTR, APTR, ULONG, ULONG, ULONG);
+
+	bytes = AP_Decompress(src, dst, srcLength, dstLength)
+	D0                    A0   A1   D0         D1
+
+	LONG AP_Decompress(CONST_APTR, APTR, ULONG, ULONG);
+
+   FUNCTION
+	The zlib format (RFC 1950), level 0-9. On the board, the host's
+	zlib; on the 68k (V2), the library's own: stored blocks at level 0,
+	fixed Huffman codes over a 32 KB window above it. Both sides read
+	any zlib stream.
+
+   RESULT
+	The bytes written, or AP_ERR_TOOSMALL (dst has no room),
+	AP_ERR_BADARGS (bad arguments, or a damaged stream), AP_ERR_NOMEM.
+	V1 answered AP_ERR_NOBOARD without the board; V2 does so only in a
+	board-only build.
+
+akikoplus.library/AP_SetThreshold             akikoplus.library/AP_SetThreshold
+
+   NAME
+	AP_SetThreshold -- the smallest job for the board (V1)
+
+   SYNOPSIS
+	old = AP_SetThreshold(bytes)
+	D0                    D0
+
+	ULONG AP_SetThreshold(ULONG);
+
+   FUNCTION
+	In APMODE_AUTO, a job of fewer bytes than this stays on the 68k
+	(4096 to start). The bytes are the data's size: pixels times their
+	bytes, or the bytes swapped. For every program using the library.
+
+   RESULT
+	The threshold before.
+
+akikoplus.library/AP_SetMode                       akikoplus.library/AP_SetMode
+
+   NAME
+	AP_SetMode -- where the work runs (V2)
+
+   SYNOPSIS
+	old = AP_SetMode(mode)
+	D0               D0
+
+	ULONG AP_SetMode(ULONG);
+
+   FUNCTION
+	APMODE_AUTO (the start): the board for a job of the threshold or
+	more. APMODE_68K: the 68k always. APMODE_BOARD: the board always,
+	when it is fitted. For every program using the library: for tests
+	and timings (AkikoTest), not for programs to leave set.
+
+   RESULT
+	The mode before. Another value changes nothing.
+
+akikoplus.library/AP_Query                           akikoplus.library/AP_Query
+
+   NAME
+	AP_Query -- the library's state (V2)
+
+   SYNOPSIS
+	value = AP_Query(what)
+	D0               D0
+
+	LONG AP_Query(ULONG);
+
+   FUNCTION
+	APQ_SERVICES: APF_* of the board's services that are open.
+	APQ_METHOD: the board's METHOD register, the vector units its host
+	uses (0 plain C, 1 SSSE3, 2 AVX2, 3 NEON), -1 without the board.
+	APQ_MODE, APQ_THRESHOLD: as set.
+	APQ_LASTRAN: where the last call ran, from any task: 1 the board,
+	0 the 68k, -1 none yet.
+
+   RESULT
+	The value, or AP_ERR_BADARGS for another what.

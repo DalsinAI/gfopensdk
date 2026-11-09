@@ -1,6 +1,6 @@
 # What the Open SDK holds
 
-The Open SDK 0.2, 5 November 2026. Each part's headers, function tables
+The Open SDK 0.3 (pre-release), 9 November 2026. Each part's headers, function tables
 and docs are copied by `tools/gather.py` from its own repository at the
 commit `manifest.json` pins; change them there, then move the pin here.
 
@@ -31,6 +31,8 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | openwxtoolkit.library | 1.0, main 1f7dea8, `gfopenwxtoolkit` | none: programs link with `WXTK_SHARED=1 wx-config --libs` | – | [openwxtoolkit.library.md](openwxtoolkit.library.md) |
 | elf.library | 2.0, main a6f9c20, `gfopenelflibrary` | `elf/openelf_public.h` | – | [elf.library.md](elf.library.md), [elf.lvo](elf.lvo) |
 | gfopenservice.device | main 90dedba, `gfopenservice` | `devices/gfopenservice.h` | – | – |
+| mitchy.library | 1.0, main e94f674, `gfopenservice` | `proto/mitchy.h` | mitchy_lib.fd, mitchy_lib.sfd | [mitchy.doc](mitchy.doc) |
+| akikoplus.library | 2.0, main 8b9ffe0, `gfosautoconfigboards` | `proto/akikoplus.h` | akikoplus_lib.fd, akikoplus_lib.sfd | [akikoplus.doc](akikoplus.doc) |
 | GFOpenDatatypes classes | gfopengif.datatype 47.3, main 169b7f8, `gfopendatatypes` | `datatypes/gfopenimage.h`, `datatypes/streamclass.h` | – | – |
 | GFOpenGfx graphics and layers additions | main 9565e57, `gfopengfx` | `proto/gfxdispatch.h`, `graphics/gfopenlayers.h` | – | – |
 | GFOpenExec atomic calls | main e22fda4, `amicradle-guest` | `exec/gfopenexec_atomic.h` | – | – |
@@ -55,6 +57,14 @@ Notes:
   layers.library's tables. OpenNDK stays the vendor NDK's interface; these
   calls are declared only here (`OpenNDK/check/check_lvo.py` lists them as
   ours).
+- **mitchy.library** (named services on Mitchy, the services card, on the
+  other ACSV boards, or on a paired Cradle on the LAN, through
+  gfopenservice.device) and **akikoplus.library** 2 (AkikoPlus, the media
+  board, on mitchy.library; the same calls on the 68k without the board)
+  are pinned at their libraries' main (gfopenservice #34, gfosautoconfigboards
+  #4), with their autodocs. `Examples/mitchy-echo` opens a
+  service by name and calls it; `Examples/akikoplus-c2p` converts chunky
+  to planar and checks the bytes.
 - **GFOpenDatatypes**: the classes' own headers. gfopengif.datatype 47.3
   (animated GIFs in MultiView) needs no header change; programs use it
   through datatypes.library.

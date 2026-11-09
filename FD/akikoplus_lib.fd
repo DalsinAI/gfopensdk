@@ -1,0 +1,19 @@
+##base _AkikoPlusBase
+##bias 30
+##public
+AP_Status()()
+AP_SwapCopy(dst,src,count,unit)(a0,a1,d0,d1)
+AP_SwapInPlace(data,count,unit)(a0,d0,d1)
+AP_SwapInterleaved(data,layout,count,stride)(a0,a1,d0,d1)
+AP_C2P(args)(a0)
+AP_Fill(args)(a0)
+AP_CopyRect(args)(a0)
+AP_Scale(args)(a0)
+AP_YUVToARGB(args)(a0)
+AP_Quantise(args)(a0)
+AP_Compress(src,dst,srcLength,dstLength,level)(a0,a1,d0,d1,d2)
+AP_Decompress(src,dst,srcLength,dstLength)(a0,a1,d0,d1)
+AP_SetThreshold(bytes)(d0)
+AP_SetMode(mode)(d0)
+AP_Query(what)(d0)
+##end
