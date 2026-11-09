@@ -14,6 +14,16 @@ headers and its SFD/FD. Two examples: `Examples/mitchy-echo` (open a
 service by name and call it) and `Examples/akikoplus-c2p` (chunky to
 planar, checked against plain C).
 
+Also new: **physfs.library** 1.1 (gfopenphysfs 56e3b9a), PhysicsFS 3.2.0
+as one shared library with one copy of its state per program: PhysicsFS's
+own `<physfs.h>` with the calls through `PhysFSBase`, `proto/physfs.h`,
+`FD/physfs_lib.fd`, `Docs/physfs.library.md`, and `-lphysfs_auto`
+(`Lib/build.sh` builds `libphysfs_auto.a` from `Lib/physfs/physfs_auto.c`),
+which opens the library before `main()`. A port drops its own PhysicsFS
+and links `-lphysfs_auto`; its code doesn't change (Block Attack is the
+first). Example: `Examples/physfs-list` (list a drawer or an archive, or
+read one file from it).
+
 Since 0.2: event.library 1.0 and 1.1, regex.library 1.0, openwxtoolkit.library,
 arexx/apphost.h (a C program's ARexx port on arexx.class), gfopentls 1.4 /
 gfopencrypto 2.3, gfopengpu.library 0.27 (stream v1.10, RemoteFX

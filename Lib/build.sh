@@ -10,6 +10,8 @@
 #   PREFIX=m68k-linux-gnu- Lib/build.sh   with an ELF m68k GCC (cloud tests)
 # Output: Lib/build/<prefix>/libopensdk.a, for the 68040 (EXTRA_CFLAGS come
 # after -m68040).
+# Also, with an m68k-amigaos compiler: Lib/build/<prefix>/libphysfs_auto.a
+# (-lphysfs_auto: physfs.library opened before main()).
 set -eu
 SDK=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 NDK="$SDK/OpenNDK"
@@ -51,3 +53,17 @@ done
 rm -f "$OUT/libopensdk.a"
 "$AR" rcs "$OUT/libopensdk.a" "$OUT"/obj/*.o
 echo "$OUT/libopensdk.a: $n objects"
+# libphysfs_auto.a: opens physfs.library 1 before main() and closes it after
+# (Lib/physfs/physfs_auto.c, gathered from gfopenphysfs). Its init and exit
+# lists are libnix's (<stabs.h>), so it needs an m68k-amigaos compiler.
+if printf '#include <stabs.h>\n' | "$CC" -E -x c - >/dev/null 2>&1; then
+    # shellcheck disable=SC2086
+    "$CC" -noixemul -m68040 -O2 -Wall -Werror -idirafter "$NDK/Include_H" ${EXTRA_CFLAGS:-} \
+        -c "$SDK/Lib/physfs/physfs_auto.c" -o "$OUT/obj-physfs_auto.o"
+    rm -f "$OUT/libphysfs_auto.a"
+    "$AR" rcs "$OUT/libphysfs_auto.a" "$OUT/obj-physfs_auto.o"
+    rm -f "$OUT/obj-physfs_auto.o"
+    echo "$OUT/libphysfs_auto.a: physfs.library opened for the program"
+else
+    echo "libphysfs_auto.a left out: $CC has no libnix (<stabs.h>)"
+fi
