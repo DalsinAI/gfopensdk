@@ -33,6 +33,7 @@
 #include <proto/mitchy.h>
 #include <proto/akikoplus.h>
 #include <proto/physfs.h>
+#include <proto/z.h>
 #include <datatypes/gfopenimage.h>
 #include <datatypes/streamclass.h>
 #include <proto/gfxdispatch.h>

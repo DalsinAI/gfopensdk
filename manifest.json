@@ -703,6 +703,33 @@
       "sha256": {
         "Include/exec/gfopenexec_atomic.h": "722bdb9d8fd2346e2f7ffdbacb552f8a7c43e555614926a6f888389896df5163"
       }
+    },
+    {
+      "name": "z.library",
+      "version": "GFOpenZlib 53.13 table (and the Aminet z.library's), amicradle-guest team2/zlib-sdk-20261110 b00522e, `libraries/openzlib/sdk`",
+      "repo": "DalsinAI/amicradle-guest",
+      "commit": "b00522e3d39f9a685f7ba79267f6a9ff7ef05346",
+      "licence": "MIT",
+      "files": {
+        "libraries/openzlib/sdk/z_lib.sfd": "SFD/z_lib.sfd",
+        "libraries/openzlib/sdk/FD/z_lib.fd": "FD/z_lib.fd",
+        "libraries/openzlib/sdk/Include_H/libraries/z.h": "Include/libraries/z.h",
+        "libraries/openzlib/sdk/Include_H/proto/z.h": "Include/proto/z.h",
+        "libraries/openzlib/sdk/Include_H/inline/z.h": "Include/inline/z.h",
+        "libraries/openzlib/sdk/Include_H/clib/z_protos.h": "Include/clib/z_protos.h",
+        "libraries/openzlib/sdk/Include_H/pragmas/z_pragmas.h": "Include/pragmas/z_pragmas.h",
+        "libraries/openzlib/sdk/Include_I/lvo/z_lib.i": "Include_I/lvo/z_lib.i"
+      },
+      "sha256": {
+        "FD/z_lib.fd": "1d1183997e19fee8294456b36be5cc25be7adf41ca2e7cffae52139bddd4afd2",
+        "Include/clib/z_protos.h": "6199206239339afc2c5de3a3345046fc2a91ad0f498d6951ef83c6b4cc12a97a",
+        "Include/inline/z.h": "3329e801223602539f7fd18643ff27402f71dfd50c5b0f1f8382a0b96d84237a",
+        "Include/libraries/z.h": "d3f71e240afa4e2c90df4b21d052d6045db1417e8e7efe4b1bf2aba497438af2",
+        "Include/pragmas/z_pragmas.h": "5d65883e7b3a1c3e2832b59adc819b7dd667e7c1f25ca40115b565061e7a839a",
+        "Include/proto/z.h": "5e1198477c8ab6f8095db1391043908dd091b7177715d309c58aae5cef16ac89",
+        "Include_I/lvo/z_lib.i": "7a09085c1dab3c8f37cbad6f566f2784b3ee1a0836b4ad347d7c7be62408f815",
+        "SFD/z_lib.sfd": "52a8edcc48e41f1b2dfaf318c336b6519d6d46a50a90f120334ded804ca1b20f"
+      }
     }
   ]
 }
