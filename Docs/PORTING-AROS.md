@@ -31,6 +31,20 @@ CFLAGS += -Wno-error=incompatible-pointer-types -Wno-error=int-conversion \
 | `aros/cpu.h`, `aros/config.h` | `AROS_BIG_ENDIAN` and the alignments, and `AROS_TARGET_CPU "m68k"`. |
 | `aros/detach.h` | `Detach()` does nothing here. Start a program with Run to leave its Shell free. |
 | `proto/workbench.h` | The OS's `proto/wb.h`. |
+| `proto/alib.h` | The OS's amiga.lib calls, plus AROS's `__sprintf()` (exec's RawDoFmt formats into a buffer: use `%ld` for numbers). |
+| `devices/rawkeycodes.h` | The `RAWKEY_*` names for the Amiga's raw key codes, the PC-style extra keys and NewMouse's wheel codes. |
+
+`ADD2INIT` and `ADD2EXIT` also work with a `static` function that nothing else calls, as many AROS programs use them (the commodities' `Locale_Initialize`). `IPTR` and `SIPTR` are the OS's `ULONG` and `LONG`, so a program's own `typedef ULONG IPTR;` for non-AROS builds is no clash.
+
+### Catalogs
+
+AROS programs include a `strings.h` that AROS makes from the program's catalog description. `tools/catcomp_h.py` makes it, with the `MSG_` numbers, the `_STR` strings and, with `CATCOMP_ARRAY`, the `CatCompArray` table:
+
+```
+python3 $(SDK)/tools/catcomp_h.py catalogs/more.cd -o build/strings.h
+```
+
+The catalogs are a separate AROS repo for each program (`aros-translation-team/<name>`), a submodule of the program's `catalogs` folder.
 
 `tools/gen_aroscompat.py` makes `asmcall.h`, `libcall.h`, `shcommands.h` and `aroscompat_regs.h`, with 0 to 16 arguments. Run it with `--check` in CI.
 
@@ -38,11 +52,13 @@ CFLAGS += -Wno-error=incompatible-pointer-types -Wno-error=int-conversion \
 
 Of the 73 programs in AROS's `workbench/c`, 38 build and link unchanged, among them Avail, Date, Delete, Join, MakeDir, Search, Sort, Sha256Sum, Type, Which, RequestChoice, RequestFile and Print. Several were run on a 68040 under vamos: Date, Type, Sha256Sum, MakeDir, Join, Delete, Which and AROSHello.
 
+Workbench programs that build and link unchanged (10 November 2026): More (gadtools), and the commodities AltKeyQ, AutoPoint, Blanker, ClickToFront, DepthMenu and NoCapsLock. AltKeyQ needs `InvertString`, which OpenNDK's `libamiga.a` has from this change on; until a toolchain release carries that `libamiga.a`, put `-L$(SDK)/OpenNDK/lib/build/m68k-amigaos` before the link's other `-L` options. Opaque needs AROS's own `ICF_OFFSCREENLAYERS` setting and `SetPointerBounds`, so it is an AROS program, not a port.
+
 These are known gaps:
 - **AROS-only libraries and devices:** `oop`, `kms`, `task.resource`, `debug.library`, `uuid`, `log`, `arossupport`'s own calls and `exec/rawfmt.h`. A program that needs one is an AROS program, not a port.
 - **AROS's `%iu` and `%ix` formats (IPTR)** in `Printf`. The OS's `Printf` does not know them; Avail prints them as text.
 - **Programs with their own startup (`__startup`),** such as Copy, Beep and WaitX. They need building without libnix's startup, which is not covered yet.
-- **Zune/MUI programs.** These wait for our own muimaster.library in `DalsinAI/gfopenmui`.
+- **Zune/MUI programs** (Calculator, Clock, KeyShow, ASCIITable, Exchange, FKey and 40 more). These wait for our own muimaster.library (`DalsinAI/gfopenmui`; scope in amicradle-teams `designs/MUIMASTER-DESIGN-20261110.md`).
 - **A few OS 3.2 name differences:** `UtilityBase`'s type, `SYS_Asynch`, the `SD_ACTION_*` and `LOCF_GMT_CLOCK` names.
 
 MIT, Copyright (c) 2026 AmiCradle Team.

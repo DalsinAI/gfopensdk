@@ -19,7 +19,7 @@ is in [CLEAN-ROOM.md](CLEAN-ROOM.md); how to add to it is in
 | `Include_H/proto/`, `clib/`, `inline/`, `pragmas/` | Generated from the SFDs: the header a program includes, the prototypes, GCC inline calls and SAS/C-style pragmas. `inline/macros.h` gives the LPn macros for hand-written inline headers |
 | `Include_I/lvo/` | Generated `_LVO` equates for assembler |
 | `SFD/`, `FD/` | Each library's calls: the SFDs are written by hand, the FDs generated |
-| `lib/` | `libamiga.a`: a stub for every call (including the varargs forms such as `OpenWindowTags`) and the classic helpers (`NewList`, `CreatePort`, `CreateExtIO`, `CreateTask`, `BeginIO`, `DoMethod` and the other BOOPSI helpers, `HookEntry`, `CallHook`, `FastRand`, `RangeRand`, the `Lib*Pool` calls, `TimeDelay`, `ArgArrayInit` and friends, `HotKey`) |
+| `lib/` | `libamiga.a`: a stub for every call (including the varargs forms such as `OpenWindowTags`) and the classic helpers (`NewList`, `CreatePort`, `CreateExtIO`, `CreateTask`, `BeginIO`, `DoMethod` and the other BOOPSI helpers, `HookEntry`, `CallHook`, `FastRand`, `RangeRand`, the `Lib*Pool` calls, `TimeDelay`, `ArgArrayInit` and friends, `HotKey`, `InvertString`) |
 | `tools/` | `ndkgen.py`, the generator; `mkmacros.py` for `inline/macros.h` |
 | `tests/` | `run.sh`: the cloud tests, needing only an m68k GCC |
 | `check/` | `compare_ndk.sh`: the full comparison with a vendor NDK where one is installed; `check_lvo.py`: the SFDs against the open libraries' `.lvo` tables |

@@ -95,6 +95,8 @@ LONG ArgInt(CONST_STRPTR *tt, CONST_STRPTR entry, LONG defaultVal);
 /* Commodities */
 CxObj *HotKey(CONST_STRPTR description, struct MsgPort *port, LONG id);
 VOID FreeIEvents(struct InputEvent *events);
+struct KeyMap;
+struct InputEvent *InvertString(CONST_STRPTR str, CONST struct KeyMap *km);
 
 /* ARexx: a host's way to the variables of the program whose command it
  * holds, through rexxsyslib.library 45's GetRexxVarFromMsg and
