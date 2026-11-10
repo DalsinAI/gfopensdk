@@ -131,7 +131,8 @@ struct ah_host
     int                    ntable;
     char                   result[AH_RESULT_MAX];
     char                   error[AH_ERROR_MAX];     /* LASTERROR's answer */
-    int                    noted;   /* this command has its error text */
+    char                   noting[AH_ERROR_MAX];    /* this command's text, kept if it fails */
+    int                    noted;   /* noting has this command's text */
 };
 
 /* ---- for a command's function ---- */
@@ -208,7 +209,7 @@ static __attribute__((unused)) int ah_quiet_note(const char *text)
         return 0;
     h = ah__call->host;
     if (!h->noted) {
-        snprintf(h->error, sizeof h->error, "%s", text ? text : "");
+        snprintf(h->noting, sizeof h->noting, "%s", text ? text : "");
         h->noted = 1;
     }
     return 1;
@@ -219,7 +220,7 @@ static __attribute__((unused)) void ah_fail(ah_call *c, LONG rc, LONG rc2, const
 {
     va_list ap;
     va_start(ap, fmt);
-    vsnprintf(c->host->error, sizeof c->host->error, fmt, ap);
+    vsnprintf(c->host->noting, sizeof c->host->noting, fmt, ap);
     va_end(ap);
     c->host->noted = 1;
     ah_error(c, rc, rc2);
@@ -325,7 +326,9 @@ static __attribute__((unused)) void ah__func(struct ARexxCmd *cmd __asm("a0"), s
     if (cmd->ac_RC == 0)
         return;                         /* LASTERROR keeps the last failure's text */
     cmd->ac_Result = NULL;              /* RESULT only with RC 0 */
-    if (!ah__now->noted)
+    if (ah__now->noted)
+        memcpy(ah__now->error, ah__now->noting, sizeof ah__now->error);
+    else
         snprintf(ah__now->error, sizeof ah__now->error, "%s: RC %ld", (const char *)cmd->ac_Name, (long)cmd->ac_RC);
 }
 
