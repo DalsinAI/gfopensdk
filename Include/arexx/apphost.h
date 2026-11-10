@@ -13,13 +13,39 @@
  *   VERSION            RESULT: the program's name and version
  *   HELP COMMAND       RESULT: the commands, or one command's template
  *   FAULT CODE/N/A     RESULT: the text of a DOS error number
+ *   LASTERROR          RESULT: why the last command that failed failed
  *
  * A command of the program's own with one of those names is used instead.
  * The port is NAME.1, NAME.2 for a second copy. The program adds
  * ah_sigmask() to its Wait() and calls ah_handle() when that signal comes:
- * commands run there, in the program's own task. RC is 0, or what
- * ah_error() gives (5 a warning, 10 an error, 20 a failure); RESULT goes
- * back only when the script asked for it (OPTIONS RESULTS).
+ * commands run there, in the program's own task. RESULT goes back only
+ * when the script asked for it (OPTIONS RESULTS), and only with RC 0.
+ *
+ * Return codes, one set for every port (amicradle-teams ARexx-RULE.md 3),
+ * as OS 3.2's arexx.class:
+ *   AH_RC_OK     0   done
+ *   AH_RC_WARN   5   not done, nothing wrong: nothing found, unsaved
+ *                    changes kept (QUIT without FORCE), no iconify here
+ *   AH_RC_ERROR 10   not done: bad or missing arguments, a file that can't
+ *                    be read or written, nothing open to work on
+ *   AH_RC_FAIL  20   an unknown command (arexx.class answers it), or the
+ *                    program can't go on (out of memory)
+ *
+ * No requester may hold up an ARexx command (ARexx-RULE.md 4): while a
+ * command runs, ah_quiet() is true, and the program's note or error
+ * requester gives its text to ah_quiet_note() instead of showing it. The
+ * script reads that text with LASTERROR (it is cleared by a command that
+ * succeeds; arexx.class itself answers an unknown command, 20, and bad
+ * arguments, 10, without the program, so LASTERROR doesn't change then).
+ * ah_fail() sets an RC and that text at once:
+ *
+ *   static void note(const char *text)
+ *   {
+ *       if (ah_quiet_note(text))
+ *           return;                       (an ARexx command: no requester)
+ *       ... EasyRequest ...
+ *   }
+ *   if (!have_png) { ah_fail(c, AH_RC_ERROR, 0, "needs gfopenpng.datatype"); return; }
  *
  *   static void cmd_open(ah_call *c)
  *   {
@@ -60,6 +86,15 @@
 #define AH_RESULT_MAX 2048
 #endif
 
+#ifndef AH_ERROR_MAX
+#define AH_ERROR_MAX 256
+#endif
+
+#define AH_RC_OK     0
+#define AH_RC_WARN   5
+#define AH_RC_ERROR 10
+#define AH_RC_FAIL  20
+
 typedef struct ah_host ah_host;
 
 typedef struct ah_call
@@ -95,6 +130,8 @@ struct ah_host
     struct ARexxCmd       *table;   /* the program's, then the standard ones */
     int                    ntable;
     char                   result[AH_RESULT_MAX];
+    char                   error[AH_ERROR_MAX];     /* LASTERROR's answer */
+    int                    noted;   /* this command has its error text */
 };
 
 /* ---- for a command's function ---- */
@@ -150,9 +187,43 @@ static __attribute__((unused)) void ah_error(ah_call *c, LONG rc, LONG rc2)
 
 /* ---- the port ---- */
 
-enum { AH_QUIT = 1000, AH_ACTIVATE, AH_DEACTIVATE, AH_VERSION, AH_HELP, AH_FAULT };
+enum { AH_QUIT = 1000, AH_ACTIVATE, AH_DEACTIVATE, AH_VERSION, AH_HELP, AH_FAULT, AH_LASTERROR };
 
 static __attribute__((unused)) ah_host *ah__now;
+static __attribute__((unused)) ah_call *ah__call;   /* the command running now */
+
+/* true while an ARexx command runs: show no requester then */
+static __attribute__((unused)) int ah_quiet(void)
+{
+    return ah__call != NULL;
+}
+
+/* while a command runs: keeps text for LASTERROR (the first text a
+ * command gives is kept) and gives 1, so the caller shows no requester;
+ * otherwise 0 */
+static __attribute__((unused)) int ah_quiet_note(const char *text)
+{
+    ah_host *h;
+    if (!ah__call)
+        return 0;
+    h = ah__call->host;
+    if (!h->noted) {
+        snprintf(h->error, sizeof h->error, "%s", text ? text : "");
+        h->noted = 1;
+    }
+    return 1;
+}
+
+/* RC (and RC2), and LASTERROR's text, as printf */
+static __attribute__((unused)) void ah_fail(ah_call *c, LONG rc, LONG rc2, const char *fmt, ...)
+{
+    va_list ap;
+    va_start(ap, fmt);
+    vsnprintf(c->host->error, sizeof c->host->error, fmt, ap);
+    va_end(ap);
+    c->host->noted = 1;
+    ah_error(c, rc, rc2);
+}
 
 /* names compared without case (ASCII), so no utility.library is needed */
 static __attribute__((unused)) int ah__same(const char *a, const char *b)
@@ -177,7 +248,7 @@ static __attribute__((unused)) void ah__standard(ah_call *c, int id)
     switch (id) {
     case AH_QUIT:
         if (!k->quit || !k->quit(k->user, ah_has(c, 0)))
-            ah_error(c, 5, 0);
+            ah_fail(c, AH_RC_WARN, 0, "QUIT left alone: unsaved changes (QUIT FORCE quits)");
         break;
     case AH_ACTIVATE:
         if (k->activate)
@@ -187,7 +258,7 @@ static __attribute__((unused)) void ah__standard(ah_call *c, int id)
         if (k->deactivate)
             k->deactivate(k->user);
         else
-            ah_error(c, 5, 0);
+            ah_fail(c, AH_RC_WARN, 0, "DEACTIVATE: this program has no icon to go to");
         break;
     case AH_VERSION:
         ah_result(c, "%s", k->version ? k->version : "");
@@ -211,7 +282,7 @@ static __attribute__((unused)) void ah__standard(ah_call *c, int id)
                           (char *)t->ac_Name);
         }
         if (*want)
-            ah_error(c, 10, ERROR_OBJECT_NOT_FOUND);
+            ah_fail(c, AH_RC_ERROR, ERROR_OBJECT_NOT_FOUND, "HELP: no command %s", want);
         else
             c->cmd->ac_Result = (STRPTR)h->result;
         break;
@@ -220,6 +291,9 @@ static __attribute__((unused)) void ah__standard(ah_call *c, int id)
         Fault(ah_num(c, 0, 0), NULL, (STRPTR)h->result, sizeof h->result);
         c->cmd->ac_Result = (STRPTR)h->result;
         break;
+    case AH_LASTERROR:
+        ah_result(c, "%s", h->error);
+        break;
     }
 }
 
@@ -227,7 +301,7 @@ static __attribute__((unused)) void ah__standard(ah_call *c, int id)
  * AM_HANDLEEVENT, in the program's own task */
 static __attribute__((unused)) void ah__func(struct ARexxCmd *cmd __asm("a0"), struct RexxMsg *msg __asm("a1"))
 {
-    ah_call c;
+    ah_call c, *was;
     (void)msg;
     if (!ah__now)
         return;
@@ -236,10 +310,25 @@ static __attribute__((unused)) void ah__func(struct ARexxCmd *cmd __asm("a0"), s
     cmd->ac_RC = 0;
     cmd->ac_RC2 = 0;
     cmd->ac_Result = NULL;
+    if (cmd->ac_ID == AH_LASTERROR) {   /* reads the text: keeps it */
+        ah__standard(&c, cmd->ac_ID);
+        return;
+    }
+    ah__now->noted = 0;
+    was = ah__call;
+    ah__call = &c;
     if (cmd->ac_ID >= AH_QUIT)
         ah__standard(&c, cmd->ac_ID);
     else if (cmd->ac_ID < ah__now->nmine && ah__now->mine[cmd->ac_ID].fn)
         ah__now->mine[cmd->ac_ID].fn(&c);
+    ah__call = was;
+    if (cmd->ac_RC == 0) {
+        ah__now->error[0] = 0;          /* done: no error to tell */
+        return;
+    }
+    cmd->ac_Result = NULL;              /* RESULT only with RC 0 */
+    if (!ah__now->noted)
+        snprintf(ah__now->error, sizeof ah__now->error, "%s: RC %ld", (const char *)cmd->ac_Name, (long)cmd->ac_RC);
 }
 
 static __attribute__((unused)) void ah_close(ah_host *h)
@@ -262,6 +351,7 @@ static __attribute__((unused)) ah_host *ah_open(const char *name, const ah_cmd *
     static const struct { const char *name, *tmpl; int id; } std[] = {
         { "QUIT", "FORCE/S", AH_QUIT }, { "ACTIVATE", "", AH_ACTIVATE }, { "DEACTIVATE", "", AH_DEACTIVATE },
         { "VERSION", "", AH_VERSION }, { "HELP", "COMMAND", AH_HELP }, { "FAULT", "CODE/N/A", AH_FAULT },
+        { "LASTERROR", "", AH_LASTERROR },
     };
     ah_host *h;
     int i, j, n = 0, k;
@@ -272,7 +362,7 @@ static __attribute__((unused)) ah_host *ah_open(const char *name, const ah_cmd *
     h->mine = cmds;
     h->nmine = n;
     h->hooks = hooks;
-    h->table = (struct ARexxCmd *)AllocVec(sizeof(struct ARexxCmd) * (n + 7), MEMF_CLEAR);
+    h->table = (struct ARexxCmd *)AllocVec(sizeof(struct ARexxCmd) * (n + 8), MEMF_CLEAR);
     if (!h->table)
         goto fail;
     for (i = 0; i < n; i++) {
