@@ -50,6 +50,8 @@ jobs:
           grep -q 'hook 1, list 3, LONG2BE 11223344, LONG2LE 44332211, memory ok' o1.txt
           test "$(grep -c 'Hello, Dale' o2.txt)" = 3
           grep -q 'hook 3, list 3' o2.txt
+          grep -q 'sets init 1' o1.txt
+          grep -q 'sets exit' o1.txt
   curl-overlay:
     runs-on: ubuntu-latest
     timeout-minutes: 30

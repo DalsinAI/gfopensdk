@@ -34,7 +34,7 @@ CFLAGS += -Wno-error=incompatible-pointer-types -Wno-error=int-conversion \
 | `proto/alib.h` | The OS's amiga.lib calls, plus AROS's `__sprintf()` (exec's RawDoFmt formats into a buffer: use `%ld` for numbers). |
 | `devices/rawkeycodes.h` | The `RAWKEY_*` names for the Amiga's raw key codes, the PC-style extra keys and NewMouse's wheel codes. |
 
-`ADD2INIT` and `ADD2EXIT` also work with a `static` function that nothing else calls, as many AROS programs use them (the commodities' `Locale_Initialize`). `IPTR` and `SIPTR` are the OS's `ULONG` and `LONG`, so a program's own `typedef ULONG IPTR;` for non-AROS builds is no clash.
+`ADD2INIT` and `ADD2EXIT` also work with a `static` function, as many AROS programs use them (the commodities' `Locale_Initialize`): each one gets a small global function that calls it, put on libnix's list with libnix's own macros. AROSHello checks this under vamos. `IPTR` and `SIPTR` are the OS's `ULONG` and `LONG`, so a program's own `typedef ULONG IPTR;` for non-AROS builds is no clash.
 
 ### Catalogs
 
