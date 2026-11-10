@@ -18,11 +18,11 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | gfopentls.library / gfopencrypto.library | 1.4 / 2.3, main 7d28467, `gfopentls` | `proto/gfopencrypto.h`, `proto/gfopentls.h` | gfopentls_lib.fd | [AutoDocs-GFOpenTLS.md](AutoDocs-GFOpenTLS.md) |
 | regex.library | 1.0, main 6c6b695, `gfopenregex` | `regex.h` (POSIX), `proto/regex.h` | regex_lib.fd, regex_lib.sfd | [regex.library.md](regex.library.md) |
 | gfopenlayout.library | 11.0, main 6ecdfa1, `gfopenlayout` | `proto/gfopenlayout.h` | gfopenlayout_lib.fd, gfopenlayout_lib.sfd | [GFCSS.md](GFCSS.md), [GFOpenLayout-UI.md](GFOpenLayout-UI.md) |
-| javascript.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/javascript.h` | javascript_lib.fd, javascript_lib.sfd | [javascript.library.md](javascript.library.md) |
-| json.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/json.h` | json_lib.fd, json_lib.sfd | [json.library.md](json.library.md) |
-| unicode.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/unicode.h` | unicode_lib.fd, unicode_lib.sfd | [unicode.library.md](unicode.library.md) |
-| weblayout.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/weblayout.h` | weblayout_lib.fd, weblayout_lib.sfd | [weblayout.library.md](weblayout.library.md) |
-| webbrowser.library | 1.0, main f3f41ce, `gfopenbrowser` | `proto/webbrowser.h` | – | [webbrowser.library.md](webbrowser.library.md) |
+| javascript.library | 1.0, main 8cfdc5b, `gfopenbrowser` | `proto/javascript.h` | javascript_lib.fd, javascript_lib.sfd | [javascript.library.md](javascript.library.md) |
+| json.library | 1.0, main 8cfdc5b, `gfopenbrowser` | `proto/json.h` | json_lib.fd, json_lib.sfd | [json.library.md](json.library.md) |
+| unicode.library | 1.0, main 8cfdc5b, `gfopenbrowser` | `proto/unicode.h` | unicode_lib.fd, unicode_lib.sfd | [unicode.library.md](unicode.library.md) |
+| weblayout.library | 1.0, main 8cfdc5b, `gfopenbrowser` | `proto/weblayout.h` | weblayout_lib.fd, weblayout_lib.sfd | [weblayout.library.md](weblayout.library.md) |
+| webbrowser.library | 1.0, main 8cfdc5b, `gfopenbrowser` | `proto/webbrowser.h` | – | [webbrowser.library.md](webbrowser.library.md) |
 | gfopenmedia.library | 1.0, main 214ac79, `gfopenmedia` | `proto/gfopenmedia.h` | gfopenmedia_lib.fd, gfopenmedia_lib.sfd | [gfopenmedia.doc](gfopenmedia.doc) |
 | gfopenmulticore.library | main b3f33b0, `gfopenmulticore` | `proto/gfopenmulticore.h` | gfopenmulticore_lib.fd, gfopenmulticore_lib.sfd | [gfopenmulticore.doc](gfopenmulticore.doc) |
 | gfopenntlm.library | 1.1, main 4bb461a, `gfopenntlm` | `proto/gfopenntlm.h` | gfopenntlm_lib.fd, gfopenntlm_lib.sfd | [gfopenntlm.doc](gfopenntlm.doc) |
