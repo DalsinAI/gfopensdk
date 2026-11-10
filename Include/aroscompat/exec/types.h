@@ -8,8 +8,10 @@
 
 #ifndef AROSCOMPAT_EXEC_TYPES_H
 #define AROSCOMPAT_EXEC_TYPES_H
-typedef unsigned long IPTR;
-typedef long SIPTR;
+/* the OS's own ULONG/LONG, so a program's own `typedef ULONG IPTR;` (MorphOS and
+   OS 3 builds of AROS programs have one) is the same type, not a clash */
+typedef ULONG IPTR;
+typedef LONG SIPTR;
 #ifndef STACKED
 #define STACKED
 #endif

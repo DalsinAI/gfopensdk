@@ -2,7 +2,8 @@
  * the Open SDK's AROS compatibility (Docs/PORTING-AROS.md). It uses the
  * AROS forms a ported program meets: AROS_SH2 with SHArg, a hook made with
  * AROS_UFH3 and called with its registers (AROS_UFC3), library calls by
- * their offsets (AROS_LC2, AROS_LC1NR), ForeachNode, the byte-order macros and IPTR.
+ * their offsets (AROS_LC2, AROS_LC1NR), ForeachNode, the byte-order macros, IPTR
+ * and ADD2INIT/ADD2EXIT with static functions.
  *   AROSHello [NAME] [TIMES=n]
  * MIT, Copyright (c) 2026 AmiCradle Team. */
 #include <exec/types.h>
@@ -16,6 +17,14 @@
 #include <aros/libcall.h>
 #include <aros/macros.h>
 #include <aros/debug.h>
+#include <aros/symbolsets.h>
+
+/* ADD2INIT/ADD2EXIT with static functions, as AROS programs use them */
+static LONG set_ran;
+static BOOL set_init(void) { set_ran = 1; return TRUE; }
+static void set_exit(void) { PutStr("sets exit\n"); }
+ADD2INIT(set_init, 90);
+ADD2EXIT(set_exit, 90);
 
 AROS_UFH3(IPTR, count_hook,
           AROS_UFHA(struct Hook *, hook, A0),
@@ -58,6 +67,7 @@ AROS_SHA(LONG *, ,TIMES,/K/N,NULL))
     AROS_LC1NR(void, FreeVec, AROS_LCA(APTR, mem, A1), struct ExecBase *, SysBase, 115, Exec);
     Printf("hook %ld, list %ld, LONG2BE %08lx, LONG2LE %08lx, memory %s\n",
            (IPTR)hook.h_Data, seen, be, le, (IPTR)(mem ? "ok" : "none"));
+    Printf("sets init %ld\n", set_ran);
     D(bug("not printed: DEBUG is 0\n"));
     return (IPTR)hook.h_Data == (IPTR)times && seen == 3 && mem ? RETURN_OK : RETURN_FAIL;
     AROS_SHCOMMAND_EXIT
