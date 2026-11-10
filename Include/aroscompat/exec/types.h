@@ -50,4 +50,6 @@ typedef APTR RAWARG;
 /* AROS's exec/types.h brings these in */
 #include <aros/asmcall.h>
 #include <aros/libcall.h>
+/* and, as AROS's aros/system.h, the byte-order macros (AROS_LONG2BE) */
+#include <aros/macros.h>
 #endif
