@@ -34,8 +34,8 @@
  * No requester may hold up an ARexx command (ARexx-RULE.md 4): while a
  * command runs, ah_quiet() is true, and the program's note or error
  * requester gives its text to ah_quiet_note() instead of showing it. The
- * script reads that text with LASTERROR (it is cleared by a command that
- * succeeds; arexx.class itself answers an unknown command, 20, and bad
+ * script reads that text with LASTERROR (the last failure's, kept until
+ * the next failure; arexx.class itself answers an unknown command, 20, and bad
  * arguments, 10, without the program, so LASTERROR doesn't change then).
  * ah_fail() sets an RC and that text at once:
  *
@@ -322,10 +322,8 @@ static __attribute__((unused)) void ah__func(struct ARexxCmd *cmd __asm("a0"), s
     else if (cmd->ac_ID < ah__now->nmine && ah__now->mine[cmd->ac_ID].fn)
         ah__now->mine[cmd->ac_ID].fn(&c);
     ah__call = was;
-    if (cmd->ac_RC == 0) {
-        ah__now->error[0] = 0;          /* done: no error to tell */
-        return;
-    }
+    if (cmd->ac_RC == 0)
+        return;                         /* LASTERROR keeps the last failure's text */
     cmd->ac_Result = NULL;              /* RESULT only with RC 0 */
     if (!ah__now->noted)
         snprintf(ah__now->error, sizeof ah__now->error, "%s: RC %ld", (const char *)cmd->ac_Name, (long)cmd->ac_RC);
