@@ -24,6 +24,32 @@ jobs:
       - run: python3 -m unittest discover -s tests/sdk -v
       - run: python3 tools/gather.py --offline-check
       - run: python3 -m py_compile tools/build_curl_sdk.py
+  aroscompat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generated headers up to date
+        run: python3 tools/gen_aroscompat.py --check
+      - name: Toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p build/tc
+          curl -fsSL -o build/tc.tar.xz https://github.com/DalsinAI/gfopengcc/releases/download/v16.2.0-open6/gfopenamigagcc-16.2.0-open6-x86_64-linux.tar.xz
+          echo '65f284476ec20cdf7851475d91d2c18d77fa6f2a0eb0f844b6ca23dbfa57eaa7  build/tc.tar.xz' | sha256sum -c -
+          tar xf build/tc.tar.xz -C build/tc
+      - name: libaroscompat.a and AROSHello
+        run: CC="$PWD/build/tc/gfopenamigagcc-16.2.0-open6-x86_64-linux/bin/m68k-amigaos-gcc" NDK_INC="$PWD/OpenNDK/Include_H" OUT="$PWD/build/arh" sh Examples/aroscompat-hello/build.sh
+      - name: AROSHello on a 68040 (vamos)
+        run: |
+          pip install amitools==0.8.1 machine68k==0.3.0 greenlet
+          cd build/arh
+          vamos -C 68040 -m 8192 -H disable ./AROSHello | tee o1.txt
+          vamos -C 68040 -m 8192 -H disable ./AROSHello Dale TIMES=3 | tee o2.txt
+          grep -q 'hook 1, list 3, LONG2BE 11223344, LONG2LE 44332211, memory ok' o1.txt
+          test "$(grep -c 'Hello, Dale' o2.txt)" = 3
+          grep -q 'hook 3, list 3' o2.txt
   curl-overlay:
     runs-on: ubuntu-latest
     timeout-minutes: 30
