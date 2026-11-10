@@ -19,9 +19,11 @@ gathered from gfopenrtg like the other headers; and **openfont.library**
 Also: **arexx/apphost.h** (`Include/arexx/apphost.h`): a C program's ARexx
 port on arexx.class (OS 3.2's or ours), the way all our programs have one:
 the program gives its own commands (name, ReadArgs template, function) and
-quit/activate hooks, and gets QUIT, ACTIVATE, DEACTIVATE, VERSION, HELP and
-FAULT as well, NAME.1 for a port. Header only. wx programs have the same in
-the GFOpenWX Toolkit (wxARexxPort).
+quit/activate hooks, and gets QUIT, ACTIVATE, DEACTIVATE, VERSION, HELP,
+FAULT and LASTERROR as well, NAME.1 for a port. Return codes as ARexx-RULE.md
+(0 done, 5 warning, 10 error, 20 unknown command or failure), and
+ah_quiet_note() so that no requester holds up a script. Header only. wx
+programs have the same in the GFOpenWX Toolkit (wxARexxPort).
 
 Also: **os4compat** (`Lib/os4compat`, `Docs/PORTING-OS4.md`), which builds
 AmigaOS 4 source for OS 3.2 by giving each library OS 4's interfaces and
