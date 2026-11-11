@@ -48,17 +48,39 @@ The catalogs are a separate AROS repo for each program (`aros-translation-team/<
 
 `tools/gen_aroscompat.py` makes `asmcall.h`, `libcall.h`, `shcommands.h` and `aroscompat_regs.h`, with 0 to 16 arguments. Run it with `--check` in CI.
 
-## How far it gets (10 November 2026)
+## How far it gets (11 November 2026)
 
 Of the 73 programs in AROS's `workbench/c`, 38 build and link unchanged, among them Avail, Date, Delete, Join, MakeDir, Search, Sort, Sha256Sum, Type, Which, RequestChoice, RequestFile and Print. Several were run on a 68040 under vamos: Date, Type, Sha256Sum, MakeDir, Join, Delete, Which and AROSHello.
 
 Workbench programs that build and link unchanged (10 November 2026): More (gadtools), and the commodities AltKeyQ, AutoPoint, Blanker, ClickToFront, DepthMenu and NoCapsLock. AltKeyQ needs `InvertString`, which OpenNDK's `libamiga.a` has from this change on; until a toolchain release carries that `libamiga.a`, put `-L$(SDK)/OpenNDK/lib/build/m68k-amigaos` before the link's other `-L` options. Opaque needs AROS's own `ICF_OFFSCREENLAYERS` setting and `SetPointerBounds`, so it is an AROS program, not a port.
 
+### Zune/MUI programs
+
+AROS's Zune programs build against GFOpenMUI, our own clean-room `muimaster.library` (`DalsinAI/gfopenmui`). Add its headers after aroscompat's and link its stub before `libaroscompat.a`:
+
+```
+CFLAGS += -I$(SDK)/Include/aroscompat -I$(SDK)/Include -I$(GFOPENMUI)/muimaster/include
+# AROS's proto headers expect exec/memory.h, and programs use ADD2INIT without including symbolsets.h
+CFLAGS += -include exec/memory.h -include aros/symbolsets.h
+LIBS   += -L$(GFOPENMUI)/muimaster/build-amiga/lib -lmuimaster -L$(SDK)/Lib/aroscompat/build -laroscompat -lm
+```
+
+The program needs `LIBS:muimaster.library` (GFOpenMUI) and `LIBS:gfopenlayout.library` 18 or later at run time. GFOpenMUI's `muimaster/build-amiga.sh` builds the examples below for its labs. It fetches each one at a pinned AROS commit, along with its catalog strings, and never ships them.
+
+These run unchanged on a 68040 under GFOS and OS 3.2.3 (labs, 10 November 2026):
+
+| Program | Where in AROS | What was checked |
+| --- | --- | --- |
+| Calculator | `workbench/tools/Calculator.c` | Keys give the right sums (7 + 8 +/- = gives -1, 7 × 8 = gives 56) and the close gadget quits. A warm open takes 91 ms on GFOS and 7 ms on OS 3.2.3. |
+| KeyShow | `workbench/tools/KeyShow` | Shift relabels the keys and shows pressed in, and the close gadget quits. |
+| ASCIITable | `workbench/tools/commodities/ASCIITable.c` | Clicked characters (A, B, é) go into the field, Clear empties it, Right Amiga I iconifies and Right Amiga Q quits. A second start brings the first one back. |
+
+GFOpenMUI has Notify, Application, Window, Area, Group, Rectangle, Text, String and Menustrip, and custom classes. The other Zune programs (Clock, Exchange, FKey and about 40 more) need classes it doesn't have yet, such as lists and cycle gadgets. Each one that starts working gets added to the table above.
+
 These are known gaps:
 - **AROS-only libraries and devices:** `oop`, `kms`, `task.resource`, `debug.library`, `uuid`, `log`, `arossupport`'s own calls and `exec/rawfmt.h`. A program that needs one is an AROS program, not a port.
 - **AROS's `%iu` and `%ix` formats (IPTR)** in `Printf`. The OS's `Printf` does not know them; Avail prints them as text.
 - **Programs with their own startup (`__startup`),** such as Copy, Beep and WaitX. They need building without libnix's startup, which is not covered yet.
-- **Zune/MUI programs** (Calculator, Clock, KeyShow, ASCIITable, Exchange, FKey and 40 more). These wait for our own muimaster.library (`DalsinAI/gfopenmui`; scope in amicradle-teams `designs/MUIMASTER-DESIGN-20261110.md`).
 - **A few OS 3.2 name differences:** `UtilityBase`'s type, `SYS_Asynch`, the `SD_ACTION_*` and `LOCF_GMT_CLOCK` names.
 
 MIT, Copyright (c) 2026 AmiCradle Team.
