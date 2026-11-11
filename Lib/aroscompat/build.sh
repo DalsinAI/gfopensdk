@@ -12,7 +12,7 @@ B=${OUT:-"$HERE/build"}
 INC="-I$SDK/Include/aroscompat -I$SDK/Include"
 [ -n "${NDK_INC:-}" ] && INC="$INC -I$NDK_INC"
 mkdir -p "$B/obj"
-for f in shmain kprintf sprintf; do
+for f in shmain kprintf sprintf alib; do
     "$CC" -m68040 -specs="$SDK/Lib/m68k-soft-m68040.specs" -noixemul -O2 -fno-delete-null-pointer-checks \
         -Wall -Wextra -Werror -Wno-pointer-sign $INC -c "$HERE/src/$f.c" -o "$B/obj/$f.o"
 done
