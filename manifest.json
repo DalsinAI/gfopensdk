@@ -1,6 +1,6 @@
 {
   "sdk": "The Open SDK",
-  "version": "0.3",
+  "version": "0.4",
   "note": "Each library's own repository owns its headers and function tables; tools/gather.py copies them from these commits. Never edit the copies under Include/ or SFD/: change the library's repository, then move its commit here.",
   "parts": [
     {

@@ -1,6 +1,6 @@
 # What the Open SDK holds
 
-The Open SDK 0.3 (pre-release), 9 November 2026. Each part's headers, function tables
+The Open SDK 0.4 (release candidate 1), 18 November 2026. Each part's headers, function tables
 and docs are copied by `tools/gather.py` from its own repository at the
 commit `manifest.json` pins; change them there, then move the pin here.
 
