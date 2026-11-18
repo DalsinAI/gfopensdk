@@ -108,13 +108,14 @@
 #define GCOR_FOCUS          0x924       /* write: 1 the guest has the keyboard and mouse */
 #define GCOR_MENU           0x928       /* write: a menu item's id */
 #define GCOR_CLIP           0x92C       /* write: a struct GuestClip's address (to the guest); read: the guest's clip's length */
-#define GCOR_CLIPGET        0x930       /* write: a buffer at least that long, for the guest's clip */
+#define GCOR_CLIPGET        0x930       /* write: a struct GuestBuffer's address: the guest's clip, at most gb_Size bytes, then dropped */
 #define GCOR_EVENT          0x934       /* read: the SELected guest's next event (SEL 0: any guest's), handle << 24 | type << 16 | data, 0 none */
 #define GCOR_ERROR          0x938       /* read: GERR_* of the last OPEN or CTRL */
 #define GCOR_WANT           0x93C       /* read: width << 16 | height the guest wants */
 #define GCOR_PENDING        0x940       /* read: a bit (1 << handle) for each guest with events waiting; drops INT2 until the
                                          * next event and changes nothing else, so every front end's INT2 server sees the
                                          * same bits and Signals its own task, which reads EVENT with SEL its guest (Forbid) */
+#define GCOR_TITLE          0x944       /* write: a struct GuestBuffer's address: the guest's title, NUL ended, cut to fit */
 
 #define GBODY_TEST          0x01
 #define GBODY_BASILISK      0x02
@@ -167,6 +168,11 @@ struct GuestPlace {
     UBYTE gp_Screen;                    /* 0 a window on Workbench, 1 its own screen */
     UBYTE gp_Scale;                     /* 0 fit, 1 1:1, 2 2:1 ... */
     UBYTE gp_Pad;
+};
+
+struct GuestBuffer {
+    APTR  gb_Buffer;
+    ULONG gb_Size;
 };
 
 struct GuestClip {
