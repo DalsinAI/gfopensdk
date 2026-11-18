@@ -62,6 +62,10 @@ NEW = {
     "lzma.library": ("proto/lzma.h", "lzma_lib.sfd", "lzma.library.md"),
     "bzip2.library": ("proto/bzip2.h", "bzip2_lib.sfd", "bzip2.library.md"),
     "gfopendraw.library": ("proto/gfopendraw.h", "gfopendraw_lib.sfd", "gfopendraw.library.md"),
+    "gfopeninput.library": ("proto/gfopeninput.h", "gfopeninput_lib.sfd", "gfopeninput.library.md"),
+    # no SFD in their repositories yet: headers and docs only
+    "gfopenusb.library": ("proto/gfopenusb.h", None, "gfopenusb.library.md"),
+    "muimaster.library (GFOpenMUI)": ("proto/muimaster.h", None, "gfopenmui.md"),
 }
 
 
@@ -108,8 +112,9 @@ class FunctionTableTests(unittest.TestCase):
                 self.assertRegex(parts[name]["commit"], r"^[0-9a-f]{40}$")
                 outs = set(parts[name]["files"].values())
                 self.assertIn("Include/" + proto, outs)
-                self.assertIn("SFD/" + sfd, outs)
-                self.assertTrue((ROOT / "FD" / sfd.replace(".sfd", ".fd")).exists())
+                if sfd:
+                    self.assertIn("SFD/" + sfd, outs)
+                    self.assertTrue((ROOT / "FD" / sfd.replace(".sfd", ".fd")).exists())
                 if doc:
                     self.assertIn("Docs/" + doc, outs)
                     self.assertIn(f"]({doc})", index)

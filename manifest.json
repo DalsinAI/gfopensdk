@@ -925,6 +925,106 @@
         "Include_I/lvo/gfopendraw_lib.i": "962260d78c89f9b835c2e324b373278e9b10f97227ca187566593e232878dab9",
         "SFD/gfopendraw_lib.sfd": "ca9b295b8d1db6105395f01c84ad20c71eccfbbd814c00f85c6eb611cab2c1ea"
       }
+    },
+    {
+      "name": "gfopeninput.library",
+      "repo": "DalsinAI/gfopeninput",
+      "commit": "c5309c1ac64558ede686a7c311f6fe0aa137c67a",
+      "licence": "MIT",
+      "version": "0.1 table, main c5309c1, `gfopeninput`",
+      "files": {
+        "include/libraries/gfopeninput.h": "Include/libraries/gfopeninput.h",
+        "include/clib/gfopeninput_protos.h": "Include/clib/gfopeninput_protos.h",
+        "include/inline/gfopeninput.h": "Include/inline/gfopeninput.h",
+        "include/proto/gfopeninput.h": "Include/proto/gfopeninput.h",
+        "library/gfopeninput_lib.sfd": "SFD/gfopeninput_lib.sfd",
+        "README.md": "Docs/gfopeninput.library.md"
+      },
+      "sha256": {
+        "Docs/gfopeninput.library.md": "4134a4ef74cc9e279ff347c4a68e0ff415d8c237778e64352bfce25ccd144594",
+        "FD/gfopeninput_lib.fd": "e990c8e6e9ff6a1638153182bf4d36292c0f45dec22aa4435239531017d71891",
+        "Include/clib/gfopeninput_protos.h": "84028379ee6a131e96f36889748a8d606b215d4df278ea41f3b15aac2035f0b6",
+        "Include/inline/gfopeninput.h": "30139b6b6e4d6fefd17897f0ad9c3051d1b7d3188c5a62f9cb3e064ebc538c67",
+        "Include/libraries/gfopeninput.h": "f8419fb4c450e45a67067ae8176984ea53f50ed7fddc92cde1c47b97e518091f",
+        "Include/proto/gfopeninput.h": "a9c4022dc271b65bda22d49f188c12669e7e5a2af4e83129c601ece7a5a57d83",
+        "SFD/gfopeninput_lib.sfd": "1502c962d805a8810a68773fe6bbb499569f1b27a2c0d7d8e0438779677d937d"
+      }
+    },
+    {
+      "name": "gfopenusb.library",
+      "repo": "DalsinAI/gfopenusb",
+      "commit": "4056e1dc94fdbf745ab06754bb607c60edb09aaa",
+      "licence": "MIT",
+      "version": "main 4056e1d, `gfopenusb`",
+      "files": {
+        "include/libraries/gfopenusb.h": "Include/libraries/gfopenusb.h",
+        "include/clib/gfopenusb_protos.h": "Include/clib/gfopenusb_protos.h",
+        "include/inline/gfopenusb.h": "Include/inline/gfopenusb.h",
+        "include/proto/gfopenusb.h": "Include/proto/gfopenusb.h",
+        "README.md": "Docs/gfopenusb.library.md"
+      },
+      "sha256": {
+        "Docs/gfopenusb.library.md": "392884ede65099681c5839f09fa60160f6b8fe9692cf2c0ec46615da9fb1c2fe",
+        "Include/clib/gfopenusb_protos.h": "922f44b3ed25cb1b1391bec6fed3b87c055523a364fba17d696da028b253789c",
+        "Include/inline/gfopenusb.h": "18a2b1cbb1acddd0f75bcff49edd47d48aa083bb2d7079f035aeda5d9b1b8637",
+        "Include/libraries/gfopenusb.h": "7200e927f0a627d12f380bf8e9f1fbee9d3e15cf60d1d3ba2788795e7741dee7",
+        "Include/proto/gfopenusb.h": "0e45e0074165e3365f6455bd7e6fb0fa4d5db3c09167a6c7bfcb83a7c83262d3"
+      }
+    },
+    {
+      "name": "muimaster.library (GFOpenMUI)",
+      "repo": "DalsinAI/gfopenmui",
+      "commit": "922f7ce31389eef26eb1b66abb1c562091954041",
+      "licence": "MIT",
+      "version": "19.x, main 922f7ce, `gfopenmui` muimaster/",
+      "files": {
+        "muimaster/include/clib/muimaster_protos.h": "Include/clib/muimaster_protos.h",
+        "muimaster/include/inline/muimaster.h": "Include/inline/muimaster.h",
+        "muimaster/include/libraries/mui.h": "Include/libraries/mui.h",
+        "muimaster/include/proto/muimaster.h": "Include/proto/muimaster.h",
+        "muimaster/include/zune/aboutbox.h": "Include/zune/aboutbox.h",
+        "muimaster/include/zune/aboutwindow.h": "Include/zune/aboutwindow.h",
+        "muimaster/include/zune/busy.h": "Include/zune/busy.h",
+        "muimaster/include/zune/calendar.h": "Include/zune/calendar.h",
+        "muimaster/include/zune/calltips.h": "Include/zune/calltips.h",
+        "muimaster/include/zune/clock.h": "Include/zune/clock.h",
+        "muimaster/include/zune/customclasses.h": "Include/zune/customclasses.h",
+        "muimaster/include/zune/flexgroup.h": "Include/zune/flexgroup.h",
+        "muimaster/include/zune/graph.h": "Include/zune/graph.h",
+        "muimaster/include/zune/iconimage.h": "Include/zune/iconimage.h",
+        "muimaster/include/zune/lamp.h": "Include/zune/lamp.h",
+        "muimaster/include/zune/loginwindow.h": "Include/zune/loginwindow.h",
+        "muimaster/include/zune/prefseditor.h": "Include/zune/prefseditor.h",
+        "muimaster/include/zune/prefswindow.h": "Include/zune/prefswindow.h",
+        "muimaster/include/zune/qrcode.h": "Include/zune/qrcode.h",
+        "muimaster/include/zune/rawimage.h": "Include/zune/rawimage.h",
+        "muimaster/include/zune/systemprefswindow.h": "Include/zune/systemprefswindow.h",
+        "README.md": "Docs/gfopenmui.md"
+      },
+      "sha256": {
+        "Docs/gfopenmui.md": "30ed8dd95f8a147bae648396e9ccc53562d327805dc9ff23221ac5d4fa9adb49",
+        "Include/clib/muimaster_protos.h": "a3b872bdd01d93f597530cebf3e23300a22fb9f9e2e5778708b1774b06418155",
+        "Include/inline/muimaster.h": "a72f64424665806f0af441f9e1817da8f454f0bc6694cb5825f6f7ce1fe424d1",
+        "Include/libraries/mui.h": "e25fccf9324f125e4794d8b162a4fc13c04376746fc269daa27902bc6e4bd626",
+        "Include/proto/muimaster.h": "16032aa044e0fb51ff632e656830d02f03d2337d12aeab8af4d47408b1c0530c",
+        "Include/zune/aboutbox.h": "17909de30ff772bedcadbc033f73ae255528f8fa147cf34b0e8b7a90b7a7715b",
+        "Include/zune/aboutwindow.h": "1227a13b43063d31aa3344a829e654e0c6bbe87ea8f4074c2723c2731532d696",
+        "Include/zune/busy.h": "cb5201b0447f2bfa2e9b28e385d50ddf3dcd6605d03c4f835c021f8c495e534e",
+        "Include/zune/calendar.h": "adb54e12d9c153cc52fe9dcf358951986fdadcb196787ba121ee72b74413f829",
+        "Include/zune/calltips.h": "8e9655baa7feb9880b8899e7c08547180103c579c4efbc3239e091b50d914ded",
+        "Include/zune/clock.h": "5cfc2544943fc0615b18288e363288d45138aa9bfc068b0213dccbe5e271fc26",
+        "Include/zune/customclasses.h": "e5bdd497a82fc6fd6e1678be74c01918b941fa38a106a195c5b989cc77adb517",
+        "Include/zune/flexgroup.h": "3bf5fc6801b18f5b659befdcb4d5183e72dd07465e7fb7d2c55f57d8911d43c1",
+        "Include/zune/graph.h": "9b4d6cfc49d713a149c792654f452b1b78fcae0bec085dac21c8d9740407be87",
+        "Include/zune/iconimage.h": "cc3f19ab87c9e5c71395c8f8bbd70a5a740b67bc31ea6ef38dd17b6ce551fa69",
+        "Include/zune/lamp.h": "7ef7ef834936bec8cd4e3cbf261b59900fcde01646ecd333b616941948e7c743",
+        "Include/zune/loginwindow.h": "5acb729b6f74246cbf9ffc1eda17b30595e956ccff5eb7f548c79d963291b80a",
+        "Include/zune/prefseditor.h": "63e080ff60e22c03ff0e37812559ff2801b4d87ad8f4358a0ce2e31c9fc76a2e",
+        "Include/zune/prefswindow.h": "410fbfbbe5a2be688c3f2b2cdef5dc8dd321a165b4627f97a6d35ccae42686fb",
+        "Include/zune/qrcode.h": "9f0fbca30a5f03d9200481dc048ca647b138137b54969a047a2844e19a24a166",
+        "Include/zune/rawimage.h": "73c311ba8ae7cbaacb14aacb9b61f66bfb29029dd2a54abb38fe99875a038073",
+        "Include/zune/systemprefswindow.h": "0d4f5204c9fac5e5e86f1f775ca254f5138db15b539e05181dab764e30c5d128"
+      }
     }
   ]
 }

@@ -1,0 +1,30 @@
+==id $Id: gfopeninput_lib.sfd 0.1 (8.10.2026) $
+* "gfopeninput.library" (GFOpenInput), draft for review
+==base _OpenInputBase
+==basetype struct Library *
+==libname gfopeninput.library
+==bias 30
+==public
+==include <exec/types.h>
+==include <exec/ports.h>
+==include <utility/tagitem.h>
+==include <libraries/gfopeninput.h>
+ULONG OIN_ListControllers(struct OIControllerInfo *buffer, ULONG max, ULONG infoSize)(a0,d0,d1)
+LONG OIN_GetControllerInfo(ULONG id, struct OIControllerInfo *info, ULONG infoSize)(d0,a0,d1)
+APTR OIN_OpenControllerA(ULONG id, struct TagItem *tags)(d0,a0)
+VOID OIN_CloseController(APTR controller)(a0)
+LONG OIN_ReadState(APTR controller, struct OIState *state, ULONG stateSize)(a0,a1,d0)
+LONG OIN_ReadRaw(APTR controller, struct OIRawState *raw, ULONG rawSize)(a0,a1,d0)
+LONG OIN_Rumble(APTR controller, ULONG low, ULONG high, ULONG millis)(a0,d0,d1,d2)
+APTR OIN_AddNotifyA(struct MsgPort *port, struct TagItem *tags)(a0,a1)
+VOID OIN_RemNotify(APTR notify)(a0)
+LONG OIN_GetMapping(UBYTE *guid, STRPTR buffer, ULONG size)(a0,a1,d0)
+LONG OIN_SetMapping(STRPTR line, ULONG flags)(a0,d0)
+STRPTR OIN_ButtonLabel(ULONG id, ULONG button)(d0,d1)
+LONG OIN_GetLegacyPort(ULONG port, struct OILegacyPort *legacy, ULONG size)(d0,a0,d1)
+LONG OIN_SetLegacyPortA(ULONG port, ULONG id, struct TagItem *tags)(d0,d1,a0)
+* revision 3 (17 October 2026): pads from drivers outside the library
+APTR OIN_AddDriverPad(struct OIControllerInfo *info, ULONG infoSize)(a0,d0)
+VOID OIN_DriverPadRaw(APTR pad, struct OIRawState *raw, ULONG rawSize)(a0,a1,d0)
+VOID OIN_RemDriverPad(APTR pad)(a0)
+==end

@@ -42,6 +42,9 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | lzma.library | 1.0, main 47aeaba, `gfopenlzma` | `proto/lzma.h`; `gfopenlzma.h` with `-lgflzma` | lzma_lib.fd, lzma_lib.sfd | [lzma.library.md](lzma.library.md) |
 | bzip2.library | 1.0, main d90840c, `gfopenbzip2` | `proto/bzip2.h`; upstream `bzlib.h` with `-lbz2` from its release | bzip2_lib.fd, bzip2_lib.sfd | [bzip2.library.md](bzip2.library.md) |
 | gfopendraw.library | 1.0 (engine 0.2.1), main e22568e, `gfopendraw` | `proto/gfopendraw.h`, `gfopendraw.h`, `op_image.h`, `op_tools.h`, `op_undo.h`, `op_quant.h` | gfopendraw_lib.fd, gfopendraw_lib.sfd, `Include_I/lvo/gfopendraw_lib.i` | [gfopendraw.library.md](gfopendraw.library.md) |
+| gfopeninput.library | 0.1 table, main c5309c1, `gfopeninput` | `proto/gfopeninput.h` | gfopeninput_lib.fd, gfopeninput_lib.sfd | [gfopeninput.library.md](gfopeninput.library.md) |
+| gfopenusb.library | main 4056e1d, `gfopenusb` | `proto/gfopenusb.h`, `libraries/gfopenusb.h` | – | [gfopenusb.library.md](gfopenusb.library.md) |
+| muimaster.library (GFOpenMUI) | 19.x, main 922f7ce, `gfopenmui` muimaster/ | `proto/muimaster.h`, `libraries/mui.h`, `zune/*.h` (the .mcc classes); link `libmuimaster.a` from GFOpenMUI | – | [gfopenmui.md](gfopenmui.md) |
 | GFOpenDatatypes classes | gfopengif.datatype 47.3, main 169b7f8, `gfopendatatypes` | `datatypes/gfopenimage.h`, `datatypes/streamclass.h` | – | – |
 | GFOpenGfx graphics and layers additions | main 9565e57, `gfopengfx` | `proto/gfxdispatch.h`, `graphics/gfopenlayers.h` | – | – |
 | GFOpenExec atomic calls | main e22fda4, `amicradle-guest` | `exec/gfopenexec_atomic.h` | – | – |
@@ -102,6 +105,12 @@ Notes:
 - **gfopendraw.library** is GFOpenDraw's painting engine as a shared
   library; its docs are the program's DESIGN.md, whose "The library"
   section describes the calls.
+- **gfopenusb.library** and **muimaster.library** have proto, clib and
+  inline headers but no SFD in their repositories yet, so no FD and no
+  stubs. muimaster.library is GFOpenMUI, our clean-room MUI on
+  GFOpenLayout: MUI programs build against `libraries/mui.h` unchanged.
+  `zune/customclasses.h` is for AROS sources built with aroscompat
+  (`Include/aroscompat`, and libnix's `<stabs.h>`).
 - **GFOpenDatatypes**: the classes' own headers. gfopengif.datatype 47.3
   (animated GIFs in MultiView) needs no header change; programs use it
   through datatypes.library.

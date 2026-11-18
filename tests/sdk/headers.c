@@ -47,6 +47,26 @@
 #include <gfopenlzma.h>
 #include <proto/bzip2.h>
 #include <proto/gfopendraw.h>
+#include <proto/gfopeninput.h>
+#include <proto/gfopenusb.h>
+#include <proto/muimaster.h>
+/* zune/customclasses.h is left out: it needs aroscompat and libnix */
+#include <zune/aboutbox.h>
+#include <zune/aboutwindow.h>
+#include <zune/busy.h>
+#include <zune/calendar.h>
+#include <zune/calltips.h>
+#include <zune/clock.h>
+#include <zune/flexgroup.h>
+#include <zune/graph.h>
+#include <zune/iconimage.h>
+#include <zune/lamp.h>
+#include <zune/loginwindow.h>
+#include <zune/prefseditor.h>
+#include <zune/prefswindow.h>
+#include <zune/qrcode.h>
+#include <zune/rawimage.h>
+#include <zune/systemprefswindow.h>
 int sdk_headers(void)
 {
     return sizeof(struct Hook) == 20 && sizeof(struct OFGPUTarget) == 40 && sizeof(struct OFGlyphRun) == 32

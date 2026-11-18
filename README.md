@@ -50,7 +50,9 @@ The newest libraries, gathered at their main with their docs:
 **acgame.library** 1.3 (`proto/acgame.h`), **allegro4.library** 1.1
 (`allegro.h`; games link `liballeg.a` from its release),
 **gfopensynth.library** 1.0 (`proto/gfopensynth.h`), **transmem.library**
-1.0, **lzma.library** 1.0, **bzip2.library** 1.0 and **gfopendraw.library**.
+1.0, **lzma.library** 1.0, **bzip2.library** 1.0, **gfopendraw.library**,
+**gfopeninput.library**, **gfopenusb.library** and GFOpenMUI's
+**muimaster.library** (`libraries/mui.h`, `zune/*.h`).
 `libopensdk.a` has stubs for all but allegro4.library. See
 [Docs/LIBRARIES.md](Docs/LIBRARIES.md).
 
