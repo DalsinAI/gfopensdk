@@ -1,0 +1,18 @@
+==id $Id: lzma_lib.sfd 1.0 (10.11.2026) MIT, AmiCradle Team $
+* lzma.library (GFOpenLZMA): LZMA and LZMA2 decoding, raw and in .lzma and
+* .xz files, host first on AmiCradle. This file is the source of the fd,
+* clib and inline files: tools/gen_headers.py makes them.
+==base _LzmaBase
+==basetype struct Library *
+==libname lzma.library
+==bias 30
+==public
+==include <libraries/lzma.h>
+* version 1
+LONG LzmaDecode(ULONG mode, ULONG props, CONST_APTR in, ULONG inLength, APTR out, ULONG outLength, ULONG * done) (d0,d1,a0,d2,a1,d3,a2)
+LONG LzmaAloneInfo(CONST_APTR in, ULONG inLength, ULONG * size) (a0,d0,a1)
+LONG LzmaAloneDecode(CONST_APTR in, ULONG inLength, APTR out, ULONG outLength, ULONG * done) (a0,d0,a1,d1,a2)
+LONG XzInfo(CONST_APTR in, ULONG inLength, ULONG * size) (a0,d0,a1)
+LONG XzDecode(CONST_APTR in, ULONG inLength, APTR out, ULONG outLength, ULONG * done) (a0,d0,a1,d1,a2)
+CONST_STRPTR LzmaErrorText(LONG error) (d0)
+==end

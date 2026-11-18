@@ -26,9 +26,12 @@ fi
 CC=${CC:-${PREFIX}gcc}
 AR=${AR:-${PREFIX}ar}
 OUT="$SDK/Lib/build/$(basename -- "$PREFIX" | sed 's/-$//')"
-# SFDs to leave out (none now): a library whose SFD doesn't compile as
-# stubs goes here until it is fixed in its own repository and pinned again
-SKIP=${SKIP-""}
+# SFDs to leave out: a library whose SFD doesn't compile as stubs goes here
+# until it is fixed in its own repository and pinned again. allegro4_lib.sfd
+# stays out for good: its calls take Allegro's own types from <allegro.h>,
+# which needs the C library, and a game links liballeg.a from the Allegro 4
+# release's SDK (it asks acgame.library for Allegro 4 at the first call)
+SKIP=${SKIP-"allegro4_lib.sfd"}
 rm -rf "$OUT"
 mkdir -p "$OUT/stubs" "$OUT/obj"
 set --

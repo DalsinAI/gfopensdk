@@ -44,6 +44,18 @@ Part of the Open family (internally, the Great Open Source Reunification
 Project): one platform, AmigaOS 3.2.x with the Open libraries, that is easy
 to set up, and to build and port for.
 
+## SDK 0.4, 18 November 2026 (release candidate 1)
+
+The newest libraries, gathered at their main with their docs:
+**acgame.library** 1.3 (`proto/acgame.h`), **allegro4.library** 1.1
+(`allegro.h`; games link `liballeg.a` from its release),
+**gfopensynth.library** 1.0 (`proto/gfopensynth.h`), **transmem.library**
+1.0, **lzma.library** 1.0, **bzip2.library** 1.0, **gfopendraw.library**,
+**gfopeninput.library**, **gfopenusb.library** and GFOpenMUI's
+**muimaster.library** (`libraries/mui.h`, `zune/*.h`).
+`libopensdk.a` has stubs for all but allegro4.library. See
+[Docs/LIBRARIES.md](Docs/LIBRARIES.md).
+
 ## SDK 0.3, 9 November 2026
 
 The boards' libraries: **mitchy.library** (`proto/mitchy.h`), named

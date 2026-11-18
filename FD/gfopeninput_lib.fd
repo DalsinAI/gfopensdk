@@ -1,0 +1,21 @@
+##base _OpenInputBase
+##bias 30
+##public
+OIN_ListControllers(buffer,max,infoSize)(a0,d0,d1)
+OIN_GetControllerInfo(id,info,infoSize)(d0,a0,d1)
+OIN_OpenControllerA(id,tags)(d0,a0)
+OIN_CloseController(controller)(a0)
+OIN_ReadState(controller,state,stateSize)(a0,a1,d0)
+OIN_ReadRaw(controller,raw,rawSize)(a0,a1,d0)
+OIN_Rumble(controller,low,high,millis)(a0,d0,d1,d2)
+OIN_AddNotifyA(port,tags)(a0,a1)
+OIN_RemNotify(notify)(a0)
+OIN_GetMapping(guid,buffer,size)(a0,a1,d0)
+OIN_SetMapping(line,flags)(a0,d0)
+OIN_ButtonLabel(id,button)(d0,d1)
+OIN_GetLegacyPort(port,legacy,size)(d0,a0,d1)
+OIN_SetLegacyPortA(port,id,tags)(d0,d1,a0)
+OIN_AddDriverPad(info,infoSize)(a0,d0)
+OIN_DriverPadRaw(pad,raw,rawSize)(a0,a1,d0)
+OIN_RemDriverPad(pad)(a0)
+##end

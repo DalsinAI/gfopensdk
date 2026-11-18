@@ -1,0 +1,59 @@
+==id $Id: gfopendraw_lib.sfd 1.0 (17.11.2026) $
+* "gfopendraw.library" 1.0: GFOpenDraw's painting engine (engine/) as a
+* shared library: pictures and brushes, the paint tools, undo and redo, and
+* the true-colour to palette step. GFOpenDraw, GFOpenDrawOL and
+* GFOpenIconEdit open it; any program may.
+* Copyright (c) 2026 AmiCradle Team. MIT licence (see LICENSE).
+* The calls are the engine's, with its names and types (include/gfopendraw.h);
+* new calls go at the end. A structure passed by value goes as a pointer
+* (op_nearest_p and the others); gfopendraw.h keeps the by-value names as
+* macros over them. A program checks op_struct_size against its own sizes
+* (gfd_open in gfopendraw.h): a structure that grows makes a new version.
+==base _GFOpenDrawBase
+==basetype struct Library *
+==libname gfopendraw.library
+==bias 30
+==public
+==include <exec/types.h>
+==include <gfopendraw.h>
+==version 1
+* the library
+unsigned long op_struct_size(int which) (d0)
+* pictures and brushes (op_image.h)
+int op_image_init(op_image *img, int w, int h, int depth) (a0,d0,d1,d2)
+void op_image_free(op_image *img) (a0)
+void op_default_palette(op_rgb *pal, int ncolours) (a0,d0)
+int op_nearest_p(const op_rgb *pal, int n, const op_rgb *c) (a0,d0,a1)
+void op_rect_add(op_rect *r, int x0, int y0, int x1, int y1) (a0,d0,d1,d2,d3)
+void op_rect_union(op_rect *r, const op_rect *o) (a0,a1)
+int op_rect_clip(op_rect *r, int w, int h) (a0,d0,d1)
+int op_brush_round(op_brush *b, int size) (a0,d0)
+int op_brush_square(op_brush *b, int size) (a0,d0)
+int op_brush_grab_p(op_brush *b, const op_image *img, const op_rect *r, int transparent) (a0,a1,a2,d0)
+void op_brush_flip_x(op_brush *b) (a0)
+void op_brush_flip_y(op_brush *b) (a0)
+int op_brush_rotate90(op_brush *b) (a0)
+void op_brush_free(op_brush *b) (a0)
+* painting (op_tools.h)
+void op_paint_init(op_paint *p, op_image *img, const op_brush *brush) (a0,a1,a2)
+void op_pixel(op_paint *p, int x, int y, int colour) (a0,d0,d1,d2)
+void op_stamp(op_paint *p, int x, int y, int colour) (a0,d0,d1,d2)
+void op_line(op_paint *p, int x0, int y0, int x1, int y1, int colour) (a0,d0,d1,d2,d3,d4)
+void op_line_on(op_paint *p, int x0, int y0, int x1, int y1, int colour) (a0,d0,d1,d2,d3,d4)
+void op_rectangle(op_paint *p, int x0, int y0, int x1, int y1, int filled, int colour) (a0,d0,d1,d2,d3,d4,d5)
+void op_ellipse(op_paint *p, int cx, int cy, int rx, int ry, int filled, int colour) (a0,d0,d1,d2,d3,d4,d5)
+long op_flood(op_paint *p, int x, int y, int colour) (a0,d0,d1,d2)
+void op_spray(op_paint *p, int x, int y, int radius, int count, int colour) (a0,d0,d1,d2,d3,d4)
+void op_cycle(op_rgb *pal, int lo, int hi, int dir) (a0,d0,d1,d2)
+* undo and redo (op_undo.h)
+void op_undo_init(op_undo *u, long budget_bytes) (a0,d0)
+void op_undo_clear(op_undo *u) (a0)
+void op_undo_free(op_undo *u) (a0)
+int op_undo_begin(op_undo *u, const op_image *img) (a0,a1)
+void op_undo_restore_p(op_undo *u, op_image *img, const op_rect *r) (a0,a1,a2)
+void op_undo_end_p(op_undo *u, const op_image *img, const op_rect *changed) (a0,a1,a2)
+int op_undo_undo(op_undo *u, op_image *img, op_rect *r) (a0,a1,a2)
+int op_undo_redo(op_undo *u, op_image *img, op_rect *r) (a0,a1,a2)
+* true colour to a palette (op_quant.h)
+int op_quantize(const unsigned char *rgb, int w, int h, op_image *img) (a0,d0,d1,a1)
+==end
