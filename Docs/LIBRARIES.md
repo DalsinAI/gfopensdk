@@ -35,6 +35,13 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | akikoplus.library | 2.0, main 8b9ffe0, `gfosautoconfigboards` | `proto/akikoplus.h` | akikoplus_lib.fd, akikoplus_lib.sfd | [akikoplus.doc](akikoplus.doc) |
 | physfs.library | 1.1, 56e3b9a, `gfopenphysfs` | `physfs.h`, `proto/physfs.h`; link `-lphysfs_auto` | physfs_lib.fd | [physfs.library.md](physfs.library.md) |
 | z.library | 53.13 table (GFOpenZlib 53.13+, the Aminet z.library), b00522e3, `amicradle-guest` libraries/openzlib | `proto/z.h`, `libraries/z.h` (z_stream, gz_header, zlib's codes); open `z.library` version 53, and refuse GFOpenZlib 53.12 (another table) | z_lib.fd, z_lib.sfd | amicradle-guest libraries/openzlib/README.md |
+| acgame.library | 1.3, main 5a43eb9, `acgame` | `proto/acgame.h`, `acgame/acgame.h`, `acgame/platform.h`, `acgame/audio.h` | acgame_lib.fd, acgame_lib.sfd | [acgame.library.md](acgame.library.md) |
+| allegro4.library | 1.1, main 31d0bfc, `gfopenallegro` allegro4/ | `allegro.h` (and `a4_gui.h`, `aldumb.h`, `dumb.h`); link `liballeg.a` from its release's SDK | allegro4_lib.fd, allegro4_lib.sfd (not in `libopensdk.a`) | [allegro4.library.md](allegro4.library.md) |
+| gfopensynth.library | 1.0, main 5de9f6d, `gfopensynth` | `proto/gfopensynth.h`; `gfopensynth.h` with `-lgfopensynth` | gfopensynth_lib.fd, gfopensynth_lib.sfd | [gfopensynth.library.md](gfopensynth.library.md) |
+| transmem.library | 1.0, main 231e4dd, `gfopentransmem` | `proto/transmem.h` | transmem_lib.fd, transmem_lib.sfd | [transmem.library.md](transmem.library.md) |
+| lzma.library | 1.0, main 47aeaba, `gfopenlzma` | `proto/lzma.h`; `gfopenlzma.h` with `-lgflzma` | lzma_lib.fd, lzma_lib.sfd | [lzma.library.md](lzma.library.md) |
+| bzip2.library | 1.0, main d90840c, `gfopenbzip2` | `proto/bzip2.h`; upstream `bzlib.h` with `-lbz2` from its release | bzip2_lib.fd, bzip2_lib.sfd | [bzip2.library.md](bzip2.library.md) |
+| gfopendraw.library | 1.0 (engine 0.2.1), main e22568e, `gfopendraw` | `proto/gfopendraw.h`, `gfopendraw.h`, `op_image.h`, `op_tools.h`, `op_undo.h`, `op_quant.h` | gfopendraw_lib.fd, gfopendraw_lib.sfd, `Include_I/lvo/gfopendraw_lib.i` | [gfopendraw.library.md](gfopendraw.library.md) |
 | GFOpenDatatypes classes | gfopengif.datatype 47.3, main 169b7f8, `gfopendatatypes` | `datatypes/gfopenimage.h`, `datatypes/streamclass.h` | – | – |
 | GFOpenGfx graphics and layers additions | main 9565e57, `gfopengfx` | `proto/gfxdispatch.h`, `graphics/gfopenlayers.h` | – | – |
 | GFOpenExec atomic calls | main e22fda4, `amicradle-guest` | `exec/gfopenexec_atomic.h` | – | – |
@@ -76,6 +83,25 @@ Notes:
   but no SFD: 64-bit arguments take register pairs, so its calls aren't
   in `libopensdk.a`. Licence: zlib (`Lib/physfs/LICENSE-PhysicsFS.txt`).
   `Examples/physfs-list` lists or reads a drawer or an archive.
+- **acgame.library** 1.3 is the game layer (c2p, HAM8, AGA and RTG
+  screens, keys, mouse and pads, and since 1.3 sound through AHI or Paula).
+  A port links `libacgame.a` from the ACGame release; `proto/acgame.h` calls
+  the library directly. `ACG_OpenAllegro` (LVO -144) hands a game
+  allegro4.library. Every game ships the acgame.library it was built
+  against in its own `Libs/`.
+- **allegro4.library** 1.1 is the Allegro 4 API on acgame.library. A game
+  builds against `<allegro.h>` and links `liballeg.a` from the Allegro 4
+  release's SDK, which asks acgame.library for Allegro 4 at the first call.
+  Its calls take Allegro's own types and `<allegro.h>` needs the C library,
+  so `Lib/build.sh` leaves `allegro4_lib.sfd` out of `libopensdk.a`.
+- **gfopensynth.library** 1.0 is the MIDI synth (General MIDI on the Basic
+  SoundFont, the MT-32 engine), on AkikoPlus when there is one, else on the
+  68k to AHI. **lzma.library**, **bzip2.library** and **transmem.library**
+  each come with a link stub in their own release (`-lgflzma`, `-lbz2`,
+  `-ltransmem`) as well as the proto headers here.
+- **gfopendraw.library** is GFOpenDraw's painting engine as a shared
+  library; its docs are the program's DESIGN.md, whose "The library"
+  section describes the calls.
 - **GFOpenDatatypes**: the classes' own headers. gfopengif.datatype 47.3
   (animated GIFs in MultiView) needs no header change; programs use it
   through datatypes.library.
@@ -94,7 +120,8 @@ With an m68k-amigaos compiler it also builds `libphysfs_auto.a` there
 (`-lphysfs_auto`: physfs.library opened before `main()`); an ELF GCC has
 no libnix, so CI leaves it out.
 
-Every SFD in `SFD/` is in it.
+Every SFD in `SFD/` is in it but `allegro4_lib.sfd` (games link
+`liballeg.a` from the Allegro 4 release instead).
 
 ## Built from source, not kept here
 

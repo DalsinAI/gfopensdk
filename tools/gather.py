@@ -48,9 +48,32 @@ def sfd_to_fd(sfd):
             head, regs = s.rsplit(")(", 1)
             ret_name, args = head.split("(", 1)
             name = ret_name.split()[-1].lstrip("*")
-            names = [a.strip().split()[-1].lstrip("*") for a in args.split(",") if a.strip()]
+            names = [arg_name(a) for a in split_args(args)]
             out.append(f"{name}({','.join(names)})({regs}")
     return "\n".join(out) + "\n"
+
+
+def split_args(args):
+    """An SFD argument list split at its own commas, not at those inside a
+    function pointer's argument list: "T *a, void (*f)(int x, int y)"."""
+    parts, depth, cur = [], 0, ""
+    for ch in args:
+        if ch == "," and depth == 0:
+            parts.append(cur)
+            cur = ""
+            continue
+        depth += {"(": 1, ")": -1}.get(ch, 0)
+        cur += ch
+    parts.append(cur)
+    return [a.strip() for a in parts if a.strip()]
+
+
+def arg_name(arg):
+    """An argument's name: the last word, or the name in "(*name)" for a
+    function pointer."""
+    if "(*" in arg:
+        return arg.split("(*", 1)[1].split(")", 1)[0].strip()
+    return arg.split()[-1].lstrip("*")
 
 
 def output_paths(part):

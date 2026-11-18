@@ -39,6 +39,14 @@
 #include <proto/gfxdispatch.h>
 #include <graphics/gfopenlayers.h>
 #include <exec/gfopenexec_atomic.h>
+#include <proto/acgame.h>
+#include <proto/gfopensynth.h>
+#include <gfopensynth.h>
+#include <proto/transmem.h>
+#include <proto/lzma.h>
+#include <gfopenlzma.h>
+#include <proto/bzip2.h>
+#include <proto/gfopendraw.h>
 int sdk_headers(void)
 {
     return sizeof(struct Hook) == 20 && sizeof(struct OFGPUTarget) == 40 && sizeof(struct OFGlyphRun) == 32
