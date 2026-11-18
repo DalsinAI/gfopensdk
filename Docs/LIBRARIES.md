@@ -77,6 +77,14 @@ Notes:
   #4), with their autodocs. `Examples/mitchy-echo` opens a
   service by name and calls it; `Examples/akikoplus-c2p` converts chunky
   to planar and checks the bytes.
+- **The CPU cores board** (`hardware/coresboard.h`, `cores/acn_job.h`,
+  [CORES-BOARD.md](CORES-BOARD.md)): the board's registers, its services'
+  ops, flags and statuses, the task-core and guest blocks, and a native
+  job's own header. Written here (the board's own protocol is amicradle's
+  `docs/architecture/CORES_BOARD.md`), not gathered. 68k jobs go through
+  gfopenmulticore.library; native jobs (`cpu.arm64/1`, `cpu.x86_64/1`)
+  through mitchy.library: `Examples/cores-native-job` builds a job for both
+  hosts, runs it on a core and checks it against the 68k.
 - **physfs.library** 1.1 is PhysicsFS 3.2.0 as one shared library, one
   copy of PhysicsFS's state for each program that opens it. `<physfs.h>`
   is PhysicsFS's own header with the calls made inline through

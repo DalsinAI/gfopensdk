@@ -44,6 +44,14 @@ Part of the Open family (internally, the Great Open Source Reunification
 Project): one platform, AmigaOS 3.2.x with the Open libraries, that is easy
 to set up, and to build and port for.
 
+## Next: the CPU cores board
+
+`hardware/coresboard.h`, `cores/acn_job.h` and
+[Docs/CORES-BOARD.md](Docs/CORES-BOARD.md): the four ways a program uses
+the board's cores (68k jobs, native ARM64 and x86-64 jobs, task cores,
+emulator guests), each with its fallback. `Examples/cores-native-job` runs
+a job built for the host on a core and checks it against the 68k.
+
 ## SDK 0.4, 18 November 2026 (release candidate 1)
 
 The newest libraries, gathered at their main with their docs:

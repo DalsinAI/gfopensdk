@@ -31,6 +31,7 @@
 #include <elf/openelf_public.h>
 #include <devices/gfopenservice.h>
 #include <proto/mitchy.h>
+#include <hardware/coresboard.h>
 #include <proto/akikoplus.h>
 #include <proto/physfs.h>
 #include <proto/z.h>
