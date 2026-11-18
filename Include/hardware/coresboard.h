@@ -98,7 +98,7 @@
 #define GCOR_BASE           0x900
 #define GCOR_MAGIC          0x47434F52UL   /* 'GCOR' */
 #define GCOR_VERSION        0x904
-#define GCOR_STATE          0x908       /* bit 0 guests offered, bit 1 an event waits (INT2 held) */
+#define GCOR_STATE          0x908       /* bit 0 guests offered, bit 1 INT2 held, bit 2 events wait */
 #define GCOR_BODIES         0x90C       /* GBODY_* */
 #define GCOR_OPEN           0x910       /* write: a struct GuestOpen's address; read: the handle (1-15), or 0 (see ERROR) */
 #define GCOR_SEL            0x914       /* write: the handle the registers below act on */
@@ -109,9 +109,12 @@
 #define GCOR_MENU           0x928       /* write: a menu item's id */
 #define GCOR_CLIP           0x92C       /* write: a struct GuestClip's address (to the guest); read: the guest's clip's length */
 #define GCOR_CLIPGET        0x930       /* write: a buffer at least that long, for the guest's clip */
-#define GCOR_EVENT          0x934       /* read: handle << 24 | type << 16 | data, 0 none */
+#define GCOR_EVENT          0x934       /* read: the SELected guest's next event (SEL 0: any guest's), handle << 24 | type << 16 | data, 0 none */
 #define GCOR_ERROR          0x938       /* read: GERR_* of the last OPEN or CTRL */
 #define GCOR_WANT           0x93C       /* read: width << 16 | height the guest wants */
+#define GCOR_PENDING        0x940       /* read: a bit (1 << handle) for each guest with events waiting; drops INT2 until the
+                                         * next event and changes nothing else, so every front end's INT2 server sees the
+                                         * same bits and Signals its own task, which reads EVENT with SEL its guest (Forbid) */
 
 #define GBODY_TEST          0x01
 #define GBODY_BASILISK      0x02
