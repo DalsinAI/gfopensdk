@@ -280,7 +280,7 @@
       "name": "javascript.library",
       "version": "2.0, class prototype ABI append-only vector -210",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "7e7ad4642f503856f99b1a8ac635bafd28fa4b4c",
+      "commit": "c731d89f6f018ffb2ea4091cd00595b5fbba9e9a",
       "licence": "MIT",
       "files": {
         "src/jslib/sdk/Include_H/libraries/javascript.h": "Include/libraries/javascript.h",
