@@ -92,3 +92,32 @@ Install: `javascript.library` in `LIBS:`, `JavaScriptEngine` in
 Next (the design's phases): the 68k code kept with the translation, then
 the host classes proved on GFOpenBrowser Lite, then GFOpenBrowser itself on the
 library.
+
+## Optional ABI 2: registered class prototype without a wrapper
+
+`javascript.library` version 2 adds **one** append-only vector, LVO -210:
+
+```c
+JSValue JS_ClassPrototype(JSTask task, JSClass cls);
+```
+
+The input `cls` must be returned by `JS_RegisterClass(task, hostClass)`
+using the **same** `JSTask`. The returned `JSValue` is owned by the
+caller; release with `JS_Free(task, prototype)`. It is the actual class
+prototype, already chained to its parent and populated with the class's
+method/property slots; no game-owned object or fake `JS_Wrap` instance
+is required. Returns `NULL` if the class handle isn't registered in this
+task or if the current JavaScriptEngine predates this callback.
+
+Old v1 callers continue to use the original 30 vectors and
+`JAVASCRIPTVERSION=1` without recompilation. Clients using the new vector
+must check for `lib_Version >= JAVASCRIPT_CLASS_PROTOTYPE_VERSION` (2).
+The JavaScript engine is a separate program: a version 2 library running
+with an older engine safely returns `NULL` for this vector (checked by
+engine table `jt_Size`). Do not assume availability merely because
+`OpenLibrary("javascript.library",2)` succeeded.
+
+This is intended to support Oolite's SpiderMonkey
+`JS_InitClass` **source-level** migration before any Ship/Entity exists,
+without attempting to duplicate `JSContext`, `JSRuntime` or `jsval` binary
+layouts.
