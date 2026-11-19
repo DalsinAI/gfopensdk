@@ -671,23 +671,33 @@
       }
     },
     {
-      "name": "GFOpenGfx graphics and layers additions",
-      "version": "main 9565e57",
+      "name": "GFOpenGfx graphics and layers additions, gfopenoverlay.library",
+      "version": "main 0317540 (layers.library 47.112, gfopenoverlay.library 1.0)",
       "repo": "DalsinAI/gfopengfx",
-      "commit": "9565e577e714d0c40584bfebc45c3796cb07791c",
+      "commit": "031754008069336591e1ff6a74db9b555c3038e1",
       "licence": "MIT",
       "files": {
         "include/graphics/gfxdispatch.h": "Include/graphics/gfxdispatch.h",
         "include/graphics/gfopenlayers.h": "Include/graphics/gfopenlayers.h",
         "include/clib/gfxdispatch_protos.h": "Include/clib/gfxdispatch_protos.h",
         "include/inline/gfxdispatch.h": "Include/inline/gfxdispatch.h",
-        "include/proto/gfxdispatch.h": "Include/proto/gfxdispatch.h"
+        "include/proto/gfxdispatch.h": "Include/proto/gfxdispatch.h",
+        "include/libraries/gfopenoverlay.h": "Include/libraries/gfopenoverlay.h",
+        "include/clib/gfopenoverlay_protos.h": "Include/clib/gfopenoverlay_protos.h",
+        "include/inline/gfopenoverlay.h": "Include/inline/gfopenoverlay.h",
+        "include/proto/gfopenoverlay.h": "Include/proto/gfopenoverlay.h",
+        "include/fd/gfopenoverlay_lib.fd": "FD/gfopenoverlay_lib.fd"
       },
       "sha256": {
+        "FD/gfopenoverlay_lib.fd": "2612f488b01a392e4b14e14e171b81a9dd312fb2308c276d51644d4f37839c7d",
+        "Include/clib/gfopenoverlay_protos.h": "507eb3cf0e6d7cef9624fc77f3ec2fd65c221a5ea65f021e2f8d62075757a733",
         "Include/clib/gfxdispatch_protos.h": "38785f198d9f9941442fbcedfeaaac59ac4b1d3123f4f49b94e627c8ba6bee9d",
-        "Include/graphics/gfopenlayers.h": "4cc066caf3698589ea6186d43b7db79437bd97369f48de1e0cf8ebafea4e53ec",
+        "Include/graphics/gfopenlayers.h": "193f3b574bc693941ffafeac1aae5906b2907be46d658bab22d7d38c121fe957",
         "Include/graphics/gfxdispatch.h": "72eabedb61ae621e925e0b2e33d368a5c6718ebd7867e86d2d30bbd542ddcb46",
+        "Include/inline/gfopenoverlay.h": "fc274a2be9d929f84d984664a176d5ea0df5bc427230b6a6a8457793a24fa872",
         "Include/inline/gfxdispatch.h": "7440448b31d19f83a9b7e0e3e790447edc96ab1fc537ec4bff7c6b1da04dabff",
+        "Include/libraries/gfopenoverlay.h": "3a7f275ae7c028f20297f6680b494733b4b6625c596cdbc8fffb4326f755af0d",
+        "Include/proto/gfopenoverlay.h": "910866cec597c72d0337c603842162555f57ae8fc322c473c79f1ff5f7007e47",
         "Include/proto/gfxdispatch.h": "d97a5fd6fc078132baac5bb52838b7c6d15a8d7161b3f0c2520895189679bd62"
       }
     },
