@@ -43,7 +43,10 @@ jobs:
         run: CC="$PWD/build/tc/gfopenamigagcc-16.2.0-open6-x86_64-linux/bin/m68k-amigaos-gcc" NDK_INC="$PWD/OpenNDK/Include_H" OUT="$PWD/build/arh" sh Examples/aroscompat-hello/build.sh
       - name: AROSHello on a 68040 (vamos)
         run: |
-          pip install amitools==0.8.1 machine68k==0.3.0 greenlet
+          # a venv of its own: the runner's Python is the system's (PEP 668)
+          python3 -m venv build/venv
+          build/venv/bin/pip install -q amitools==0.8.1 machine68k==0.3.0 greenlet
+          export PATH="$PWD/build/venv/bin:$PATH"
           cd build/arh
           vamos -C 68040 -m 8192 -H disable ./AROSHello | tee o1.txt
           vamos -C 68040 -m 8192 -H disable ./AROSHello Dale TIMES=3 | tee o2.txt
