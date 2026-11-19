@@ -278,9 +278,9 @@
     },
     {
       "name": "javascript.library",
-      "version": "1.0, main 8cfdc5b",
+      "version": "2.0, class prototype ABI append-only vector -210",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
+      "commit": "c731d89f6f018ffb2ea4091cd00595b5fbba9e9a",
       "licence": "MIT",
       "files": {
         "src/jslib/sdk/Include_H/libraries/javascript.h": "Include/libraries/javascript.h",
@@ -294,15 +294,15 @@
         "src/jslib/README.md": "Docs/javascript.library.md"
       },
       "sha256": {
-        "Docs/javascript.library.md": "c08fd4998f59c261699e66f6e146011844f8e16ea731af215315348639ce834b",
-        "FD/javascript_lib.fd": "c74896f03e3facbf7b4e59aee2ec05aa1aad319968d768f45fed590abd4f791c",
-        "Include/clib/javascript_protos.h": "3fd673ad25d88a7b06e02338eb12ff620761932fb73fef61d18d16552d590fec",
-        "Include/inline/javascript.h": "8a39e7c2a95b5add4ebe219b77429dd33d1344669901e586775f038bc59a6ff3",
-        "Include/libraries/javascript.h": "c972c8a216acb0b5b8520d845c2c5d29c49dbd26aac88b9d54ab0d8dc87a08ff",
-        "Include/pragmas/javascript_pragmas.h": "64889bc9910222e91e94dbbb85e566138b936c3dc2ec06530dc38abb15548eaa",
+        "Include/libraries/javascript.h": "dffa1466c58a2b3dca3872b325d3d74454d84ee6e6a04cd72fa06bfa3089dbf6",
         "Include/proto/javascript.h": "287cf403d2d7f247740f511fa42b677d112a08c9b81f43a92c0e703f393f4182",
-        "Include_I/lvo/javascript_lib.i": "449b808892a0f9230efbd196a2e315a60768146a6b09b3078afb529d504aa660",
-        "SFD/javascript_lib.sfd": "cd8eb39ffbf7142fc0d845d489d3d2325630a9f6b2fa3939e2e08b612f765184"
+        "Include/inline/javascript.h": "00fb41c999f801d69a79567b7155b1ce72551f224dd4c7f7d40cbc8d35b35a08",
+        "Include/clib/javascript_protos.h": "c2a3c32fb3f1fff8c3d7cdcf6949a381842aa2c344f8ee6afdeabd906e62d522",
+        "Include/pragmas/javascript_pragmas.h": "0bcce0cce79229fd1db6fa72fd5ba6a02e8e9587b2620036db56883ba617bddd",
+        "Include_I/lvo/javascript_lib.i": "d78b51be53dcf2832ce0cdfb116f680a70679c8cf47673b3ae716f5a33f2f78f",
+        "SFD/javascript_lib.sfd": "33a6d2759e0304f9de133a1534481cc4f8b4edb8a7688d2d091b2fa421862e8e",
+        "FD/javascript_lib.fd": "69000fcabd1bb05351b329d0a42ac9a5816592c8562adb024c85233b9367b301",
+        "Docs/javascript.library.md": "4c1cce7c8c2a74c97aa354a150dd36fb4d05177b33c93292e8d00a7566282222"
       }
     },
     {
