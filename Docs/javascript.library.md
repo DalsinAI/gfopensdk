@@ -67,6 +67,44 @@ DOS calls are fine. A slot function returns a new value (`JS_New*`,
 `JS_Dup`, `JS_Wrap`) or NULL for undefined, and throws with
 `return JS_Throw(task, "message");`.
 
+
+## Appendix: true host prototypes for source-level JS_InitClass compatibility
+
+Oolite's original JavaScript engine defines classes (Ship, Entity, Mission,
+Script, etc.) **before** any game object exists. `JS_Wrap` cannot be used to
+create dummy game-owned objects merely to expose their prototypes.
+
+`javascript.library` **version 2** adds exactly one append-only vector:
+
+```c
+JSValue JS_ClassPrototype(JSTask task, JSClass cls); /* -210 */
+```
+
+The class must have been registered with `JS_RegisterClass` on **the same**
+`JSTask`. The implementation looks up `cls` in that task's class registry,
+returns its genuine protected prototype as a newly owned `JSValue`, or
+`NULL` if it does not belong to the task. Callers `JS_Free(task, value)`
+after publishing the prototype; they must never pass another task's handles.
+The underlying prototype survives because it is protected by the class record.
+
+The existing 30 vectors (LVO -30 to -204) retain their meaning and order.
+The engine table appends its `ClassPrototype` callback and increases
+`jt_Size`, preserving the previous prefix and `JSL_TABLE_VERSION=1`.
+A v2 `javascript.library` paired with a **v1 JavaScriptEngine** checks
+`jt_Size` and returns `NULL` for only the new vector: no out-of-bounds
+callback invocation. All old calls remain operational. A client requiring the
+feature checks `lib_Version >= JAVASCRIPT_CLASS_PROTOTYPE_VERSION` and
+handles `NULL`; a v2 library alone does **not** prove that its separately
+deployed engine implements the callback.
+
+Regression additions in `tests/jslib/core_test.c`: prototype availability
+before any wrapper; true parent prototype inheritance; identity with later
+`JS_Wrap` objects; rejection of a `JSClass` from another JSTask.
+These tests require the patched JavaScriptCore JIT build to run.
+Oolite source glue is in `DalsinAI/amigaoolite`,
+`OOGFOSJSClassBootstrap`; **no binary SpiderMonkey JSAPI compatibility is
+claimed**.
+
 ## Building and testing
 
 - Library and JS: `scripts/build-javascript-library.sh` (os32-gcc16 or the
@@ -92,32 +130,3 @@ Install: `javascript.library` in `LIBS:`, `JavaScriptEngine` in
 Next (the design's phases): the 68k code kept with the translation, then
 the host classes proved on GFOpenBrowser Lite, then GFOpenBrowser itself on the
 library.
-
-## Optional ABI 2: registered class prototype without a wrapper
-
-`javascript.library` version 2 adds **one** append-only vector, LVO -210:
-
-```c
-JSValue JS_ClassPrototype(JSTask task, JSClass cls);
-```
-
-The input `cls` must be returned by `JS_RegisterClass(task, hostClass)`
-using the **same** `JSTask`. The returned `JSValue` is owned by the
-caller; release with `JS_Free(task, prototype)`. It is the actual class
-prototype, already chained to its parent and populated with the class's
-method/property slots; no game-owned object or fake `JS_Wrap` instance
-is required. Returns `NULL` if the class handle isn't registered in this
-task or if the current JavaScriptEngine predates this callback.
-
-Old v1 callers continue to use the original 30 vectors and
-`JAVASCRIPTVERSION=1` without recompilation. Clients using the new vector
-must check for `lib_Version >= JAVASCRIPT_CLASS_PROTOTYPE_VERSION` (2).
-The JavaScript engine is a separate program: a version 2 library running
-with an older engine safely returns `NULL` for this vector (checked by
-engine table `jt_Size`). Do not assume availability merely because
-`OpenLibrary("javascript.library",2)` succeeded.
-
-This is intended to support Oolite's SpiderMonkey
-`JS_InitClass` **source-level** migration before any Ship/Entity exists,
-without attempting to duplicate `JSContext`, `JSRuntime` or `jsval` binary
-layouts.
