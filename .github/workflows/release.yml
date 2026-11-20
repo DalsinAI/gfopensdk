@@ -15,7 +15,7 @@ permissions:
   contents: write
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, amicradle-validate]
     steps:
       - uses: actions/checkout@v4
       - name: Check, archive and publish

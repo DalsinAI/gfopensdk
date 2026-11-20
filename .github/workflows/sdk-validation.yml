@@ -8,11 +8,11 @@ permissions:
   contents: read
 jobs:
   ndk:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, amicradle-validate]
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get update && sudo apt-get install -y gcc-m68k-linux-gnu g++-m68k-linux-gnu
+      - run: command -v m68k-linux-gnu-gcc >/dev/null && command -v m68k-linux-gnu-g++ >/dev/null || { sudo apt-get update && sudo apt-get install -y gcc-m68k-linux-gnu g++-m68k-linux-gnu; }
       - run: sh OpenNDK/tests/run.sh
       - name: SDK public headers, C and C++
         run: |
@@ -25,7 +25,7 @@ jobs:
       - run: python3 tools/gather.py --offline-check
       - run: python3 -m py_compile tools/build_curl_sdk.py
   aroscompat:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, amicradle-validate]
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -43,7 +43,9 @@ jobs:
         run: CC="$PWD/build/tc/gfopenamigagcc-16.2.0-open6-x86_64-linux/bin/m68k-amigaos-gcc" NDK_INC="$PWD/OpenNDK/Include_H" OUT="$PWD/build/arh" sh Examples/aroscompat-hello/build.sh
       - name: AROSHello on a 68040 (vamos)
         run: |
-          pip install amitools==0.8.1 machine68k==0.3.0 greenlet
+          # into the build folder: the runner's Python is the system's (PEP 668), with no venv module
+          python3 -m pip install -q --target build/pylib --break-system-packages amitools==0.8.1 machine68k==0.3.0 greenlet
+          export PYTHONPATH="$PWD/build/pylib" PATH="$PWD/build/pylib/bin:$PATH"
           cd build/arh
           vamos -C 68040 -m 8192 -H disable ./AROSHello | tee o1.txt
           vamos -C 68040 -m 8192 -H disable ./AROSHello Dale TIMES=3 | tee o2.txt
@@ -53,7 +55,7 @@ jobs:
           grep -q 'sets init 1' o1.txt
           grep -q 'sets exit' o1.txt
   curl-overlay:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, amicradle-validate]
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -109,11 +111,9 @@ jobs:
           cmake -S tests/sdk/curl_consumer -B build/consumer -DCMAKE_SYSTEM_NAME=Generic -DCMAKE_TRY_COMPILE_TARGET_TYPE=STATIC_LIBRARY -DCMAKE_C_COMPILER="$PWD/build/stove/prefix/bin/m68k-amigaos-gcc" -DCMAKE_C_FLAGS="-m68040 -m68881 -mcrt=nix20 -pthread" -DCURL_DIR="$PWD/build/relocated-sdk/lib/cmake/CURL"
           cmake --build build/consumer
           build/stove/prefix/bin/m68k-amigaos-objdump -f build/consumer/curl-consumer | grep amiga
-      - uses: actions/upload-artifact@v4
+      - name: Keep the outputs on the runner (curl-sdk-overlay; no artifact storage on GitHub)
         if: always()
-        with:
-          name: curl-sdk-overlay
-          path: |
-            build/overlay/sdk
-            build/overlay/receipt.json
-            build/overlay/build.log
+        run: |
+          d="$HOME/AmiCradle-dev/ci/artifacts/${{ github.repository }}/${{ github.run_id }}/curl-sdk-overlay"; mkdir -p "$d"
+          for p in build/overlay/sdk build/overlay/receipt.json build/overlay/build.log; do [ -e "$p" ] && cp -a "$p" "$d/" || true; done
+          echo "kept in $d"
