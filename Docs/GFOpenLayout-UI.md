@@ -58,6 +58,7 @@ fills it.
 | --- | --- | --- |
 | `row` | Its children side by side (`display:flex`) | |
 | `column` | Its children one under another, `gap` apart | |
+| `grid` | Its children in `columns` columns, row after row, `gap` apart both ways (6px): each column as wide as its widest cell, the columns whose cells grow (`flex:1`) sharing what is left, each row as tall as its tallest cell (library 18) | `columns` |
 | `div`, `section`, `p`, `h1`-`h3`, `hr`, `spacer` | Boxes and text; `spacer` grows (`flex:1`) | |
 | `label` | Text; a click on it works its control: the one `for` names, or the one inside it (a checkbox is ticked, a radio button chosen, a button pressed, anything else takes the keyboard) | `for` |
 | `span`, `b`, `strong`, `i`, `em`, `u`, `code`, `a`, `br` | Text in a line | |
@@ -69,7 +70,7 @@ fills it.
 | `input type=number`, `spinner` | A number field with up and down arrow buttons: `OLUI_CHANGE` with the value in `index`. Decimals are fixed point: with `step=0.5` the value is in tenths (`olui_number_decimals`). Typed, it is held to `min` and `max` on Return or when the keyboard goes elsewhere | `value`, `min`, `max`, `step` |
 | `textarea` | Text of many lines, wrapped at words, that scrolls (a bar when it is taller than its box): `OLUI_CHANGE` on each edit. Its text is as written, spaces and newlines kept | `rows`, `cols` (its size when CSS gives none), `placeholder`, `readonly`, `maxlength`, `wrap=off` |
 | `select` | A drop-down: the chosen option and a mark; a click, Return or space opens its list over the window. With `size` above 1, a list box in place. `OLUI_CHANGE` with the option's number from 0 in `index`, its `value` (its text when it has none) in `value` and the option in `item` | `size` |
-| `option` | One of a select's choices (`</option>` may be left out, as in HTML) | `value`, `selected`, `disabled`, `label` |
+| `option` | One of a select's choices (`</option>` may be left out, as in HTML). With `separator`, a line between rows that keys and clicks pass over (a menu's separator) | `value`, `selected`, `disabled`, `label`, `separator` |
 | `optgroup` | A row with its `label`, and the options in it under it | `label`, `disabled` |
 | `fieldset`, `legend` | A box round a group, its legend on its top edge, the edge broken where it is | |
 | `list`, `tree` | A list that scrolls; with items inside items, a tree: `OLUI_SELECT`, `OLUI_ACTIVATE`, `OLUI_EXPAND`, `OLUI_COLLAPSE` | |
@@ -78,7 +79,7 @@ fills it.
 | `tab` | One page | `title` (its button), `value`, `selected` |
 | `progress` | A bar from 0 to `max` | `max` |
 | `slider` | A value from `min` to `max`, dragged or keyed: `OLUI_CHANGE` as it moves, the value in the event's `index` | `min`, `max`, `value` |
-| `img` | A picture's place in a line (in a button too): the program draws it | `image` (its number), `width`, `height` |
+| `img` | A picture's place in a line (in a button too): the program draws it | `image` (its number), `width`, `height`; CSS `width` and `height`, when given, size it instead (`olui_set_style` resizes it while the window is open) |
 
 Every tag takes `id` (how the program finds it and names its handlers),
 `class`, `style`, `disabled`, `hidden`, `title` (a tooltip, but for a
@@ -107,7 +108,7 @@ don't.
 | `flex`, `flex-grow` | A whole number: its share of the room left (across a row, or down a box with a height) |
 | `gap` | Between a row's or a column's children |
 | `align-items` | `stretch` (the default), `start`, `center`, `end` |
-| `justify-content` | `start`, `center`, `end`: where a row's children go when none grows |
+| `justify-content` | `start`, `center`, `end`: where a row's children go when none grows; `space-between`, `space-around`, `space-evenly` share the spare room out between them; in a `column` of a height with room to spare, all six place its children down it |
 | `width`, `height` | A length or `auto` |
 | `margin`, `padding` and their `-top`, `-right`, `-bottom`, `-left` | Lengths |
 | `color`, `background`, `background-color` | Colours; `background` also takes `linear-gradient()` down the box, with up to four stops |
@@ -115,6 +116,8 @@ don't.
 | `font-size`, `font-weight`, `font-style`, `font-family` (`monospace`), `font`, `text-decoration` (`underline`, `line-through`), `text-align`, `line-height` | |
 | `accent-color` | Ticks, radio dots, progress bars and a slider's filled track |
 | `mark-background`, `mark-border-color` | A checkbox's and radio button's box, a slider's track (ours, not CSS's) |
+| `grid-columns` | A number from 1 to 64: the box is a grid of that many columns, as `<grid columns=n>` is (ours, not CSS's; library 18) |
+| `same-size` | `none` (the default), `width`, `height` or `both`: its children the same size, as MUI's SameSize is. `width`: in a row each asks for the widest one's width, in a grid every column is the widest's; `height`: in a column each is as tall as the tallest, in a grid every row is, in a row each is the row's height whatever `align-items` says (ours, not CSS's; library 18) |
 | `placeholder-color` | A field's placeholder (ours) |
 | `overflow` (`overflow-y`) | `auto` or `scroll`: a box with a height scrolls what it holds, with a bar when that is taller; `hidden`: cut to the box, scrolled only by the program; `visible` |
 | `position`, `left`, `top` (0.4) | `absolute` or `fixed`: out of the flow at `left` and `top` from the parent's content corner; `relative`: in the flow, in a layer |
@@ -383,6 +386,20 @@ glue: its root (`window{background-image:url(1)}`) draws the program's
 picture in the window's box, the icons over it, and only what changed is
 drawn again.
 
+## Toolkits over the UI (0.5)
+
+0.5 (in `gfopenlayout.library` 12) has two calls a toolkit that puts its
+own widgets in olui windows needs (gfopenwx, the wxWidgets port):
+
+- `olui_repaint(ui, el, part)`: `el` is drawn again at the next `olui_draw`,
+  all of it (`part` NULL) or the part of it in `part`, in the window's
+  pixels (cut to the element and to the box it scrolls in). For a picture the
+  program draws (an `img`) that changed: nothing else is laid out or drawn.
+- `olui_popup(ui)`: the pop-up open over the window (a select's list, a
+  menu), or NULL. While there is one the program gives olui the pointer
+  wherever it is, even over the program's own widgets, so the pop-up gets
+  the click that closes it.
+
 ## GFOpenLayout 0.8
 
 What the UI needed in GFOpenLayout itself, for any program:
@@ -449,8 +466,8 @@ A program links `libolui.a` and includes `gfopenlayout_ui.h` and
 - A select chooses one option (no `multiple`); its pop-up shows 12 rows
   at most and scrolls the rest. A select is as wide as its widest option,
   measured at each layout.
-- Menu bars (Intuition's are the program's); a context menu's separators and submenus (`optgroup`
-  gives a labelled part).
+- Menu bars (Intuition's are the program's); a context menu's submenus (`optgroup` gives a
+  labelled part; `option separator` draws its separators).
 - A vlist's columns are fixed widths (no header, no dragging them), its rows one line, and a drag
   from it is the program's.
 - Dragging between windows: the program's. The drag events have the pointer even outside the

@@ -5,9 +5,9 @@
   "parts": [
     {
       "name": "gfopenrtg.library",
-      "version": "0.25, main 5b7bfc6, `gfopenrtg`",
+      "version": "0.25, main 3eae882, `gfopenrtg`",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "5b7bfc6affbc8d8b7897d53113615e60271c27a4",
+      "commit": "3eae882dcad5e2fe71b3b329c3e7965eaafa20d3",
       "licence": "MIT",
       "files": {
         "include/gfopenrtg/gfopenrtg.h": "Include/gfopenrtg/gfopenrtg.h",
@@ -17,19 +17,19 @@
         "library/gfopenrtg_lib.sfd": "SFD/gfopenrtg_lib.sfd"
       },
       "sha256": {
-        "FD/gfopenrtg_lib.fd": "24593bd69ae9471a00942d21846174654b66d5d5b458ab75ff86f9a9646ff434",
-        "Include/gfopenrtg/gfopenrtg.h": "446328ce4825bf4bcfcb1ce2a46fe45e837c4b2ecabc8940aa2b96cea1dd7e1e",
+        "FD/gfopenrtg_lib.fd": "b89a99dd65ec688311e0c4ed826a6faa1a34b67ecaf5f2ce6eaf3962b0f844eb",
+        "Include/gfopenrtg/gfopenrtg.h": "126536d1c0b291449640cb7745201e21aced1b18fecde1629d841eb3cbcc6116",
         "Include/gfopenrtg/modes.h": "8dbf8a951a4d671e81f0018978394d12608278585bc7f0151dde5b48d1df41b3",
-        "Include/inline/gfopenrtg.h": "b5e698d193339cf0ef84c0a0a23de025d72af8c8f8880f03ad4118d6808ff39e",
+        "Include/inline/gfopenrtg.h": "16f8ce7634f123159b91b9c897f2246f9dabe189d9dfea15f77563f2fbf99121",
         "Include/proto/gfopenrtg.h": "749ee2fdfac75777237be779c01100e3022bec325cc385846a1467933cd38838",
-        "SFD/gfopenrtg_lib.sfd": "3b912037140555543832be75d15dda26eef45171f0b18333ee3c17d7994bcfc4"
+        "SFD/gfopenrtg_lib.sfd": "47c57cf2a7183edeb5f91489c7c461824fc59c774ac5e10345b186c573067981"
       }
     },
     {
       "name": "gfopengpu.library",
-      "version": "0.27, main 5b7bfc6",
+      "version": "0.27, main 3eae882",
       "repo": "DalsinAI/gfopenrtg",
-      "commit": "5b7bfc6affbc8d8b7897d53113615e60271c27a4",
+      "commit": "3eae882dcad5e2fe71b3b329c3e7965eaafa20d3",
       "licence": "MIT",
       "files": {
         "include/gfopengpu/gfopengpu.h": "Include/gfopengpu/gfopengpu.h",
@@ -48,7 +48,7 @@
         "include/gfopengpu/virgl.h": "Include/gfopengpu/virgl.h"
       },
       "sha256": {
-        "Docs/AutoDocs-GFOpenGPU.md": "d9590baf47ec7541646df5b221a014c1a84e351f7fb5a353d917b7560a6e2294",
+        "Docs/AutoDocs-GFOpenGPU.md": "2f7f17655c66642007929f3561fcc14b628465c4c061809a54cd2e8f382c99c8",
         "FD/gfopengpu_lib.fd": "505cb9622ded472bacbfbda209f99c911abc4077410389c1a17ecfe335f7efde",
         "Include/gfopengpu/build.h": "3b2037d78e05a4f25cfebf6d8a17195ff94946b8795bd916b4fd36ef1b54b97e",
         "Include/gfopengpu/build3d.h": "eaf3f350c6fe3b0ef75bcf81659c4e291bf662cfab6ee3f29a7a8e1b8460065f",
@@ -59,7 +59,7 @@
         "Include/gfopengpu/retained.h": "fb3335fd6371bce245f481889619ba290f02b0f388b05f3d42b0fd9ba6cfb822",
         "Include/gfopengpu/stream.h": "b1c46814d494111da9ff948da92c120ec2cadca25fcbf3ca4fddfc9f2c42c803",
         "Include/gfopengpu/stream3d.h": "8757f225ce2083ff030132e5da17c15816b075476ad2c01cd18f7dac06f229bc",
-        "Include/gfopengpu/virgl.h": "aca7f297d4de4dc9c57f0d373ca6d524d5510ad44f48cbad14043f9e3e42f9c4",
+        "Include/gfopengpu/virgl.h": "5fb22bdc7856d851d9d1927be56044bd2d58fcf08ebcd85d3a739bdc1188d7ef",
         "Include/inline/gfopengpu.h": "cdaa43c30c728fa4d880cf02d70dcf63859ac875aa5b2fee5bad955a6eea8a48",
         "Include/proto/gfopengpu.h": "17cb66248792ac675c880dfb15c0daed1e566dfdeb6669ea0285c6d8c87ad276",
         "SFD/gfopengpu_lib.sfd": "3a21cdbc18d7748a83834989558b46d2588ea836786e6278222cc0a44bcbaac3"
@@ -96,9 +96,9 @@
     },
     {
       "name": "opensocket.library",
-      "version": "main e7a6066",
+      "version": "main 4abeeba",
       "repo": "DalsinAI/gfopensocket",
-      "commit": "e7a6066da40af61051c171d5d17df9b1ef6cb339",
+      "commit": "4abeebaee10e8bd04901e95ffccee8e691610719",
       "licence": "MIT",
       "files": {
         "guest/network/acnetwork/include/acnetwork.h": "Include/acnetwork.h",
@@ -106,9 +106,9 @@
         "guest/network/acnet/include/acnet_socket_tags.h": "Include/opensocket/acnet_socket_tags.h"
       },
       "sha256": {
-        "Include/acnetwork.h": "6edf89032b451f42f9522f05f4a4c86fd288d7cee41c537be4b1fbfcb2033e4a",
+        "Include/acnetwork.h": "70db91a8c106df930de20ff617fbebcb0fbbbb59dd7b0358e139bdff0f22f224",
         "Include/opensocket/acnet_socket_tags.h": "f229c10dff68f24e75873eac3ba5423d4d90d965462cb85e89185d890a326903",
-        "Include/proto/acnetwork.h": "3a839520c64c2e8ade425bcde4b5c39997a20d4916e27d0bff92c939351b7df7"
+        "Include/proto/acnetwork.h": "512067e69f5f68496d19eebba402c5702da0f1f2cc2d795dacb8171530ec53bb"
       }
     },
     {
@@ -160,15 +160,15 @@
     },
     {
       "name": "accontrol.device",
-      "version": "main e22fda4",
+      "version": "main 3ff9f46",
       "repo": "DalsinAI/amicradle-guest",
-      "commit": "e22fda408a6fd0dad4a970f589a22f7c7a3e2d95",
+      "commit": "3ff9f46c56e566e05b8ebbb6fac440f149fb0f36",
       "licence": "MIT",
       "files": {
         "devices/accontrol.device/include/accontrol.h": "Include/accontrol/accontrol.h"
       },
       "sha256": {
-        "Include/accontrol/accontrol.h": "2f130e9221cffe61e88c2756ec2fc3854d93491debd8762b466b402569dc01c8"
+        "Include/accontrol/accontrol.h": "7e484b6b9027e1f6af42d0cb76b2e55c6fc13db9cfb243d39b3c084de3c80077"
       }
     },
     {
@@ -186,9 +186,9 @@
     },
     {
       "name": "gfopentls.library / gfopencrypto.library",
-      "version": "1.4 / 2.3, main 7d28467",
+      "version": "1.4 / 2.3, main b34efe0",
       "repo": "DalsinAI/gfopentls",
-      "commit": "7d284674063338e89cccf87ee247dcac52e37210",
+      "commit": "b34efe0872cc41386e501862025b3335b9fed4f8",
       "licence": "MIT",
       "files": {
         "include/fd/gfopentls_lib.fd": "FD/gfopentls_lib.fd",
@@ -204,24 +204,24 @@
         "docs/AutoDocs-GFOpenTLS.md": "Docs/AutoDocs-GFOpenTLS.md"
       },
       "sha256": {
-        "Docs/AutoDocs-GFOpenTLS.md": "8d16120f70ff574c954d1eaa202af8a27f960070b8d6e92c4a1a538de2ba68a4",
-        "FD/gfopentls_lib.fd": "b1034ff3cb9182be6a858015e955118ddad7edf814a8f43e75a63c935c363a93",
-        "Include/clib/gfopentls_protos.h": "d4ef4d539e525ea035b70b84ae4898bf31fc3389137fed5f016ba9207ec659ca",
-        "Include/gfopencrypto/gfopencrypto.h": "8334d4c5530ba82f2a46840724290b270675e318ee2ba322d9a24152ceb92401",
-        "Include/inline/gfopencrypto.h": "029b2f3f6f5f31bbf0569fe999b15c0ba16888823b906297e8297efbb309e1c0",
-        "Include/inline/gfopentls.h": "4350123544b4756f42129270400d29fa48c93ca099d4a6d902a1da7a9848d6a9",
-        "Include/inline/gfopentls_protos.h": "72b645597afea92b8def08d2c167f256312cb892266b17de436efbda1f786eaf",
-        "Include/libraries/gfopencrypto.h": "51dc28b240cff52541e2670474ba0a7df1151f396a5dfcfa4b678e4722a6af32",
-        "Include/libraries/gfopentls.h": "c7c38bdb4a4ca0e2c5d2bd47e9ca04cafb35540ff5cbb285f49a3ee83d224bde",
+        "Docs/AutoDocs-GFOpenTLS.md": "73682296603947f894f4fa0298b0208890b03cbd2dfd3860027240e7d0193beb",
+        "FD/gfopentls_lib.fd": "e065b395346117232033b13e9ecc2785ec3b436d4ad6479f13ae28ef45ec4dbd",
+        "Include/clib/gfopentls_protos.h": "6755a92ae83b1c170b4ff5024649496c0d36f3ca0ea9e5459b548b4f00bb7605",
+        "Include/gfopencrypto/gfopencrypto.h": "134543e0e1684054865c9eb1919a0bee14e056dbaa8de8e82197dbbe4b8bc0c9",
+        "Include/inline/gfopencrypto.h": "ae5a514e881e00a30aae07451fd7e69c3772b49902c877f917be5da8b4d21bbf",
+        "Include/inline/gfopentls.h": "40619fe834613c9fceba38321c49155137bbcd5321e254c8b7ceeaa9929905a6",
+        "Include/inline/gfopentls_protos.h": "442a9443e9f645f58aa21df0ad0059de5f0f4648b632b0bd96a779c61411d42c",
+        "Include/libraries/gfopencrypto.h": "622595974f017bf90d2c1c4e12d88e27e889f72dc40668a622d4f158987be167",
+        "Include/libraries/gfopentls.h": "33f377a91e1652d2758e4481bc260d035acf124a5fd9ae39109e2b850d53fe27",
         "Include/proto/gfopencrypto.h": "40577349d0cf8285f9bf18cc8ad58ac61235d134f0e4fbfab2f17b687d692272",
         "Include/proto/gfopentls.h": "e6a842130aa17fddc9342b17ca7b8a31f032f24f9696ab5e848c2893c1fe4232"
       }
     },
     {
       "name": "regex.library",
-      "version": "1.0, main 6c6b695, `gfopenregex`",
+      "version": "1.0, main a1d117e, `gfopenregex`",
       "repo": "DalsinAI/gfopenregex",
-      "commit": "6c6b695123a16c2c464d4b7c0185b1cb056bdb78",
+      "commit": "a1d117e3fa9d80f1f7b24b04a938b9bab1e28fc1",
       "licence": "MIT",
       "files": {
         "include/regex.h": "Include/regex.h",
@@ -235,20 +235,20 @@
       },
       "sha256": {
         "Docs/regex.library.md": "fb0250d48f4d8ae3198aeebfdcbd9f7e5a38143e75ad27cad776070cd3cdec66",
-        "FD/regex_lib.fd": "632b49059db2cc93a17f3876a1a78814bf80e3502a294fc9bac1154120bbee01",
-        "Include/clib/regex_protos.h": "7577a4d037f595ed6e0ae151bcf5434f9bd7ce77ab66180d75d3c4b1f00bc6cc",
-        "Include/inline/regex.h": "831be682b8104af7f52c5aa670e0e2bb775926e7812ef9aed05335289f3057a7",
-        "Include/libraries/regex.h": "f22bdf6a69d9e10a30684aea21cc595e64048e43e76b53d1f8d97e1f8a626d7a",
+        "FD/regex_lib.fd": "3d670c3227a77671dad50322d8189fa217ac87c0349cf835c79a915a792b3511",
+        "Include/clib/regex_protos.h": "e68cb6917fcb642ebf951115f56ecb4543417bee088af2e3aca1e70841faf7a4",
+        "Include/inline/regex.h": "9c4853cd1336acb77b21a5173e71cd40782541945e6bd041166f446b9cce9990",
+        "Include/libraries/regex.h": "9e100a98ea80cf4f4416790e7c22432d4f51aaad1595c4d332b18ad51976ecb1",
         "Include/proto/regex.h": "c5a657ec9fee97d5fc2bcd6df02c7a59490e859f5e6e92d23418c775313ad5e5",
-        "Include/regex.h": "491a0885922c8e8dcda7695e250b6c3f1a5173d3cc43b9c9fabf31c2fb03ea65",
-        "SFD/regex_lib.sfd": "8689f09210cef5e7e73dee616d039daf0b5622c9201048bb11a7d6641b32d368"
+        "Include/regex.h": "567da479d00b9ce7e686bf9f5e038e2418e7ce44c8840a97fb6338ab406409e4",
+        "SFD/regex_lib.sfd": "9eb92c138b2fb9d26e74a1dd6ccf7afdd1d0801c8d75f7f2d2231dfec9d55e45"
       }
     },
     {
       "name": "gfopenlayout.library",
-      "version": "11.0, main 6ecdfa1",
+      "version": "11.0, main 928c3f5",
       "repo": "DalsinAI/gfopenlayout",
-      "commit": "6ecdfa1c00b994592b07a3d5370351376039166f",
+      "commit": "928c3f5226b325b2f09bde1dc4ffa050ea686fd4",
       "licence": "MIT",
       "files": {
         "include/gfopenlayout.h": "Include/gfopenlayout.h",
@@ -263,17 +263,17 @@
         "docs/GFCSS.md": "Docs/GFCSS.md"
       },
       "sha256": {
-        "Docs/GFCSS.md": "97140a862d0d38bf3493ed08c80addc0662018cbb456604f0e413b671ed24bae",
-        "Docs/GFOpenLayout-UI.md": "954a6897d8126ccd29190059327c004aa6be7ec7d8ba32c1968dd31075978795",
-        "FD/gfopenlayout_lib.fd": "9799a68ef829beb2402aa672a74dfd255f5064cf93969c21c95079f21399b8bc",
-        "Include/gfopenlayout.h": "1de2052028a7fa966a7a5e4828a1a5627d4bc0268e74d43cea3a83056e757038",
+        "Docs/GFCSS.md": "732a81f8bb4ad984a407dfebb550c07a21a0ac8710ce8f8081c538d90d1f5aaa",
+        "Docs/GFOpenLayout-UI.md": "6b08964c08787932aeec9c89165568056ce6c89fec157543b87c13cd10df1ba8",
+        "FD/gfopenlayout_lib.fd": "69af8da99b51cd85d0a7f56c4666840037e45228abff00eff46a58f04e2dc3a3",
+        "Include/gfopenlayout.h": "1fd51229d580a2b8373bfc5c61314edf5fbda4c906bd1045b72ced94d10e9fb8",
         "Include/gfopenlayout_css.h": "2d0403a9a0d21a096846c078c6a069b6f03c3c5d7a3ebc25a02cadfe00e8867a",
-        "Include/gfopenlayout_ui.h": "ffdc4dff0997424f51e0d8a100d1815ed068d291ad3aa90542781a0457d55809",
-        "Include/gfopenlayout_ui_amiga.h": "c52615816f4132cab6b899416b4567a538280108a15e0dfbb93973b003e85c38",
-        "Include/inline/gfopenlayout.h": "83c482e9469a02714f91b64268543ab5d0254835c0daac48fe04c764b323e309",
-        "Include/libraries/gfopenlayout.h": "d3ec789a8743464edb4cce281ed87b97c63484595a5985c6ec9656c0cff1a6a4",
+        "Include/gfopenlayout_ui.h": "d51e9017cdb1a3651666f4efe70c679af347e876b44e148bff86aaf407de1d7a",
+        "Include/gfopenlayout_ui_amiga.h": "9c7c9d4ddc0e930024eccec996734173bd9120edbfea4d90b28a7755bbbd6fa7",
+        "Include/inline/gfopenlayout.h": "8824e0bc5cf69eaa370b7edb82ec4475690ce466512a12352ce69f265916b0b3",
+        "Include/libraries/gfopenlayout.h": "40f69f5ccdbaa5e1476d26899bfd13925932bb99923d5259e15a1b83eaeef4f9",
         "Include/proto/gfopenlayout.h": "fe6b8a3275c0d4693d91d572818a8b418c550ba5954d7f298e4d3553c479392b",
-        "SFD/gfopenlayout_lib.sfd": "07e241d932e9ff847affe1e41e1fe8e113048af908a4ba128909ee21553406e5"
+        "SFD/gfopenlayout_lib.sfd": "1c7ef12e598c3fe74c51e2b93433f7a87deacbfdfee777761d352d5108ee8bf7"
       }
     },
     {
@@ -336,9 +336,9 @@
     },
     {
       "name": "unicode.library",
-      "version": "1.0, main 8cfdc5b",
+      "version": "1.0, main 18a552b",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
+      "commit": "18a552b3015905d973844d68ae144d0eef4f3320",
       "licence": "MIT",
       "files": {
         "src/unicodelib/sdk/Include_H/libraries/unicode.h": "Include/libraries/unicode.h",
@@ -352,7 +352,7 @@
         "src/unicodelib/README.md": "Docs/unicode.library.md"
       },
       "sha256": {
-        "Docs/unicode.library.md": "5b0e36895b863f4456ce9c1d06fdb3dbb6caf083c0a1f9ff0814f7a096335dea",
+        "Docs/unicode.library.md": "b8ca233882b738b05a573bf5153fe3ca590389e17653e49b8963cd8b03b25be1",
         "FD/unicode_lib.fd": "51b65872eaaceb368c2733ad417b62994f2ab3161d50e57d0a98c00698b8ae31",
         "Include/clib/unicode_protos.h": "68ee4e975bc75ac7c5a66f27bda760dd04a7855a84b3635ec07f1cfe50b52de3",
         "Include/inline/unicode.h": "c947c7304e0061d6681630ef371c3a4507ea444ff1aa0b9528178d5b4f9d5a22",
@@ -365,9 +365,9 @@
     },
     {
       "name": "weblayout.library",
-      "version": "1.0, main 8cfdc5b",
+      "version": "1.0, main 18a552b",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
+      "commit": "18a552b3015905d973844d68ae144d0eef4f3320",
       "licence": "MIT",
       "files": {
         "src/weblayout/weblayout.h": "Include/weblayout.h",
@@ -381,7 +381,7 @@
         "docs/WEBLAYOUT_LIBRARY.md": "Docs/weblayout.library.md"
       },
       "sha256": {
-        "Docs/weblayout.library.md": "f667847cf0f7083414fe1955cf61af460b95b47394910f4ceb356dbe4a0aca25",
+        "Docs/weblayout.library.md": "a23d829ca93e8786c2f45ddbc531c3a7603ec34ae34c7f0c091f11d678dcafad",
         "FD/weblayout_lib.fd": "0159f91072c8aad90e043ee1c745e0ac8d5d085aace053457da8325479b330fd",
         "Include/clib/weblayout_protos.h": "c4cc184190de76f10aabd7f02a1b49c078fe8891465ca635b5594e2ca3edb312",
         "Include/inline/weblayout.h": "2336038564e83c7705af93d838b14cbb33074be01858d90219a48ee121ebaddc",
@@ -394,9 +394,9 @@
     },
     {
       "name": "webbrowser.library",
-      "version": "1.0, main 8cfdc5b",
+      "version": "1.0, main 18a552b",
       "repo": "DalsinAI/gfopenbrowser",
-      "commit": "8cfdc5bce7b83dfcc7c82668197e228cf4e88617",
+      "commit": "18a552b3015905d973844d68ae144d0eef4f3320",
       "licence": "MIT",
       "files": {
         "src/webbrowser/include/libraries/webbrowser.h": "Include/libraries/webbrowser.h",
@@ -406,10 +406,10 @@
         "docs/WEBBROWSER_LIBRARY.md": "Docs/webbrowser.library.md"
       },
       "sha256": {
-        "Docs/webbrowser.library.md": "73fd470a800e6e6b5fcdd1d9305e525ecd1dd08da7a8fa9d207b5e3d61b07792",
+        "Docs/webbrowser.library.md": "a590a917a7a8e042e9dc3282dacbb1c6d24a56c5101f67e99bce2c67f7d62d91",
         "Include/clib/webbrowser_protos.h": "8e71f7a722176873ccb01f0f180eadbdafb1c1f5bb1072c27432971cc6664026",
         "Include/inline/webbrowser.h": "69fc1206aa15165b66649740b82955109e38169de5587fa5586668a7ebc7feff",
-        "Include/libraries/webbrowser.h": "c80a32624b2900566405727b83ef00280dfac1dcc1e3d5ff4704279cb6c73f2e",
+        "Include/libraries/webbrowser.h": "0aa40e56d3b9c3b4d5aa67f75fc30b223f60cd5884dfe1243c67ffd0b650627b",
         "Include/proto/webbrowser.h": "6c28a0aaa230a3dfa6247087a7cdc4f2814837a104844e649e3a6ed593c915b3"
       }
     },
@@ -537,22 +537,22 @@
     },
     {
       "name": "openwxtoolkit.library",
-      "version": "1.0, main 1f7dea8",
+      "version": "1.0, main 0dc65bc",
       "repo": "DalsinAI/gfopenwxtoolkit",
-      "commit": "1f7dea8dd63dd6fe3c3e5c19a88632741d611674",
+      "commit": "0dc65bca5f71d10f15f078ddac04b5d24829a155",
       "licence": "wxWindows Library Licence",
       "files": {
         "README.md": "Docs/openwxtoolkit.library.md"
       },
       "sha256": {
-        "Docs/openwxtoolkit.library.md": "bf9b4a16b1dda7587a7f562cd29b6b121d94ad9a4da6ee72b4e5f3bbf6481e20"
+        "Docs/openwxtoolkit.library.md": "81f4b0e0af85ba4f870e7a1a866a0d7d083fd2aad68d1af8eb54616f492cb578"
       }
     },
     {
       "name": "elf.library",
-      "version": "2.0, main a6f9c20",
+      "version": "2.0, main 0131b96",
       "repo": "DalsinAI/gfopenelflibrary",
-      "commit": "a6f9c205618231b235467de9588ed72b1b345966",
+      "commit": "0131b960d2209978c0945d2e9d70dfbc88a41648",
       "licence": "MIT",
       "files": {
         "openelf_public.h": "Include/elf/openelf_public.h",
@@ -561,8 +561,8 @@
       },
       "sha256": {
         "Docs/elf.library.md": "ef55d1042e1abbdf34044eaad7625abfa4727d0a0cc246024ba2ba16afebbeb7",
-        "Docs/elf.lvo": "420ad3825795981d14d915f806a3577a394b21fe79ef9966688f813994ed0521",
-        "Include/elf/openelf_public.h": "55c69b654aedbabd228a9ee70f244df4d4761aed0bbd6c03e40f2c4b63e1916a"
+        "Docs/elf.lvo": "b2267669873ad6ac9b70864f0458a6ac23026e48cc08256f7cfa38dd480a3ceb",
+        "Include/elf/openelf_public.h": "3076aceb509e6d89ae7bd34b79722806cbecdd931f53a4b27914b20a0bae66d4"
       }
     },
     {
@@ -606,9 +606,9 @@
     },
     {
       "name": "akikoplus.library",
-      "version": "2.0, main 8b9ffe0, `gfosautoconfigboards`",
+      "version": "2.0, main 5fc1f83, `gfosautoconfigboards`",
       "repo": "DalsinAI/gfosautoconfigboards",
-      "commit": "8b9ffe0141413f3056f1ebd0dbec0c380f63680f",
+      "commit": "5fc1f83147a4fb9339b5788de46fb9a0b58a9bb4",
       "licence": "MIT",
       "files": {
         "cards/akikoplus/guest/include/libraries/akikoplus.h": "Include/libraries/akikoplus.h",
@@ -620,7 +620,7 @@
         "cards/akikoplus/guest/akikoplus.doc": "Docs/akikoplus.doc"
       },
       "sha256": {
-        "Docs/akikoplus.doc": "4ed4cc550938c0cbde7a178e5298977860e026430e99d412c9c3ff61c12592fe",
+        "Docs/akikoplus.doc": "2c4bc532019ec5d0afeb3b1571ffa646a41a63c9b503c180ee6b670c3f8ad782",
         "FD/akikoplus_lib.fd": "88419ccdcb16cd1d275a8bcf9cac1e0c399fa0de8d8c101a6e884f975d271639",
         "Include/clib/akikoplus_protos.h": "1034049434f0bf87b2511b2c953289bd26490a47e3a84bd918cc431055b5ec3d",
         "Include/inline/akikoplus.h": "793b302e263d4209fd165825334a565924bcd5d17d694e587bef2fb9f55fb385",
@@ -657,17 +657,17 @@
     },
     {
       "name": "GFOpenDatatypes classes",
-      "version": "gfopengif.datatype 47.3, main 169b7f8",
+      "version": "gfopengif.datatype 47.3, main b0f6a8d",
       "repo": "DalsinAI/gfopendatatypes",
-      "commit": "169b7f8d2c346f550f77ed873f76624b17d71c6b",
+      "commit": "b0f6a8da0f7f338caf5df1439836dd9a281a9f86",
       "licence": "MIT",
       "files": {
         "Datatypes/include/datatypes/gfopenimage.h": "Include/datatypes/gfopenimage.h",
         "Datatypes/include/datatypes/streamclass.h": "Include/datatypes/streamclass.h"
       },
       "sha256": {
-        "Include/datatypes/gfopenimage.h": "c7233cc871bf74f5901e49f018cd983ec57a0609493f43f6aa74be5daea91ad6",
-        "Include/datatypes/streamclass.h": "30fcbac29b0345313df147845b8905f9d9454cbe72b60877bc1c1837047c196c"
+        "Include/datatypes/gfopenimage.h": "e83c7d17f45874c17fb3ba0066c3b97ed1bba441288a28a3a042aa649d49d4aa",
+        "Include/datatypes/streamclass.h": "a680cf294c2d6f24a17256ef90e88ed06aa55c028a33666297790222b980f474"
       }
     },
     {

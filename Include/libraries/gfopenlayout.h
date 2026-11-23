@@ -44,6 +44,71 @@
                                                (OL_BOX_FIT_CONTENT). Through
                                                libgfopenlayout_link.a a version 11 call on
                                                version 10 does nothing and returns 0. */
+#define OPENLAYOUTLIB_TOOLKIT_VERSION 12    /* what a toolkit over the UI needs (GFOpenLayout UI
+                                               0.5, the wxWidgets port): OLUI_Repaint (a
+                                               program's picture drawn again, all or part) and
+                                               OLUI_Popup (the pop-up open over the window).
+                                               Through libgfopenlayout_link.a a version 12 call
+                                               on version 11 does nothing and returns 0. */
+#define OPENLAYOUTLIB_DRAWING_VERSION 13    /* document vector shapes, image crop metadata and
+                                               stateless box-local clipping: OL_ShapeStyleInit,
+                                               OL_NodeSetShape and OL_NodeSetImageCrop. Existing
+                                               display-op fields and all older vectors retain
+                                               their offsets. */
+#define OPENLAYOUTLIB_PATH_VERSION 14       /* allocation-free primitive flattening and shape
+                                               rotation: OL_ShapePath. The shape style extension
+                                               is appended after every version 13 field. */
+#define OPENLAYOUTLIB_COLUMNS_VERSION 15    /* bounded newspaper columns inside absolute text
+                                               frames: ol_box_style's text_columns and
+                                               text_column_gap, appended after every 0.14 field */
+#define OPENLAYOUTLIB_EXCLUSIONS_VERSION 16 /* copied, box-local exclusion rectangles: text in a
+                                               bounded frame can reuse the version-7 wrap fitter
+                                               around Publisher/Writer objects without drawing or
+                                               affecting sibling flows */
+#define OPENLAYOUTLIB_CONTOUR_VERSION 17    /* conservative horizontal exclusion bands derived
+                                               from node-owned closed shape geometry */
+#define OPENLAYOUTLIB_GRID_VERSION 18       /* grids: OL_BOX_GRID and ol_box_style's grid_columns,
+                                               appended after every 0.17 field; GFOpenLayout
+                                               UI's <grid columns=n> and grid-columns (MUI's
+                                               column groups, GTK's tables); the same size for
+                                               a box's children: OL_BOX_SAME_WIDTH and
+                                               OL_BOX_SAME_HEIGHT, UI's same-size (MUI's
+                                               SameSize) */
+#define OPENLAYOUTLIB_GRADIENT_VERSION 20   /* gradient fills: ol_shape_style's gradient,
+                                               fill2_argb and gradient_angle_tenths, appended
+                                               after every 0.14 field. Older libraries keep the
+                                               shorter style, so a renderer checks
+                                               OL_SHAPE_STYLE_HAS_GRADIENT and fills plain. */
+#define OPENLAYOUTLIB_ROW_SPAN_VERSION 21   /* tables: ol_box_style's row_span (a cell down more
+                                               than one row), appended after every 0.20 field,
+                                               and a row's box.height as its least height */
+#define OPENLAYOUTLIB_HATCH_VERSION 22      /* hatching and shadows: ol_shape_style's hatch,
+                                               hatch_argb, hatch_angle_tenths, hatch_distance,
+                                               shadow_argb, shadow_dx and shadow_dy, appended
+                                               after every 0.20 field. Older libraries keep the
+                                               shorter style, so a renderer checks
+                                               OL_SHAPE_STYLE_HAS_HATCH and draws neither. */
+#define OPENLAYOUTLIB_TEXT_CAPS_VERSION 23  /* OLUI_AMIGA_TEXT_CAPS to OLUI_AmigaTextWidth: the
+                                               height of a face's capitals in size->ascent, for
+                                               text centred by its capitals. An older library
+                                               answers the ascender's whatever the flag. */
+#define OPENLAYOUTLIB_CORE_API_VERSION 24   /* the document calls by their C prototypes
+                                               (OLAPI_DocumentNew to OLAPI_UnscaleY, after every
+                                               version 19 vector): a program that compiled
+                                               GFOpenLayout's source in links
+                                               libgfopenlayout_link.a and calls ol_layout and the
+                                               rest as before. Through it, an older library stops
+                                               the program at its first call with a line saying
+                                               which it needs. */
+#define OPENLAYOUTLIB_DRAW_API_VERSION 25   /* GFOpenLayout drawing (gfopenlayout_draw.h) by its C
+                                               prototypes (OLDraw_NewRastport to OLDraw_EllipseHas,
+                                               after every version 24 vector), with its Amiga
+                                               target: a program that compiled draw/oldraw.c and
+                                               amiga/oldraw_amiga.c in links libgfopenlayout_link.a
+                                               and calls oldraw_new_rastport and the rest as
+                                               before. Through it, an older library stops the
+                                               program at its first drawing call with a line
+                                               saying which it needs. */
 
 struct OLNodeAppend {
     ol_document *document;

@@ -19,4 +19,6 @@ ORTG_WritePixelsAlpha(rp,x,y,pixels,alpha)(a1,d0,d1,a0,d2)
 ORTG_PresentVirgl(rp,x,y,frame)(a1,d0,d1,a0)
 ORTG_NativeSize(monitor,size)(d0,a0)
 ORTG_WrittenSpans(bitmap,buf,max)(a0,a1,d0)
+ORTG_ShowInstead(screen,picture)(a0,a1)
+ORTG_ShownNow(screen,picture)(a0,a1)
 ##end

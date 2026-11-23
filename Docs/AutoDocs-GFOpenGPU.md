@@ -274,6 +274,22 @@ without SDL.
 
 `examples/gla/glatriangle.c` uses all of these in a Workbench window.
 
+### EGL
+
+libEGL.a is EGL 1.4 on GLA (`include/EGL/`, `pkg-config egl`), for the GLES
+samples that start GL through EGL. There is one display, whatever
+`eglGetDisplay` is given; `EGLNativeWindowType` is a `struct Window *`, and
+GL draws inside its borders. `eglInitialize` takes virgl when GFOpenGPU has
+it, else softpipe; `eglCreateContext` gives ES 2, 3.0 and 3.1 (by
+`EGL_CONTEXT_CLIENT_VERSION` or `EGL_CONTEXT_MAJOR_VERSION` and
+`EGL_CONTEXT_MINOR_VERSION`) and, after `eglBindAPI(EGL_OPENGL_API)`,
+OpenGL core or compatibility. The configs are RGB565, RGB888 and RGBA8888
+with depth 0, 16 or 24 and stencil 0 or 8, for windows and pbuffers.
+`eglSwapInterval` is the number of vertical blanks waited before a frame is
+shown (1 by default). There is no ES 1, OpenVG, pixmap surface or EGL 1.5
+call; gfopenrtg's `library/egl/README.md` has the list.
+`examples/egl/egltriangle.c` is an EGL program.
+
 ### TinyGL
 
 TinyGL's interface (`include/proto/tinygl.h`, `include/tgl/`) on GL.module.
@@ -305,9 +321,11 @@ The `glA...` forms (`glASwapBuffers()` and the rest) pass the program's
 
 - **Warp3D** (`include/Warp3D/`, `proto/Warp3D.h`): Warp3D's API, drawn by
   GFOpenGPU's 3D (gfopenrtg `DESIGN.md`, section 6).
-- **MiniGL** (`include/mgl/`, `libraries/minigl.h`, `proto/minigl.h`):
-  OpenGL 1.1 on the same 3D. `libminigl.a` holds its stubs, `libmgl.a` the
-  GLUT-style helpers.
+- **minigl.library-compatible** (`include/mgl/`, `libraries/minigl.h`,
+  `proto/minigl.h`): OpenGL 1.1 on the same 3D, for programs of
+  minigl.library (ABI 5). `libminigl.a` holds `MiniGLOpen`/`MiniGLClose`
+  (calls inline through the table), `libmgl.a` every call as a function.
+  Clean-room: gfopenrtg `library/minigl/PROVENANCE.md`.
 - **gfopengpu.library** (`include/gfopengpu/`, `proto/gfopengpu.h`,
   `sfd/gfopengpu_lib.sfd`): `OGPU_Query` (what a back end does, per operation
   and pixel format; from gfopengpu.library 0.21 also whether it draws it on a

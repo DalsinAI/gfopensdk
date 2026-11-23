@@ -68,6 +68,10 @@
 #define ACV_HOST_GPU        1   /* virglrenderer draws on a graphics chip (else llvmpipe or the like) */
 #define ACV_HOST_GLES       2   /* ... through GLES */
 #define ACV_HOST_PRESENT    4   /* ACV_PRESENT is there */
+#define ACV_HOST_NO_BATCH   8   /* the runtime asks for each command in a block of its own
+                                   (AC_VIRGL_BATCH=0): GL.module then doesn't queue them */
+#define ACV_HOST_NO_PIPELINE 16 /* the runtime asks GL.module to wait for every block it
+                                   sends (AC_VIRGL_PIPELINE=0) */
 
 /* ACV_PRESENT (DalsinAI/amicradle docs/design/Design-OpenGPU-Virgl-Direct-
  * Present.md). Target pixel (x, y) comes from resource pixel (x - sx, y - sy),
@@ -77,6 +81,13 @@
  * to the target's size and to the resource, reads the resource back once
  * (the rectangles' bounding box) and writes only the rectangles. */
 #define ACV_PRESENT_FLIP_Y  1
+/* ACV_PRESENT_SCALE (20 Nov 2026): the source origin is a box's top left in
+ * the target, and one more word follows the rectangles, the box's wh. The
+ * whole resource is stretched into the box (linear, on the host's GPU when
+ * it writes video RAM itself), and the rectangles are clamped to the box.
+ * A program draws at one size and the window, or the whole screen, shows it
+ * at another, for nothing on the 68k (GFOpenLayout's Overlay for GL). */
+#define ACV_PRESENT_SCALE   2
 #define ACV_PRESENT_MAX     64  /* rectangles in one command; more go in more commands */
 
 /* Results. */
