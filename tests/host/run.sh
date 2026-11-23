@@ -14,6 +14,9 @@ gcc $W -Imock -I$SDK/Include -c -o "$T/reg.o" "$T/src/os4c_registry.c"
 gcc $W -I"$T/include" -Imock -I$SDK/Include -o "$T/t_iface" test_iface.c "$T"/*.o
 gcc $W -I"$T/include" -Imock -I$SDK/Include -fsyntax-only test_inline.c
 gcc $W -Imock -I$SDK/Include -o "$T/t_fmt" test_fmt.c $SDK/Lib/os4compat/src/utility_fmt.c
+# the rule for a datatypes memory source (Examples/datatypes-memory), plain C
+gcc $W -I$SDK/Examples/datatypes-memory -o "$T/t_dtmemory" test_dtmemory.c
+"$T/t_dtmemory"
 "$T/t_iface"
 "$T/t_fmt"
 rm -rf "$T"

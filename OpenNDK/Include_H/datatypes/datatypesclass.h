@@ -112,6 +112,21 @@
 #define DTA_ARexxPortName	(DTA_Dummy+404)
 
 /* DTA_SourceType */
+/*
+ * DTST_MEMORY: the file's bytes are in memory, with a NULL name:
+ *
+ *     o = NewDTObject(NULL, DTA_SourceType, DTST_MEMORY,
+ *                     DTA_SourceAddress, bytes, DTA_SourceSize, size,
+ *                     DTA_GroupID, GID_PICTURE, TAG_DONE);
+ *
+ * datatypes.library 47.100 and later take it; OS 3.2's own (47.x below 100)
+ * does not, so test lib_Version and lib_Revision first. A class may still
+ * refuse the source (IoErr 212: an older class, or one that streams from a
+ * file by name): when NewDTObject() returns NULL, write the bytes to a file
+ * and open that. Keep the bytes unchanged until DisposeDTObject(); the
+ * datatypes never free or write to them. Docs/datatypes-memory.md has the
+ * classes and the rule, Examples/datatypes-memory a program that does it.
+ */
 #define DTST_RAM	1
 #define DTST_FILE	2
 #define DTST_CLIPBOARD	3

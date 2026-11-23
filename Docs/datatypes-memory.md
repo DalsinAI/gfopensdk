@@ -67,6 +67,15 @@ not change, so do not test a class's version: ask, and fall back.
    IoErr 212; so does a class that streams from a file.
 3. Delete the temporary file only when you made one.
 
+## Example
+
+`Examples/datatypes-memory` is a Shell command that does all of this:
+`DTMemInfo PICTURE` reads the file into memory, opens it from memory where
+it can and through a file in `T:` where it cannot, and says which. The rule
+of step 1 is `dt_memory_source_ok()` in its `dtmemory.h`, tested on the host
+(`tests/host/test_dtmemory.c`). The same words are beside `DTST_MEMORY` in
+OpenNDK's `datatypes/datatypesclass.h`.
+
 ## Whose bytes
 
 - The classes in this pack copy the bytes while the object is made

@@ -121,7 +121,9 @@ Notes:
   (`Include/aroscompat`, and libnix's `<stabs.h>`).
 - **GFOpenDatatypes**: the classes' own headers. gfopengif.datatype 47.3
   (animated GIFs in MultiView) needs no header change; programs use it
-  through datatypes.library.
+  through datatypes.library. From datatypes.library 47.100 a program can
+  open an object on bytes it holds in memory (`DTST_MEMORY`), with a file
+  as the fallback: `Docs/datatypes-memory.md`, `Examples/datatypes-memory`.
 
 ## Link library
 
