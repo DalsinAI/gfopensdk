@@ -25,6 +25,9 @@
 #define ACNETWORK_CMD_WIFI_FORGET  0x44
 #define ACNETWORK_CMD_WIFI_ANSWER  0x45
 #define ACNETWORK_CMD_WIFI_CANCEL  0x46
+#define ACNETWORK_CMD_WIFI_JOINKEY 0x47   /* tx: SSID\0KEY\0 */
+#define ACNETWORK_CMD_NET_GET      0x48   /* answer: the settings as text, no secret */
+#define ACNETWORK_CMD_NET_SET      0x49   /* tx: amicradle-network.txt's lines */
 #define ACNETWORK_CMD_PACKET_INFO    0x50
 #define ACNETWORK_CMD_PACKET_ONLINE  0x51
 #define ACNETWORK_CMD_PACKET_OFFLINE 0x52
@@ -181,5 +184,11 @@ struct ACNetworkRequest {
 #define ACNETWORK_LVO_SIGNALMASK (-48)
 #define ACNETWORK_LVO_LASTERROR  (-54)
 #define ACNETWORK_LVO_STATE      (-60)
+/* 1.2: AddWaiter(waiter)(a0) and RemWaiter(waiter)(a0) hand a struct
+ * ACNWaiter (acnet_device.h) of the caller's own to the device, so that
+ * each task of a program sharing one base is woken with its own signal. */
+#define ACNETWORK_LVO_ADDWAITER  (-66)
+#define ACNETWORK_LVO_REMWAITER  (-72)
+#define ACNETWORK_WAITERS_REVISION 2
 
 #endif

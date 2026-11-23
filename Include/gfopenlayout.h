@@ -17,6 +17,9 @@ extern "C" {
 #define OL_HAS_WEB_BOXES 1
 /* 0.11 (gfopenlayout.library 11): frames as wide as their content (OL_BOX_FIT_CONTENT) */
 #define OL_HAS_FIT_CONTENT 1
+/* 0.13 (gfopenlayout.library 13): reusable vector drawing, image crops and
+ * box-local clipping in the document display list. */
+#define OL_HAS_DRAWING_OPS 1
 
 /*
  * GFOpenLayout logical units are exact across the three worlds we care about:
@@ -46,6 +49,106 @@ typedef struct {
     ol_unit width;
     ol_unit height;
 } ol_rect;
+
+/* Resizable Office/Web drawing geometry uses thousandths of its bounds.
+ * Keeping points normalised means page placement and zoom never rewrite or
+ * allocate a path. */
+typedef struct {
+    int32_t x, y;
+} ol_point;
+
+#define OL_SHAPE_COORDS 1000
+#define OL_MAX_SHAPE_POINTS 128
+
+typedef enum {
+    OL_SHAPE_NONE = 0,
+    OL_SHAPE_RECT,
+    OL_SHAPE_ROUND_RECT,
+    OL_SHAPE_ELLIPSE,
+    OL_SHAPE_LINE,
+    OL_SHAPE_POLYLINE,
+    OL_SHAPE_POLYGON
+} ol_shape_type;
+
+enum {
+    OL_SHAPE_ARROW_START = 1u << 0,
+    OL_SHAPE_ARROW_END   = 1u << 1
+};
+
+typedef enum {
+    OL_STROKE_SOLID = 0,
+    OL_STROKE_DASHED,
+    OL_STROKE_DOTTED,
+    OL_STROKE_DASH_DOT
+} ol_stroke_style;
+
+/* 0.20: how a shape's fill runs from fill_argb to fill2_argb */
+typedef enum {
+    OL_GRADIENT_NONE = 0,      /* fill_argb all over */
+    OL_GRADIENT_LINEAR,        /* along gradient_angle_tenths, across the shape's box */
+    OL_GRADIENT_RADIAL         /* from the box's centre (fill_argb) out to its corners (fill2_argb) */
+} ol_gradient;
+
+/* 0.22: lines drawn over a shape's fill (or on their own when fill_argb's alpha is 0) */
+typedef enum {
+    OL_HATCH_NONE = 0,
+    OL_HATCH_SINGLE,           /* lines along hatch_angle_tenths */
+    OL_HATCH_DOUBLE,           /* and the same at right angles: a grid */
+    OL_HATCH_TRIPLE            /* and a third set at 45 degrees between them */
+} ol_hatch;
+
+typedef struct {
+    uint32_t size;             /* sizeof(ol_shape_style) */
+    uint32_t type;             /* ol_shape_type */
+    uint32_t fill_argb;        /* alpha 0: no fill */
+    uint32_t stroke_argb;      /* alpha 0 or stroke_width 0: no stroke */
+    ol_unit stroke_width;
+    int32_t radius_permille;   /* round rectangle corner, 0..500 */
+    uint32_t flags;            /* OL_SHAPE_... */
+    uint32_t stroke_style;     /* ol_stroke_style */
+    int32_t rotation_tenths;   /* 0.14: anticlockwise tenths of a degree */
+    /* 0.20, appended after every 0.14 field: a gradient fill. A renderer reads these only when the
+     * shape's size reaches them (OL_SHAPE_STYLE_HAS_GRADIENT); before that it fills with fill_argb. */
+    uint32_t gradient;         /* ol_gradient */
+    uint32_t fill2_argb;       /* the gradient's other end */
+    int32_t gradient_angle_tenths; /* LINEAR: the way from fill_argb to fill2_argb, anticlockwise
+                                      tenths of a degree, 0 left to right, 900 bottom to top; the
+                                      shape's rotation turns it too */
+    /* 0.22, appended after every 0.20 field: hatching and a shadow. A renderer reads these only when
+     * the shape's size reaches them (OL_SHAPE_STYLE_HAS_HATCH); before that there are none. A
+     * see-through fill is fill_argb's (and fill2_argb's) alpha below 255. */
+    uint32_t hatch;            /* ol_hatch */
+    uint32_t hatch_argb;       /* the lines' colour */
+    int32_t hatch_angle_tenths; /* the lines' direction, anticlockwise tenths of a degree from left to
+                                   right; the shape's rotation turns them too */
+    ol_unit hatch_distance;    /* between the lines; above 0 when hatch is set */
+    uint32_t shadow_argb;      /* alpha 0: no shadow; else the outline filled with it behind the shape */
+    ol_unit shadow_dx, shadow_dy; /* how far right and down the shadow lies */
+} ol_shape_style;
+
+/* 1 when a style (as a display op carries it) holds 0.20's gradient fields */
+#define OL_SHAPE_STYLE_HAS_GRADIENT(st) \
+    ((st)->size >= offsetof(ol_shape_style, gradient_angle_tenths) + sizeof(int32_t))
+
+/* 1 when a style (as a display op carries it) holds 0.22's hatch and shadow fields */
+#define OL_SHAPE_STYLE_HAS_HATCH(st) \
+    ((st)->size >= offsetof(ol_shape_style, shadow_dy) + sizeof(ol_unit))
+
+/* Source-image crop insets in thousandths. The four insets are non-negative
+ * and opposite sides must add to less than OL_SHAPE_COORDS. */
+typedef struct {
+    int32_t left, top, right, bottom;
+} ol_image_crop;
+
+/* Immutable, node-owned data referenced by a display op. It remains valid
+ * until the document is freed or the node's graphic is changed and laid out
+ * again. Applications must not free it or its points. */
+typedef struct {
+    ol_shape_style shape;
+    int32_t point_count;
+    const ol_point *points;
+    ol_image_crop crop;
+} ol_graphic;
 
 typedef enum {
     OL_ROLE_DOCUMENT = 0,
@@ -151,7 +254,8 @@ typedef enum {
     OL_OP_TEXT = 1,
     OL_OP_FILL_RECT,
     OL_OP_IMAGE,
-    OL_OP_RULE
+    OL_OP_RULE,
+    OL_OP_SHAPE
 } ol_op_type;
 
 typedef struct {
@@ -194,6 +298,11 @@ typedef struct {
      * coordinates are the page's (its top left corner is 0,0, margins
      * included); after ol_layout every op is on page 0. */
     int32_t page;
+    /* Version 13 extension, deliberately after page: every field through
+     * page has the same offset as libraries 2..12. A positive clip is
+     * present; an internal negative height is an empty intersection. */
+    const ol_graphic *graphic;
+    ol_rect clip;
 } ol_display_op;
 
 ol_document *ol_document_new(void);
@@ -221,6 +330,8 @@ const char *ol_node_value(const ol_node *node);
 const char *ol_node_href(const ol_node *node);
 const ol_style *ol_node_style(const ol_node *node);
 ol_rect ol_node_bounds(const ol_node *node);
+/* The same into *out: gfopenlayout.library carries no structure by value. */
+void ol_node_bounds_to(const ol_node *node, ol_rect *out);
 
 int ol_node_set_text(ol_node *node, const char *utf8);
 int ol_node_set_name(ol_node *node, const char *utf8);
@@ -232,6 +343,20 @@ void ol_node_set_states(ol_node *node, uint32_t states);
 uint32_t ol_node_actions(const ol_node *node);
 uint32_t ol_node_states(const ol_node *node);
 void ol_node_set_image(ol_node *node, int image_id, ol_unit width, ol_unit height);
+void ol_shape_style_init(ol_shape_style *style);
+/* Copies style and points into the node. style NULL or OL_SHAPE_NONE clears
+ * the shape. A polygon needs at least three points; a line/polyline two. */
+int ol_node_set_shape(ol_node *node, const ol_shape_style *style,
+                      int count, const ol_point *points);
+/* Sets a source crop for image ops; NULL clears it. Returns 0 for invalid
+ * insets. Crop metadata is ignored by pre-13 renderers, which draw the full
+ * image as before. */
+int ol_node_set_image_crop(ol_node *node, const ol_image_crop *crop);
+/* Makes an allocation-free device path for a shape, including primitive
+ * flattening and rotation about bounds' centre. Returns the point count, or
+ * 0 when graphic/bounds/output are invalid or capacity is too small. */
+int ol_shape_path(const ol_graphic *graphic, const ol_rect *bounds,
+                  ol_point *points, int capacity, int *closed);
 
 const ol_node *ol_node_by_id(const ol_document *doc, ol_id id);
 const ol_node *ol_node_parent(const ol_node *node);
@@ -301,7 +426,43 @@ enum {
     /* 0.11: an OL_BOX_ABSOLUTE frame with no frame.width is as wide as its
      * content (its text on one line, its widest child; box.width when it
      * has one), as CSS's absolute boxes are; without it, one CSS pixel. */
-    OL_BOX_FIT_CONTENT       = 1u << 11
+    OL_BOX_FIT_CONTENT       = 1u << 11,
+    /* 0.13: descendants are clipped to this box's border box. The effective
+     * intersection is carried by every affected op, so drawing is stateless
+     * and partial redraw can begin at any op. */
+    OL_BOX_CLIP_CONTENT      = 1u << 12,
+    /* 0.18: the block's children in a grid of box.grid_columns columns,
+     * row after row in their order, box.gap apart both ways (MUI's column
+     * groups, GTK's tables). A column is as wide as its widest cell asks;
+     * what room is left goes to the columns whose cells grow; a row is as
+     * tall as its tallest cell, its cells across it as box.align says. */
+    OL_BOX_GRID              = 1u << 13,
+    /* 0.18: the same size for every child (MUI's SameSize, SameWidth and
+     * SameHeight). OL_BOX_SAME_WIDTH: in a row, every child asks for the
+     * widest one's width (what is left is still shared by those that
+     * grow); in a grid, every column is as wide as the widest. A block's
+     * children are its width already. OL_BOX_SAME_HEIGHT: in a block, its
+     * children are as tall as the tallest; in a grid, every row is as tall
+     * as the tallest; in a row, every child is as tall as the row, whatever
+     * box.align says. */
+    OL_BOX_SAME_WIDTH        = 1u << 14,
+    OL_BOX_SAME_HEIGHT       = 1u << 15,
+    /* 0.19: a row with room to spare and nothing that grows shares the room
+     * out between its children (CSS's justify-content) in place of its
+     * text_align: OL_BOX_SPACE_BETWEEN between them, the first and last at
+     * the ends (one child: at the start); OL_BOX_SPACE_AROUND as much round
+     * each, so half as much at the ends; both (OL_BOX_SPACE_EVENLY) as much
+     * at the ends as between. */
+    OL_BOX_SPACE_BETWEEN     = 1u << 16,
+    OL_BOX_SPACE_AROUND      = 1u << 17,
+    OL_BOX_SPACE_EVENLY      = OL_BOX_SPACE_BETWEEN | OL_BOX_SPACE_AROUND,
+    /* 0.19: a block (a column) taller than its children, of a box.height or
+     * the height its row or block gives it, with no child that grows and
+     * only block children: the room left goes above them
+     * (OL_BOX_PACK_END), half above (OL_BOX_PACK_CENTRE), or between them
+     * as a row's OL_BOX_SPACE_... share it. */
+    OL_BOX_PACK_CENTRE       = 1u << 18,
+    OL_BOX_PACK_END          = 1u << 19
 };
 
 /* 0.8: how a row's children stand across it (box.align) */
@@ -396,6 +557,27 @@ typedef struct {
     int32_t width_permille;            /* of the containing block's content width; 0: none; an explicit width wins */
     int32_t max_width_permille;        /* 0: none */
     uint32_t valign;                   /* OL_VALIGN_... */
+    /* 0.15: newspaper columns inside a bounded absolute text frame. The
+     * frame's content flows from the top of one column to the next; 0 or 1
+     * is ordinary single-column flow. The gap is ignored for one column.
+     * A frame needs a positive frame.height, and 2..16 columns whose gaps
+     * leave at least one layout unit for each column. Content beyond the
+     * last column is not displayed. Older box sizes leave both fields 0. */
+    int32_t text_columns;
+    ol_unit text_column_gap;
+    /* 0.18: OL_BOX_GRID's count of columns (1 to OL_MAX_COLUMNS; 0: 1).
+     * Older box sizes leave it 0. */
+    int32_t grid_columns;
+    /* 0.21: a table cell down more than one row (0 or 1: one), CSS's
+     * rowspan and a slide's or a document's merged cells. The rows after
+     * its first leave its columns to it; the last row it crosses grows
+     * when the cell needs more than the rows give it, and a span past the
+     * table's last row ends there. A row's own background is not drawn
+     * under a cell from a row above it. Also from 0.21, a row's box.height
+     * is the least it is tall (CSS's height on a row; a slide's row
+     * height); its content can make it taller. Older box sizes leave
+     * row_span 0. */
+    int32_t row_span;
 } ol_box_style;
 
 /* An anchored frame (box.anchor not 0) is laid out on its own and placed
@@ -449,6 +631,39 @@ enum {
 };
 #define OL_WRAP_MIN OL_CSSPX(48)
 #define OL_WRAP_PASSES 4
+
+/* 0.16: fixed exclusion rectangles inside a block or bounded text frame.
+ * bounds are from the node's border-box corner; the node's own text and
+ * descendant blocks flow around them using the existing OL_WRAP_SQUARE or
+ * OL_WRAP_TOP_BOTTOM line fitter. They do not draw anything and do not
+ * affect sibling nodes, so an application can describe a picture or shape
+ * that overlaps a Publisher-style text frame without duplicating it in the
+ * display list. gaps are top, right, bottom and left. */
+typedef struct {
+    ol_rect bounds;
+    uint32_t wrap;
+    ol_unit gap[4];
+} ol_exclusion;
+
+#define OL_MAX_EXCLUSIONS 1024
+
+/* Copies the exclusions. count 0 clears them. Returns 0 for invalid input or
+ * no memory. Existing box and document ABI fields do not move. */
+int ol_node_set_exclusions(ol_node *node, int count,
+                           const ol_exclusion *exclusions);
+
+/* 0.17: flattens a node-owned closed shape into conservative horizontal
+ * exclusion bands. bounds are in the target text frame's coordinates and
+ * therefore need not be the shape node's layout bounds. The returned bands
+ * use OL_WRAP_SQUARE and copy gap (top, right, bottom, left); the normal
+ * exclusion fitter supplies the requested clearance around their union.
+ * Adjacent equal-width bands are coalesced. Returns their count, or 0 for
+ * an open/non-shape node, invalid input or insufficient output capacity. */
+#define OL_CONTOUR_BANDS_DEFAULT 16
+#define OL_CONTOUR_BANDS_MAX 64
+int ol_node_shape_exclusions(const ol_node *shape, const ol_rect *bounds,
+                             const ol_unit *gap, int bands,
+                             ol_exclusion *out, int capacity);
 /* The size of an ol_box_style before 0.6's wrap, as programs built for
  * gfopenlayout.library 5 and 6 have it */
 #define OL_BOX_STYLE_SIZE_0_5 offsetof(ol_box_style, wrap)
@@ -458,6 +673,15 @@ enum {
 /* The size of an ol_box_style before 0.9's web boxes, as programs built for
  * gfopenlayout.library 8 have it */
 #define OL_BOX_STYLE_SIZE_0_8 offsetof(ol_box_style, border_widths)
+/* The size before 0.15's bounded text-frame columns. Programs using these
+ * fields through gfopenlayout.library open OPENLAYOUTLIB_COLUMNS_VERSION. */
+#define OL_BOX_STYLE_SIZE_0_14 offsetof(ol_box_style, text_columns)
+/* The size before 0.18's grid. Programs using it through
+ * gfopenlayout.library open OPENLAYOUTLIB_GRID_VERSION. */
+#define OL_BOX_STYLE_SIZE_0_17 offsetof(ol_box_style, grid_columns)
+/* The size before 0.21's row_span. Programs using it through
+ * gfopenlayout.library open OPENLAYOUTLIB_ROW_SPAN_VERSION. */
+#define OL_BOX_STYLE_SIZE_0_20 offsetof(ol_box_style, row_span)
 
 /* 0.6: where an anchored frame went after ol_layout_pages (or ol_layout,
  * in the galley): its page and its rectangle on it, the frame's width and
@@ -467,6 +691,10 @@ enum {
 int ol_frame_place(const ol_document *doc, const ol_node *frame, int *page, ol_rect *rect);
 
 void ol_box_style_init(ol_box_style *box);
+/* For a caller whose ol_box_style may be another size than this code's (a
+ * program and the gfopenlayout.library it opened): fills size bytes at most,
+ * zeroes what is past this code's own, and sets box->size to what it filled. */
+void ol_box_style_init_sized(ol_box_style *box, size_t size);
 /* Copies box->size bytes at most, so a smaller older ol_box_style works. */
 void ol_node_set_box(ol_node *node, const ol_box_style *box);
 const ol_box_style *ol_node_box(const ol_node *node);
@@ -537,12 +765,63 @@ typedef struct {
 
 int ol_layout_pages(ol_document *doc, const ol_page *page,
                     ol_measure_text_fn measure, void *measure_userdata);
+/* 0.19: footnotes. ol_layout_pages, with room at the foot of each page for
+ * the notes anchored in its lines: a note's anchor is a node in the flow
+ * (its mark), its height the room its text takes, laid out by the caller.
+ * The notes of a page take the sum of their heights and separator (the
+ * space and rule above them) from its body; a page keeps at least one line.
+ * note_page[i] (count of them) answers the page note i's anchor is on, -1
+ * when it isn't laid out. The caller draws the notes, from the page's body
+ * foot (height - margin_bottom) up by their room. */
+typedef struct {
+    ol_id anchor;
+    ol_unit height;
+} ol_page_note;
+
+int ol_layout_pages_notes(ol_document *doc, const ol_page *page,
+                          const ol_page_note *notes, int note_count, ol_unit separator, int *note_page,
+                          ol_measure_text_fn measure, void *measure_userdata);
+/* Lay a continuous flow through equal newspaper columns, top-to-bottom and
+ * then left-to-right on each physical page. count 1 is ol_layout_pages.
+ * gap is between columns. Display ranges, hit testing and caret boxes use
+ * physical page coordinates. */
+int ol_layout_pages_columns(ol_document *doc, const ol_page *page,
+                            int count, ol_unit gap,
+                            ol_measure_text_fn measure, void *measure_userdata);
+typedef enum {
+    OL_SECTION_CONTINUOUS = 0,
+    OL_SECTION_NEW_PAGE,
+    OL_SECTION_ODD_PAGE,
+    OL_SECTION_EVEN_PAGE
+} ol_section_break;
+
+/* A section starts at a top-level flow node. Its paragraphs are laid out at
+ * that section's column width. The first section's break is ignored. */
+typedef struct {
+    ol_id first_node;
+    int columns;
+    ol_unit gap;
+    ol_section_break break_before;
+} ol_page_section;
+
+/* Variable column geometry by section. New/odd/even page sections are
+ * supported. A multi-column section is balanced before a continuous
+ * successor, which shares the rectangular lower band on the physical page. */
+int ol_layout_pages_sections(ol_document *doc, const ol_page *page,
+                             const ol_page_section *sections, int section_count,
+                             ol_measure_text_fn measure, void *measure_userdata);
 /* 1 after ol_layout; the number of pages after ol_layout_pages. */
 int ol_page_count(const ol_document *doc);
 /* The display ops of one page are together, in page order: the first and
  * how many. 0 when the page does not exist. */
 int ol_display_page_range(const ol_document *doc, int page,
                           size_t *first, size_t *count);
+
+/* The first rendered box belonging to node or one of its descendants, in
+ * physical page coordinates. This is the stable-node bridge for navigators,
+ * generated references and editor object outlines. */
+int ol_node_page_box(const ol_document *doc, ol_id node_id,
+                     int *page, ol_rect *box);
 
 /* The deepest node at (x, y) on a page, in its coordinates. */
 const ol_node *ol_hit_test_page(const ol_document *doc, int page,
@@ -607,6 +886,8 @@ ol_unit ol_unscale_y(const ol_scale *scale, int32_t py);
 int32_t ol_scale_length(const ol_scale *scale, ol_unit length);
 /* A box by its edges. */
 ol_pixel_rect ol_scale_rect(const ol_scale *scale, ol_rect r);
+/* The same from *r into *out, for gfopenlayout.library. */
+void ol_scale_rect_to(const ol_scale *scale, const ol_rect *r, ol_pixel_rect *out);
 
 /* One display op in pixels. */
 typedef struct {
@@ -616,6 +897,9 @@ typedef struct {
     int32_t font_pixels;      /* text: the font's size at this scale */
     int32_t x1, y1, x2, y2;   /* rule */
     int32_t thickness;        /* rule: at least one pixel */
+    /* Version 13 extension. clip width/height 0 means none. For shapes,
+     * thickness is the scaled stroke width. */
+    ol_pixel_rect clip;
 } ol_device_op;
 
 typedef void (*ol_draw_fn)(void *userdata, const ol_device_op *op);

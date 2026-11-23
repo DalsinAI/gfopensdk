@@ -113,6 +113,30 @@ struct OpenRTGSpan {
     unsigned short x0, x1;          /* its pixels x0 to x1, both written */
 };
 
+/* ORTG_ShowInstead and ORTG_ShownNow (0.28; acrtg-v11): finished frames
+ * only, on a display that shows video RAM itself and so shows drawing as
+ * it happens. The caller keeps the screen's bitmap for drawing and
+ * assembling, copies each finished frame into one of a few bitmaps of its
+ * own (AllocBitMap, BMF_DISPLAYABLE friends of the screen's: the same
+ * board's video RAM, format, size and bytes a row) with GFOpenGPU, and
+ * right after that batch's OGPU_Submit asks for the bitmap to be shown.
+ * - ORTG_ShowInstead(screen, picture): the board shows picture where it
+ *   shows the screen's bitmap, from the moment everything GFOpenGPU has
+ *   been given so far has run; no wait in the call. picture NULL: the
+ *   screen's bitmap itself again, at once. 1 when asked, 0 when it can't
+ *   be: a board before acrtg-v11, another kind of board, a picture that is
+ *   not such a friend, or a screen its monitor does not show now. The
+ *   caller then shows its frames in the screen's bitmap as before.
+ * - ORTG_ShownNow(screen, picture): 1 while the display itself shows
+ *   picture (NULL: the screen's bitmap). The display changes pictures at
+ *   its vertical blank, a little after ORTG_ShowInstead: until this
+ *   answers 0 for a picture, the picture is still on the glass and must
+ *   not be drawn into. With three pictures there is always one that is
+ *   neither on the display nor the one asked for last.
+ * It ends by itself when another screen comes to the front, the mode
+ * changes or either bitmap is freed; ask again with the next frame.
+ * layers.library's composited mode uses it for its screens. */
+
 /* A frame the host's GPU rendered through ACVirgl, for ORTG_PresentVirgl
  * (0.15). The host copies the resource's damage box straight into the
  * window's visible rectangles (ACV_PRESENT); nothing passes through the
@@ -124,8 +148,13 @@ struct OpenRTGVirglFrame {
     short          damage_x, damage_y;  /* the part that changed, in the resource; */
     unsigned short damage_w, damage_h;  /* 0 by 0: all of it */
     unsigned long  flags;           /* ORTG_VIRGL_FLIP_Y: row 0 is the bottom (GL) */
+    /* ORTG_VIRGL_SCALE (0.29): the whole frame stretched into a box box_w by
+     * box_h at x, y, by the host (ACV_PRESENT_SCALE); damage is not used.
+     * Read only when the flag is set, so older callers' structs end above. */
+    unsigned short box_w, box_h;
 };
 #define ORTG_VIRGL_FLIP_Y       1
+#define ORTG_VIRGL_SCALE        2
 
 /* ORTG_DrawStats (0.11): how GFOpenRTG drew on its bitmaps, by kind of
  * drawing, since it started or was last reset. Each kind has four counts:

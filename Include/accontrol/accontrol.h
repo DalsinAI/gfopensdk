@@ -55,6 +55,83 @@
  *                   ACCERR_HOST when the host refuses: io_Actual is then its
  *                   reason's number (2 the drive is not fitted, 3 the runtime
  *                   can't change disks, 4 not an 880 KB ADF, 6 it didn't go in).
+ *   ACCMD_SHARES    the host's network shares (1.4, ACBridge capability bit
+ *                   18; amicradle-teams designs/NETSHARES-DESIGN-20261110.md):
+ *                   io_Data holds one request line, NUL ended, tab-separated
+ *                   ("LIST", "MOUNT<TAB>NET0", ...); the host's answer replaces
+ *                   it, NUL ended, at most io_Length - 1 bytes: "OK", "WARN",
+ *                   "WAIT" or "ERROR", a tab, a plain sentence, then any rows.
+ *                   io_Actual = the answer's length; io_Offset = 0 OK, 5 a
+ *                   warning, 10 an error. A request may carry a password: the
+ *                   host keeps it and never sends it back; clear the buffer
+ *                   after the call. ACCERR_NOSHARES on a board without them.
+ *   ACCMD_POWER     the machine restarted or powered off by its host (1.5,
+ *                   ACBridge capability bit 19): io_Offset = ACC_POWER_RESTART
+ *                   (a cold start: the host starts the machine again) or
+ *                   ACC_POWER_OFF (an appliance shuts down cleanly; on a PC the
+ *                   instance closes). The host answers before it acts, so the
+ *                   request completes; ask the user first, as nothing is
+ *                   saved. ACCERR_HOST (io_Actual the host's reason) when it
+ *                   refuses, ACCERR_NOPOWER on a board without it.
+ *   ACCMD_POWERLEVEL  the host's power level and sensors (1.6, ACBridge
+ *                   capability bit 20; CM4 item 9): io_Offset =
+ *                   ACC_POWERLEVEL_READ only reads, ACC_POWERLEVEL_QUIET,
+ *                   _BALANCED or _FULL set the host's level (its cpufreq
+ *                   governor and top clock). io_Data receives the host's
+ *                   sensors as JSON text, NUL ended, at most io_Length - 1
+ *                   bytes: tempMilliC, clockKHz, clockMaxKHz, throttled,
+ *                   underVoltage, fanRPM, powerLevel ("Quiet", "Balanced",
+ *                   "Full" or "Custom") and powerLevelCanSet, each only when
+ *                   the host has it (a real 68k or a host without sensors
+ *                   sends none). io_Actual = the text's length; io_Offset =
+ *                   the host's result: 0 done, 3 not a level, 5 this host
+ *                   can't set it. ACCERR_HOST when the host doesn't answer,
+ *                   ACCERR_NOPOWERLEVEL on a board without it.
+ *   ACCMD_CHIPLIMIT  the Chip RAM limiter (1.7, ACBridge capability bit 21;
+ *                   CM4 item 15): an AA+ machine runs as a stock A1200
+ *                   (2 MB of Chip RAM, the 21-bit DMA mask, no AA+ card)
+ *                   from its next power-on, or gets its full board back.
+ *                   io_Offset = ACC_CHIP_READ, ACC_CHIP_2MB or ACC_CHIP_FULL,
+ *                   ORed with ACC_CHIP_NOW to power off and on at once (the
+ *                   host answers first; nothing is saved, so ask the user).
+ *                   io_Actual = MB now | MB from the next power-on << 8 |
+ *                   MB of the full board << 16. The size changes only at a
+ *                   power-on, never on a warm reset; the instance keeps it.
+ *                   ACCERR_HOST (io_Offset the host's result: 3 a bad
+ *                   request, 5 no AA+ board) when the host refuses,
+ *                   ACCERR_NOCHIPLIMIT on a board without it.
+ *   ACCMD_MACHINE   the machine's settings, global and per program (1.8,
+ *                   ACBridge capability bit 22; gfosdesign
+ *                   gfos/machines/machine-settings). The words: FPU=DOUBLE or
+ *                   EXTENDED, PACE=HYPER, A1200 or MHz (1-200). io_Offset's
+ *                   low byte is the operation:
+ *                   ACC_MACHINE_PUSH  io_Data the words, NUL ended: in force
+ *                     over the global ones before the Amiga's next
+ *                     instruction, for the program about to start; the
+ *                     calling task is the owner. io_Actual = the push's id;
+ *                     io_Data gets back the words refused (unknown, or not
+ *                     applied by this machine), "" when none.
+ *                     ACCERR_REFUSED when 16 are pushed already.
+ *                   ACC_MACHINE_POP  io_Offset = ACC_MACHINE_POP | id << 8:
+ *                     that push taken away, in any order; ACCERR_HOST when
+ *                     it isn't pushed. A reset takes every push away.
+ *                   ACC_MACHINE_GET  io_Data gets what is in force (first
+ *                     line), "global" and the global words, then a line per
+ *                     push: "push <id> <owner> <words>".
+ *                   ACC_MACHINE_SET  io_Data the global words (GFOpenPrefs):
+ *                     the pace at once, the FPU from the next reset (it is
+ *                     never switched under running programs); io_Data gets
+ *                     back the words refused.
+ *                   ACCERR_NOMACHINE on a board without it.
+ *   ACCMD_FRAMEHISTORY  the host's frame history (1.9, ACBridge capability
+ *                   bit 23): the copies of each screen the host keeps for its
+ *                   browser page's timed frames and screenshots. io_Offset =
+ *                   ACC_FRAMEHIST_READ, _ONDEMAND or _ON; io_Actual = the mode
+ *                   now (0 ALWAYSOFF, 1 ONDEMAND, 2 ON). The host's
+ *                   ac.framehistory decides where it starts (ONDEMAND unless
+ *                   set); ALWAYSOFF there (no frames sent at all) can't be
+ *                   undone from the Amiga: ACCERR_REFUSED.
+ *                   ACCERR_NOFRAMEHISTORY on a board without it.
  *   NSCMD_DEVICEQUERY  the standard query (NSDEVTYPE_UNKNOWN; the commands
  *                   above).
  *
@@ -81,6 +158,35 @@
 #define ACCMD_FLOPPYLIST   (CMD_NONSTD + 10)
 #define ACCMD_FLOPPYINSERT (CMD_NONSTD + 11)
 #define ACCMD_FLOPPYPUT    (CMD_NONSTD + 12)
+#define ACCMD_SHARES       (CMD_NONSTD + 13)
+#define ACCMD_POWER        (CMD_NONSTD + 14)
+
+#define ACC_POWER_RESTART  1               /* ACCMD_POWER's io_Offset: start the machine again (cold) */
+#define ACC_POWER_OFF      2               /* ... power it off (a PC: close the instance) */
+#define ACCMD_POWERLEVEL   (CMD_NONSTD + 15)
+#define ACCMD_CHIPLIMIT    (CMD_NONSTD + 16)
+#define ACCMD_MACHINE      (CMD_NONSTD + 17)
+#define ACCMD_FRAMEHISTORY (CMD_NONSTD + 18)
+
+#define ACC_MACHINE_PUSH   1               /* ACCMD_MACHINE's io_Offset (low byte): a program's words over the global ones */
+#define ACC_MACHINE_POP    2               /* ... that push taken away: its id in io_Offset's upper 24 bits */
+#define ACC_MACHINE_GET    3               /* ... what is in force, the global words, the pushes */
+#define ACC_MACHINE_SET    4               /* ... the global words */
+
+#define ACC_FRAMEHIST_READ 0               /* ACCMD_FRAMEHISTORY's io_Offset: only read */
+#define ACC_FRAMEHIST_ONDEMAND 1           /* ... no history: the host reads a frame only when its page asks */
+#define ACC_FRAMEHIST_ON   2               /* ... the host keeps one (the browser page's timed frames, screenshots) */
+#define ACC_FRAMEHIST_ALWAYSOFF 0          /* io_Actual: the host's config says ALWAYSOFF; the Amiga can't turn it on */
+
+#define ACC_CHIP_READ  0                   /* ACCMD_CHIPLIMIT's io_Offset: only read */
+#define ACC_CHIP_2MB   1                   /* ... a stock A1200 (2 MB) from the next power-on */
+#define ACC_CHIP_FULL  2                   /* ... the board's full Chip RAM from the next power-on */
+#define ACC_CHIP_NOW   0x100               /* ... ORed in: power off and on now */
+
+#define ACC_POWERLEVEL_READ     0          /* ACCMD_POWERLEVEL's io_Offset: only read the level and sensors */
+#define ACC_POWERLEVEL_QUIET    1          /* ... set Quiet: a dynamic governor, the clock capped halfway */
+#define ACC_POWERLEVEL_BALANCED 2          /* ... set Balanced: a dynamic governor, the full clock */
+#define ACC_POWERLEVEL_FULL     3          /* ... set Full: the performance governor */
 
 #define ACC_ADF_BYTES 901120UL             /* an 880 KB DD disk: what ACCMD_FLOPPYPUT takes */
 
@@ -104,5 +210,11 @@ struct ACFilePut {
 #define ACCERR_NOCLIP    44        /* an ACBridge from before ABI 1.2 (no clipboard) */
 #define ACCERR_NOFILES   45        /* an ACBridge without files (capability bit 12) */
 #define ACCERR_NOFLOPPY  46        /* an ACBridge without the floppy changer (capability bit 14) */
+#define ACCERR_NOSHARES  47        /* an ACBridge without network shares (capability bit 18) */
+#define ACCERR_NOPOWER   48        /* an ACBridge without restart and power off (capability bit 19) */
+#define ACCERR_NOPOWERLEVEL 49     /* an ACBridge without the power level (capability bit 20) */
+#define ACCERR_NOCHIPLIMIT  50     /* an ACBridge without the Chip RAM limiter (capability bit 21) */
+#define ACCERR_NOMACHINE    51     /* an ACBridge without the machine's settings (capability bit 22) */
+#define ACCERR_NOFRAMEHISTORY 52   /* an ACBridge without the frame history switch (capability bit 23) */
 
 #endif

@@ -1,5 +1,6 @@
 TABLE OF CONTENTS
 
+akikoplus.device/--background--
 akikoplus.library/--background--
 akikoplus.library/AP_C2P
 akikoplus.library/AP_Compress
@@ -16,6 +17,29 @@ akikoplus.library/AP_SwapCopy
 akikoplus.library/AP_SwapInPlace
 akikoplus.library/AP_SwapInterleaved
 akikoplus.library/AP_YUVToARGB
+
+akikoplus.device/--background--                   akikoplus.device/--background--
+
+   PURPOSE
+	The ACMedia stream device. In version 1.3 normal clients give OPEN and
+	PROBE an APMA_Lock (or APMA_Name), but source storage identity is not yet
+	derived by the device/host, so those commands return APMERR_NOTAVAIL.
+	Applications must not know host drive/volume folder names or select/read
+	a rung.
+
+	The private APMTest lab tool adds drive and volume validation tags to
+	prove the current rung-A path. Its lock must be on an ACFS volume served
+	by acscsi.device. The private volume must match the DOS device name for
+	the lock (case-insensitively), so the tool cannot redirect a lock into
+	another host volume. The private drive is the ACFS-STORE folder for that
+	mounted volume. Missing private tags are APMERR_NOTAVAIL.
+
+   SAFETY
+	The device derives the file path from the lock. It does not accept a
+	caller-supplied path in place of that lock, and it verifies the volume
+	identity before constructing APMTest's ACM_SRC_ACFS descriptor. OPEN,
+	PROBE and other commands that enter DOS or hostlib execute in BeginIO;
+	callers must issue them from process context, never interrupt context.
 
 akikoplus.library/--background--               akikoplus.library/--background--
 

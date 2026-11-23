@@ -39,6 +39,7 @@
 #define WBA_Signal   (WBA_Dummy + 3)   /* ULONG signal bit: Signal()led to the opener when the page changes or finishes */
 #define WBA_WebFonts (WBA_Dummy + 4)   /* BOOL, default FALSE: fonts the page downloads (WB_OpenBrowser) */
 #define WBA_Lite     (WBA_Dummy + 5)   /* BOOL, default FALSE: lighter pages (WB_OpenBrowser) */
+#define WBA_RunScript (WBA_Dummy + 6)  /* BOOL, default TRUE: the window's ARexx port runs RUNSCRIPT (WB_OpenBrowser, 1.2) */
 
 /* WB_State flags */
 #define WBS_LOADING  (1 << 0)
@@ -55,5 +56,6 @@
 #define WBERR_NOMEMORY (-2)
 #define WBERR_BADVIEW  (-3)
 #define WBERR_TIMEOUT  (-4)
+#define WBERR_REFUSED  (-5)   /* WB_OpenBrowser: the engine's program was started and ended at once, with no engine: not allowed to run (Tata), or it failed */
 
 #endif
