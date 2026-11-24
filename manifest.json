@@ -606,9 +606,9 @@
     },
     {
       "name": "akikoplus.library",
-      "version": "3.0, 3fcced6 (BL-141), `gfosautoconfigboards`",
+      "version": "3.0, fb91f9c (BL-141), `gfosautoconfigboards`",
       "repo": "DalsinAI/gfosautoconfigboards",
-      "commit": "3fcced6178637fd82cb7c4f00e4f36f65f47d4db",
+      "commit": "fb91f9cdb019c5ce8fd3eee8a261cf02d8b372cd",
       "licence": "MIT",
       "files": {
         "cards/akikoplus/guest/include/libraries/akikoplus.h": "Include/libraries/akikoplus.h",
