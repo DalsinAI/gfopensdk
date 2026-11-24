@@ -28,8 +28,11 @@
  *
  * Field tables describe a structure the 68k shares with a library, as the
  * 68k lays it out (big-endian, 16- and 32-bit members at even offsets), and
- * the native copy of it. gf_struct_in/gf_struct_out convert one at the gate,
- * once a call, never in a module's inner loop.
+ * the native copy of it. tools/gfmodgen.py generates them from a .fields
+ * file, together with the 68k side's record of the same shapes (its GFSG
+ * record), so both sides' layout signatures come from one description.
+ * gf_struct_in/gf_struct_out convert one at the gate, once a call, never in
+ * a module's inner loop.
  */
 #ifndef GFOS_GFOSLIB_H
 #define GFOS_GFOSLIB_H
@@ -147,12 +150,15 @@ typedef uint32_t gf_gaddr;          /* a 32-bit guest address: never a host poin
 
 struct gf_regs {
     uint32_t d[8], a[8];            /* a[7] is the 68k stack pointer */
-    uint16_t sr;
+    uint16_t sr;                    /* the low five bits are the CCR (X N Z V C) */
 };
 
 struct gf_call;
 
-/* What a module may ask of the runtime: its only imports (section 11.1). */
+/* What a module may ask of the runtime: its only imports (section 11.1).
+ * The runtime runs every call into a module on one emulation thread, one at
+ * a time: a module needs no locks for its own lists (Native-Modules-ABI.md
+ * 4.7); two calls interleave only across a call-out. */
 struct gf_rt {
     uint32_t abi;                   /* GF_GATE_ABI */
     /* a host pointer to n bytes at a guest address, checked once (5.2); NULL
@@ -169,7 +175,8 @@ struct gf_rt {
     /* module-private host memory (7.2): never visible to the 68k */
     void *(*halloc)(struct gf_call *c, size_t n);
     void (*hfree)(struct gf_call *c, void *p);
-    /* a fault in the module (6.5): log, Alert, the task stopped. Does not return. */
+    /* a fault in the module (6.5): log, Alert, the task stopped. Never
+     * returns; call it through gf_fault, which says so to the compiler. */
     void (*fault)(struct gf_call *c, uint32_t code, gf_gaddr at);
 };
 
@@ -187,7 +194,7 @@ struct gf_sess {
 struct gf_mod;
 
 struct gf_call {
-    struct gf_regs r;               /* in: as the 68k left them; out: D0/D1 */
+    struct gf_regs r;               /* in: as the 68k left them; out: D0, D1, CCR */
     struct gf_sess *s;              /* from A6 */
     const struct gf_mod *m;
     const struct gf_rt *rt;
@@ -198,17 +205,27 @@ struct gf_call {
 
 typedef void gf_entry(struct gf_call *c);
 
+__attribute__((noreturn)) static inline void gf_fault(struct gf_call *c, uint32_t code, gf_gaddr at)
+{
+    c->rt->fault(c, code, at);
+    __builtin_trap();               /* a runtime whose fault returned */
+}
+
 /* ---- the module header (section 8) ---------------------------------- */
 
 enum { GF_MARK_LIGHT = 0, GF_MARK_HEAVY = 1, GF_MARK_NATIVE_ONLY = 2 };
+/* what the gate writes back besides D0 (gfmodgen --d1, --ccr) */
+enum { GF_SLOT_D1 = 1, GF_SLOT_CCR = 2 };
 
 struct gf_slot {
-    int16_t lvo;                    /* -6, -12, ... */
+    int16_t lvo;                    /* -6, -12, ...: -6 * (slot + 1) */
     uint8_t mark;                   /* GF_MARK_* (4.6) */
-    uint8_t ccr;                    /* 1: the CCR is part of the contract */
+    uint8_t flags;                  /* GF_SLOT_* */
     gf_entry *fn;
     const char *name;
 };
+
+struct gf_table;
 
 struct gf_mod {
     char magic[4];                  /* "GFMD" */
@@ -224,7 +241,9 @@ struct gf_mod {
     uint16_t ntables;               /* the shared structures' field tables: the */
     const struct gf_table *const *tables; /* loader's layout_sig is gf_tables_sig over them */
     const struct gf_slot *slots;    /* nslots, slot 0 at -6 */
-    /* once, when the library loads, after the base is made: 0 or a reason */
+    /* once, when the library loads, after the base is made: 0 or a reason;
+     * it may leave its per-library data in c->mdata, which the runtime
+     * keeps and passes in every call */
     uint32_t (*init)(struct gf_call *c);
     /* once, when the library goes: frees what init and the calls kept */
     void (*fini)(struct gf_call *c);
@@ -237,20 +256,35 @@ enum {
     GF_MATCH_OK = 0,
     GF_MATCH_MAGIC,                 /* not a module, or a gate this runtime lacks */
     GF_MATCH_CPU,                   /* another CPU's */
+    GF_MATCH_ORDER,                 /* not this CPU's byte order */
     GF_MATCH_NAME,
     GF_MATCH_VERSION,               /* version or revision not the 68k body's */
     GF_MATCH_SLOTS,                 /* LVO count */
+    GF_MATCH_SLOT_TABLE,            /* a slot out of place, without an entry, or marked wrong */
+    GF_MATCH_POSSIZE,               /* the base's positive size is not the 68k body's */
+    GF_MATCH_TABLES,                /* a field table that is not well formed */
     GF_MATCH_LVO_SIG,
     GF_MATCH_LAYOUT_SIG
 };
-struct gf_partner {                 /* what the 68k body says of itself */
+/* What the 68k body says of itself: its RomTag (name, version, revision),
+ * its base (lib_NegSize / 6, lib_PosSize) and its GFSG record (the LVO and
+ * layout signatures, which gfmodgen writes from the same .lvo and .fields). */
+struct gf_partner {
     const char *name;
-    uint16_t version, revision, nslots;
+    uint16_t version, revision, nslots, possize;
     const uint8_t *lvo_sig;         /* 32 bytes, or NULL: no record, no partner */
     uint64_t layout_sig;
 };
-int gf_mod_match(const struct gf_mod *m, const struct gf_partner *p, uint16_t host_cpu);
+int gf_mod_match(const struct gf_mod *m, const struct gf_partner *p, uint16_t host_cpu, uint8_t host_order);
 const char *gf_match_reason(int why);
+
+/* the 64-byte GFSG record (gfmodgen.py --record): all big-endian */
+#define GF_GFSG_SIZE 64
+enum { GF_GFSG_MAGIC = 0, GF_GFSG_VERSION = 4, GF_GFSG_NSLOTS = 6, GF_GFSG_LVO_SIG = 8,
+       GF_GFSG_LAYOUT_SIG = 40, GF_GFSG_POSSIZE = 48 };
+/* fills p's numbers and signatures from a record (name, version and revision
+ * are the RomTag's); 0, or -1 when it is not one */
+int gf_gfsg_read(const uint8_t rec[GF_GFSG_SIZE], struct gf_partner *p);
 
 /* ---- field tables (12.4) -------------------------------------------- */
 
@@ -262,12 +296,11 @@ enum {
 };
 enum { GF_F_IN = 1, GF_F_OUT = 2, GF_F_INOUT = 3 };
 
-struct gf_table;
 struct gf_field {
     uint16_t goff;                  /* offset in the 68k layout */
     uint16_t noff;                  /* offset in the native copy */
     uint8_t kind;                   /* GF_K_* */
-    uint8_t flags;                  /* GF_F_* */
+    uint8_t flags;                  /* GF_F_*: a nested structure's fields keep their own */
     uint16_t count;                 /* array length (1 for one) */
     const struct gf_table *nest;    /* GF_K_NEST */
 };
@@ -301,19 +334,28 @@ struct gf_table {
 /* a guest-layout struct: no padding of its own, 2-byte aligned as on the 68k */
 #define GF_SHARED __attribute__((packed, aligned(2)))
 
-/* guest (caller's order) to native copy: the fields marked GF_F_IN */
-void gf_struct_in(const struct gf_table *t, void *native, const void *guest, int swap);
+/* 0 when a table is well formed: every field's kind known, inside both
+ * layouts (offset + size * count), a nested table's sizes its own, at most
+ * eight levels deep; else -1 */
+int gf_table_check(const struct gf_table *t);
+/* guest (caller's order) to native copy: the fields marked GF_F_IN, a nested
+ * structure's by its own fields' marks; 0, or -1 for a table not well formed */
+int gf_struct_in(const struct gf_table *t, void *native, const void *guest, int swap);
 /* native copy to guest (caller's order): the fields marked GF_F_OUT */
-void gf_struct_out(const struct gf_table *t, void *guest, const void *native, int swap);
-/* FNV-1a 64 over the tables' shapes: the module's layout_sig */
+int gf_struct_out(const struct gf_table *t, void *guest, const void *native, int swap);
+/* FNV-1a 64 over the tables' 68k-side shapes: the module's layout_sig, and
+ * what gfmodgen.py works out from the .fields file for the 68k side */
 uint64_t gf_tables_sig(const struct gf_table *const *t, unsigned n);
 
 /* ---- helpers a module calls -------------------------------------------- */
 
-/* gf_ptr_r/w: rt->ptr, a fault when refused (a module never sees NULL) */
+/* rt->ptr, a fault when refused: these never return NULL */
 const void *gf_ptr_r(struct gf_call *c, gf_gaddr at, uint32_t n);
 void *gf_ptr_w(struct gf_call *c, gf_gaddr at, uint32_t n);
 gf_gaddr gf_gaddr_of(struct gf_call *c, const void *host);
+/* n * each + extra, a fault when it does not fit in 32 bits: for sizes made
+ * from a caller's numbers before a gf_ptr_r/w */
+uint32_t gf_size(struct gf_call *c, uint32_t n, uint32_t each, uint32_t extra);
 
 /* exec through its own jump table (6.1), so a SetFunction on it holds */
 #define GF_LVO_ALLOCVEC (-684)

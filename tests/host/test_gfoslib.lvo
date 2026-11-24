@@ -1,7 +1,8 @@
 # gfoslib's host test library (tests/host/test_gfoslib.c): LVO, call,
 # registers, core class. tools/gfmodgen.py makes its gate entries.
--30 TstAdd d0,d1            # pure: registers only
+-30 TstAdd d0,d1            # pure: registers only; the CCR as an ADD.L leaves N and Z (--ccr)
 -36 TstSwizzle a0           # pure: a structure in and out, nested, with a guest pointer
 -42 TstFill a0,d0,d1        # pure: a buffer read and written in the session's orders
 -48 TstHook a0,d0           # pure: calls the caller's C function back
--54 private                 # anchored (reserved)
+-54 TstDivMod d0,d1         # pure: the quotient in D0, the remainder in D1 (--d1)
+-60 private                 # anchored (reserved)

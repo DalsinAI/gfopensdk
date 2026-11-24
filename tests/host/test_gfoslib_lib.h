@@ -1,4 +1,5 @@
-/* gfoslib's host test library: its shared structures (tests/host/test_gfoslib.c) */
+/* gfoslib's host test library: its shared structures (tests/host/test_gfoslib.c).
+ * The field tables are tools/gfmodgen.py's, from test_gfoslib.fields. */
 #ifndef TEST_GFOSLIB_LIB_H
 #define TEST_GFOSLIB_LIB_H
 #include "gfos/gfoslib.h"
@@ -11,18 +12,13 @@ struct tst_outer_g {
     struct tst_inner_g inner;
     gf_gaddr buf;
     uint32_t sum;
+    uint16_t tag[3];
 } GF_SHARED;
-GF_SIZE(struct tst_inner_g, 8);
-GF_SIZE(struct tst_outer_g, 24);
-GF_LAYOUT(struct tst_outer_g, inner, 8);
-GF_LAYOUT(struct tst_outer_g, buf, 16);
 
 /* the module's native copies */
 struct tst_inner_n { uint32_t a; uint16_t b; uint8_t c, d; };
-struct tst_outer_n { uint16_t kind; uint32_t count; struct tst_inner_n inner; gf_gaddr buf; uint32_t sum; };
-
-extern const struct gf_table tst_inner_table, tst_outer_table;
-extern const struct gf_table *const tst_tables[];
+struct tst_outer_n { uint16_t kind; uint32_t count; struct tst_inner_n inner; gf_gaddr buf; uint32_t sum;
+                     uint16_t tag[3]; };
 
 /* the four copies of each function that touches caller memory */
 #define TST_DECL(fn, ...) \
