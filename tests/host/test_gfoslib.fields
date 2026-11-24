@@ -1,0 +1,14 @@
+# gfoslib's host test library: the structures it shares with the 68k
+# (tools/gfmodgen.py --fields). MEMBER OFFSET KIND FLAGS.
+table tst_inner struct tst_inner_g struct tst_inner_n 8
+  a 0 u32 inout
+  b 4 u16 inout
+  c 6 u8 inout
+  d 7 u8 in               # read, never written back: a nested field keeps its own mark
+table tst_outer struct tst_outer_g struct tst_outer_n 30
+  kind 0 u16 in
+  count 4 u32 inout
+  inner 8 tst_inner inout
+  buf 16 gptr in
+  sum 20 u32 out
+  tag 24 u16[3] inout

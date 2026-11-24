@@ -1,6 +1,7 @@
 #!/bin/sh
 # Host tests for os4compat: the generator and the plain-C calls, with the
 # host's gcc and stand-in NDK headers (mock/). The 68k build is Lib/os4compat.
+# Then gfoslib (Include/gfos/gfoslib.h, GF-126): test_gfoslib.sh.
 set -e
 cd "$(dirname "$0")"
 SDK=../..
@@ -20,4 +21,6 @@ gcc $W -I$SDK/Examples/datatypes-memory -o "$T/t_dtmemory" test_dtmemory.c
 "$T/t_iface"
 "$T/t_fmt"
 rm -rf "$T"
+# gfoslib: the module generator, the four byte-order copies, every caller order
+sh ./test_gfoslib.sh
 echo "host tests passed"
