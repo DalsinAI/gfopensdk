@@ -80,4 +80,32 @@ typedef ULONG _sfdc_vararg;
       LP1(0x72, LONG, AP_Query , ULONG, ___what, d0,\
       , AKIKOPLUS_BASE_NAME)
 
+#define AP_OpenService(___name, ___flags, ___error) \
+      LP3(0x78, APTR, AP_OpenService , CONST_STRPTR, ___name, a0, ULONG, ___flags, d0, LONG *, ___error, a1,\
+      , AKIKOPLUS_BASE_NAME)
+
+#define AP_CloseService(___service) \
+      LP1NR(0x7e, AP_CloseService , APTR, ___service, a0,\
+      , AKIKOPLUS_BASE_NAME)
+
+#define AP_CallService(___service, ___call, ___resultAux) \
+      LP3(0x84, LONG, AP_CallService , APTR, ___service, a0, CONST struct APServiceCall *, ___call, a1, ULONG *, ___resultAux, a2,\
+      , AKIKOPLUS_BASE_NAME)
+
+#define AP_ServiceWhere(___service) \
+      LP1(0x8a, LONG, AP_ServiceWhere , APTR, ___service, a0,\
+      , AKIKOPLUS_BASE_NAME)
+
+#define AP_SendService(___service, ___call, ___port) \
+      LP3(0x90, APTR, AP_SendService , APTR, ___service, a0, CONST struct APServiceCall *, ___call, a1, struct MsgPort *, ___port, a2,\
+      , AKIKOPLUS_BASE_NAME)
+
+#define AP_WaitService(___request, ___resultAux) \
+      LP2(0x96, LONG, AP_WaitService , APTR, ___request, a0, ULONG *, ___resultAux, a1,\
+      , AKIKOPLUS_BASE_NAME)
+
+#define AP_AbortService(___request, ___resultAux) \
+      LP2(0x9c, LONG, AP_AbortService , APTR, ___request, a0, ULONG *, ___resultAux, a1,\
+      , AKIKOPLUS_BASE_NAME)
+
 #endif /* !_INLINE_AKIKOPLUS_H */

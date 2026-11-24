@@ -3,7 +3,7 @@
 #define PRAGMAS_AKIKOPLUS_PRAGMAS_H
 
 /*
-**   $VER: akikoplus_pragmas.h 2.0 $Id: akikoplus_lib.sfd 2.0 (9.11.2026) $
+**   $VER: akikoplus_pragmas.h 3.0 $Id: akikoplus_lib.sfd 3.0 (24.11.2026) $
 **
 **   Direct ROM interface (pragma) definitions.
 **
@@ -116,6 +116,48 @@
 #endif /* __CLIB_PRAGMA_LIBCALL */
 #ifdef __CLIB_PRAGMA_AMICALL
  #pragma amicall(AkikoPlusBase, 0x72, AP_Query(d0))
+#endif /* __CLIB_PRAGMA_AMICALL */
+#ifdef __CLIB_PRAGMA_LIBCALL
+ #pragma libcall AkikoPlusBase AP_OpenService 78 90803
+#endif /* __CLIB_PRAGMA_LIBCALL */
+#ifdef __CLIB_PRAGMA_AMICALL
+ #pragma amicall(AkikoPlusBase, 0x78, AP_OpenService(a0,d0,a1))
+#endif /* __CLIB_PRAGMA_AMICALL */
+#ifdef __CLIB_PRAGMA_LIBCALL
+ #pragma libcall AkikoPlusBase AP_CloseService 7e 801
+#endif /* __CLIB_PRAGMA_LIBCALL */
+#ifdef __CLIB_PRAGMA_AMICALL
+ #pragma amicall(AkikoPlusBase, 0x7e, AP_CloseService(a0))
+#endif /* __CLIB_PRAGMA_AMICALL */
+#ifdef __CLIB_PRAGMA_LIBCALL
+ #pragma libcall AkikoPlusBase AP_CallService 84 a9803
+#endif /* __CLIB_PRAGMA_LIBCALL */
+#ifdef __CLIB_PRAGMA_AMICALL
+ #pragma amicall(AkikoPlusBase, 0x84, AP_CallService(a0,a1,a2))
+#endif /* __CLIB_PRAGMA_AMICALL */
+#ifdef __CLIB_PRAGMA_LIBCALL
+ #pragma libcall AkikoPlusBase AP_ServiceWhere 8a 801
+#endif /* __CLIB_PRAGMA_LIBCALL */
+#ifdef __CLIB_PRAGMA_AMICALL
+ #pragma amicall(AkikoPlusBase, 0x8a, AP_ServiceWhere(a0))
+#endif /* __CLIB_PRAGMA_AMICALL */
+#ifdef __CLIB_PRAGMA_LIBCALL
+ #pragma libcall AkikoPlusBase AP_SendService 90 a9803
+#endif /* __CLIB_PRAGMA_LIBCALL */
+#ifdef __CLIB_PRAGMA_AMICALL
+ #pragma amicall(AkikoPlusBase, 0x90, AP_SendService(a0,a1,a2))
+#endif /* __CLIB_PRAGMA_AMICALL */
+#ifdef __CLIB_PRAGMA_LIBCALL
+ #pragma libcall AkikoPlusBase AP_WaitService 96 9802
+#endif /* __CLIB_PRAGMA_LIBCALL */
+#ifdef __CLIB_PRAGMA_AMICALL
+ #pragma amicall(AkikoPlusBase, 0x96, AP_WaitService(a0,a1))
+#endif /* __CLIB_PRAGMA_AMICALL */
+#ifdef __CLIB_PRAGMA_LIBCALL
+ #pragma libcall AkikoPlusBase AP_AbortService 9c 9802
+#endif /* __CLIB_PRAGMA_LIBCALL */
+#ifdef __CLIB_PRAGMA_AMICALL
+ #pragma amicall(AkikoPlusBase, 0x9c, AP_AbortService(a0,a1))
 #endif /* __CLIB_PRAGMA_AMICALL */
 
 #endif /* PRAGMAS_AKIKOPLUS_PRAGMAS_H */

@@ -2,20 +2,27 @@ TABLE OF CONTENTS
 
 akikoplus.device/--background--
 akikoplus.library/--background--
+akikoplus.library/AP_AbortService
 akikoplus.library/AP_C2P
+akikoplus.library/AP_CallService
+akikoplus.library/AP_CloseService
 akikoplus.library/AP_Compress
 akikoplus.library/AP_CopyRect
 akikoplus.library/AP_Decompress
 akikoplus.library/AP_Fill
+akikoplus.library/AP_OpenService
 akikoplus.library/AP_Quantise
 akikoplus.library/AP_Query
 akikoplus.library/AP_Scale
+akikoplus.library/AP_SendService
+akikoplus.library/AP_ServiceWhere
 akikoplus.library/AP_SetMode
 akikoplus.library/AP_SetThreshold
 akikoplus.library/AP_Status
 akikoplus.library/AP_SwapCopy
 akikoplus.library/AP_SwapInPlace
 akikoplus.library/AP_SwapInterleaved
+akikoplus.library/AP_WaitService
 akikoplus.library/AP_YUVToARGB
 
 akikoplus.device/--background--                   akikoplus.device/--background--
@@ -62,6 +69,14 @@ akikoplus.library/--background--               akikoplus.library/--background--
 	akiko.z/1 are opened board only (MOF_BOARDONLY) the first time a
 	call needs them. If mitchy.library or the board is missing, or the
 	board cannot be reached during a call, the 68k version runs.
+
+   SERVICES (V3)
+	AP_OpenService opens any named service ("media.decode/1" and the
+	rest) where mitchy.library finds it: on the AkikoPlus board when it
+	is fitted (the media services move there with it), else on Mitchy,
+	the services card, or a paired Cradle on the LAN. AP_CallService
+	makes one call and waits; AP_SendService and AP_WaitService make a
+	read-ahead. The GFOpen datatypes reach media.decode/1 this way.
 
    SMALL JOBS
 	A request to the board costs a round trip through the device, so a
@@ -357,3 +372,169 @@ akikoplus.library/AP_Query                           akikoplus.library/AP_Query
 
    RESULT
 	The value, or AP_ERR_BADARGS for another what.
+
+akikoplus.library/AP_OpenService               akikoplus.library/AP_OpenService
+
+   NAME
+	AP_OpenService -- open a service by name (V3)
+
+   SYNOPSIS
+	service = AP_OpenService(name, flags, error)
+	D0                       A0    D0     A1
+
+	APTR AP_OpenService(CONST_STRPTR, ULONG, LONG *);
+
+   FUNCTION
+	Opens a service by name and version, such as "media.decode/1",
+	"media.encode/1", "media.cdxl/1" or "doc.render/1". With AkikoPlus
+	fitted the media services are the board's, and it is the board's
+	host that does the work; without it, the service is opened where
+	mitchy.library finds it: Mitchy, the services card, or a Cradle
+	this Amiga is paired with on the LAN. The handle may be used from
+	any task.
+
+   INPUTS
+	name  - the service's name, at most 63 characters.
+	flags - APOF_BOARDONLY: a board in this machine only, never the LAN.
+	error - where the reason goes (APS_OK when it opens), or NULL.
+
+   RESULT
+	service - the open service, or NULL:
+	    APSERR_NOMITCHY   mitchy.library 1 is not installed: the
+	                      program may try its own way in, or do the
+	                      work on the 68k;
+	    APSERR_NOSERVICE  no board or Cradle offers it;
+	    APSERR_NOTFITTED  no ACSV board in this machine, and no paired
+	                      Cradle offers it;
+	    APSERR_NODEVICE   gfopenservice.device is not installed;
+	    APSERR_BADREQUEST no name, one too long, or an unknown flag;
+	    APSERR_NOMEMORY.
+
+   SEE ALSO
+	AP_CloseService(), AP_CallService(), AP_ServiceWhere()
+
+akikoplus.library/AP_CloseService             akikoplus.library/AP_CloseService
+
+   NAME
+	AP_CloseService -- close a service (V3)
+
+   SYNOPSIS
+	AP_CloseService(service)
+	                A0
+
+	VOID AP_CloseService(APTR);
+
+   FUNCTION
+	Closes a service AP_OpenService gave. Wait for or abort its
+	requests first. NULL is allowed.
+
+akikoplus.library/AP_CallService               akikoplus.library/AP_CallService
+
+   NAME
+	AP_CallService -- one call to a service, waited for (V3)
+
+   SYNOPSIS
+	status = AP_CallService(service, call, resultAux)
+	D0                      A0       A1    A2
+
+	LONG AP_CallService(APTR, CONST struct APServiceCall *, ULONG *);
+
+   FUNCTION
+	Sends the call (asc_Op, asc_Flags, asc_Arg, asc_Buf, asc_Extra, as
+	the service defines them) and waits for its answer, from any task.
+	A buffer whose APSF_WRITTEN(i) is set in asc_Flags is written by the
+	service; the others are only read. Any memory, Chip or Fast. The
+	buffers one call marks written may total 16 MB at most.
+
+   INPUTS
+	resultAux - two ULONGs that get the result and aux, or NULL.
+
+   RESULT
+	status - APS_OK, an APSERR_ or the service's own negative status.
+
+akikoplus.library/AP_ServiceWhere             akikoplus.library/AP_ServiceWhere
+
+   NAME
+	AP_ServiceWhere -- where a service runs (V3)
+
+   SYNOPSIS
+	where = AP_ServiceWhere(service)
+	D0                      A0
+
+	LONG AP_ServiceWhere(APTR);
+
+   RESULT
+	AP_WHERE_BOARD - on a board in this machine (its host);
+	AP_WHERE_LAN   - on a paired Cradle on the LAN;
+	AP_WHERE_NONE  - nowhere any more: its Cradle was lost. Close it
+	                 and open it again, or do the work on the 68k.
+
+akikoplus.library/AP_SendService               akikoplus.library/AP_SendService
+
+   NAME
+	AP_SendService -- send a call and go on (V3)
+
+   SYNOPSIS
+	request = AP_SendService(service, call, port)
+	D0                       A0       A1    A2
+
+	APTR AP_SendService(APTR, CONST struct APServiceCall *,
+	                    struct MsgPort *);
+
+   FUNCTION
+	Sends the call and returns at once: a read-ahead, the next frame
+	or page asked for while this one shows. The call's buffers belong
+	to the service until the request is taken with AP_WaitService or
+	AP_AbortService, which every request must be, once.
+
+	With a port, the completion is a message on it, and it signals the
+	port's task (mp_SigTask, mp_SigBit): AP_WaitService may then be
+	called from another task, once the port signals that task. With
+	port NULL, the request takes a signal of the calling task, and only
+	that task may wait for it.
+
+   RESULT
+	request - the request in flight, or NULL when it could not be sent
+	    (no memory, no free signal): make the call with AP_CallService.
+
+   SEE ALSO
+	AP_WaitService(), AP_AbortService()
+
+akikoplus.library/AP_WaitService               akikoplus.library/AP_WaitService
+
+   NAME
+	AP_WaitService -- take a sent call's answer (V3)
+
+   SYNOPSIS
+	status = AP_WaitService(request, resultAux)
+	D0                      A0       A1
+
+	LONG AP_WaitService(APTR, ULONG *);
+
+   FUNCTION
+	Waits until the request AP_SendService gave completes (at once when
+	it has), puts its result and aux in resultAux (two ULONGs, or NULL)
+	and frees it.
+
+   RESULT
+	status - as AP_CallService's; APSERR_BADREQUEST for NULL.
+
+akikoplus.library/AP_AbortService             akikoplus.library/AP_AbortService
+
+   NAME
+	AP_AbortService -- cancel a sent call (V3)
+
+   SYNOPSIS
+	status = AP_AbortService(request, resultAux)
+	D0                       A0       A1
+
+	LONG AP_AbortService(APTR, ULONG *);
+
+   FUNCTION
+	Cancels the request AP_SendService gave, waits for it (at once: the
+	board answers a cancel itself) and frees it. A buffer it marks
+	written is not written after this returns APSERR_CANCELLED; one that
+	had completed keeps its answer.
+
+   RESULT
+	status - APSERR_CANCELLED, or the answer when it had completed.
