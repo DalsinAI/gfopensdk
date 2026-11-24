@@ -32,7 +32,7 @@ commit `manifest.json` pins; change them there, then move the pin here.
 | elf.library | 2.0, main a6f9c20, `gfopenelflibrary` | `elf/openelf_public.h` | – | [elf.library.md](elf.library.md), [elf.lvo](elf.lvo) |
 | gfopenservice.device | main 90dedba, `gfopenservice` | `devices/gfopenservice.h` | – | – |
 | mitchy.library | 1.0, main e94f674, `gfopenservice` | `proto/mitchy.h` | mitchy_lib.fd, mitchy_lib.sfd | [mitchy.doc](mitchy.doc) |
-| akikoplus.library | 3.0, 3fcced6, `gfosautoconfigboards` | `proto/akikoplus.h` | akikoplus_lib.fd, akikoplus_lib.sfd | [akikoplus.doc](akikoplus.doc) |
+| akikoplus.library | 3.0, fb91f9c, `gfosautoconfigboards` | `proto/akikoplus.h` | akikoplus_lib.fd, akikoplus_lib.sfd | [akikoplus.doc](akikoplus.doc) |
 | physfs.library | 1.1, 56e3b9a, `gfopenphysfs` | `physfs.h`, `proto/physfs.h`; link `-lphysfs_auto` | physfs_lib.fd | [physfs.library.md](physfs.library.md) |
 | z.library | 53.13 table (GFOpenZlib 53.13+, the Aminet z.library), b00522e3, `amicradle-guest` libraries/openzlib | `proto/z.h`, `libraries/z.h` (z_stream, gz_header, zlib's codes); open `z.library` version 53, and refuse GFOpenZlib 53.12 (another table) | z_lib.fd, z_lib.sfd | amicradle-guest libraries/openzlib/README.md |
 | acgame.library | 1.3, main 5a43eb9, `acgame` | `proto/acgame.h`, `acgame/acgame.h`, `acgame/platform.h`, `acgame/audio.h` | acgame_lib.fd, acgame_lib.sfd | [acgame.library.md](acgame.library.md) |
