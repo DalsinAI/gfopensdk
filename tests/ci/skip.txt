@@ -1,0 +1,5 @@
+# Tests pull request CI does not run, one per line: the path, then why. Keep it short; every line is a gap.
+OpenNDK/tests/run.sh needs m68k-linux-gnu-gcc, run by the kitchen's OpenNDK job
+tests/stove/test_guest_modules.sh needs a stove, run by sdk-validation.yml
+tests/stove/test_ndk_basic_types.sh needs a stove, run by sdk-validation.yml
+tests/stove/test_stove_openndk_current.sh needs a stove, run by sdk-validation.yml
