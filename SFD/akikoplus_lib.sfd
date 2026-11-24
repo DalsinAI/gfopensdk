@@ -1,4 +1,4 @@
-==id $Id: akikoplus_lib.sfd 2.0 (9.11.2026) $
+==id $Id: akikoplus_lib.sfd 3.0 (24.11.2026) $
 * akikoplus.library: AkikoPlus, the media board, and the 68k's versions of its helpers. MIT, (c) 2026 AmiCradle Team
 ==base _AkikoPlusBase
 ==basetype struct Library *
@@ -23,4 +23,12 @@ ULONG AP_SetThreshold(ULONG bytes)(d0)
 ==version 2
 ULONG AP_SetMode(ULONG mode)(d0)
 LONG AP_Query(ULONG what)(d0)
+==version 3
+APTR AP_OpenService(CONST_STRPTR name, ULONG flags, LONG * error)(a0,d0,a1)
+VOID AP_CloseService(APTR service)(a0)
+LONG AP_CallService(APTR service, CONST struct APServiceCall * call, ULONG * resultAux)(a0,a1,a2)
+LONG AP_ServiceWhere(APTR service)(a0)
+APTR AP_SendService(APTR service, CONST struct APServiceCall * call, struct MsgPort * port)(a0,a1,a2)
+LONG AP_WaitService(APTR request, ULONG * resultAux)(a0,a1)
+LONG AP_AbortService(APTR request, ULONG * resultAux)(a0,a1)
 ==end

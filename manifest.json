@@ -606,9 +606,9 @@
     },
     {
       "name": "akikoplus.library",
-      "version": "2.0, main 5fc1f83, `gfosautoconfigboards`",
+      "version": "3.0, 3fcced6 (BL-141), `gfosautoconfigboards`",
       "repo": "DalsinAI/gfosautoconfigboards",
-      "commit": "5fc1f83147a4fb9339b5788de46fb9a0b58a9bb4",
+      "commit": "3fcced6178637fd82cb7c4f00e4f36f65f47d4db",
       "licence": "MIT",
       "files": {
         "cards/akikoplus/guest/include/libraries/akikoplus.h": "Include/libraries/akikoplus.h",
@@ -620,14 +620,14 @@
         "cards/akikoplus/guest/akikoplus.doc": "Docs/akikoplus.doc"
       },
       "sha256": {
-        "Docs/akikoplus.doc": "2c4bc532019ec5d0afeb3b1571ffa646a41a63c9b503c180ee6b670c3f8ad782",
-        "FD/akikoplus_lib.fd": "88419ccdcb16cd1d275a8bcf9cac1e0c399fa0de8d8c101a6e884f975d271639",
-        "Include/clib/akikoplus_protos.h": "1034049434f0bf87b2511b2c953289bd26490a47e3a84bd918cc431055b5ec3d",
-        "Include/inline/akikoplus.h": "793b302e263d4209fd165825334a565924bcd5d17d694e587bef2fb9f55fb385",
-        "Include/libraries/akikoplus.h": "2d246e1fefeedb4d57f34130afaf5d93ceac0d3b1084a61f9153d1ae45e07935",
-        "Include/pragmas/akikoplus_pragmas.h": "feaa31704bd3709d9db0be9455a093cf51f8bb84c91cab4a6bb604e0aecfa895",
+        "Docs/akikoplus.doc": "3c17b1b152401d1eb9e442320ee9c0c36afe6ba96c59558f3ca37abcf49600f8",
+        "FD/akikoplus_lib.fd": "8a897d48aac8b8e8ee2f978a0eadd1e5dee8f68841e08e6649982c3be6db52b1",
+        "Include/clib/akikoplus_protos.h": "8db4ebd8bc598354840ae1673d6838e0075a585531519eb5ede2d978fb523c4e",
+        "Include/inline/akikoplus.h": "22e514f0bc6f42a10eb6a131f685309ad72c2cf7b748f29bdd84c6223fc0a7ee",
+        "Include/libraries/akikoplus.h": "00f01f45d4d2d7540b88df8e3d368902fc407d826fc8a0e7be21d434e9aea3e9",
+        "Include/pragmas/akikoplus_pragmas.h": "b19a78dd8a2a49b4b9bfc7c7be7b72cf0e0cecca4bbde7b00ebdf75b23401dee",
         "Include/proto/akikoplus.h": "21e6248d70511591eb968cc7cc2d2528591c9b58d70d620ccf7e541110302ce0",
-        "SFD/akikoplus_lib.sfd": "ecf397ed43c0bd73ebf3cd1437d7d07b53d994eb3ce3f2aed8ca12f8c9c9d39a"
+        "SFD/akikoplus_lib.sfd": "916ed61dba40686a8eb0a6c652e8c15a391676a53d0615d860dcaf8121e3b726"
       }
     },
     {

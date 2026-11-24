@@ -52,6 +52,16 @@ the board's cores (68k jobs, native ARM64 and x86-64 jobs, task cores,
 emulator guests), each with its fallback. `Examples/cores-native-job` runs
 a job built for the host on a core and checks it against the 68k.
 
+## akikoplus.library 3, 24 November 2026
+
+**akikoplus.library** 3 (`proto/akikoplus.h`) adds the services:
+`AP_OpenService`, `AP_CallService`, `AP_SendService`, `AP_WaitService`,
+`AP_AbortService`, `AP_ServiceWhere` and `AP_CloseService` reach any named
+service (`media.decode/1`, `media.encode/1`, `doc.render/1` ...) on the
+AkikoPlus board when it is fitted, else on Mitchy or a paired Cradle, as the
+GFOpen datatypes now do. `Examples/akikoplus-echo` calls `echo/1` both ways.
+Version 2's calls are unchanged (`Docs/akikoplus.doc`).
+
 ## SDK 0.4, 18 November 2026 (release candidate 1)
 
 The newest libraries, gathered at their main with their docs:

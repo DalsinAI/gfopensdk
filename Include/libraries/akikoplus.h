@@ -13,6 +13,12 @@
  * board) leaves the 68k versions out: AP_Status says so, and the calls answer
  * AP_ERR_NOBOARD without the board.
  *
+ * Version 3 (24 November 2026) keeps version 2's calls, offsets and
+ * structures, and adds the services: AP_OpenService, AP_CloseService,
+ * AP_CallService, AP_ServiceWhere, AP_SendService, AP_WaitService and
+ * AP_AbortService, so a program (the GFOpen datatypes) reaches
+ * media.decode/1 and the other named services through akikoplus.library.
+ *
  * A call small enough to be quicker on the 68k stays there (AP_SetThreshold).
  * Every call returns 0, or a negative AP_ERR_ (AP_Quantise returns the
  * colours, AP_Compress and AP_Decompress the bytes written).
@@ -22,9 +28,11 @@
 #define LIBRARIES_AKIKOPLUS_H
 
 #include <exec/types.h>
+#include <exec/ports.h>
 
 #define AKIKOPLUS_NAME "akikoplus.library"
-#define AKIKOPLUS_VERSION 2
+#define AKIKOPLUS_VERSION 3
+#define AKIKOPLUS_SERVICES_VERSION 3   /* the first with AP_OpenService ... AP_AbortService */
 
 #define AP_ERR_BADARGS  (-1)
 #define AP_ERR_NOBOARD  (-2)   /* a board-only build (AP_NO_FALLBACK) on a machine without the board */
@@ -102,6 +110,53 @@ struct APQuant {               /* ARGB32 to 8-bit, median cut */
     UWORD ap_Width, ap_Height;
     ULONG ap_SrcPitch, ap_DestPitch;
     ULONG ap_Colours;          /* 2-256 */
+};
+
+/* ---- Services (3) ---------------------------------------------------------
+ * Any service by name and version ("media.decode/1", "media.encode/1",
+ * "media.cdxl/1", "doc.render/1"), opened with AP_OpenService: on the
+ * AkikoPlus board when it is fitted (the media.* services are the board's
+ * then), else on Mitchy, the services card, or a paired Cradle on the LAN.
+ * The library goes through mitchy.library (1), and so through
+ * gfopenservice.device, which owns the boards' rings. A call is the
+ * service's op, flags (buffer i written by the service when APSF_WRITTEN(i)
+ * is set), arg, four buffers and four op-specific longs, as on the card's
+ * ring (AmiCradle's SERVICES_CARD.md); the answer is a status (APS_OK, an
+ * APSERR_ or the service's own negative one), a result and an aux. */
+#define APOF_BOARDONLY   (1UL << 0)   /* AP_OpenService: a board in this machine only, never the LAN */
+
+#define AP_WHERE_NONE    0            /* AP_ServiceWhere: nowhere any more (its Cradle was lost) */
+#define AP_WHERE_BOARD   1            /* a board in this machine: its host does the work */
+#define AP_WHERE_LAN     2            /* a paired Cradle on the LAN */
+
+#define APS_OK             0
+#define APSERR_NOSERVICE (-1)         /* no board or Cradle offers it */
+#define APSERR_BADREQUEST (-2)
+#define APSERR_CANCELLED (-3)         /* AP_AbortService */
+#define APSERR_TOOSMALL  (-4)         /* a written buffer is too small: the result says how much is needed */
+#define APSERR_HOST      (-5)         /* the host failed or is busy (retry) */
+#define APSERR_LOST      (-6)         /* the board or the Cradle was lost */
+#define APSERR_NODEVICE  (-100)       /* gfopenservice.device would not open */
+#define APSERR_NOMEMORY  (-101)
+#define APSERR_BUSY      (-102)
+#define APSERR_NOTFITTED (-103)       /* no ACSV board in this machine, and no paired Cradle offers it */
+#define APSERR_NOSIGNAL  (-104)
+#define APSERR_NOMITCHY  (-110)       /* mitchy.library 1 is not installed */
+
+#define APSF_WRITTEN(i)  (1UL << (i))
+
+struct APBuffer {
+    APTR  ab_Data;             /* any memory, Chip or Fast; length 0: unused */
+    ULONG ab_Length;
+};
+
+struct APServiceCall {
+    UWORD asc_Op;              /* the service's operation */
+    UWORD asc_Pad;
+    ULONG asc_Flags;           /* APSF_WRITTEN(i) */
+    ULONG asc_Arg;
+    struct APBuffer asc_Buf[4];
+    ULONG asc_Extra[4];        /* op-specific */
 };
 
 #endif
