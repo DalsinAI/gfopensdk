@@ -246,15 +246,16 @@
     },
     {
       "name": "gfopenlayout.library",
-      "version": "11.0, main 928c3f5",
+      "version": "11.0, master 8b898f4",
       "repo": "DalsinAI/gfopenlayout",
-      "commit": "928c3f5226b325b2f09bde1dc4ffa050ea686fd4",
+      "commit": "8b898f4c63519adbe5efbbe5b11fa69478afde26",
       "licence": "MIT",
       "files": {
         "include/gfopenlayout.h": "Include/gfopenlayout.h",
         "include/gfopenlayout_css.h": "Include/gfopenlayout_css.h",
         "include/gfopenlayout_ui.h": "Include/gfopenlayout_ui.h",
         "include/gfopenlayout_ui_amiga.h": "Include/gfopenlayout_ui_amiga.h",
+        "include/gfopenlayout_draw.h": "Include/gfopenlayout_draw.h",
         "include/libraries/gfopenlayout.h": "Include/libraries/gfopenlayout.h",
         "include/proto/gfopenlayout.h": "Include/proto/gfopenlayout.h",
         "include/inline/gfopenlayout.h": "Include/inline/gfopenlayout.h",
@@ -268,10 +269,11 @@
         "FD/gfopenlayout_lib.fd": "69af8da99b51cd85d0a7f56c4666840037e45228abff00eff46a58f04e2dc3a3",
         "Include/gfopenlayout.h": "1fd51229d580a2b8373bfc5c61314edf5fbda4c906bd1045b72ced94d10e9fb8",
         "Include/gfopenlayout_css.h": "2d0403a9a0d21a096846c078c6a069b6f03c3c5d7a3ebc25a02cadfe00e8867a",
+        "Include/gfopenlayout_draw.h": "59de09ac7b2c7c10c76cff19da64b903514a1303e4c8527a3cbacf07fd1112e2",
         "Include/gfopenlayout_ui.h": "d51e9017cdb1a3651666f4efe70c679af347e876b44e148bff86aaf407de1d7a",
         "Include/gfopenlayout_ui_amiga.h": "9c7c9d4ddc0e930024eccec996734173bd9120edbfea4d90b28a7755bbbd6fa7",
         "Include/inline/gfopenlayout.h": "8824e0bc5cf69eaa370b7edb82ec4475690ce466512a12352ce69f265916b0b3",
-        "Include/libraries/gfopenlayout.h": "40f69f5ccdbaa5e1476d26899bfd13925932bb99923d5259e15a1b83eaeef4f9",
+        "Include/libraries/gfopenlayout.h": "6cf44e7c1270394be0bf59dbcc0c50e029991c21663a7b1e8c5790d2fb7cadb6",
         "Include/proto/gfopenlayout.h": "fe6b8a3275c0d4693d91d572818a8b418c550ba5954d7f298e4d3553c479392b",
         "SFD/gfopenlayout_lib.sfd": "1c7ef12e598c3fe74c51e2b93433f7a87deacbfdfee777761d352d5108ee8bf7"
       }
