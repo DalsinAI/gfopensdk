@@ -5,6 +5,7 @@
 #include <gfopenlayout.h>
 #include <gfopenlayout_ui.h>
 #include <gfopenlayout_ui_amiga.h>
+#include <gfopenlayout_draw.h>      /* version 25's OLDraw_ calls take its types */
 
 #define OPENLAYOUTLIB_NAME "gfopenlayout.library"
 #define OPENLAYOUTLIB_VERSION 2             /* the calls up to OL_NodeValue */
